@@ -1,0 +1,43 @@
+<div *ngIf="mainDeptEmployee">
+  <div>
+    <label>
+      <b>Last Name</b>
+      <input type="text" id="lastName" [(ngModel)]="mainDeptEmployee.lastName" name="lastName">
+    </label>
+  </div>
+  <div>
+    <label>
+      <b>First Name</b>
+      <input type="text" id="firstName" [(ngModel)]="mainDeptEmployee.firstName" name="firstName">
+    </label>
+  </div>
+  <div>
+    <label>
+      <b>Middle Name</b>
+      <input type="text" id="middleName" [(ngModel)]="mainDeptEmployee.middleName" name="middleName">
+    </label>
+  </div>
+  <div>
+    <label>
+      <b>Birth Date</b>
+      <input type="text" id="birthDate" [(ngModel)]="mainDeptEmployee.birthDate" name="birthDate">
+    </label>
+  </div>
+  <div>
+    <label>
+      <b>Passport</b>
+      <input type="text" id="passport" [(ngModel)]="mainDeptEmployee.passport" name="passport">
+    </label>
+  </div>
+  <div>
+    <label>
+      <b>Main Department</b>
+      <input type="text" id="mainDepartment" [(ngModel)]="mainDeptEmployee.mainDepartment" name="mainDepartment">
+    </label>
+  </div>
+
+
+<!--  <input type="text" class="form-control" id="firstName" required [(ngModel)]="employee.firstName" name="firstName"> -->
+
+  <button (click)="updateMainDeptEmployee()">save</button>
+</div>
