@@ -1,0 +1,41 @@
+<div>
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label>
+        <input type="text" id="lastName"  name="lastName"
+               [(ngModel)]="subDeptEmployee.lastName" placeholder="Enter Last Name">
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="text" id="firstName" name="firstName"
+               [(ngModel)]="subDeptEmployee.firstName" placeholder="Enter First Name" >
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="text" id="middleName" name="middleName"
+               [(ngModel)]="subDeptEmployee.middleName" placeholder="Enter Middle Name" >
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="text" id="birthDate" name="birthDate"
+               [(ngModel)]="subDeptEmployee.birthDate" placeholder="Enter Birth Date" >
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="text" id="passport"  name="passport" placeholder="Enter Passport"
+               [(ngModel)]="subDeptEmployee.passport" >
+      </label>
+    </div>
+    <div>
+      <select [(ngModel)]="subDeptEmployee.subDepartment" name="subDepartment" >
+        <option hidden >Выберите Департамент</option>
+        <option *ngFor="let subDepartment of subDepartments" >{{subDepartment.name}}</option>
+      </select>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MainDeptEmployee } from '../entities/main-dept-employee';
-import { MainDeptEmployeeService } from '../service/main-dept-employee.service';
+import { MainDeptEmployee } from '../../entities/main-dept-employee';
+import { MainDeptEmployeeService } from '../../service/main-dept-employee.service';
 
 @Component({
   selector: 'app-main-dept-employee-list',
@@ -9,6 +9,7 @@ import { MainDeptEmployeeService } from '../service/main-dept-employee.service';
   styleUrls: ['./main-dept-employee-list.component.css']
 })
 export class MainDeptEmployeeListComponent implements OnInit {
+
   mainDeptEmployees: MainDeptEmployee[];
 
   constructor(private mainDeptEmployeeService: MainDeptEmployeeService, private router: Router) {}

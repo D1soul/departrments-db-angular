@@ -1,8 +1,9 @@
-<h2>Employees</h2>
+<h2>Main Department Employees</h2>
 
 <div>
   <tr *ngFor="let mainDeptEmployee of mainDeptEmployees">
-    <a routerLink="/main_dept_employee-details/{{mainDeptEmployee.id}}">
+    <!-- <a routerLink="/main_dept_employee-detail/{{mainDeptEmployee.id}}"> -->
+     <a routerLink="/main_dept_employee-detail/{{mainDeptEmployee.lastName}},{{mainDeptEmployee.firstName}},{{mainDeptEmployee.middleName}}">
       <span>{{mainDeptEmployee.id}}</span>
       <td>{{mainDeptEmployee.firstName}}</td>
       <td>{{mainDeptEmployee.lastName}}</td>

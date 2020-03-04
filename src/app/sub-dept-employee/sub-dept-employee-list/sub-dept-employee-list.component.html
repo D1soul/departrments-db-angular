@@ -1,0 +1,15 @@
+<h2>Sub-Department Employees</h2>
+
+<div>
+  <tr *ngFor="let subDeptEmployee of subDeptEmployees">
+    <a routerLink="/sub-dept_employee-detail/{{subDeptEmployee.lastName}},{{subDeptEmployee.firstName}},{{subDeptEmployee.middleName}}">
+      <span>{{subDeptEmployee.id}}</span>
+      <td>{{subDeptEmployee.firstName}}</td>
+      <td>{{subDeptEmployee.lastName}}</td>
+    </a>
+  </tr>
+
+  <button (click)="goToAddSubDeptEmployee()">Add</button>
+</div>
+
+
