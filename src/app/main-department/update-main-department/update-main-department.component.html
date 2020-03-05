@@ -1,0 +1,10 @@
+<div *ngIf="mainDepartment">
+  <div>
+    <label>
+      <b>Name</b>
+      <input type="text" id="name" name="name" [(ngModel)]="mainDepartment.name" >
+    </label>
+  </div>
+
+  <button (click)="updateMainDepartment()">save</button>
+</div>

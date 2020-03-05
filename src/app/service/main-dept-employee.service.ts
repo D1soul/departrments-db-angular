@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { MainDeptEmployee } from '../entities/main-dept-employee';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,49 +20,44 @@ export class MainDeptEmployeeService {
   }
 
   getAllMainDeptEmployees(): Observable<MainDeptEmployee[]> {
-    return this.http.get<MainDeptEmployee[]>(this.url);
+    return this.http.get<MainDeptEmployee[]>(this.url).pipe(
+      catchError(this.handleError<MainDeptEmployee[]>('Main Dept Employees List')));
   }
 
-  /*
-  getMainDeptEmployeeDetailById(id: number): Observable<MainDeptEmployee> {
-    const urlId = `${this.url}/${id}`;
-    return this.http.get<MainDeptEmployee>(urlId);
-  }
-
-   */
-
-  getMainDeptEmployeeDetailByFullName(
+  getMainDeptEmployeeDetail(
     lastName: string, firstName: string, middleName: string): Observable<MainDeptEmployee> {
-      const urlFullName = `${this.url}/${lastName},${firstName},${middleName}`;
-      return this.http.get<MainDeptEmployee>(urlFullName);
+      const urlFullName =  `${this.url}/${lastName}/${firstName}/${middleName}`;
+      return this.http.get<MainDeptEmployee>(urlFullName).pipe(
+        catchError(this.handleError<MainDeptEmployee>(
+          `Main Dept Employee with with Full Name: ${lastName} ${firstName} ${middleName} detail`)));
   }
 
   addMainDeptEmployee(mainDeptEmployee: MainDeptEmployee): Observable<MainDeptEmployee> {
-    return this.http.post<MainDeptEmployee>(this.url, mainDeptEmployee, this.httpOptions);
+    return this.http.post<MainDeptEmployee>(this.url, mainDeptEmployee, this.httpOptions).pipe(
+      catchError(this.handleError<MainDeptEmployee>('Adding New Main Dept Employee')));
   }
 
-  /*
-  updateMainDeptEmployeeById(id: number, mainDeptEmployee: MainDeptEmployee): Observable<Object>{
-    const urlId = `${this.url}/${id}`;
-    return this.http.put(urlId, mainDeptEmployee, this.httpOptions);
-  }
-
-   */
-
-  updateMainDeptEmployeeByFullName(
+  updateMainDeptEmployee(
     lastName: string, firstName: string, middleName: string,
     mainDeptEmployee: MainDeptEmployee): Observable<Object>{
-      const urlFullName = `${this.url}/${lastName},${firstName},${middleName}`;
-      return this.http.put(urlFullName, mainDeptEmployee, this.httpOptions);
+      const urlFullName = `${this.url}/${lastName}/${firstName}/${middleName}`;
+      return this.http.put(urlFullName, mainDeptEmployee, this.httpOptions).pipe(
+        catchError(this.handleError<MainDeptEmployee>(
+          `Updating Main Dept Employee with Full Name: ${lastName} ${firstName} ${middleName}`)));
   }
 
-   deleteMainDeptEmployeeById(id: number): Observable<any> {
-     const urlId = `${this.url}/${id}`;
-     return this.http.delete(urlId, { responseType: 'text' });
-   }
-  deleteMainDeptEmployeeByFullName(
+  deleteMainDeptEmployee(
     lastName: string, firstName: string, middleName: string): Observable<any> {
-      const urlFullName = `${this.url}/${lastName},${firstName},${middleName}`;
-      return this.http.delete(urlFullName, { responseType: 'text' });
+      const urlFullName = `${this.url}/${lastName}/${firstName}/${middleName}`;
+      return this.http.delete<MainDeptEmployee>(urlFullName).pipe(
+        catchError(this.handleError<MainDeptEmployee>(
+          `Deleting Main Dept Employee with Full Name: ${lastName} ${firstName} ${middleName}`)));
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return  of (result as T);
+    }
   }
 }

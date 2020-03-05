@@ -1,0 +1,42 @@
+<div *ngIf="subDeptEmployee">
+  <div>
+    <label>
+      <b>Last Name</b>
+      <input type="text" id="lastName" name="lastName" [(ngModel)]="subDeptEmployee.lastName" >
+    </label>
+  </div>
+  <div>
+    <label>
+      <b>First Name</b>
+      <input type="text" id="firstName" name="firstName" [(ngModel)]="subDeptEmployee.firstName" >
+    </label>
+  </div>
+  <div>
+    <label>
+      <b>Middle Name</b>
+      <input type="text" id="middleName" name="middleName" [(ngModel)]="subDeptEmployee.middleName" >
+    </label>
+  </div>
+  <div>
+    <label>
+      <b>Birth Date</b>
+      <input type="text" id="birthDate" name="birthDate" [(ngModel)]="subDeptEmployee.birthDate" >
+    </label>
+  </div>
+  <div>
+    <label>
+      <b>Passport</b>
+      <input type="text" id="passport" name="passport" [(ngModel)]="subDeptEmployee.passport" >
+    </label>
+  </div>
+  <div>
+    <label>
+      <b>Sub-Department</b>
+      <select [(ngModel)]="subDeptEmployee.subDepartment" name="subDepartment"  >
+        <option *ngFor="let subDepartment of subDepartments" [ngValue]="subDepartment.name" >{{subDepartment.name}}</option>
+      </select>
+    </label>
+  </div>
+
+  <button (click)="updateSubDeptEmployee()">save</button>
+</div>

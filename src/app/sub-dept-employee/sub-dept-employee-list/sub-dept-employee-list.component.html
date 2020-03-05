@@ -2,11 +2,16 @@
 
 <div>
   <tr *ngFor="let subDeptEmployee of subDeptEmployees">
-    <a routerLink="/sub-dept_employee-detail/{{subDeptEmployee.lastName}},{{subDeptEmployee.firstName}},{{subDeptEmployee.middleName}}">
+    <a routerLink="/sub-dept_employee-detail/{{subDeptEmployee.lastName}}/{{subDeptEmployee.firstName}}/{{subDeptEmployee.middleName}}">
       <span>{{subDeptEmployee.id}}</span>
       <td>{{subDeptEmployee.firstName}}</td>
       <td>{{subDeptEmployee.lastName}}</td>
     </a>
+    <button class="delete" title="delete hero"
+            (click)="deleteSubDeptEmployee(
+            subDeptEmployee.lastName,
+            subDeptEmployee.firstName,
+            subDeptEmployee.middleName)">x</button>
   </tr>
 
   <button (click)="goToAddSubDeptEmployee()">Add</button>

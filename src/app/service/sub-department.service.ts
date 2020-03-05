@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { SubDepartment } from '../entities/sub-department';
-import {MainDepartment} from '../entities/main-department';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,45 +20,37 @@ export class SubDepartmentService {
   }
 
   getAllSubDepartments(): Observable<SubDepartment[]> {
-    return this.http.get<SubDepartment[]>(this.url);
+    return this.http.get<SubDepartment[]>(this.url).pipe(
+      catchError(this.handleError<SubDepartment[]>('Sub-Departments List')));
   }
 
-  /*
-  getSubDepartmentDetailById(id: number): Observable<SubDepartment> {
-    const urlId = `${this.url}/${id}`;
-    return this.http.get<SubDepartment>(urlId);
-  }
-
-   */
-
-  getSubDepartmentDetailByName(name: string): Observable<SubDepartment> {
+  getSubDepartmentDetail(name: string): Observable<SubDepartment> {
     const urlName = `${this.url}/${name}`;
-    return this.http.get<SubDepartment>(urlName);
+    return this.http.get<SubDepartment>(urlName).pipe(
+      catchError(this.handleError<SubDepartment>(`Sub-Department with name: ${name} detail`)));
   }
 
   addSubDepartment(subDepartment: SubDepartment): Observable<SubDepartment> {
-    return this.http.post<SubDepartment>(this.url, subDepartment, this.httpOptions);
+    return this.http.post<SubDepartment>(this.url, subDepartment, this.httpOptions).pipe(
+      catchError(this.handleError<SubDepartment>('Adding New Sub-Department')));
   }
 
-  /*
-  updateSubDepartmentById(id: number, subDepartment: SubDepartment): Observable<Object>{
-    const urlId = `${this.url}/${id}`;
-    return this.http.put(urlId, subDepartment, this.httpOptions);
-  } */
-
-  updateSubDepartmentByName(name: string, subDepartment: SubDepartment): Observable<Object>{
+  updateSubDepartment(name: string, subDepartment: SubDepartment): Observable<Object>{
     const urlName = `${this.url}/${name}`;
-    return this.http.put(urlName, subDepartment, this.httpOptions);
+    return this.http.put(urlName, subDepartment, this.httpOptions).pipe(
+      catchError(this.handleError<SubDepartment>(`Updating Sub-Department with name: ${name}`)));
   }
 
-  deleteSubDepartmentById(id: number): Observable<any> {
-    const urlId = `${this.url}/${id}`;
-    return this.http.delete(urlId, { responseType: 'text' });
-  }
-
-  deleteSubDepartmentByName(name: string): Observable<any> {
+  deleteSubDepartment(name: string): Observable<SubDepartment> {
     const urlName = `${this.url}/${name}`;
-    return this.http.delete(urlName, { responseType: 'text' });
+    return this.http.delete<SubDepartment>(urlName).pipe(
+      catchError(this.handleError<SubDepartment>(`Deleting Sub-Department with name: ${name}`)));
   }
 
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return  of (result as T);
+    }
+  }
 }

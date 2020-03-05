@@ -1,0 +1,15 @@
+<h2>Main Departments</h2>
+
+<div>
+  <tr *ngFor="let mainDepartment of mainDepartments">
+    <a routerLink="/main_department-detail/{{mainDepartment.name}}">
+      <span>{{mainDepartment.id}}</span>
+      <td>{{mainDepartment.name}}</td>
+    </a>
+    <button class="delete" title="delete hero"
+            (click)="deleteMainDepartment(mainDepartment.name)">x</button>
+  </tr>
+
+
+  <button (click)="goToAddMainDepartment()">Add</button>
+</div>

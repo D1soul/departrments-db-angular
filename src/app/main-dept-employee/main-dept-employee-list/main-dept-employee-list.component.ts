@@ -19,7 +19,15 @@ export class MainDeptEmployeeListComponent implements OnInit {
   }
 
   getAllMainDeptEmployees() {
-    this.mainDeptEmployeeService.getAllMainDeptEmployees().subscribe(mainDeptEmployees => this.mainDeptEmployees = mainDeptEmployees);
+    this.mainDeptEmployeeService.getAllMainDeptEmployees()
+      .subscribe(mainDeptEmployees => this.mainDeptEmployees = mainDeptEmployees);
+  }
+
+  deleteMainDeptEmployee(lastName: string, firstName: string, middleName: string){
+    this.mainDeptEmployeeService.deleteMainDeptEmployee(lastName, firstName, middleName)
+      .subscribe(data => { console.log(data);
+      this.getAllMainDeptEmployees();
+    });
   }
 
   goToAddMainDeptEmployee(){

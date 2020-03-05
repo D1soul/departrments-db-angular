@@ -1,0 +1,20 @@
+<div *ngIf="subDepartment">
+  <div>
+    <label><b>Id</b></label>{{subDepartment.id}}
+  </div>
+  <div>
+    <label><b>Name</b></label>{{subDepartment.name}}
+  </div>
+  <div>
+    <label><b>Main Department</b></label>{{subDepartment.mainDepartment}}
+  </div>
+  <div>
+    <label><b>Employees</b></label>
+    <tr *ngFor="let employee of subDepartment.employees">
+      <td>{{employee.lastName}}</td>
+      <td>{{employee.firstName}}</td>
+      <td>{{employee.middleName}}</td>
+    </tr>
+  </div>
+  <button (click)="goToUpdateSubDepartment(subDepartment.name)"> &#9998; </button>
+</div>

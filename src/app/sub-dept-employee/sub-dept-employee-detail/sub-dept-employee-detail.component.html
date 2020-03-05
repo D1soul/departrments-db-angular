@@ -1,0 +1,25 @@
+<div *ngIf="subDeptEmployee">
+  <div>
+    <label><b>Id</b></label>{{subDeptEmployee.id}}
+  </div>
+  <div>
+    <label><b>Last Name</b></label>{{subDeptEmployee.lastName}}
+  </div>
+  <div>
+    <label><b>First Name</b></label>{{subDeptEmployee.firstName}}
+  </div>
+  <div>
+    <label><b>Middle Name</b></label>{{subDeptEmployee.middleName}}
+  </div>
+  <div>
+    <label><b>Birth Date</b></label>{{subDeptEmployee.birthDate}}
+  </div>
+  <div>
+    <label><b>Passport</b></label>{{subDeptEmployee.passport}}
+  </div>
+  <div>
+    <label><b>Main Department</b></label>{{subDeptEmployee.subDepartment}}
+  </div>
+  <button (click)="goToUpdateSubDeptEmployee(subDeptEmployee.lastName,
+    subDeptEmployee.firstName, subDeptEmployee.middleName)"> &#9998; </button>
+</div>

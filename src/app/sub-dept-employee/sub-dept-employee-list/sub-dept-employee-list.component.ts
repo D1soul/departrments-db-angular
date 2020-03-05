@@ -19,7 +19,15 @@ export class SubDeptEmployeeListComponent implements OnInit {
   }
 
   getAllSubDeptEmployees() {
-    this.subDeptEmployeeService.getAllSubDeptEmployees().subscribe(subDeptEmployees => this.subDeptEmployees = subDeptEmployees);
+    this.subDeptEmployeeService.getAllSubDeptEmployees()
+      .subscribe(subDeptEmployees => this.subDeptEmployees = subDeptEmployees);
+  }
+
+  deleteSubDeptEmployee(lastName: string, firstName: string, middleName: string){
+    this.subDeptEmployeeService.deleteSubDeptEmployee(lastName, firstName, middleName)
+      .subscribe(data => { console.log(data);
+        this.getAllSubDeptEmployees();
+      });
   }
 
   goToAddSubDeptEmployee(){

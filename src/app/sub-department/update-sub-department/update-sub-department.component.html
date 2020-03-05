@@ -1,0 +1,19 @@
+<div *ngIf="subDepartment">
+  <div>
+    <label>
+      <b>Name</b>
+      <input type="text" id="name" name="name" [(ngModel)]="subDepartment.name" >
+    </label>
+  </div>
+  <div>
+    <label>
+      <b>Main Department</b>
+      <select [(ngModel)]="subDepartment.mainDepartment" name="mainDepartment" >
+        <option *ngFor="let mainDepartment of mainDepartments" [ngValue]="mainDepartment.name" >
+          {{mainDepartment.name}}
+        </option>
+      </select>
+    </label>
+  </div>
+  <button (click)="updateSubDepartment()">save</button>
+</div>

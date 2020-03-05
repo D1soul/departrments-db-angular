@@ -1,0 +1,11 @@
+<div>
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label>
+        <input type="text" id="name"  name="name"
+               [(ngModel)]="mainDepartment.name" placeholder="Enter Name">
+      </label>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>

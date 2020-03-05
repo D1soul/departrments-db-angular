@@ -1,0 +1,17 @@
+<div>
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label>
+        <input type="text" id="name"  name="name"
+               [(ngModel)]="subDepartment.name" placeholder="Enter Name">
+      </label>
+    </div>
+    <div>
+      <select [(ngModel)]="subDepartment.mainDepartment" name="mainDepartment" >
+        <option hidden >Выберите Департамент</option>
+        <option *ngFor="let mainDepartment of mainDepartments" >{{mainDepartment.name}}</option>
+      </select>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
