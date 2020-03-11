@@ -1,10 +1,14 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/main_departments">Main Departments</a>
-  <a routerLink="/sub-departments">Sub-Departments</a>
-  <a routerLink="/main_dept_employees">Main Department Employees</a>
-  <a routerLink="/sub-dept_employees">Sub-Department Employees</a>
-</nav>
-
+<div class="navigation">
+  <h1>Департаменты</h1>
+  <tr >
+    <nav>
+      <a routerLink="/main_departments">
+        <td>Департаменты</td>
+      </a>
+      <a routerLink="/sub-departments"><td>Подотделы</td></a>
+      <a routerLink="/main_dept_employees"><td>Сотрудники департаментов</td></a>
+      <a routerLink="/sub-dept_employees"><td>Сотрудники подотделов</td></a>
+    </nav>
+  </tr>
+</div>
 <router-outlet></router-outlet>
-

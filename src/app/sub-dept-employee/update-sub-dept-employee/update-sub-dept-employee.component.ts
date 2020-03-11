@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SubDeptEmployeeService } from '../../service/sub-dept-employee.service';
 import { SubDepartment } from '../../entities/sub-department';
 import { SubDepartmentService } from '../../service/sub-department.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-update-sub-dept-employee',
@@ -17,13 +18,16 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
   middleName: string;
   subDeptEmployee: SubDeptEmployee;
   subDepartments: SubDepartment[];
+  sEmpUpdForm: FormGroup;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private subDeptEmployeeService: SubDeptEmployeeService,
-              private subDepartmentService: SubDepartmentService) {}
+              private subDepartmentService: SubDepartmentService,
+              private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.getSubDeptEmployeeDetail();
+    this.initSubDeptEmpForm();
   }
 
   getSubDeptEmployeeDetail() {
@@ -37,10 +41,37 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
       .subscribe(subDepartments => this.subDepartments = subDepartments);
   }
 
+  initSubDeptEmpForm(){
+    this.sEmpUpdForm = this.formBuilder.group({
+      "lastName": [null, [Validators.required,
+        Validators.pattern("^([А-я]+|[A-z]+)$"),
+        Validators.minLength(2),
+        Validators.maxLength(20)]],
+      "firstName": [null, [Validators.required,
+        Validators.pattern("^([А-я]+|[A-z]+)$"),
+        Validators.minLength(2),
+        Validators.maxLength(20)]],
+      "middleName": [null, [Validators.required,
+        Validators.pattern("^(([А-я]+|[A-z]+)|(-))$"),
+        Validators.maxLength(25)]],
+      "birthDate": [null, [Validators.required,
+        Validators.pattern("^\\d{2}/((января)|(февраля)"
+          + "|(марта)|(апреля)|(мая)|(июня)|(июля)"
+          + "|(августа)|(сентября)|(октября)"
+          + "|(ноября)|(декабря))/\\d{4}$")]],
+      "passport": [null,[Validators.required,
+        Validators.pattern("^(Серия:\\s?)\\d{2}\\s\\d{2}"
+          + "\\s(Номер:\\s?)\\d{6}$")]],
+      "subDepartment": [null,[Validators.required]]
+    });
+  }
+
   updateSubDeptEmployee(){
-    this.subDeptEmployeeService.updateSubDeptEmployee(
-      this.lastName, this.firstName, this.middleName, this.subDeptEmployee)
-      .subscribe(() =>  this.goToAllSubDeptEmployees());
+    if (this.sEmpUpdForm.valid) {
+      this.subDeptEmployeeService.updateSubDeptEmployee(
+        this.lastName, this.firstName, this.middleName, this.subDeptEmployee)
+        .subscribe(() => this.goToAllSubDeptEmployees());
+    }
   }
 
   goToAllSubDeptEmployees(){

@@ -1,17 +1,69 @@
 <div>
-  <form (ngSubmit)="onSubmit()">
-    <div>
-      <label>
-        <input type="text" id="name"  name="name"
-               [(ngModel)]="subDepartment.name" placeholder="Enter Name">
-      </label>
+  <form [formGroup]="sDeptCrForm" novalidate (ngSubmit)="addSubDepartment()" >
+    <h2>Добавление подотдела</h2>
+    <div class="cr_sub-dept">
+      <div class="name_label">
+        <label ><b>Название</b></label>
+      </div>
+      <div [ngClass]="{'name_default': sDeptCrForm.controls['name'].untouched,
+                       'name_invalid': ((sDeptCrForm.controls['name'].invalid
+                                      && (sDeptCrForm.controls['name'].dirty
+                                      || sDeptCrForm.controls['name'].touched))
+                                      ||(sDeptCrForm.controls['name'].invalid && submitted)),
+                       'name_valid': sDeptCrForm.controls['name'].touched
+                                      && sDeptCrForm.controls['name'].valid }" >
+        <input type="text" id="name" placeholder="Введите название"
+               [(ngModel)]="subDepartment.name" formControlName="name" >
+        <div class="name_error_massage">
+          <div *ngIf="((sDeptCrForm.controls['name'].invalid
+              && (sDeptCrForm.controls['name'].dirty
+              || sDeptCrForm.controls['name'].touched))
+              ||(sDeptCrForm.controls['name'].invalid && submitted))" >
+            <div *ngIf="sDeptCrForm.controls['name'].errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="sDeptCrForm.controls['name'].errors.minlength
+                        || sDeptCrForm.controls['name'].errors.pattern">
+              <p>Некорректное название!</p>
+            </div>
+            <div *ngIf="sDeptCrForm.controls['name'].errors.minlength">
+              <p>Название слишком короткое!</p>
+            </div>
+            <div *ngIf="sDeptCrForm.controls['name'].errors.pattern">
+              <p>Название должно содержать только кириллические, или латинские буквы и пробелы!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main_dept_label">
+        <label><b>Главный Департамент</b></label>
+      </div>
+      <div [ngClass]=" {'main_dept_default': sDeptCrForm.controls['mainDepartment'].untouched,
+                        'main_dept_invalid': ((sDeptCrForm.controls['mainDepartment'].invalid
+                                              && sDeptCrForm.controls['mainDepartment'].touched)
+                                              ||(sDeptCrForm.controls['mainDepartment'].invalid
+                                              && !sDeptCrForm.controls['mainDepartment'].touched
+                                              && submitted)),
+                        'main_dept_valid' : sDeptCrForm.controls['mainDepartment'].valid }" >
+        <select [(ngModel)]="subDepartment.mainDepartment" formControlName="mainDepartment" >
+          <option hidden [ngValue]="null"><p>Выберите Департамент</p></option>
+          <option *ngFor="let mainDepartment of mainDepartments" >
+            {{mainDepartment.name}}
+          </option>
+        </select>
+        <div class="main_dept_error_massage">
+          <div *ngIf="((sDeptCrForm.controls['mainDepartment'].invalid
+                                            && sDeptCrForm.controls['mainDepartment'].touched)
+                                            ||(sDeptCrForm.controls['mainDepartment'].invalid
+                                            && !sDeptCrForm.controls['mainDepartment'].touched
+                                            && submitted))" >
+            <div *ngIf="sDeptCrForm.controls['mainDepartment'].errors.required">
+              <p class="main_dept_error_massage_p">Департамент не выбран!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit">Сохранить</button>
     </div>
-    <div>
-      <select [(ngModel)]="subDepartment.mainDepartment" name="mainDepartment" >
-        <option hidden >Выберите Департамент</option>
-        <option *ngFor="let mainDepartment of mainDepartments" >{{mainDepartment.name}}</option>
-      </select>
-    </div>
-    <button type="submit">Submit</button>
   </form>
 </div>

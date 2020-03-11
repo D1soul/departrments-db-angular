@@ -26,7 +26,7 @@ export class MainDeptEmployeeListComponent implements OnInit {
   deleteMainDeptEmployee(lastName: string, firstName: string, middleName: string){
     this.mainDeptEmployeeService.deleteMainDeptEmployee(lastName, firstName, middleName)
       .subscribe(data => { console.log(data);
-      this.getAllMainDeptEmployees();
+    this.getAllMainDeptEmployees();
     });
   }
 

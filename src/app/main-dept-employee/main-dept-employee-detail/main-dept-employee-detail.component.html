@@ -1,25 +1,47 @@
 <div *ngIf="mainDeptEmployee">
+  <h2>{{mainDeptEmployee.lastName}} {{mainDeptEmployee.firstName}} {{mainDeptEmployee.middleName}}</h2>
   <div>
-    <label><b>Id</b></label>{{mainDeptEmployee.id}}
+    <tr>
+      <td class="empl_id">
+        <label ><b>ID</b></label>
+        <span>{{mainDeptEmployee.id}}</span>
+      </td>
+      <td>
+        <button class="edit_button" (click)="goToUpdateMainDeptEmployee(mainDeptEmployee.lastName,
+                 mainDeptEmployee.firstName, mainDeptEmployee.middleName)">Редактировать</button>
+      </td>
+    </tr>
   </div>
-  <div>
-    <label><b>Last Name</b></label>{{mainDeptEmployee.lastName}}
+  <tr>
+    <td class="last_name" ><label><b>Фамилия</b></label>
+      <span>{{mainDeptEmployee.lastName}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="first_name" ><label><b>Имя</b></label>
+      <span>{{mainDeptEmployee.firstName}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="middle_name" ><label><b>Отчество</b></label>
+      <span>{{mainDeptEmployee.middleName}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="birth_date" ><label><b>Дата рождения</b></label>
+      <span>{{mainDeptEmployee.birthDate}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="passport" ><label><b>Паспортные данные</b></label>
+      <span>{{mainDeptEmployee.passport}}</span>
+    </td>
+  </tr>
+  <div class="main_dept"><b>Главный департамент</b></div>
+  <div class="md_label"><b>Название</b></div>
+  <div class="main_dept_a">
+    <a routerLink="/main_department-detail/{{mainDeptEmployee.mainDepartment}}">
+      {{mainDeptEmployee.mainDepartment}}
+    </a>
   </div>
-  <div>
-    <label><b>First Name</b></label>{{mainDeptEmployee.firstName}}
-  </div>
-  <div>
-    <label><b>Middle Name</b></label>{{mainDeptEmployee.middleName}}
-  </div>
-  <div>
-    <label><b>Birth Date</b></label>{{mainDeptEmployee.birthDate}}
-  </div>
-  <div>
-    <label><b>Passport</b></label>{{mainDeptEmployee.passport}}
-  </div>
-  <div>
-    <label><b>Main Department</b></label>{{mainDeptEmployee.mainDepartment}}
-  </div>
-  <button (click)="goToUpdateMainDeptEmployee(mainDeptEmployee.lastName,
-    mainDeptEmployee.firstName, mainDeptEmployee.middleName)"> &#9998; </button>
 </div>

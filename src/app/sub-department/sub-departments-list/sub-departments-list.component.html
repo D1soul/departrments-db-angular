@@ -1,14 +1,50 @@
-<h2>Sub Departments</h2>
-
 <div>
-  <tr *ngFor="let subDepartment of subDepartments">
-    <a routerLink="/sub-department-detail/{{subDepartment.name}}">
-      <span>{{subDepartment.id}}</span>
-      <td>{{subDepartment.name}}</td>
-    </a>
-    <button class="delete" title="delete hero"
-            (click)="deleteSubDepartment(subDepartment.name)">x</button>
-  </tr>
+  <h2>Подотделы</h2>
+  <div class="sd_body">
 
-  <button (click)="goToAddSubDepartment()">Add</button>
+    <tr>
+      <td class="id_label"><b>ID</b></td>
+      <td class="name_label"><b>Название</b></td> </tr>
+    <ul *ngFor="let subDepartment of subDepartments" class="list">
+
+      <li class="sd_a">
+        <a routerLink="/sub-department-detail/{{subDepartment.name}}">
+          <div  class="sd_id">{{subDepartment.id}}</div>
+          {{subDepartment.name}}
+        </a>
+      </li>
+
+      <button class="delete_sd" title="delete"
+              (click)="deleteSubDepartment(subDepartment.name)">x</button>
+    </ul>
+  </div>
+  <button class="add_button" (click)="goToAddSubDepartment()">Добавить департамент</button>
 </div>
+
+
+
+<!--
+<div class="mainDepartment">
+<h2>Главные Департаменты</h2>
+<div class="md_body">
+
+<tr>
+  <td class="id_label"><b>ID</b></td>
+  <td class="name_label"><b>Название</b></td> </tr>
+  <ul *ngFor="let mainDepartment of mainDepartments" class="list">
+
+      <li class="md_a">
+        <a routerLink="/main_department-detail/{{mainDepartment.name}}">
+          <div  class="md_id">{{mainDepartment.id}}</div>
+           {{mainDepartment.name}}
+        </a>
+      </li>
+
+    <button class="delete" title="delete"
+            (click)="deleteMainDepartment(mainDepartment.name)">x</button>
+  </ul>
+</div>
+  <button class="add_button" (click)="goToAddMainDepartment()">Добавить департамент</button>
+</div>
+
+-->

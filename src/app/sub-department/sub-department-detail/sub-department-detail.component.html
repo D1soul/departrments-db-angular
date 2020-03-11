@@ -1,20 +1,45 @@
 <div *ngIf="subDepartment">
+  <h2>{{subDepartment.name}}</h2>
   <div>
-    <label><b>Id</b></label>{{subDepartment.id}}
-  </div>
-  <div>
-    <label><b>Name</b></label>{{subDepartment.name}}
-  </div>
-  <div>
-    <label><b>Main Department</b></label>{{subDepartment.mainDepartment}}
-  </div>
-  <div>
-    <label><b>Employees</b></label>
-    <tr *ngFor="let employee of subDepartment.employees">
-      <td>{{employee.lastName}}</td>
-      <td>{{employee.firstName}}</td>
-      <td>{{employee.middleName}}</td>
+    <tr>
+      <td class="sub-dept_id">
+        <label ><b>ID</b></label>
+        <span>{{subDepartment.id}}</span>
+      </td>
+      <td>
+        <button class="edit_button" (click)="goToUpdateSubDepartment(subDepartment.name)">Редактировать</button>
+      </td>
     </tr>
   </div>
-  <button (click)="goToUpdateSubDepartment(subDepartment.name)"> &#9998; </button>
+  <tr>
+    <td class="sub-dept_name" ><label><b>Название</b></label><span>{{subDepartment.name}}</span></td>
+  </tr>
+  <div class="main_dept"><b>Главный департамент</b></div>
+  <div class="md_label"><b>Название</b></div>
+  <div class="main_dept_a">
+    <a routerLink="/main_department-detail/{{subDepartment.mainDepartment}}">
+      {{subDepartment.mainDepartment}}
+    </a>
+  </div>
+  <div>
+    <div class="emps"><b>Сотрудники</b></div>
+    <div class="empls_labels">
+      <tr>
+        <td class="ln_label"><b>Фамилия</b></td>
+        <td class="fn_label"><b>Имя</b></td>
+        <td class="mn_label"><b>Отчество</b></td>
+      </tr>
+    </div>
+    <ul class="emps_list" *ngFor="let employee of subDepartment.employees">
+      <li>
+        <a routerLink="/sub-dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
+          <tr>
+            <td>{{employee.lastName}}</td>
+            <td>{{employee.firstName}}</td>
+            <td>{{employee.middleName}}</td>
+          </tr>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>

@@ -1,11 +1,40 @@
 <div>
-  <form (ngSubmit)="onSubmit()">
-    <div>
-      <label>
-        <input type="text" id="name"  name="name"
-               [(ngModel)]="mainDepartment.name" placeholder="Enter Name">
-      </label>
+  <form [formGroup]="mDeptCrForm" novalidate (ngSubmit)="addMainDepartment()" >
+    <h2>Добавление главного департамерта</h2>
+    <div class="cr_main_dept">
+      <div class="name_label">
+        <label ><b>Название</b></label>
+      </div>
+      <div [ngClass]="{'name_default': mDeptCrForm.controls['name'].untouched,
+                      'name_invalid': ((mDeptCrForm.controls['name'].invalid && (mDeptCrForm.controls['name'].dirty
+                                      || mDeptCrForm.controls['name'].touched))
+                                      ||(mDeptCrForm.controls['name'].invalid && submitted)),
+                       'name_valid': mDeptCrForm.controls['name'].touched
+                                        && mDeptCrForm.controls['name'].valid }" >
+        <input type="text" id="name" placeholder="Введите название"
+               [(ngModel)]="mainDepartment.name" formControlName="name" >
+        <div class="name_error_massage">
+          <div *ngIf="((mDeptCrForm.controls['name'].invalid
+                  && (mDeptCrForm.controls['name'].dirty
+                  || mDeptCrForm.controls['name'].touched))
+                  ||(mDeptCrForm.controls['name'].invalid && submitted))" >
+            <div *ngIf="mDeptCrForm.controls['name'].errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="mDeptCrForm.controls['name'].errors.minlength
+                        || mDeptCrForm.controls['name'].errors.pattern">
+              <p>Некорректное название!</p>
+            </div>
+            <div *ngIf="mDeptCrForm.controls['name'].errors.minlength">
+              <p>Название слишком короткое!</p>
+            </div>
+            <div *ngIf="mDeptCrForm.controls['name'].errors.pattern">
+              <p>Название должно содержать только кириллические, или латинские буквы и пробелы!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+     <button type="submit">Добавить</button>
     </div>
-    <button type="submit">Submit</button>
   </form>
 </div>

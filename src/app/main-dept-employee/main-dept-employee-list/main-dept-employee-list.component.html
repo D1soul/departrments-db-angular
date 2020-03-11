@@ -1,20 +1,30 @@
-<h2>Main Department Employees</h2>
-
 <div>
-  <tr *ngFor="let mainDeptEmployee of mainDeptEmployees">
-     <a routerLink="/main_dept_employee-detail/{{mainDeptEmployee.lastName}}/{{mainDeptEmployee.firstName}}/{{mainDeptEmployee.middleName}}">
-      <span>{{mainDeptEmployee.id}}</span>
-      <td>{{mainDeptEmployee.firstName}}</td>
-      <td>{{mainDeptEmployee.lastName}}</td>
-    </a>
-    <button class="delete" title="delete hero"
+ <h2>Сотрудники Главных Департаментов</h2>
+ <div class="md_emp_body">
+   <tr>
+     <td class="id_label"><b>ID</b></td>
+     <td class="last_name_label"><b>Фамилия</b></td>
+     <td class="first_name_label"><b>Имя</b></td>
+     <td class="middle_name_label"><b>Отчество</b></td>
+   </tr>
+   <ul class="list" *ngFor="let employee of mainDeptEmployees">
+     <li class="md_emp_a" >
+       <a routerLink="/main_dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
+         <tr>
+         <td  class="md_emp_id">{{employee.id}}</td>
+         <td class="md_emp_last_name">{{employee.lastName}}</td>
+         <td class="md_emp_first_name">{{employee.firstName}}</td>
+         <td class="md_emp_middle_name">{{employee.middleName}}</td>
+         </tr>
+       </a>
+     </li>
+     <button class="delete_md_emp" title="delete hero"
             (click)="deleteMainDeptEmployee(
-            mainDeptEmployee.lastName,
-            mainDeptEmployee.firstName,
-            mainDeptEmployee.middleName)">x</button>
-  </tr>
-
-  <button (click)="goToAddMainDeptEmployee()">Add</button>
+            employee.lastName,
+            employee.firstName,
+            employee.middleName)">x</button>
+   </ul>
+ </div>
+  <button class="add_button" (click)="goToAddMainDeptEmployee()">Добавить Сотрудника</button>
 </div>
-
 

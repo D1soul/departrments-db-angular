@@ -1,0 +1,17 @@
+.navigation h1{
+  margin: 0 0 20px 0;
+}
+
+.navigation td{
+  border: solid 1px rgba(0, 0, 0, 0.53);
+  box-shadow: 0 3px 5px rgba(0,0,0,0.22);
+  padding: 5px 10px;
+}
+.navigation td:hover{
+  background-color: rgba(130, 140, 155, 0.16);
+}
+
+.navigation a{
+  text-decoration: none;
+  color: #5b5b5b;
+}

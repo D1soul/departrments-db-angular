@@ -1,42 +1,166 @@
-<div *ngIf="subDeptEmployee">
-  <div>
-    <label>
-      <b>Last Name</b>
-      <input type="text" id="lastName" name="lastName" [(ngModel)]="subDeptEmployee.lastName" >
-    </label>
-  </div>
-  <div>
-    <label>
-      <b>First Name</b>
-      <input type="text" id="firstName" name="firstName" [(ngModel)]="subDeptEmployee.firstName" >
-    </label>
-  </div>
-  <div>
-    <label>
-      <b>Middle Name</b>
-      <input type="text" id="middleName" name="middleName" [(ngModel)]="subDeptEmployee.middleName" >
-    </label>
-  </div>
-  <div>
-    <label>
-      <b>Birth Date</b>
-      <input type="text" id="birthDate" name="birthDate" [(ngModel)]="subDeptEmployee.birthDate" >
-    </label>
-  </div>
-  <div>
-    <label>
-      <b>Passport</b>
-      <input type="text" id="passport" name="passport" [(ngModel)]="subDeptEmployee.passport" >
-    </label>
-  </div>
-  <div>
-    <label>
-      <b>Sub-Department</b>
-      <select [(ngModel)]="subDeptEmployee.subDepartment" name="subDepartment"  >
-        <option *ngFor="let subDepartment of subDepartments" [ngValue]="subDepartment.name" >{{subDepartment.name}}</option>
-      </select>
-    </label>
-  </div>
-
-  <button (click)="updateSubDeptEmployee()">save</button>
+<div>
+  <form [formGroup]="sEmpUpdForm" novalidate (ngSubmit)="updateSubDeptEmployee()" >
+    <h2>Редактирование данных сотрудника</h2>
+    <div *ngIf="subDeptEmployee">
+      <div class="upd_sub-dept_emp">
+        <div class="last_name_label">
+          <label><b>Фамилия</b></label>
+        </div>
+        <div [ngClass]="{'last_name_default': sEmpUpdForm.controls['lastName'].untouched,
+                         'last_name_invalid': sEmpUpdForm.controls['lastName'].invalid
+                                            && (sEmpUpdForm.controls['lastName'].dirty
+                                            || sEmpUpdForm.controls['lastName'].touched),
+                         'last_name_valid': sEmpUpdForm.controls['lastName'].touched
+                                            && sEmpUpdForm.controls['lastName'].valid }" >
+          <input type="text" id="lastName"
+                 [(ngModel)]="subDeptEmployee.lastName"  formControlName="lastName" >
+          <div class="last_name_error_massage">
+            <div *ngIf="sEmpUpdForm.controls['lastName'].invalid
+                && (sEmpUpdForm.controls['lastName'].dirty
+                || sEmpUpdForm.controls['lastName'].touched)" >
+              <div *ngIf="sEmpUpdForm.controls['lastName'].errors.required">
+                <p>Поле не должно быть пустым!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.controls['lastName'].errors.minlength
+                        || sEmpUpdForm.controls['lastName'].errors.pattern">
+                <p>Некорректная фамилия!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.controls['lastName'].errors.minlength">
+                <p>Фамилия слишком короткая!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.controls['lastName'].errors.pattern">
+                <p>Фамилия должна содержать только кириллические, или латинские буквы!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="first_name_label">
+          <label><b>Имя</b></label>
+        </div>
+        <div [ngClass]="{'first_name_default': sEmpUpdForm.controls['firstName'].untouched,
+                       'first_name_invalid': sEmpUpdForm.controls['firstName'].invalid
+                                           && (sEmpUpdForm.controls['firstName'].dirty
+                                           || sEmpUpdForm.controls['firstName'].touched),
+                       'first_name_valid': sEmpUpdForm.controls['firstName'].touched
+                                           && sEmpUpdForm.controls['firstName'].valid }" >
+          <input type="text" id="firstName"
+                 [(ngModel)]="subDeptEmployee.firstName"  formControlName="firstName" >
+          <div class="first_name_error_massage">
+            <div *ngIf="sEmpUpdForm.controls['firstName'].invalid
+              && (sEmpUpdForm.controls['firstName'].dirty
+              || sEmpUpdForm.controls['firstName'].touched)" >
+              <div *ngIf="sEmpUpdForm.controls['firstName'].errors.required">
+                <p>Поле не должно быть пустым!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.controls['firstName'].errors.minlength
+                      || sEmpUpdForm.controls['firstName'].errors.pattern">
+                <p>Некорректное имя!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.controls['firstName'].errors.minlength">
+                <p>Имя слишком короткое!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.controls['firstName'].errors.pattern">
+                <p>Имя должно содержать только кириллические, или латинские буквы!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="middle_name_label">
+          <label><b>Отчество</b></label>
+        </div>
+        <div [ngClass]="{'middle_name_default': sEmpUpdForm.controls['middleName'].untouched,
+                       'middle_name_invalid': sEmpUpdForm.controls['middleName'].invalid
+                                            && (sEmpUpdForm.controls['middleName'].dirty
+                                            || sEmpUpdForm.controls['middleName'].touched),
+                       'middle_name_valid': sEmpUpdForm.controls['middleName'].touched
+                                            && sEmpUpdForm.controls['middleName'].valid }" >
+          <input type="text" id="middleName"
+                 [(ngModel)]="subDeptEmployee.middleName"  formControlName="middleName" >
+          <div class="middle_name_error_massage">
+            <div *ngIf="sEmpUpdForm.controls['middleName'].invalid
+            && (sEmpUpdForm.controls['middleName'].dirty
+            || sEmpUpdForm.controls['middleName'].touched)" >
+              <div *ngIf="sEmpUpdForm.controls['middleName'].errors.required">
+                <p>Поле не должно быть пустым!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.controls['middleName'].errors.minlength
+                    || sEmpUpdForm.controls['middleName'].errors.pattern">
+                <p>Некорректное отчество!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.controls['middleName'].errors.pattern">
+                <p>Отчество должно содержать только кириллические, или латинские буквы, либо дефис!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="birth_date_label">
+          <label><b>Дата рождения</b></label>
+        </div>
+        <div [ngClass]="{'birth_date_default': sEmpUpdForm.controls['birthDate'].untouched,
+                       'birth_date_invalid': sEmpUpdForm.controls['birthDate'].invalid
+                                           && (sEmpUpdForm.controls['birthDate'].dirty
+                                           || sEmpUpdForm.controls['birthDate'].touched),
+                       'birth_date_valid': sEmpUpdForm.controls['birthDate'].touched
+                                           && sEmpUpdForm.controls['birthDate'].valid }" >
+          <input type="text" id="birthDate"
+                 [(ngModel)]="subDeptEmployee.birthDate"  formControlName="birthDate" >
+          <div class="birth_date_error_massage">
+            <div *ngIf="sEmpUpdForm.controls['birthDate'].invalid
+              && (sEmpUpdForm.controls['birthDate'].dirty
+              || sEmpUpdForm.controls['birthDate'].touched)" >
+              <div *ngIf="sEmpUpdForm.controls['birthDate'].errors.required">
+                <p>Поле не должно быть пустым!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.controls['birthDate'].errors.pattern">
+                <p>Некорректная дата!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.controls['birthDate'].errors.pattern">
+                <p>Образец: 01/сентября/1970</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="passport_label">
+          <label><b>Паспортные данные</b></label>
+        </div>
+        <div [ngClass]="{'passport_default': sEmpUpdForm.controls['passport'].untouched,
+                       'passport_invalid': sEmpUpdForm.controls['passport'].invalid
+                                           && (sEmpUpdForm.controls['passport'].dirty
+                                           || sEmpUpdForm.controls['passport'].touched),
+                       'passport_valid': sEmpUpdForm.controls['passport'].touched
+                                           && sEmpUpdForm.controls['passport'].valid }" >
+          <input type="text" id="passport"
+                 [(ngModel)]="subDeptEmployee.passport"  formControlName="passport" >
+          <div class="passport_error_massage">
+            <div *ngIf="sEmpUpdForm.controls['passport'].invalid
+              && (sEmpUpdForm.controls['passport'].dirty
+              || sEmpUpdForm.controls['passport'].touched)" >
+              <div *ngIf="sEmpUpdForm.controls['passport'].errors.required">
+                <p>Поле не должно быть пустым!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.controls['passport'].errors.pattern">
+                <p>Некорректные паспортные данные!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.controls['passport'].errors.pattern">
+                <p>Образец: Серия: 00 00 Номер: 000000</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sub-dept_label">
+            <label><b>Подотдел</b></label>
+          </div>
+          <div class="sub-dept" >
+            <select [(ngModel)]="subDeptEmployee.subDepartment" formControlName="subDepartment" >
+              <option *ngFor="let subDepartment of subDepartments" [ngValue]="subDepartment.name" >
+                {{subDepartment.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" >Обновить</button>
+      </div>
+    </div>
+  </form>
 </div>

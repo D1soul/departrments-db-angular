@@ -31,8 +31,8 @@ export class SubDepartmentService {
   }
 
   addSubDepartment(subDepartment: SubDepartment): Observable<SubDepartment> {
-    return this.http.post<SubDepartment>(this.url, subDepartment, this.httpOptions).pipe(
-      catchError(this.handleError<SubDepartment>('Adding New Sub-Department')));
+    return this.http.post<SubDepartment>(this.url, subDepartment, this.httpOptions);// .pipe(
+    //  catchError(this.handleError<SubDepartment>('Adding New Sub-Department')));
   }
 
   updateSubDepartment(name: string, subDepartment: SubDepartment): Observable<Object>{

@@ -1,43 +1,183 @@
 <div>
-<form (ngSubmit)="onSubmit()">
-  <div>
-    <label>
-      <input type="text" id="lastName"  name="lastName"
-             [(ngModel)]="mainDeptEmployee.lastName" placeholder="Enter Last Name">
-    </label>
-  </div>
-  <div>
-    <label>
-      <input type="text" id="firstName" name="firstName"
-             [(ngModel)]="mainDeptEmployee.firstName" placeholder="Enter First Name">
-    </label>
-  </div>
-  <div>
-    <label>
-      <input type="text" id="middleName" name="middleName"
-             [(ngModel)]="mainDeptEmployee.middleName" placeholder="Enter Middle Name">
-    </label>
-  </div>
-  <div>
-    <label>
-      <input type="text" id="birthDate" name="birthDate"
-             [(ngModel)]="mainDeptEmployee.birthDate" placeholder="Enter Birth Date">
-    </label>
-  </div>
-  <div>
-    <label>
-      <input type="text" id="passport"  name="passport"
-             [(ngModel)]="mainDeptEmployee.passport" placeholder="Enter Passport">
-    </label>
-  </div>
-  <div>
-    <select [(ngModel)]="mainDeptEmployee.mainDepartment" name="mainDepartment">
-      <option hidden >Выберите Департамент</option>
-      <option *ngFor="let mainDepartment of mainDepartments" >
-        {{mainDepartment.name}}
-      </option>
-    </select>
-   </div>
-  <button type="submit">Submit</button>
-</form>
+  <form [formGroup]="mEmpCrForm" novalidate (ngSubmit)="addMainDeptEmployee()" >
+    <h2>Добавление содтрудника</h2>
+      <div class="cr_main_dept_emp">
+        <div class="last_name_label">
+          <label><b>Фамилия</b></label>
+        </div>
+        <div [ngClass]="{'last_name_default': mEmpCrForm.controls['lastName'].untouched,
+                         'last_name_invalid': mEmpCrForm.controls['lastName'].invalid
+                                            && (mEmpCrForm.controls['lastName'].dirty
+                                            || mEmpCrForm.controls['lastName'].touched),
+                         'last_name_valid': mEmpCrForm.controls['lastName'].touched
+                                            && mEmpCrForm.controls['lastName'].valid }" >
+          <input type="text" id="lastName" placeholder="Введите фамилию"
+                 [(ngModel)]="mainDeptEmployee.lastName"  formControlName="lastName" >
+          <div class="last_name_error_massage">
+            <div *ngIf="mEmpCrForm.controls['lastName'].invalid
+                && (mEmpCrForm.controls['lastName'].dirty
+                || mEmpCrForm.controls['lastName'].touched)" >
+              <div *ngIf="mEmpCrForm.controls['lastName'].errors.required">
+                <p>Поле не должно быть пустым!</p>
+              </div>
+              <div *ngIf="mEmpCrForm.controls['lastName'].errors.minlength
+                        || mEmpCrForm.controls['lastName'].errors.pattern">
+                <p>Некорректная фамилия!</p>
+              </div>
+              <div *ngIf="mEmpCrForm.controls['lastName'].errors.minlength">
+                <p>Фамилия слишком короткая!</p>
+              </div>
+              <div *ngIf="mEmpCrForm.controls['lastName'].errors.pattern">
+                <p>Фамилия должна содержать только кириллические, или латинские буквы!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="first_name_label">
+          <label><b>Имя</b></label>
+        </div>
+        <div [ngClass]="{'first_name_default': mEmpCrForm.controls['firstName'].untouched,
+                       'first_name_invalid': mEmpCrForm.controls['firstName'].invalid
+                                           && (mEmpCrForm.controls['firstName'].dirty
+                                           || mEmpCrForm.controls['firstName'].touched),
+                       'first_name_valid': mEmpCrForm.controls['firstName'].touched
+                                           && mEmpCrForm.controls['firstName'].valid }" >
+          <input type="text" id="firstName" placeholder="Введите имя"
+                 [(ngModel)]="mainDeptEmployee.firstName"  formControlName="firstName" >
+          <div class="first_name_error_massage">
+            <div *ngIf="mEmpCrForm.controls['firstName'].invalid
+              && (mEmpCrForm.controls['firstName'].dirty
+              || mEmpCrForm.controls['firstName'].touched)" >
+              <div *ngIf="mEmpCrForm.controls['firstName'].errors.required">
+                <p>Поле не должно быть пустым!</p>
+              </div>
+              <div *ngIf="mEmpCrForm.controls['firstName'].errors.minlength
+                      || mEmpCrForm.controls['firstName'].errors.pattern">
+                <p>Некорректное имя!</p>
+              </div>
+              <div *ngIf="mEmpCrForm.controls['firstName'].errors.minlength">
+                <p>Имя слишком короткое!</p>
+              </div>
+              <div *ngIf="mEmpCrForm.controls['firstName'].errors.pattern">
+                <p>Имя должно содержать только кириллические, или латинские буквы!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="middle_name_label">
+          <label><b>Отчество</b></label>
+        </div>
+        <div [ngClass]="{'middle_name_default': mEmpCrForm.controls['middleName'].untouched,
+                       'middle_name_invalid': mEmpCrForm.controls['middleName'].invalid
+                                            && (mEmpCrForm.controls['middleName'].dirty
+                                            || mEmpCrForm.controls['middleName'].touched),
+                       'middle_name_valid': mEmpCrForm.controls['middleName'].touched
+                                            && mEmpCrForm.controls['middleName'].valid }" >
+          <input type="text" id="middleName"
+                 placeholder="Введите отчество (Если отсутствует введите - )"
+                 [(ngModel)]="mainDeptEmployee.middleName"  formControlName="middleName" >
+          <div class="middle_name_error_massage">
+            <div *ngIf="mEmpCrForm.controls['middleName'].invalid
+            && (mEmpCrForm.controls['middleName'].dirty
+            || mEmpCrForm.controls['middleName'].touched)" >
+              <div *ngIf="mEmpCrForm.controls['middleName'].errors.required">
+                <p>Поле не должно быть пустым!</p>
+              </div>
+              <div *ngIf="mEmpCrForm.controls['middleName'].errors.minlength
+                    || mEmpCrForm.controls['middleName'].errors.pattern">
+                <p>Некорректное отчество!</p>
+              </div>
+              <div *ngIf="mEmpCrForm.controls['middleName'].errors.pattern">
+                <p>Отчество должно содержать только кириллические, или латинские буквы, либо дефис!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="birth_date_label">
+          <label><b>Дата рождения</b></label>
+        </div>
+        <div [ngClass]="{'birth_date_default': mEmpCrForm.controls['birthDate'].untouched,
+                       'birth_date_invalid': mEmpCrForm.controls['birthDate'].invalid
+                                           && (mEmpCrForm.controls['birthDate'].dirty
+                                           || mEmpCrForm.controls['birthDate'].touched),
+                       'birth_date_valid': mEmpCrForm.controls['birthDate'].touched
+                                           && mEmpCrForm.controls['birthDate'].valid }" >
+          <input type="text" id="birthDate"
+                 placeholder="Введите дату рождения (дд/месяц/гггг)"
+                 [(ngModel)]="mainDeptEmployee.birthDate"  formControlName="birthDate" >
+          <div class="birth_date_error_massage">
+            <div *ngIf="mEmpCrForm.controls['birthDate'].invalid
+              && (mEmpCrForm.controls['birthDate'].dirty
+              || mEmpCrForm.controls['birthDate'].touched)" >
+              <div *ngIf="mEmpCrForm.controls['birthDate'].errors.required">
+                <p>Поле не должно быть пустым!</p>
+              </div>
+              <div *ngIf="mEmpCrForm.controls['birthDate'].errors.pattern">
+                <p>Некорректная дата!</p>
+              </div>
+              <div *ngIf="mEmpCrForm.controls['birthDate'].errors.pattern">
+                <p>Образец: 01/сентября/1970</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="passport_label">
+          <label><b>Паспортные данные</b></label>
+        </div>
+        <div [ngClass]="{'passport_default': mEmpCrForm.controls['passport'].untouched,
+                       'passport_invalid': mEmpCrForm.controls['passport'].invalid
+                                           && (mEmpCrForm.controls['passport'].dirty
+                                           || mEmpCrForm.controls['passport'].touched),
+                       'passport_valid': mEmpCrForm.controls['passport'].touched
+                                           && mEmpCrForm.controls['passport'].valid }" >
+          <input type="text" id="passport"
+                 placeholder="Введите данные (Серия: .. .. Номер: ......)"
+                 [(ngModel)]="mainDeptEmployee.passport"  formControlName="passport" >
+          <div class="passport_error_massage">
+            <div *ngIf="mEmpCrForm.controls['passport'].invalid
+              && (mEmpCrForm.controls['passport'].dirty
+              || mEmpCrForm.controls['passport'].touched)" >
+              <div *ngIf="mEmpCrForm.controls['passport'].errors.required">
+                <p>Поле не должно быть пустым!</p>
+              </div>
+              <div *ngIf="mEmpCrForm.controls['passport'].errors.pattern">
+                <p>Некорректные паспортные данные!</p>
+              </div>
+              <div *ngIf="mEmpCrForm.controls['passport'].errors.pattern">
+                <p>Образец: Серия: 00 00 Номер: 000000</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main_dept_label">
+          <label><b>Главный Департамент</b></label>
+        </div>
+        <div [ngClass]=" {'main_dept_default': mEmpCrForm.controls['mainDepartment'].untouched,
+                        'main_dept_invalid': ((mEmpCrForm.controls['mainDepartment'].invalid
+                                              && mEmpCrForm.controls['mainDepartment'].touched)
+                                              ||(mEmpCrForm.controls['mainDepartment'].invalid
+                                              && !mEmpCrForm.controls['mainDepartment'].touched
+                                              && submitted)),
+                        'main_dept_valid' : mEmpCrForm.controls['mainDepartment'].valid }" >
+          <select [(ngModel)]="mainDeptEmployee.mainDepartment" formControlName="mainDepartment" >
+            <option hidden [ngValue]="null"><p>Выберите Департамент</p></option>
+            <option *ngFor="let mainDepartment of mainDepartments" >
+              {{mainDepartment.name}}
+            </option>
+          </select>
+          <div class="main_dept_error_massage">
+            <div *ngIf="((mEmpCrForm.controls['mainDepartment'].invalid
+                                            && mEmpCrForm.controls['mainDepartment'].touched)
+                                            ||(mEmpCrForm.controls['mainDepartment'].invalid
+                                            && !mEmpCrForm.controls['mainDepartment'].touched
+                                            && submitted))" >
+              <div *ngIf="mEmpCrForm.controls['mainDepartment'].errors.required">
+                <p class="main_dept_error_massage_p">Департамент не выбран!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" >Обновить</button>
+      </div>
+  </form>
 </div>

@@ -1,24 +1,53 @@
 <div *ngIf="mainDepartment">
+  <h2>{{mainDepartment.name}}</h2>
   <div>
-    <label><b>Id</b></label>{{mainDepartment.id}}
-  </div>
-  <div>
-    <label><b>Name</b></label>{{mainDepartment.name}}
-  </div>
-  <div>
-    <label><b>Employees</b></label>
-    <tr *ngFor="let employee of mainDepartment.employees">
-      <td>{{employee.lastName}}</td>
-      <td>{{employee.firstName}}</td>
-      <td>{{employee.middleName}}</td>
+    <tr>
+      <td class="main_dept_id">
+        <label ><b>ID</b></label>
+        <span>{{mainDepartment.id}}</span>
+      </td>
+      <td>
+        <button class="edit_button" (click)="goToUpdateMainDepartment(mainDepartment.name)">Редактировать</button>
+      </td>
     </tr>
   </div>
+  <tr>
+    <td class="main_dept_name" ><label><b>Название</b></label><span>{{mainDepartment.name}}</span></td>
+  </tr>
   <div>
-    <label><b>Sub-Departments</b></label>
-    <tr *ngFor="let subDepartment of mainDepartment.subDepartments">
-      <td>{{subDepartment.name}}</td>
-    </tr>
+    <div class="emps"><b>Сотрудники</b></div>
+    <div class="empls_labels">
+      <tr>
+        <td class="ln_label"><b>Фамилия</b></td>
+        <td class="fn_label"><b>Имя</b></td>
+        <td class="mn_label"><b>Отчество</b></td>
+      </tr>
+    </div>
+    <ul class="emps_list" *ngFor="let employee of mainDepartment.employees">
+      <li>
+        <a routerLink="/main_dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
+        <tr>
+          <td>{{employee.lastName}}</td>
+          <td>{{employee.firstName}}</td>
+          <td>{{employee.middleName}}</td>
+        </tr>
+      </a>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <div class="sub-depts"><b>Подотделы</b></div>
+    <div class="sub-depts_label"><b>Название</b></div>
+    <ul class="sub_depts_list" *ngFor="let subDepartment of mainDepartment.subDepartments">
+      <li>
+        <a routerLink="/sub-department-detail/{{subDepartment.name}}">
+          <tr>
+            <td>{{subDepartment.name}}</td>
+          </tr>
+        </a>
+      </li>
+    </ul>
   </div>
 
-  <button (click)="goToUpdateMainDepartment(mainDepartment.name)"> &#9998; </button>
+
 </div>

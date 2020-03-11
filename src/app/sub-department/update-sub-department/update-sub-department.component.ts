@@ -4,6 +4,7 @@ import { SubDepartment } from '../../entities/sub-department';
 import { SubDepartmentService } from '../../service/sub-department.service';
 import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-update-sub-department',
@@ -15,13 +16,16 @@ export class UpdateSubDepartmentComponent implements OnInit {
   name: string;
   subDepartment: SubDepartment;
   mainDepartments: MainDepartment[];
+  sDeptUpdForm: FormGroup;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private subDepartmentService: SubDepartmentService,
-              private mainDepartmentService: MainDepartmentService) {}
+              private mainDepartmentService: MainDepartmentService,
+              private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.getSubDepartmentDetail();
+    this.initSubDeptForm()
   }
 
   getSubDepartmentDetail() {
@@ -32,9 +36,21 @@ export class UpdateSubDepartmentComponent implements OnInit {
       .subscribe(mainDepartments => this.mainDepartments = mainDepartments);
   }
 
+  initSubDeptForm(){
+    this.sDeptUpdForm = this.formBuilder.group({
+      "name": [null, [Validators.required,
+        Validators.pattern("^(([А-я]+\\s?)+|([A-z]+\\s?)+)$"),
+        Validators.minLength(5),
+        Validators.maxLength(60)]],
+      "mainDepartment": [null,[Validators.required]]
+    });
+  }
+
   updateSubDepartment(){
+    if (this.sDeptUpdForm.valid){
     this.subDepartmentService.updateSubDepartment(this.name, this.subDepartment)
       .subscribe(() =>  this.goToAllSubDepartments());
+    }
   }
 
   goToAllSubDepartments(){

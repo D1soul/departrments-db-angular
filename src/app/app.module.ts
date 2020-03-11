@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app.routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CreateMainDeptEmployeeComponent } from './main-dept-employee/create-main-dept-employee/create-main-dept-employee.component';
@@ -41,12 +41,13 @@ import { UpdateMainDepartmentComponent } from './main-department/update-main-dep
     UpdateSubDepartmentComponent,
     UpdateMainDepartmentComponent
   ],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    HttpClientModule,
-    FormsModule
-  ],
+    imports: [
+        AppRoutingModule,
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
