@@ -43,25 +43,26 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
   initMainDeptEmpForm(){
     this.mEmpUpdForm = this.formBuilder.group({
       "lastName": [null, [Validators.required,
-        Validators.pattern("^([А-я]+|[A-z]+)$"),
-        Validators.minLength(2),
-        Validators.maxLength(20)]],
+                          Validators.pattern("^([А-я]+|[A-z]+)$"),
+                          Validators.minLength(2),
+                          Validators.maxLength(20)]],
       "firstName": [null, [Validators.required,
-        Validators.pattern("^([А-я]+|[A-z]+)$"),
-        Validators.minLength(2),
-        Validators.maxLength(20)]],
+                           Validators.pattern("^([А-я]+|[A-z]+)$"),
+                           Validators.minLength(2),
+                           Validators.maxLength(20)]],
       "middleName": [null, [Validators.required,
-        Validators.pattern("^(([А-я]+|[A-z]+)|(-))$"),
-        Validators.maxLength(25)]],
+                            Validators.pattern("^(([А-я]+|[A-z]+)|(-))$"),
+                            Validators.minLength(1),
+                            Validators.maxLength(25)]],
       "birthDate": [null, [Validators.required,
-        Validators.pattern("^\\d{2}/((января)|(февраля)"
-          + "|(марта)|(апреля)|(мая)|(июня)|(июля)"
-          + "|(августа)|(сентября)|(октября)"
-          + "|(ноября)|(декабря))/\\d{4}$")]],
-      "passport": [null,[Validators.required,
-        Validators.pattern("^(Серия:\\s?)\\d{2}\\s\\d{2}"
-          + "\\s(Номер:\\s?)\\d{6}$")]],
-      "mainDepartment": [null,[Validators.required]]
+                           Validators.pattern("^\\d{2}/((января)|(февраля)"
+                                             + "|(марта)|(апреля)|(мая)|(июня)|(июля)"
+                                             + "|(августа)|(сентября)|(октября)"
+                                             + "|(ноября)|(декабря))/\\d{4}$")]],
+      "passport": [null, [Validators.required,
+                          Validators.pattern("^(Серия:\\s?)\\d{2}\\s"
+                                            + "\\d{2}\\s(Номер:\\s?)\\d{6}$")]],
+      "mainDepartment": [null, [Validators.required]]
     });
   }
 

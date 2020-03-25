@@ -46,15 +46,16 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
                            Validators.maxLength(20)]],
       "middleName": [null, [Validators.required,
                             Validators.pattern("^(([А-я]+|[A-z]+)|(-))$"),
+                            Validators.minLength(1),
                             Validators.maxLength(25)]],
       "birthDate": [null, [Validators.required,
                            Validators.pattern("^\\d{2}/((января)|(февраля)"
                                              + "|(марта)|(апреля)|(мая)|(июня)|(июля)"
                                              + "|(августа)|(сентября)|(октября)"
                                              + "|(ноября)|(декабря))/\\d{4}$")]],
-      "passport": [null,[Validators.required,
-                         Validators.pattern("^(Серия:\\s?)\\d{2}\\s\\d{2}"
-                                             + "\\s(Номер:\\s?)\\d{6}$")]],
+      "passport": [null, [Validators.required,
+                          Validators.pattern("^(Серия:\\s?)\\d{2}\\s"
+                                            + "\\d{2}\\s(Номер:\\s?)\\d{6}$")]],
       "subDepartment": [null,[Validators.required]]
     });
   }
