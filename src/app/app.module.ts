@@ -20,6 +20,9 @@ import { UpdateSubDeptEmployeeComponent } from './sub-dept-employee/update-sub-d
 import { UpdateMainDeptEmployeeComponent } from './main-dept-employee/update-main-dept-employee/update-main-dept-employee.component';
 import { UpdateSubDepartmentComponent } from './sub-department/update-sub-department/update-sub-department.component';
 import { UpdateMainDepartmentComponent } from './main-department/update-main-department/update-main-department.component';
+import { RegistrationComponent } from './authentification/registration/registration.component';
+import { LoginComponent } from './authentification/login/login.component';
+import { AdminComponent } from './authentification/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { UpdateMainDepartmentComponent } from './main-department/update-main-dep
     UpdateSubDeptEmployeeComponent,
     UpdateMainDeptEmployeeComponent,
     UpdateSubDepartmentComponent,
-    UpdateMainDepartmentComponent
+    UpdateMainDepartmentComponent,
+    RegistrationComponent,
+    LoginComponent,
+    AdminComponent
   ],
     imports: [
         AppRoutingModule,
