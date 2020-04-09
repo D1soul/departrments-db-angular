@@ -1,0 +1,192 @@
+<div>
+  <form [formGroup]="userCrForm" novalidate (ngSubmit)="addUser()" >
+    <h2>Регистрация</h2>
+    <div class="cr_user">
+      <div class="last_name_label">
+        <label><b>Логин</b></label>
+      </div>
+      <div [ngClass]="{'username_default': userCrForm.controls['username'].untouched,
+                         'username_invalid': userCrForm.controls['username'].invalid
+                                            && (userCrForm.controls['username'].dirty
+                                            || userCrForm.controls['username'].touched),
+                         'username_valid': userCrForm.controls['username'].touched
+                                            && userCrForm.controls['username'].valid }" >
+        <input type="text" id="username" placeholder="Введите логин"
+               [(ngModel)]="user.username"  formControlName="username" >
+        <div class="username_error_massage">
+          <div *ngIf="userCrForm.controls['username'].invalid
+                && (userCrForm.controls['username'].dirty
+                || userCrForm.controls['username'].touched)" >
+            <div *ngIf="userCrForm.controls['username'].errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="userCrForm.controls['username'].errors.pattern">
+              <p>Логин должен содержать только кириллические, или латинские буквы, либо цыфры!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="password_label">
+        <label><b>Пароль</b></label>
+      </div>
+      <div [ngClass]="{'password_default': userCrForm.controls['password'].untouched,
+                       'password_invalid': userCrForm.controls['password'].invalid
+                                           && (userCrForm.controls['password'].dirty
+                                           || userCrForm.controls['password'].touched),
+                       'password_valid': userCrForm.controls['password'].touched
+                                           && userCrForm.controls['password'].valid }" >
+        <input type="text" id="password" placeholder="Введите имя"
+               [(ngModel)]="user.password"  formControlName="password" >
+        <div class="password_error_massage">
+          <div *ngIf="userCrForm.controls['password'].invalid
+              && (userCrForm.controls['password'].dirty
+              || userCrForm.controls['password'].touched)" >
+            <div *ngIf="userCrForm.controls['password'].errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="userCrForm.controls['password'].errors.minlength
+                      || userCrForm.controls['password'].errors.pattern">
+              <p>Некорректное имя!</p>
+            </div>
+            <div *ngIf="userCrForm.controls['password'].errors.minlength">
+              <p>Имя слишком короткое!</p>
+            </div>
+            <div *ngIf="userCrForm.controls['password'].errors.pattern">
+              <p>Имя должно содержать только кириллические, или латинские буквы!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="conform_password_label">
+        <label><b>Пароль</b></label>
+      </div>
+      <div [ngClass]="{'conform_password_default': userCrForm.controls['conformPassword'].untouched,
+                       'conform_password_invalid': userCrForm.controls['conformPassword'].invalid
+                                           && (userCrForm.controls['conformPassword'].dirty
+                                           || userCrForm.controls['conformPassword'].touched),
+                       'password_valid': userCrForm.controls['conformPassword'].touched
+                                           && userCrForm.controls['conformPassword'].valid }" >
+        <input type="text" id="conformPassword" placeholder="Введите имя"
+               [(ngModel)]="user.password"  formControlName="conformPassword" >
+        <div class="conform_password_error_massage">
+          <div *ngIf="userCrForm.controls['conformPassword'].invalid
+              && (userCrForm.controls['conformPassword'].dirty
+              || userCrForm.controls['conformPassword'].touched)" >
+            <div *ngIf="userCrForm.controls['conformPassword'].errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="userCrForm.controls['conformPassword'].errors.minlength
+                      || userCrForm.controls['conformPassword'].errors.pattern">
+              <p>Некорректное имя!</p>
+            </div>
+            <div *ngIf="userCrForm.controls['conformPassword'].errors.minlength">
+              <p>Имя слишком короткое!</p>
+            </div>
+            <div *ngIf="userCrForm.controls['conformPassword'].errors.pattern">
+              <p>Имя должно содержать только кириллические, или латинские буквы!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="birth_date_label">
+        <label><b>Дата рождения</b></label>
+      </div>
+      <div [ngClass]="{'birth_date_default': userCrForm.controls['birthDate'].untouched,
+                       'birth_date_invalid': userCrForm.controls['birthDate'].invalid
+                                           && (userCrForm.controls['birthDate'].dirty
+                                           || userCrForm.controls['birthDate'].touched),
+                       'birth_date_valid': userCrForm.controls['birthDate'].touched
+                                           && userCrForm.controls['birthDate'].valid }" >
+        <input type="text" id="birthDate"
+               placeholder="Введите дату рождения (дд/месяц/гггг)"
+               [(ngModel)]="user.birthDate"  formControlName="birthDate" >
+        <div class="birth_date_error_massage">
+          <div *ngIf="userCrForm.controls['birthDate'].invalid
+              && (userCrForm.controls['birthDate'].dirty
+              || userCrForm.controls['birthDate'].touched)" >
+            <div *ngIf="userCrForm.controls['birthDate'].errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="userCrForm.controls['birthDate'].errors.pattern">
+              <p>Некорректная дата!</p>
+            </div>
+            <div *ngIf="userCrForm.controls['birthDate'].errors.pattern">
+              <p>Образец: 01/сентября/1970</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class=gender_label">
+        <label><b>Пол</b></label>
+      </div>
+      <div [ngClass]="{'gender_default': userCrForm.controls['gender'].untouched,
+                       'gender_invalid': userCrForm.controls['gender'].invalid
+                                           && (userCrForm.controls['gender'].dirty
+                                           || userCrForm.controls['gender'].touched),
+                       'gender_valid': userCrForm.controls['gender'].touched
+                                           && userCrForm.controls['gender'].valid }" >
+        <input type="text" id="gender"
+               placeholder="Введите данные (Серия: .. .. Номер: ......)"
+               [(ngModel)]="user.gender"  formControlName="gender" >
+        <div class="gender_error_massage">
+          <div *ngIf="userCrForm.controls['gender'].invalid
+              && (userCrForm.controls['gender'].dirty
+              || userCrForm.controls['gender'].touched)" >
+            <div *ngIf="userCrForm.controls['gender'].errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="userCrForm.controls['gender'].errors.pattern">
+              <p>Некорректные паспортные данные!</p>
+            </div>
+            <div *ngIf="userCrForm.controls['gender'].errors.pattern">
+              <p>Образец: Серия: 00 00 Номер: 000000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="roles_label">
+        <label><b>Дата рождения</b></label>
+      </div>
+      <div [ngClass]="{'roles_default': userCrForm.controls['roles'].untouched,
+                       'roles_invalid': userCrForm.controls['roles'].invalid
+                                           && (userCrForm.controls['roles'].dirty
+                                           || userCrForm.controls['roles'].touched),
+                       'roles_valid': userCrForm.controls['roles'].touched
+                                           && userCrForm.controls['roles'].valid }" >
+        <input type="text" id="roles"
+               placeholder="Введите дату рождения (дд/месяц/гггг)"
+               [(ngModel)]="user.roles"  formControlName="roles" >
+        <div class="birth_date_error_massage">
+          <div *ngIf="userCrForm.controls['roles'].invalid
+              && (userCrForm.controls['roles'].dirty
+              || userCrForm.controls['roles'].touched)" >
+            <div *ngIf="userCrForm.controls['roles'].errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="userCrForm.controls['roles'].errors.pattern">
+              <p>Некорректная дата!</p>
+            </div>
+            <div *ngIf="userCrForm.controls['roles'].errors.pattern">
+              <p>Образец: 01/сентября/1970</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" >Добавить</button>
+    </div>
+  </form>
+</div>

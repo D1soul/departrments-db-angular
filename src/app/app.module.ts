@@ -20,9 +20,12 @@ import { UpdateSubDeptEmployeeComponent } from './sub-dept-employee/update-sub-d
 import { UpdateMainDeptEmployeeComponent } from './main-dept-employee/update-main-dept-employee/update-main-dept-employee.component';
 import { UpdateSubDepartmentComponent } from './sub-department/update-sub-department/update-sub-department.component';
 import { UpdateMainDepartmentComponent } from './main-department/update-main-department/update-main-department.component';
-import { RegistrationComponent } from './authentification/registration/registration.component';
 import { LoginComponent } from './authentification/login/login.component';
 import { AdminComponent } from './authentification/admin/admin.component';
+import { UserDetailComponent } from './authentification/user-detail/user-detail.component';
+import { UpdateUserComponent } from './authentification/update-user/update-user.component';
+import { UserListComponent } from './authentification/user-list/user-list.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -43,9 +46,12 @@ import { AdminComponent } from './authentification/admin/admin.component';
     UpdateMainDeptEmployeeComponent,
     UpdateSubDepartmentComponent,
     UpdateMainDepartmentComponent,
-    RegistrationComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    UserDetailComponent,
+    UpdateUserComponent,
+    UserListComponent,
+    CreateUserComponent
   ],
     imports: [
         AppRoutingModule,

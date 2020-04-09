@@ -1,0 +1,45 @@
+<div *ngIf="user">
+  <h2>{{user.username}}</h2>
+  <div>
+    <tr>
+      <td class="user_id">
+        <label ><b>ID</b></label>
+        <span>{{user.id}}</span>
+      </td>
+      <td>
+        <button class="edit_button" (click)="goToUpdateUser(user.username)">Редактировать</button>
+      </td>
+    </tr>
+  </div>
+  <tr>
+    <td class="username" ><label><b>Логин</b></label>
+      <span>{{user.username}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="password" ><label><b>пароль</b></label>
+      <span>{{user.password}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="confirm_password" ><label><b>Проверочеый пароль</b></label>
+      <span>{{user.confirmPassword}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="birth_date" ><label><b>Дата рождения</b></label>
+      <span>{{user.birthDate}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="gender" ><label><b>пол</b></label>
+      <span>{{user.gender}}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="roles" ><label><b>роль</b></label>
+      <span>{{user.roles}}</span>
+    </td>
+  </tr>
+</div>

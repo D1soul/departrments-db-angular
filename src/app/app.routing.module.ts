@@ -16,9 +16,20 @@ import {MainDepartmentDetailComponent} from './main-department/main-department-d
 import {UpdateMainDepartmentComponent} from './main-department/update-main-department/update-main-department.component';
 import {SubDepartmentDetailComponent} from './sub-department/sub-department-detail/sub-department-detail.component';
 import {UpdateSubDepartmentComponent} from './sub-department/update-sub-department/update-sub-department.component';
+import {LoginComponent} from './authentification/login/login.component';
+import {AdminComponent} from './authentification/admin/admin.component';
+import {CreateUserComponent} from './create-user/create-user.component';
+import {UserDetailComponent} from './authentification/user-detail/user-detail.component';
+import {UserListComponent} from './authentification/user-list/user-list.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/main_departments', pathMatch: 'full'},
+
+  {path: 'login', component: LoginComponent},
+  {path: 'registration', component: CreateUserComponent},
+  {path: 'admin', component: AdminComponent},
+  {path: 'users', component: UserListComponent},
+  {path: 'user_detail/:username', component: UserDetailComponent},
 
   {path: 'main_departments', component: MainDepartmentsListComponent},
   {path: 'main_department-detail/:name', component: MainDepartmentDetailComponent},
