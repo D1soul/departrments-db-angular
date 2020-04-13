@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../entities/user';
-import {Router} from '@angular/router';
-import {AuthenticationService} from '../service/authentication.service';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../service/authentication.service';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-user',
@@ -21,6 +21,7 @@ export class CreateUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initUserForm();
   }
 
   initUserForm(){
@@ -43,7 +44,7 @@ export class CreateUserComponent implements OnInit {
       "gender": [null, [Validators.required,
         Validators.pattern("[male|female]")]]
       //"": [null, [Validators.required]]
-    })
+    });
   }
 
 

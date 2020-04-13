@@ -13,18 +13,35 @@ export class AuthenticationService {
   private readonly adminUrl: string;
   private readonly userUrl: string;
   private readonly registrationUrl: string;
+  private isLoggedIn = false;
 
-  authenticated = false;
+  private redirectUrl: string = '/';
+
+  private token = localStorage.getItem('token');
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
+
+
 
   constructor(private http: HttpClient) {
     this.loginUrl = 'http://localhost:8080/login';
     this.adminUrl = 'http://localhost:8080/admin';
     this.userUrl = 'http://localhost:8080/users';
     this.registrationUrl = 'http://localhost:8080/registration';
+  }
+
+  isUserLoggedIn(): boolean {
+    return this.isLoggedIn;
+  }
+
+  setRedirectUrl(url: string): void {
+    this.redirectUrl = url;
+  }
+
+  getJwtToken() {
+    return localStorage.getItem(this.token);
   }
 
   getAllUsers(): Observable<User[]> {
