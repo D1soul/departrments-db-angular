@@ -6,31 +6,17 @@ import {AuthenticationService} from "./service/authentication.service";
 import {catchError} from "rxjs/operators";
 
 @Injectable()
-export class AuthenticationInterceptor implements HttpInterceptor{
+export class ErrorInterceptor implements HttpInterceptor{
   constructor(private router: Router, private authenticationService: AuthenticationService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if(this.authenticationService.getJwtToken()){
-      request = request.clone({
-        setHeaders: {
-          'Authorization': 'Bearer ' + this.authenticationService.getJwtToken()
-        }
-      });
-    }
-    else {
-
-    }
-
-
-
     return next.handle(request).pipe(catchError(error => {
-      if (error instanceof HttpErrorResponse && error.status === 401) {
-        return this.handle401Error(request, next);
-      } else {
-        return throwError(error);
+      if (error.status === 401) {
+        this.authenticationService.logout();
+        this.router.navigate(['login']);
       }
-    }));
+      return throwError(error.error.message || error.statusText);
+    }))
   }
-
 }

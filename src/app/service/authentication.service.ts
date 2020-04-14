@@ -40,6 +40,10 @@ export class AuthenticationService {
     this.redirectUrl = url;
   }
 
+  logout() {
+    localStorage.removeItem('token');
+  }
+
   getJwtToken() {
     return localStorage.getItem(this.token);
   }

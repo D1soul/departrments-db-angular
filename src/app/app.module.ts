@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app.routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CreateMainDeptEmployeeComponent } from './main-dept-employee/create-main-dept-employee/create-main-dept-employee.component';
 import { MainDeptEmployeeListComponent } from './main-dept-employee/main-dept-employee-list/main-dept-employee-list.component';
@@ -26,6 +26,8 @@ import { UserDetailComponent } from './authentification/user-detail/user-detail.
 import { UpdateUserComponent } from './authentification/update-user/update-user.component';
 import { UserListComponent } from './authentification/user-list/user-list.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import {JwtTokenInterceptor} from './jwt.token.interceptor';
+import {ErrorInterceptor} from './error.interceptor';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,11 @@ import { CreateUserComponent } from './create-user/create-user.component';
         FormsModule,
         ReactiveFormsModule
     ],
-  providers: [],
+    providers: [{
+        provide: HTTP_INTERCEPTORS, useClass: JwtTokenInterceptor, multi: true
+      },{
+        provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
