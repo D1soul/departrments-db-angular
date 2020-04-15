@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../entities/user';
+import { User } from '../../entities/user';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../service/authentication.service';
+import { AuthenticationService } from '../../service/authentication.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-create-user',
-  templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.css']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
 })
-export class CreateUserComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
 
   user: User;
   userCrForm: FormGroup;

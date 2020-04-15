@@ -18,15 +18,16 @@ import {SubDepartmentDetailComponent} from './sub-department/sub-department-deta
 import {UpdateSubDepartmentComponent} from './sub-department/update-sub-department/update-sub-department.component';
 import {LoginComponent} from './authentification/login/login.component';
 import {AdminComponent} from './authentification/admin/admin.component';
-import {CreateUserComponent} from './create-user/create-user.component';
+import {RegistrationComponent} from './authentification/registration/registration.component';
 import {UserDetailComponent} from './authentification/user-detail/user-detail.component';
 import {UserListComponent} from './authentification/user-list/user-list.component';
+import {AuthGuard} from './auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
 
-  {path: 'login', component: LoginComponent},
-  {path: 'registration', component: CreateUserComponent},
+  {path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  {path: 'registration', component: RegistrationComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'users', component: UserListComponent},
   {path: 'user_detail/:username', component: UserDetailComponent},

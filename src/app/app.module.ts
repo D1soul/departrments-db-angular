@@ -25,7 +25,7 @@ import { AdminComponent } from './authentification/admin/admin.component';
 import { UserDetailComponent } from './authentification/user-detail/user-detail.component';
 import { UpdateUserComponent } from './authentification/update-user/update-user.component';
 import { UserListComponent } from './authentification/user-list/user-list.component';
-import { CreateUserComponent } from './create-user/create-user.component';
+import { RegistrationComponent } from './authentification/registration/registration.component';
 import {JwtTokenInterceptor} from './jwt.token.interceptor';
 import {ErrorInterceptor} from './error.interceptor';
 
@@ -53,7 +53,7 @@ import {ErrorInterceptor} from './error.interceptor';
     UserDetailComponent,
     UpdateUserComponent,
     UserListComponent,
-    CreateUserComponent
+    RegistrationComponent
   ],
     imports: [
         AppRoutingModule,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from '../entities/user';
 
@@ -14,9 +14,8 @@ export class AuthenticationService {
   private readonly userUrl: string;
   private readonly registrationUrl: string;
   private isLoggedIn = false;
-
+  private  currentUser: BehaviorSubject<User>;
   private redirectUrl: string = '/';
-
   private token = localStorage.getItem('token');
 
   httpOptions = {
@@ -30,6 +29,11 @@ export class AuthenticationService {
     this.adminUrl = 'http://localhost:8080/admin';
     this.userUrl = 'http://localhost:8080/users';
     this.registrationUrl = 'http://localhost:8080/registration';
+    this.currentUser = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+  }
+
+  currentUserValue(): User {
+    return this.currentUser.value;
   }
 
   isUserLoggedIn(): boolean {
@@ -39,6 +43,45 @@ export class AuthenticationService {
   setRedirectUrl(url: string): void {
     this.redirectUrl = url;
   }
+
+  /*
+  login(username: string, password: string) {
+        return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { username, password })
+            .pipe(map(user => {
+                // login successful if there's a jwt token in the response
+                if (user && user.token) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject.next(user);
+                }
+
+                return user;
+            }));
+    }
+
+    login(user: { username: string, password: string }): Observable<boolean> {
+    return this.http.post<any>(`${config.apiUrl}/login`, user)
+      .pipe(
+        tap(tokens => this.doLoginUser(user.username, tokens)),
+        mapTo(true),
+        catchError(error => {
+          alert(error.error);
+          return of(false);
+        }));
+  }
+
+
+    login(data: any): Observable<any> {
+  return this.http.post<any>(apiUrl + 'login', data)
+    .pipe(
+      tap(_ => this.isLoggedIn = true),
+      catchError(this.handleError('login', []))
+    );
+}
+
+
+
+   */
 
   logout() {
     localStorage.removeItem('token');
