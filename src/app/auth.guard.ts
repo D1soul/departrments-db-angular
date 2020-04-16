@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate{
   canActivate(routeSnapshot: ActivatedRouteSnapshot,
               stateSnapshot: RouterStateSnapshot) {
     const url: string = stateSnapshot.url;
-    if (this.authenticationService.isUserLoggedIn()){
+    if (this.authenticationService.currentUserValue()){
       return true;
     }
     this.authenticationService.setRedirectUrl(url);
