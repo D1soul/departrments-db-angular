@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {BehaviorSubject, Observable, of} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
 import { User } from '../entities/user';
 
 @Injectable({
@@ -25,7 +25,7 @@ export class AuthenticationService {
 
 
   constructor(private http: HttpClient) {
-    this.loginUrl = 'http://localhost:8080/login';
+    this.loginUrl = 'http://localhost:8080/auth/login';
     this.adminUrl = 'http://localhost:8080/admin';
     this.userUrl = 'http://localhost:8080/users';
     this.registrationUrl = 'http://localhost:8080/registration';
@@ -43,7 +43,7 @@ export class AuthenticationService {
   setRedirectUrl(url: string): void {
     this.redirectUrl = url;
   }
-
+/*
   login(user: {username: string, password: string}) {
     return this.http.post<any>(this.loginUrl, user )
       .pipe(map(user => {
@@ -53,6 +53,14 @@ export class AuthenticationService {
         }
         return user;
       }));
+  } */
+
+  login(data: any): Observable<any> {
+    return this.http.post<any>(this.loginUrl, data)
+      .pipe(
+        tap(_ => this.isLoggedIn = true),
+        catchError(this.handleError('login', []))
+      );
   }
 
 
@@ -138,7 +146,7 @@ export class AuthenticationService {
    */
 
   logout() {
-    localStorage.removeItem(this.jwtToken);
+    localStorage.removeItem('currentUser');
   }
 
   getJwtToken() {

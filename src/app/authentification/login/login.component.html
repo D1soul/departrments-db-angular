@@ -1,4 +1,4 @@
-<div class="example-container mat-elevation-z8">
+<!-- <div class="example-container mat-elevation-z8">
     <form [formGroup]="loginForm" novalidate (ngSubmit)="authorize()">
 
       <div [ngClass]="{'username_default': loginForm.controls['username'].untouched,
@@ -41,4 +41,19 @@
         <button type="submit" >Login</button>
       </div>
     </form>
+</div> -->
+
+<div class="example-container mat-elevation-z8">
+  <form (ngSubmit)="authorize()">
+
+
+      <input id="username" type="text" placeholder="username" formControlName="username">
+
+      <input id="password" type="password" placeholder="password" formControlName="password">
+
+    <div class="button-row">
+      <button type="submit" >Login</button>
+    </div>
+  </form>
 </div>
+

@@ -10,8 +10,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  username: string;
-  password: string;
+  user: {username: string, password: string};
   loginForm: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder,
@@ -28,16 +27,31 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /*
+   .subscribe(res => {
+      console.log(res);
+      if (res.token) {
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['products']);
+      }
+   */
+
   authorize(){
-    //if (this.loginForm.valid) {
-      this.authenticationService.login(this.username, this.password).subscribe(result => { this.goToAllSubDepartments();});
-
-
-    //}
+ // if (this.loginForm.valid) {
+      this.authenticationService.login(this.user).subscribe(res => {
+        console.log(res);
+        if (res.token) {
+          localStorage.setItem('token', res.token);
+          this.goToAllSubDepartments();
+        }
+      }, (err) => {
+          console.log(err);
+        });
+   // }
   }
 
   goToAllSubDepartments(){
-    this.router.navigate(['/sub-departments']);
+    this.router.navigate(['main_departments']);
   }
 
   /*
