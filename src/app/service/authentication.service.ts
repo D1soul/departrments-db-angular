@@ -15,10 +15,10 @@ export class AuthenticationService {
   private readonly userUrl: string;
   private readonly registrationUrl: string;
   private isLoggedIn = false;
-  private  currentUser: BehaviorSubject<User>;
+  private  behaviorSubject: BehaviorSubject<User>;
   private redirectUrl: string = '/';
   private jwtToken = localStorage.getItem('token');
-  public jwtUser: Observable<User>;
+  public currentUser: Observable<User>;
 
 
 
@@ -33,12 +33,12 @@ export class AuthenticationService {
     this.adminUrl = 'http://localhost:8080/admin';
     this.userUrl = 'http://localhost:8080/users';
     this.registrationUrl = 'http://localhost:8080/registration';
-    this.currentUser = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.jwtUser = this.currentUser.asObservable();
+    this.behaviorSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.behaviorSubject.asObservable();
   }
 
   public get currentUserValue(): User {
-    return this.currentUser.value;
+    return this.behaviorSubject.value;
   }
 
   isUserLoggedIn(): boolean {
@@ -49,29 +49,28 @@ export class AuthenticationService {
     this.redirectUrl = url;
   }
 
-//  login(user: {username: string; password: string})  {
   login(username: string, password: string) {
     return this.http.post<any>(this.loginUrl, {username, password})
-   // return this.http.post<any>(this.loginUrl, {user})
       .pipe(map(user => {
-      //  if (user && user.token) {
-          //localStorage.setItem('currentUser', JSON.stringify(user));
-          localStorage.setItem('jwtUser', JSON.stringify(user));
-          this.currentUser.next(user);
-        //}
+        if (user && user.token) {
+          localStorage.setItem('currentUser', JSON.stringify(user.result));
+          this.behaviorSubject.next(user);
+        }
         return user;
       }));
   }
 
 
 
-/*  login(data: any): Observable<any> {
-    return this.http.post<any>(this.loginUrl, data)
-      .pipe(
-        tap(_ => this.isLoggedIn = true),
-        catchError(this.handleError('login', []))
-      );
-  } */
+
+
+
+
+
+
+
+
+
 
 
 
@@ -160,7 +159,7 @@ export class AuthenticationService {
   }
 
   getJwtToken() {
-    return localStorage.getItem(this.jwtToken);
+    return localStorage.getItem('token');
   }
 
   getAllUsers(): Observable<User[]> {

@@ -43,12 +43,8 @@ export class LoginComponent implements OnInit {
     this.username = this.loginForm.controls.username.value;
     this.password = this.loginForm.controls.password.value;
     if (this.loginForm.valid) {
-      this.authenticationService.login(this.username, this.password).subscribe(res => {
-        console.log(res);
-        if (res.token) {
-          localStorage.setItem('token', res.token);
+      this.authenticationService.login(this.username, this.password).subscribe(() => {
           this.goToAllSubDepartments();
-        }
       }, (err) => {
           console.log(err);
         });
@@ -56,6 +52,6 @@ export class LoginComponent implements OnInit {
   }
 
   goToAllSubDepartments(){
-    this.router.navigate(['main_departments']);
+    this.router.navigate(['sub-departments']);
   }
 }
