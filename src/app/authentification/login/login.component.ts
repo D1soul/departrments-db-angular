@@ -3,18 +3,26 @@ import {Router} from '@angular/router';
 import {AuthenticationService} from '../../service/authentication.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  user: {username: string, password: string};
+  username: string;
+  password: string;
   loginForm: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder,
-              private authenticationService: AuthenticationService) { }
+              private authenticationService: AuthenticationService) {
+
+
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/']);
+    }
+
+  }
 
   ngOnInit() {
     this.initLoginForm();
@@ -27,18 +35,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  /*
-   .subscribe(res => {
-      console.log(res);
-      if (res.token) {
-        localStorage.setItem('token', res.token);
-        this.router.navigate(['products']);
-      }
-   */
 
+  get form(){
+    return this.loginForm.controls;
+  }
   authorize(){
- // if (this.loginForm.valid) {
-      this.authenticationService.login(this.user).subscribe(res => {
+    this.username = this.loginForm.controls.username.value;
+    this.password = this.loginForm.controls.password.value;
+    if (this.loginForm.valid) {
+      this.authenticationService.login(this.username, this.password).subscribe(res => {
         console.log(res);
         if (res.token) {
           localStorage.setItem('token', res.token);
@@ -47,25 +52,10 @@ export class LoginComponent implements OnInit {
       }, (err) => {
           console.log(err);
         });
-   // }
+    }
   }
 
   goToAllSubDepartments(){
     this.router.navigate(['main_departments']);
   }
-
-  /*
-  onFormSubmit(form: NgForm) {
-  this.authService.login(form)
-    .subscribe(res => {
-      console.log(res);
-      if (res.token) {
-        localStorage.setItem('token', res.token);
-        this.router.navigate(['products']);
-      }
-    }, (err) => {
-      console.log(err);
-    });
-}
-   */
 }

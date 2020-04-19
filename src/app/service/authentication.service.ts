@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import { User } from '../entities/user';
+import {MainDepartment} from '../entities/main-department';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,9 @@ export class AuthenticationService {
   private  currentUser: BehaviorSubject<User>;
   private redirectUrl: string = '/';
   private jwtToken = localStorage.getItem('token');
+  public jwtUser: Observable<User>;
+
+
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -30,9 +34,10 @@ export class AuthenticationService {
     this.userUrl = 'http://localhost:8080/users';
     this.registrationUrl = 'http://localhost:8080/registration';
     this.currentUser = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.jwtUser = this.currentUser.asObservable();
   }
 
-  currentUserValue(): User {
+  public get currentUserValue(): User {
     return this.currentUser.value;
   }
 
@@ -43,25 +48,30 @@ export class AuthenticationService {
   setRedirectUrl(url: string): void {
     this.redirectUrl = url;
   }
-/*
-  login(user: {username: string, password: string}) {
-    return this.http.post<any>(this.loginUrl, user )
+
+//  login(user: {username: string; password: string})  {
+  login(username: string, password: string) {
+    return this.http.post<any>(this.loginUrl, {username, password})
+   // return this.http.post<any>(this.loginUrl, {user})
       .pipe(map(user => {
-        if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
+      //  if (user && user.token) {
+          //localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('jwtUser', JSON.stringify(user));
           this.currentUser.next(user);
-        }
+        //}
         return user;
       }));
-  } */
+  }
 
-  login(data: any): Observable<any> {
+
+
+/*  login(data: any): Observable<any> {
     return this.http.post<any>(this.loginUrl, data)
       .pipe(
         tap(_ => this.isLoggedIn = true),
         catchError(this.handleError('login', []))
       );
-  }
+  } */
 
 
 
