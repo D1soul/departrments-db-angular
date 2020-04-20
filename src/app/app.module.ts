@@ -64,9 +64,14 @@ import {ErrorInterceptor} from './error.interceptor';
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS, useClass: JwtTokenInterceptor, multi: true
-      },{
+      }//,{
+      //  provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
+   // }
+      ,
+      {
         provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
-    }],
+      }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -32,24 +32,24 @@ const routes: Routes = [
   {path: 'users', component: UserListComponent},
   {path: 'user_detail/:username', component: UserDetailComponent},
 
-  {path: 'main_departments', component: MainDepartmentsListComponent},
+  {path: 'main_departments', component: MainDepartmentsListComponent, canActivate: [AuthGuard]},
   {path: 'main_department-detail/:name', component: MainDepartmentDetailComponent},
   {path: 'add-main_department', component: CreateMainDepartmentComponent},
   {path: 'update-main_department/:name', component: UpdateMainDepartmentComponent},
 
-  {path: 'main_dept_employees', component: MainDeptEmployeeListComponent},
+  {path: 'main_dept_employees', component: MainDeptEmployeeListComponent,   canActivate: [AuthGuard] },
   {path: 'main_dept_employee-detail/:lastName/:firstName/:middleName',
         component: MainDeptEmployeeDetailComponent},
   {path: 'add-main_dept_employee', component: CreateMainDeptEmployeeComponent},
   {path: 'update-main_dept_employee/:lastName/:firstName/:middleName',
         component: UpdateMainDeptEmployeeComponent},
 
-  {path: 'sub-departments', component: SubDepartmentsListComponent},
+  {path: 'sub-departments', component: SubDepartmentsListComponent,   canActivate: [AuthGuard]  },
   {path: 'sub-department-detail/:name', component: SubDepartmentDetailComponent},
   {path: 'add-sub-department', component: CreateSubDepartmentComponent},
   {path: 'update-sub-department/:name', component: UpdateSubDepartmentComponent},
 
-  {path: 'sub-dept_employees', component: SubDeptEmployeeListComponent},
+  {path: 'sub-dept_employees', component: SubDeptEmployeeListComponent },
   {path: 'sub-dept_employee-detail/:lastName/:firstName/:middleName',
         component: SubDeptEmployeeDetailComponent},
   {path: 'add-sub-dept_employee', component: CreateSubDeptEmployeeComponent},

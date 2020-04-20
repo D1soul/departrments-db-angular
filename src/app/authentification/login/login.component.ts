@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../service/authentication.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {User} from '../../entities/user';
 
 
 @Component({
@@ -12,15 +14,16 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class LoginComponent implements OnInit {
   username: string;
   password: string;
+  token: string;
   loginForm: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService) {
 
 
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
+   // if (this.authenticationService.currentUserValue) {
+  //    this.router.navigate(['/']);
+  //  }
 
   }
 
@@ -43,8 +46,18 @@ export class LoginComponent implements OnInit {
     this.username = this.loginForm.controls.username.value;
     this.password = this.loginForm.controls.password.value;
     if (this.loginForm.valid) {
-      this.authenticationService.login(this.username, this.password).subscribe(() => {
-          this.goToAllSubDepartments();
+     // localStorage.removeItem('token');
+      this.authenticationService.login(this.username, this.password).subscribe(user => {
+
+     // this.token = localStorage.getItem('token');
+
+
+        //  this.goToAllSubDepartments();
+      //  if (user.token) {
+        //  localStorage.setItem('token', user.token);
+         // this.token = this.authenticationService.getJwtToken();
+          //this.goToAllSubDepartments();
+      //  }
       }, (err) => {
           console.log(err);
         });

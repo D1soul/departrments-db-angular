@@ -20,6 +20,7 @@ export class AuthenticationService {
   private jwtToken = localStorage.getItem('token');
   public currentUser: Observable<User>;
 
+  public getToken :string;
 
 
   httpOptions = {
@@ -53,7 +54,12 @@ export class AuthenticationService {
     return this.http.post<any>(this.loginUrl, {username, password})
       .pipe(map(user => {
         if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user.result));
+          //localStorage.setItem('currentUser', JSON.stringify(user.result));
+          //localStorage.setItem('token', JSON.stringify(user.result));
+
+           localStorage.setItem('token', user.token);
+
+          // this.getToken = user.token;
           this.behaviorSubject.next(user);
         }
         return user;
@@ -159,7 +165,8 @@ export class AuthenticationService {
   }
 
   getJwtToken() {
-    return localStorage.getItem('token');
+    this.getToken = localStorage.getItem(this.jwtToken);
+    return localStorage.getItem(this.jwtToken);
   }
 
   getAllUsers(): Observable<User[]> {
@@ -192,7 +199,7 @@ export class AuthenticationService {
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
+      //console.error(error);
       return  of (result as T);
     }
   }

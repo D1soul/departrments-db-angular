@@ -12,14 +12,16 @@ export class JwtTokenInterceptor implements HttpInterceptor{
 
     //let currentUser = this.authenticationService.currentUserValue;
     //if(this.authenticationService.currentUserValue && this.authenticationService.getJwtToken()){
-    if(this.authenticationService.getJwtToken()){
+  //  if(this.authenticationService.getJwtToken()){
+
       request = request.clone({
         setHeaders: {
-          'Authorization': 'Bearer ' + this.authenticationService.getJwtToken()
+          //'Authorization': 'Bearer ' + this.authenticationService.getJwtToken()
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
           // Authorization: 'Bearer ' + this.authenticationService.getJwtToken()
         }
       });
-    }
+   // }
     return next.handle(request);
   }
 }
