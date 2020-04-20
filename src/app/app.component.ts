@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthenticationService} from './service/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Departments';
+
+  constructor(private authenticationService: AuthenticationService ) {
+  }
+
+
+ // token: string = this.authenticationService.getJwtToken();
 
   token: string = localStorage.getItem('token');
 

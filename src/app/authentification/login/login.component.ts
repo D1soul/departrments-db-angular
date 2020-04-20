@@ -14,7 +14,6 @@ import {User} from '../../entities/user';
 export class LoginComponent implements OnInit {
   username: string;
   password: string;
-  token: string;
   loginForm: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder,
@@ -46,7 +45,7 @@ export class LoginComponent implements OnInit {
     this.username = this.loginForm.controls.username.value;
     this.password = this.loginForm.controls.password.value;
     if (this.loginForm.valid) {
-     // localStorage.removeItem('token');
+      //localStorage.removeItem('token');
       this.authenticationService.login(this.username, this.password).subscribe(user => {
 
      // this.token = localStorage.getItem('token');
@@ -65,6 +64,6 @@ export class LoginComponent implements OnInit {
   }
 
   goToAllSubDepartments(){
-    this.router.navigate(['sub-departments']);
+    this.router.navigate(['sub-dept_employees']);
   }
 }

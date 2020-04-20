@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import { User } from '../entities/user';
-import {MainDepartment} from '../entities/main-department';
 
 @Injectable({
   providedIn: 'root'

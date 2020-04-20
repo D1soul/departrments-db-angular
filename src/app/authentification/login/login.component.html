@@ -19,10 +19,6 @@
         </div>
       </div>
 
-      <div>
-        token: {{token}}
-      </div>
-
       <div [ngClass]="{'password_default': loginForm.controls['password'].untouched,
                          'password_invalid': loginForm.controls['password'].invalid
                                             && (loginForm.controls['password'].dirty
