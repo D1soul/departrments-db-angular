@@ -58,106 +58,11 @@ export class AuthenticationService {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /*
-
-
-  login() {
-    let url = 'http://localhost:8082/login';
-    let result = this.http.post(url, {
-      userName: this.model.username,
-      password: this.model.password
-    }).map(res => res.json()).subscribe(isValid => {
-      if (isValid) {
-        sessionStorage.setItem(
-          'token',
-          btoa(this.model.username + ':' + this.model.password)
-        );
-        this.router.navigate(['']);
-      } else {
-        alert("Authentication failed.");
-      }
-    });
-  }
-
-
-
-      login(data: any): Observable<any> {
-  return this.http.post<any>(apiUrl + 'login', data)
-    .pipe(
-      tap(_ => this.isLoggedIn = true),
-      catchError(this.handleError('login', []))
-    );
-
-  login(username: string, password: string) {
-        return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { username, password })
-            .pipe(map(user => {
-                // login successful if there's a jwt jwtToken in the response
-                if (user && user.token) {
-                    // store user details and jwt jwtToken in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                }
-
-                return user;
-            }));
-    }
-
-
-  login(email: string, password: string) {
-    return this.http.post<any>(`auth/login`, { email, password })
-      .pipe(map(user => {
-        if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user.result));
-          this.currentUserSubject.next(user);
-        }
-        return user;
-      }));
-  }
-
-
-
-
-
-    login(user: { username: string, password: string }): Observable<boolean> {
-    return this.http.post<any>(`${config.apiUrl}/login`, user)
-      .pipe(
-        tap(tokens => this.doLoginUser(user.username, tokens)),
-        mapTo(true),
-        catchError(error => {
-          alert(error.error);
-          return of(false);
-        }));
-  }
-
-
-
-}
-
-
-
-   */
-
   logout() {
     return localStorage.removeItem(this.jwtToken);
   }
 
   getJwtToken() {
-   // this.jwtToken = localStorage.getItem('token');
-   // return this.jwtToken;
     return localStorage.getItem(this.jwtToken);
   }
 
@@ -172,7 +77,7 @@ export class AuthenticationService {
       catchError(this.handleError<User>(`User with username: ${username} detail`)));
   }
 
-  addUser(user: User): Observable<User> {
+  registration(user: User): Observable<User> {
     return this.http.post<User>(this.registrationUrl, user, this.httpOptions).pipe(
       catchError(this.handleError<User>('Adding New User')));
   }

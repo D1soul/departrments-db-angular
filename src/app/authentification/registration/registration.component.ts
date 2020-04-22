@@ -12,7 +12,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 export class RegistrationComponent implements OnInit {
 
   user: User;
-  userCrForm: FormGroup;
+  regForm: FormGroup;
   equalPassword: boolean = false;
 
   constructor(private authenticationService: AuthenticationService,
@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   initUserForm(){
-    this.userCrForm = this.formBuilder.group({
+    this.regForm = this.formBuilder.group({
       "username": [null, [Validators.required,
         Validators.pattern("^(([А-я]+\\d*)+|([A-z]+\\d*)+)$"),
         Validators.minLength(1),
@@ -47,9 +47,8 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-
-  addUser(){
-      this.authenticationService.addUser(this.user)
+  register(){
+      this.authenticationService.registration(this.user)
       .subscribe(result => this.goToAllUsers());
   }
 
