@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHandler, HttpHeaders, HttpRequest} from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { MainDepartment } from '../entities/main-department';
 import { catchError } from 'rxjs/operators';
@@ -15,7 +15,7 @@ export class MainDepartmentService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient ) {
     this.url = 'http://localhost:8080/departments-app/main_departments';
   }
 

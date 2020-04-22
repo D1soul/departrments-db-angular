@@ -16,17 +16,12 @@ export class AuthenticationService {
   private isLoggedIn = false;
   private  behaviorSubject: BehaviorSubject<User>;
   private redirectUrl: string = '/';
-  private jwtToken = localStorage.getItem('token');
+  private jwtToken: string = 'token';
   public currentUser: Observable<User>;
-
-  public getToken :string;
-
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-
-
 
   constructor(private http: HttpClient) {
     this.loginUrl = 'http://localhost:8080/auth/login';
@@ -53,13 +48,10 @@ export class AuthenticationService {
     return this.http.post<any>(this.loginUrl, {username, password})
       .pipe(map(user => {
         if (user && user.token) {
-          //localStorage.setItem('currentUser', JSON.stringify(user.result));
-          //localStorage.setItem('token', JSON.stringify(user.result));
 
-           localStorage.setItem('token', user.token);
-
-          // this.getToken = user.token;
-          this.behaviorSubject.next(user);
+           localStorage.setItem(this.jwtToken, user.token);
+          //localStorage.setItem('currentUser', JSON.stringify(user));
+           this.behaviorSubject.next(user);
         }
         return user;
       }));
@@ -160,11 +152,12 @@ export class AuthenticationService {
    */
 
   logout() {
-    localStorage.removeItem('currentUser');
+    return localStorage.removeItem(this.jwtToken);
   }
 
   getJwtToken() {
-    this.getToken = localStorage.getItem(this.jwtToken);
+   // this.jwtToken = localStorage.getItem('token');
+   // return this.jwtToken;
     return localStorage.getItem(this.jwtToken);
   }
 

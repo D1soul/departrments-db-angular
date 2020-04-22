@@ -37,7 +37,7 @@ const routes: Routes = [
   {path: 'add-main_department', component: CreateMainDepartmentComponent},
   {path: 'update-main_department/:name', component: UpdateMainDepartmentComponent},
 
-  {path: 'main_dept_employees', component: MainDeptEmployeeListComponent,   canActivate: [AuthGuard] },
+  {path: 'main_dept_employees', component: MainDeptEmployeeListComponent, canActivate: [AuthGuard] },
   {path: 'main_dept_employee-detail/:lastName/:firstName/:middleName',
         component: MainDeptEmployeeDetailComponent},
   {path: 'add-main_dept_employee', component: CreateMainDeptEmployeeComponent},
@@ -49,7 +49,7 @@ const routes: Routes = [
   {path: 'add-sub-department', component: CreateSubDepartmentComponent},
   {path: 'update-sub-department/:name', component: UpdateSubDepartmentComponent},
 
-  {path: 'sub-dept_employees', component: SubDeptEmployeeListComponent },
+  {path: 'sub-dept_employees', component: SubDeptEmployeeListComponent, canActivate: [AuthGuard] },
   {path: 'sub-dept_employee-detail/:lastName/:firstName/:middleName',
         component: SubDeptEmployeeDetailComponent},
   {path: 'add-sub-dept_employee', component: CreateSubDeptEmployeeComponent},

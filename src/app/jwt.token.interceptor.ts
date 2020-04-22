@@ -1,27 +1,21 @@
 import { Injectable } from "@angular/core";
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { Router } from '@angular/router';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { AuthenticationService } from "./service/authentication.service";
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class JwtTokenInterceptor implements HttpInterceptor{
-  constructor(private router: Router, private authenticationService: AuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    //let currentUser = this.authenticationService.currentUserValue;
-    //if(this.authenticationService.currentUserValue && this.authenticationService.getJwtToken()){
-  //  if(this.authenticationService.getJwtToken()){
-
-      request = request.clone({
+    let jwtRequest = request;
+    if(this.authenticationService.getJwtToken()){
+      jwtRequest = request.clone({
         setHeaders: {
-          //'Authorization': 'Bearer ' + this.authenticationService.getJwtToken()
-          'Authorization': 'Bearer ' + localStorage.getItem('token')
-          // Authorization: 'Bearer ' + this.authenticationService.getJwtToken()
+          Authorization: 'Bearer ' + this.authenticationService.getJwtToken()
         }
       });
-   // }
-    return next.handle(request);
+    }
+    return next.handle(jwtRequest);
   }
 }

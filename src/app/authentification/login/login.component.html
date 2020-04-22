@@ -1,6 +1,9 @@
-<div class="example-container mat-elevation-z8">
-    <form [formGroup]="loginForm" novalidate (ngSubmit)="authorize()">
-
+<div>
+  <form [formGroup]="loginForm" novalidate (ngSubmit)="authorize()">
+    <div class="login">
+      <div class="username_label">
+        <label><b>Имя</b></label>
+      </div>
       <div [ngClass]="{'username_default': loginForm.controls['username'].untouched,
                          'username_invalid': loginForm.controls['username'].invalid
                                             && (loginForm.controls['username'].dirty
@@ -19,11 +22,14 @@
         </div>
       </div>
 
+      <div class="password_label">
+        <label ><b>Пароль</b></label>
+      </div>
       <div [ngClass]="{'password_default': loginForm.controls['password'].untouched,
                          'password_invalid': loginForm.controls['password'].invalid
                                             && (loginForm.controls['password'].dirty
                                             || loginForm.controls['password'].touched),
-                         'username_valid': loginForm.controls['password'].touched
+                         'password_valid': loginForm.controls['password'].touched
                                             && loginForm.controls['password'].valid }" >
         <input id="password" type="password" placeholder="password" formControlName="password" >
         <div class="password_error_massage">
@@ -37,7 +43,8 @@
         </div>
       </div>
       <div class="button-row">
-        <button type="submit" >Login</button>
+        <button type="submit">Login</button>
       </div>
-    </form>
+    </div>
+  </form>
 </div>

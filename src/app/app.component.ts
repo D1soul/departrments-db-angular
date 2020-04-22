@@ -12,10 +12,8 @@ export class AppComponent {
   constructor(private authenticationService: AuthenticationService ) {
   }
 
-
- // token: string = this.authenticationService.getJwtToken();
-
-  token: string = localStorage.getItem('token');
-
+  logout(){
+    this.authenticationService.logout();
+  }
 
 }
