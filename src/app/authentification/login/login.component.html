@@ -1,17 +1,17 @@
 <div>
   <form [formGroup]="loginForm" novalidate (ngSubmit)="authorize()">
     <div class="login">
-      <div class="username_label">
-        <label><b>Имя</b></label>
+      <div class="logUsernameLabel">
+        <label for="username"><b>Имя</b></label>
       </div>
-      <div [ngClass]="{'username_default': loginForm.controls['username'].untouched,
-                         'username_invalid': loginForm.controls['username'].invalid
+      <div [ngClass]="{'logUsernameDefault': loginForm.controls['username'].untouched,
+                         'logUsernameInvalid': loginForm.controls['username'].invalid
                                             && (loginForm.controls['username'].dirty
                                             || loginForm.controls['username'].touched),
-                         'username_valid': loginForm.controls['username'].touched
+                         'logUsernameValid': loginForm.controls['username'].touched
                                             && loginForm.controls['username'].valid }" >
         <input id="username" type="text" placeholder="username" formControlName="username" >
-        <div class="username_error_massage">
+        <div class="logUsernameErrorMassage">
           <div *ngIf="loginForm.controls['username'].invalid
                 && (loginForm.controls['username'].dirty
                 || loginForm.controls['username'].touched)" >
@@ -22,17 +22,17 @@
         </div>
       </div>
 
-      <div class="password_label">
-        <label ><b>Пароль</b></label>
+      <div class="logPasswordLabel">
+        <label for="password" ><b>Пароль</b></label>
       </div>
-      <div [ngClass]="{'password_default': loginForm.controls['password'].untouched,
-                         'password_invalid': loginForm.controls['password'].invalid
-                                            && (loginForm.controls['password'].dirty
-                                            || loginForm.controls['password'].touched),
-                         'password_valid': loginForm.controls['password'].touched
+      <div [ngClass]="{'logPasswordDefault': loginForm.controls['password'].untouched,
+                       'logPasswordInvalid': loginForm.controls['password'].invalid
+                                           && (loginForm.controls['password'].dirty
+                                           || loginForm.controls['password'].touched),
+                          'logPasswordValid': loginForm.controls['password'].touched
                                             && loginForm.controls['password'].valid }" >
         <input id="password" type="password" placeholder="password" formControlName="password" >
-        <div class="password_error_massage">
+        <div class="logPasswordErrorMassage">
           <div *ngIf="loginForm.controls['password'].invalid
                 && (loginForm.controls['password'].dirty
                 || loginForm.controls['password'].touched)" >
