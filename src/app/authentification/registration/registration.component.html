@@ -48,15 +48,8 @@
             <div *ngIf="regForm.controls['password'].errors.required">
               <p>Поле не должно быть пустым!</p>
             </div>
-            <div *ngIf="regForm.controls['password'].errors.minlength
-                      || regForm.controls['password'].errors.pattern">
-              <p>Некорректное имя!</p>
-            </div>
             <div *ngIf="regForm.controls['password'].errors.minlength">
-              <p>Имя слишком короткое!</p>
-            </div>
-            <div *ngIf="regForm.controls['password'].errors.pattern">
-              <p>Имя должно содержать только кириллические, или латинские буквы!</p>
+              <p>Пароль должен содержать минимум 6 символов!</p>
             </div>
           </div>
         </div>
@@ -67,9 +60,7 @@
         <label for="confirmPassword"><b>Пароль</b></label>
       </div>
       <div [ngClass]="{'regConfirmPasswordDefault': regForm.controls['confirmPassword'].untouched,
-                       'regConfirmPasswordInvalid': regForm.controls['confirmPassword'].invalid
-                                           && (regForm.controls['confirmPassword'].dirty
-                                           || regForm.controls['confirmPassword'].touched ),
+                       'regConfirmPasswordInvalid': regForm.controls['confirmPassword'].touched ,
                        'regConfirmPasswordValid': regForm.controls['confirmPassword'].touched
                                            && regForm.controls['confirmPassword'].valid }" >
         <input type="text" id="confirmPassword" placeholder="Введите имя"
@@ -81,15 +72,8 @@
             <div *ngIf="regForm.controls['confirmPassword'].errors.required">
               <p>Поле не должно быть пустым!</p>
             </div>
-            <div *ngIf="regForm.controls['confirmPassword'].errors.minlength
-                      || regForm.controls['confirmPassword'].errors.pattern">
-              <p>Некорректное имя!</p>
-            </div>
-            <div *ngIf="regForm.controls['confirmPassword'].errors.minlength">
-              <p>Имя слишком короткое!</p>
-            </div>
-            <div *ngIf="regForm.controls['confirmPassword'].errors.pattern">
-              <p>Имя должно содержать только кириллические, или латинские буквы!</p>
+            <div *ngIf="regForm.controls['confirmPassword'].errors.notEqual">
+              <p>Пароли не совпадают!</p>
             </div>
           </div>
         </div>
@@ -97,8 +81,29 @@
 
 
       <div class="regBirthDateLabel">
-        <label for="birthDate"><b>Дата рождения</b></label>
+        <label ><b>Дата рождения</b></label>
       </div>
+
+      <div ngDefaultControl formControlName="birthDate" class="regBirthDate">
+        <select formControlName="days" >
+          <option *ngFor="let day of days">
+            day: {{day}}
+          </option>
+        </select>
+        <select formControlName="moths" >
+          <option *ngFor="let moth of months">
+            moth: {{moth.name}}
+          </option>
+        </select>
+        <select  formControlName="years">
+          <option *ngFor="let year of years">
+            year: {{year}}
+          </option>
+        </select>
+
+      </div>
+
+    <!--
       <div [ngClass]="{'regBirthDateDefault': regForm.controls['birthDate'].untouched,
                        'regBirthDateInvalid': regForm.controls['birthDate'].invalid
                                            && (regForm.controls['birthDate'].dirty
@@ -124,6 +129,10 @@
           </div>
         </div>
       </div>
+
+
+      -->
+
 
 
       <div class="regGenderLabel">
