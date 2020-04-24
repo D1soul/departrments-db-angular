@@ -1,3 +1,5 @@
+import {Role} from './role';
+
 export class User{
   id: number;
   username: string;
@@ -5,5 +7,5 @@ export class User{
   confirmPassword: string;
   birthDate: string;
   gender: string;
-  roles: Array<string>;
+  roles: Role;
 }

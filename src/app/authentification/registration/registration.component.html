@@ -84,25 +84,27 @@
         <label ><b>Дата рождения</b></label>
       </div>
 
-      <div ngDefaultControl formControlName="birthDate" class="regBirthDate">
-        <select formControlName="days" >
+      <div formControlName="birthDate" class="regBirthDate">
+        <select formControlName="day" >
           <option *ngFor="let day of days">
-            day: {{day}}
+           {{day}}
           </option>
         </select>
-        <select formControlName="moths" >
+        <select formControlName="month" >
           <option *ngFor="let moth of months">
-            moth: {{moth.name}}
+            {{moth.name}}
           </option>
         </select>
-        <select  formControlName="years">
+        <select  formControlName="year">
           <option *ngFor="let year of years">
-            year: {{year}}
+            {{year}}
           </option>
         </select>
 
       </div>
-
+      <div class="regBirthDateClass ">
+        birthDate: {{birthDate}}
+      </div>
     <!--
       <div [ngClass]="{'regBirthDateDefault': regForm.controls['birthDate'].untouched,
                        'regBirthDateInvalid': regForm.controls['birthDate'].invalid
@@ -163,36 +165,47 @@
           </div>
         </div>
       </div>
+      <!--
 
+            <div class="regRolesLabel">
+              <label for="roles"><b>Дата рождения</b></label>
+            </div>
+            <div [ngClass]="{'regRolesDefault': regForm.controls['roles'].untouched,
+                             'regRolesInvalid': regForm.controls['roles'].invalid
+                                                 && (regForm.controls['roles'].dirty
+                                                 || regForm.controls['roles'].touched),
+                             'regRolesValid': regForm.controls['roles'].touched
+                                                 && regForm.controls['roles'].valid }" >
+              <input type="text" id="roles"
+                     [(ngModel)]="user.roles"  formControlName="roles" >
+              <div class="regRolesErrorMassage">
+                <div *ngIf="regForm.controls['roles'].invalid
+                    && (regForm.controls['roles'].dirty
+                    || regForm.controls['roles'].touched)" >
+                  <div *ngIf="regForm.controls['roles'].errors.required">
+                    <p>Поле не должно быть пустым!</p>
+                  </div>
+                  <div *ngIf="regForm.controls['roles'].errors.pattern">
+                    <p>Некорректная дата!</p>
+                  </div>
+                  <div *ngIf="regForm.controls['roles'].errors.pattern">
+                    <p>Образец: 01/сентября/1970</p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-      <div class="regRolesLabel">
-        <label for="roles"><b>Дата рождения</b></label>
-      </div>
-      <div [ngClass]="{'regRolesDefault': regForm.controls['roles'].untouched,
-                       'regRolesInvalid': regForm.controls['roles'].invalid
-                                           && (regForm.controls['roles'].dirty
-                                           || regForm.controls['roles'].touched),
-                       'regRolesValid': regForm.controls['roles'].touched
-                                           && regForm.controls['roles'].valid }" >
-        <input type="text" id="roles"
-               placeholder="Введите дату рождения (дд/месяц/гггг)"
-               [(ngModel)]="user.roles"  formControlName="roles" >
-        <div class="regRolesErrorMassage">
-          <div *ngIf="regForm.controls['roles'].invalid
-              && (regForm.controls['roles'].dirty
-              || regForm.controls['roles'].touched)" >
-            <div *ngIf="regForm.controls['roles'].errors.required">
-              <p>Поле не должно быть пустым!</p>
-            </div>
-            <div *ngIf="regForm.controls['roles'].errors.pattern">
-              <p>Некорректная дата!</p>
-            </div>
-            <div *ngIf="regForm.controls['roles'].errors.pattern">
-              <p>Образец: 01/сентября/1970</p>
-            </div>
-          </div>
-        </div>
-      </div>
+                    -->
+
     </div>
   </form>
+  <button type="submit" (click)="values()">
+    sfasf
+  </button>
+  <div>
+    showAll:  {{sfsa| json}}
+  </div>
+  <button (click)="showAll()">
+    showAll
+  </button>
 </div>

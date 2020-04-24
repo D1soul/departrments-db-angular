@@ -3,6 +3,7 @@ import { User } from '../../entities/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../service/authentication.service';
 import { Router } from '@angular/router';
+import {Role} from '../../entities/role';
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +13,9 @@ import { Router } from '@angular/router';
 export class RegistrationComponent implements OnInit {
 
   user: User;
+  role: Role;
   regForm: FormGroup;
+  sfsa: Array<any>;
   days = [];
 
   months = [{id: 1, name:"января"},
@@ -28,13 +31,9 @@ export class RegistrationComponent implements OnInit {
             {id: 11, name:"ноября"},
             {id: 12, name:"декабря"}
   ];
-
+  birthDate = 'asfsf';
   years = [];
   date = new Date();
-  day ='';
-  month ='';
-  year ='';
-
 
 
 
@@ -42,36 +41,25 @@ export class RegistrationComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService,
               private router: Router, private formBuilder: FormBuilder) {
     this.user = new User();
+    this.role = new Role();
+    for (let i = 1; i <= 31; i++){
+      this.days.push(i);
+    }
 
     for (let i = (this.date.getFullYear() - 18); i > (this.date.getFullYear() - 100); i--) {
       this.years.push(i);
     }
 
-
   }
 
   ngOnInit(): void {
-    for (let i = 1; i <= 31; i++){
-      this.days.push(i);
-    }
+
     this.initUserForm();
-    this.updateDate('day' && 'month' && 'year' );
+
+
+  //    this.birthDate = this.regForm.controls['days'].value + '/' + this.regForm.controls['days'].value;
+    //this.updateDate('day' && 'month' && 'year' );
   }
-
-
-  updateDate = function (input){
-    if (input == "year"){
-      this.month = "";
-      this.day = "";
-    }
-    else if (input == "month"){
-      this.day = "";
-    }
-    if (this.year && this.month && this.day){
-     // $scope.fieldValues.dateOfBirth = new Date($scope.year, $scope.month.id - 1, $scope.day);
-    }
-  };
-
 
   initUserForm(){
     this.regForm = this.formBuilder.group({
@@ -82,9 +70,9 @@ export class RegistrationComponent implements OnInit {
       "password": [null, [Validators.required,
         Validators.minLength(6)]],
       "confirmPassword": [null, [Validators.required]],
-      "days": [null],
-      "months": [null],
-      "years": [null],
+      "day": [null],
+      "month": [null],
+      "year": [null],
       "birthDate": [null],
         /*   "birthDate": [null, [Validators.required,
              Validators.pattern("^\\d{2}/((января)|(февраля)"
@@ -100,9 +88,30 @@ export class RegistrationComponent implements OnInit {
         validators: PasswordMatchValidator('password', 'confirmPassword')
       }
     );
+
+  }
+
+  values(){
+    this.regForm.controls['birthDate'].setValue(this.birthDateValue);
+    this.birthDate = this.regForm.controls['birthDate'].value;
+ //   this.user.roles.push(this.role.admin);
+  //  this.user.roles.push(this.role);
+
+
+ //   this.regForm.controls['roles'].setValue("asfasf");
+    this.user.birthDate = this.birthDate;
+    return;
+  }
+
+
+  get birthDateValue() {
+   return this.regForm.controls['day'].value + '/'
+        + this.regForm.controls['month'].value + '/'
+        + this.regForm.controls['year'].value;
   }
 
   addUser(){
+    this.user.birthDate = this.regForm.controls['birthDate'].value;
     this.authenticationService.registration(this.user)
       .subscribe(result => this.goToAllUsers());
   }
@@ -110,6 +119,18 @@ export class RegistrationComponent implements OnInit {
   goToAllUsers(){
     this.router.navigate(['/users']);
   }
+
+
+  showAll(){
+    this.role.user = 'user';
+    this.role.admin = 'admin';
+    this.user.roles = this.role;
+
+    this.sfsa.push(this.role);
+    return;
+  //  this.showAllAsJson = this.regForm.value;
+  }
+
 }
 
 export function PasswordMatchValidator(password: string, confirmPassword: string) {
@@ -118,7 +139,6 @@ export function PasswordMatchValidator(password: string, confirmPassword: string
     const confirmPasswordValue = matchForm.controls[confirmPassword];
 
     if (confirmPasswordValue.errors && !confirmPasswordValue.errors.notEqual) {
-      // return if another validator has already found an error on the matchingControl
       return;
     }
 
@@ -130,4 +150,3 @@ export function PasswordMatchValidator(password: string, confirmPassword: string
     }
   }
 }
-

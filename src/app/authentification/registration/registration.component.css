@@ -233,3 +233,11 @@
   height: 39px;
 }
 
+.regBirthDateClass{
+  position: relative;
+  height: 30px;
+  width: 170px;
+  left: 400px;
+  top: -200px;
+
+}
