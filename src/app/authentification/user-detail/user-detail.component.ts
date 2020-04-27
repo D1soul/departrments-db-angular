@@ -12,17 +12,13 @@ export class UserDetailComponent implements OnInit {
 
   user: User;
   username: string;
-  password: string;
-  confirmPassword: string;
-  birthDate: string;
-  gender: string;
-  roles: Array<string>;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
     this.username = this.route.snapshot.params['username'];
+    this.getUserDetail();
   }
 
   getUserDetail() {
@@ -31,7 +27,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   goToUpdateUser(username: string) {
-    this.router.navigate(['/update-user', username])
+    this.router.navigate(['/update_user', username])
   }
 
 }

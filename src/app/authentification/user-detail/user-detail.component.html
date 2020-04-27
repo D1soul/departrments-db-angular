@@ -17,16 +17,6 @@
     </td>
   </tr>
   <tr>
-    <td class="password" ><label><b>пароль</b></label>
-      <span>{{user.password}}</span>
-    </td>
-  </tr>
-  <tr>
-    <td class="confirm_password" ><label><b>Проверочеый пароль</b></label>
-      <span>{{user.confirmPassword}}</span>
-    </td>
-  </tr>
-  <tr>
     <td class="birth_date" ><label><b>Дата рождения</b></label>
       <span>{{user.birthDate}}</span>
     </td>
@@ -39,7 +29,7 @@
 
   <tr>
     <td class="roles" ><label><b>роль</b></label>
-      <span>{{user.roles}}</span>
+      <span>{{user.roles| json}}</span>
     </td>
   </tr>
 </div>

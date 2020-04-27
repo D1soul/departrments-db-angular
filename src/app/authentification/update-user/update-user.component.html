@@ -1,1 +1,149 @@
-<p>update-user works!</p>
+<div>
+  <form [formGroup]="updUserForm" novalidate (ngSubmit)="updateUser()" >
+    <h2>Редактирование данных подотдела</h2>
+    <div *ngIf="user">
+    <div class="register" >
+      <div class="regUsernameLabel">
+        <label for="username"><b>Логин</b></label>
+      </div>
+      <div [ngClass]="{'regUsernameDefault': updUserForm.controls['username'].untouched,
+                         'regUsernameInvalid': updUserForm.controls['username'].invalid
+                                            && (updUserForm.controls['username'].dirty
+                                            || updUserForm.controls['username'].touched),
+                         'regUsernameValid': updUserForm.controls['username'].touched
+                                            && updUserForm.controls['username'].valid }" >
+        <input type="text" id="username" placeholder="Введите логин"
+               [(ngModel)]="user.username"  formControlName="username" >
+        <div class="regUsernameErrorMassage">
+          <div *ngIf="updUserForm.controls['username'].invalid
+                && (updUserForm.controls['username'].dirty
+                || updUserForm.controls['username'].touched)" >
+            <div *ngIf="updUserForm.controls['username'].errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="updUserForm.controls['username'].errors.pattern">
+              <p>Логин должен содержать только кириллические, или латинские буквы, либо цифры!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="regPasswordLabel">
+        <label for="password"><b>Пароль</b></label>
+      </div>
+      <div [ngClass]="{'regPasswordDefault': updUserForm.controls['password'].untouched,
+                       'regPasswordInvalid': updUserForm.controls['password'].invalid
+                                           && (updUserForm.controls['password'].dirty
+                                           || updUserForm.controls['password'].touched),
+                       'regPasswordValid': updUserForm.controls['password'].touched
+                                           && updUserForm.controls['password'].valid }" >
+        <input type="text" id="password" placeholder="Введите имя"
+               [(ngModel)]="user.password"  formControlName="password" >
+        <div class="regPasswordErrorMassage">
+          <div *ngIf="updUserForm.controls['password'].invalid
+              && (updUserForm.controls['password'].dirty
+              || updUserForm.controls['password'].touched)" >
+            <div *ngIf="updUserForm.controls['password'].errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="updUserForm.controls['password'].errors.minlength">
+              <p>Пароль должен содержать минимум 6 символов!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="regConfirmPasswordLabel">
+        <label for="confirmPassword"><b>Пароль</b></label>
+      </div>
+      <div [ngClass]="{'regConfirmPasswordDefault': updUserForm.controls['confirmPassword'].untouched,
+                       'regConfirmPasswordInvalid': updUserForm.controls['confirmPassword'].touched ,
+                       'regConfirmPasswordValid': updUserForm.controls['confirmPassword'].touched
+                                           && updUserForm.controls['confirmPassword'].valid }" >
+        <input type="text" id="confirmPassword" placeholder="Введите имя"
+               [(ngModel)]="user.confirmPassword"  formControlName="confirmPassword" >
+        <div class="regConfirmPasswordErrorMassage">
+          <div *ngIf="updUserForm.controls['confirmPassword'].invalid
+              && (updUserForm.controls['confirmPassword'].dirty
+              || updUserForm.controls['confirmPassword'].touched)" >
+            <div *ngIf="updUserForm.controls['confirmPassword'].errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="updUserForm.controls['confirmPassword'].errors.notEqual">
+              <p>Пароли не совпадают!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="regBirthDateLabel">
+        <label ><b>Дата рождения</b></label>
+      </div>
+      <div [ngClass]=" {'regBirthDateDefault': updUserForm.controls['day' && 'month' && 'year'].untouched,
+                        'regBirthDateInvalid': ((updUserForm.controls['day' && 'month' && 'year'].invalid
+                                              && updUserForm.controls['day' && 'month' && 'year'].touched)
+                                              ||(updUserForm.controls['day' && 'month' && 'year'].invalid
+                                              && !updUserForm.controls['day' && 'month' && 'year'].touched
+                                              && submitted)),
+                        'regBirthDateValid': updUserForm.controls['day' && 'month' && 'year'].valid }" >
+        <select formControlName="day" >
+          <option *ngFor="let day of days" [value]="day" >
+            {{day}}
+          </option>
+        </select>
+
+        <select formControlName="month" >
+          <option *ngFor="let month of months" [value]="month.name">
+            {{month.name}}
+          </option>
+        </select>
+        <select  formControlName="year" >
+          <option *ngFor="let year of years" [value]="year">
+            {{year}}
+          </option>
+        </select>
+      </div>
+      <div class="regDateErrorMassage">
+        <div *ngIf="((updUserForm.controls['day' && 'month' && 'year'].invalid
+                      && updUserForm.controls['day' && 'month' && 'year'].touched)
+                      ||(updUserForm.controls['day' && 'month' && 'year'].invalid
+                      && !updUserForm.controls['day' && 'month' && 'year'].touched
+                      && submitted))" >
+          <div *ngIf="updUserForm.controls['day' && 'month' && 'year'].errors.required">
+            <p>Укажите дату!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="regGenderLabel">
+        <label ><b>Пол</b></label>
+      </div>
+      <div [ngClass]=" {'regGenderGroup': updUserForm.controls['gender'].untouched,
+                        'regGenderGroupInvalid': ((updUserForm.controls['gender'].invalid
+                                              && updUserForm.controls['gender'].touched)
+                                              ||(updUserForm.controls['gender'].invalid
+                                              && !updUserForm.controls['gender'].touched
+                                              && submitted))
+                                                              }" >
+        <input type="radio" id="male" value="male" formControlName="gender" [(ngModel)]="user.gender" >
+        <label  for="male">Мужской</label>
+        <input type="radio" id="female" value="female" formControlName="gender" [(ngModel)]="user.gender" >
+        <label  for="female">Женский</label>
+      </div>
+      <div class="regGenderErrorMassage">
+        <div *ngIf="((updUserForm.controls['gender'].invalid && submitted))" >
+          <div *ngIf="updUserForm.controls['gender'].errors.required">
+            <p>Укажите пол!</p>
+          </div>
+        </div>
+      </div>
+      <button type="submit">Обновить</button>
+    </div>
+    </div>
+  </form>
+  <div>
+    {{currentUser| json}}
+  </div>
+</div>

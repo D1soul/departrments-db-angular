@@ -167,12 +167,12 @@
           </select>
           <div class="main_dept_error_massage">
             <div *ngIf="((mEmpCrForm.controls['mainDepartment'].invalid
-                                            && mEmpCrForm.controls['mainDepartment'].touched)
-                                            ||(mEmpCrForm.controls['mainDepartment'].invalid
-                                            && !mEmpCrForm.controls['mainDepartment'].touched
-                                            && submitted))" >
+                        &&mEmpCrForm.controls['mainDepartment'].touched)
+                        ||(mEmpCrForm.controls['mainDepartment'].invalid
+                        && !mEmpCrForm.controls['mainDepartment'].touched
+                        && submitted))" >
               <div *ngIf="mEmpCrForm.controls['mainDepartment'].errors.required">
-                <p class="main_dept_error_massage_p">Департамент не выбран!</p>
+                <p>Департамент не выбран!</p>
               </div>
             </div>
           </div>

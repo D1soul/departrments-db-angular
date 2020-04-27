@@ -22,6 +22,7 @@ import {RegistrationComponent} from './authentification/registration/registratio
 import {UserDetailComponent} from './authentification/user-detail/user-detail.component';
 import {UserListComponent} from './authentification/user-list/user-list.component';
 import {AuthGuard} from './auth.guard';
+import {UpdateUserComponent} from './authentification/update-user/update-user.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path: 'admin', component: AdminComponent},
   {path: 'users', component: UserListComponent},
   {path: 'user_detail/:username', component: UserDetailComponent},
+  {path: 'update_user/:username', component: UpdateUserComponent},
 
   {path: 'main_departments', component: MainDepartmentsListComponent, canActivate: [AuthGuard]},
   {path: 'main_department-detail/:name', component: MainDepartmentDetailComponent},

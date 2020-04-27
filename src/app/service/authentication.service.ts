@@ -26,8 +26,8 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
     this.loginUrl = 'http://localhost:8080/auth/login';
     this.adminUrl = 'http://localhost:8080/admin';
-    this.userUrl = 'http://localhost:8080/users';
-    this.registrationUrl = 'http://localhost:8080/registration';
+    this.userUrl = 'http://localhost:8080/auth/users';
+    this.registrationUrl = 'http://localhost:8080/auth/registration';
     this.behaviorSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.behaviorSubject.asObservable();
   }
@@ -84,9 +84,21 @@ export class AuthenticationService {
 
   updateUser(username: string, user: User): Observable<Object>{
     const urlUpdateUser = `${this.userUrl}/${username}`;
-    return this.http.put(urlUpdateUser, User, this.httpOptions).pipe(
+    return this.http.put(urlUpdateUser, user, this.httpOptions).pipe(
       catchError(this.handleError<User>(`Updating User with username: ${username}`)));
   }
+
+
+  /*
+    updateMainDeptEmployee(
+    lastName: string, firstName: string, middleName: string,
+    mainDeptEmployee: MainDeptEmployee): Observable<Object>{
+      const urlFullName = `${this.url}/${lastName}/${firstName}/${middleName}`;
+      return this.http.put(urlFullName, mainDeptEmployee, this.httpOptions).pipe(
+        catchError(this.handleError<MainDeptEmployee>(
+          `Updating Main Dept Employee with Full Name: ${lastName} ${firstName} ${middleName}`)));
+  }
+   */
 
   deleteUser(username: string): Observable<User> {
     const urlDeleteUser = `${this.userUrl}/${username}`;
