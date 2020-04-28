@@ -4,16 +4,14 @@ import {Role} from '../../entities/role';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../service/authentication.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {first, last, map, tap} from 'rxjs/operators';
-import {toBase64String} from '@angular/compiler/src/output/source_map';
-import {encode} from 'querystring';
+import {PasswordMatchValidator} from '../../service/password.match.validator';
 
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
   styleUrls: ['./update-user.component.css']
 })
-export class UpdateUserComponent implements OnInit, DoCheck {
+export class UpdateUserComponent implements OnInit {
 
   user: User;
   role: Role;
@@ -26,25 +24,22 @@ export class UpdateUserComponent implements OnInit, DoCheck {
   username: string;
   submitted: boolean = true;
   currentUser: any;
+  changePassword: boolean = false;
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router, private formBuilder: FormBuilder,
               private route: ActivatedRoute) {
       this.currentUser = authenticationService.currentUserValue;
+      this.role = new Role();
   }
 
 
   ngOnInit() {
     this.initUpdDate();
     this.getUserDetail();
-    this.initUpdUserForm();
+    this.initUpdUserForms();
+    this.getBirthDateValue();
   }
-
-  ngDoCheck(): void {
-   this.setBirthDateValue();
-  }
-
-
 
   initUpdDate(){
     for (let i = 1; i <= 31; i++){
@@ -66,7 +61,6 @@ export class UpdateUserComponent implements OnInit, DoCheck {
       {id: 12, name: 'декабря'}
     ];
 
- //   for (let i = (this.date.getFullYear() - 18); i > (this.date.getFullYear() - 100); i--) {
     for (let i = this.date.getFullYear(); i > (this.date.getFullYear() - 100); i--) {
       this.years.push(i);
     }
@@ -74,44 +68,44 @@ export class UpdateUserComponent implements OnInit, DoCheck {
 
   public getUserDetail(){
     this.username = this.route.snapshot.params['username'];
-  /*  this.authenticationService.getUserDetails(this.username)
-      .subscribe(user => {this.user = user; this.birthDate = user.birthDate;
-      this.oldPassword = atob(user.password)} ); */
-    this.authenticationService.getUserDetails(this.username).subscribe(
-      user => {this.user = user; this.birthDate = user.birthDate;  });
+    this.authenticationService.getUserDetails(this.username)
+      .subscribe(user => {
+        this.user = user;
+        this.birthDate = user.birthDate;
+        this.setBirthDateValue();
+      });
   }
 
-  checkOldPassword(){
-   // let ps = window.atob(this.oldPassword);
- //       console.log(toBase64String('this.oldPassword') );
-  }
-
-  initUpdUserForm(){
+  initUpdUserForms(){
     this.updUserForm = this.formBuilder.group({
         username: [null, [Validators.required,
           Validators.pattern("^(([А-я]+\\d*)+|([A-z]+\\d*)+)$"),
           Validators.minLength(1),
           Validators.maxLength(20)]],
-        password: [null, [Validators.required,
-          Validators.minLength(6)]],
-        confirmPassword: [null, [Validators.required]],
+      oldPassword: [null],
+      newPassword: [null],
+      confirmPassword: [null],
         day: [null],
         month: [null],
         year: [null],
         gender: [null, [Validators.required]],
         roles: [null, [Validators.required]]
-      },
-      {
-      //  validators: PasswordMatchValidator('password', 'confirmPassword')
       }
     );
-   // this.setBirthDateValue();
- //   console.log('initUpdUserForm: ' + this.birthDate + '=' + this.user.birthDate);
+
+   /* this.changePasswordForm = this.formBuilder.group({
+      password: [null, [Validators.required,
+        Validators.minLength(6)]],
+      confirmPassword: [null, [Validators.required]],
+    },
+    {
+      validators: PasswordMatchValidator('password', 'confirmPassword')
+    }); */
   }
 
   setBirthDateValue() {
       let birthDateValue = this.birthDate.split('/');
-      let day = birthDateValue[0];
+      let day  = birthDateValue[0];
       let month = birthDateValue[1];
       let year = birthDateValue[2];
       this.updUserForm.controls['day'].setValue(day);
@@ -119,18 +113,30 @@ export class UpdateUserComponent implements OnInit, DoCheck {
       this.updUserForm.controls['year'].setValue(year);
   }
 
+  initPassword(){
+    this.changePassword = true;
+    this.updUserForm.controls['oldPassword'].setValidators(Validators.required);
+    this.updUserForm.controls['newPassword'].setValidators([Validators.required, Validators.minLength(6)]);
+    this.updUserForm.controls['confirmPassword'].setValidators(Validators.required);
+    this.updUserForm.setValidators(PasswordMatchValidator('newPassword', 'confirmPassword'));
+  }
 
+  setNewPassword(){
+     let pa =   this.updUserForm.get('oldPassword').value;
+  }
 
-  updateUser(){
-    //this.user.roles.push('admin');
-    this.user.roles = ['user', 'admin'];
-    if (this.updUserForm.valid) {
-      this.authenticationService.updateUser(this.username, this.user).subscribe();
-    }
+  getBirthDateValue() {
+    return this.updUserForm.controls['day'].value + '/'
+    + this.updUserForm.controls['month'].value + '/'
+    + this.updUserForm.controls['year'].value;
   }
 
 
-
-
-
+  updateUser(){
+    this.user.roles = [this.role.admin];
+    this.user.birthDate = this.getBirthDateValue();
+   // if (this.updUserForm.valid) {
+      this.authenticationService.updateUser(this.username, this.user).subscribe();
+ //   }
+  }
 }

@@ -28,41 +28,68 @@
         </div>
       </div>
 
-      <div class="regPasswordLabel">
-        <label for="password"><b>Пароль</b></label>
+
+    <button type="button" (click)="initPassword()">Изменить пароль</button>
+    <div *ngIf="changePassword">
+      <div class="updOldPasswordLabel">
+        <label for="oldPassword"><b>Пароль</b></label>
       </div>
-      <div [ngClass]="{'regPasswordDefault': updUserForm.controls['password'].untouched,
-                       'regPasswordInvalid': updUserForm.controls['password'].invalid
-                                           && (updUserForm.controls['password'].dirty
-                                           || updUserForm.controls['password'].touched),
-                       'regPasswordValid': updUserForm.controls['password'].touched
-                                           && updUserForm.controls['password'].valid }" >
-        <input type="text" id="password" placeholder="Введите имя"
-               [(ngModel)]="user.password"  formControlName="password" >
-        <div class="regPasswordErrorMassage">
-          <div *ngIf="updUserForm.controls['password'].invalid
-              && (updUserForm.controls['password'].dirty
-              || updUserForm.controls['password'].touched)" >
-            <div *ngIf="updUserForm.controls['password'].errors.required">
+      <div [ngClass]="{'updOldPasswordDefault': updUserForm.controls['oldPassword'].untouched,
+                       'updOldPasswordInvalid': updUserForm.controls['oldPassword'].invalid
+                                           && (updUserForm.controls['oldPassword'].dirty
+                                           || updUserForm.controls['oldPassword'].touched),
+                       'updOldPasswordValid': updUserForm.controls['oldPassword'].touched
+                                           && updUserForm.controls['oldPassword'].valid }" >
+        <input type="text" id="oldPassword" placeholder="Введите имя" formControlName="oldPassword" >
+        <div class="updOldPasswordErrorMassage">
+          <div *ngIf="updUserForm.controls['oldPassword'].invalid
+              && (updUserForm.controls['oldPassword'].dirty
+              || updUserForm.controls['oldPassword'].touched)" >
+            <div *ngIf="updUserForm.controls['oldPassword'].errors.required">
               <p>Поле не должно быть пустым!</p>
             </div>
-            <div *ngIf="updUserForm.controls['password'].errors.minlength">
+            <div *ngIf="updUserForm.controls['oldPassword'].errors.minlength">
               <p>Пароль должен содержать минимум 6 символов!</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="regConfirmPasswordLabel">
+
+      <div class="updNewPasswordLabel">
+        <label for="newPassword"><b>Пароль</b></label>
+      </div>
+      <div [ngClass]="{'updNewPasswordDefault': updUserForm.controls['newPassword'].untouched,
+                       'updNewPasswordInvalid': updUserForm.controls['newPassword'].invalid
+                                           && (updUserForm.controls['newPassword'].dirty
+                                           || updUserForm.controls['newPassword'].touched),
+                       'updNewPasswordValid': updUserForm.controls['newPassword'].touched
+                                           && updUserForm.controls['newPassword'].valid }" >
+        <input type="text" id="newPassword" placeholder="Введите имя"
+                formControlName="newPassword" >
+        <div class="updNewPasswordErrorMassage">
+          <div *ngIf="updUserForm.controls['newPassword'].invalid
+              && (updUserForm.controls['newPassword'].dirty
+              || updUserForm.controls['newPassword'].touched)" >
+            <div *ngIf="updUserForm.controls['newPassword'].errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="updUserForm.controls['newPassword'].errors.minlength">
+              <p>Пароль должен содержать минимум 6 символов!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+       <div class="updConfirmPasswordLabel">
         <label for="confirmPassword"><b>Пароль</b></label>
       </div>
-      <div [ngClass]="{'regConfirmPasswordDefault': updUserForm.controls['confirmPassword'].untouched,
-                       'regConfirmPasswordInvalid': updUserForm.controls['confirmPassword'].touched ,
-                       'regConfirmPasswordValid': updUserForm.controls['confirmPassword'].touched
+      <div [ngClass]="{'updConfirmPasswordDefault': updUserForm.controls['confirmPassword'].untouched,
+                       'updConfirmPasswordInvalid': updUserForm.controls['confirmPassword'].touched ,
+                       'updConfirmPasswordValid': updUserForm.controls['confirmPassword'].touched
                                            && updUserForm.controls['confirmPassword'].valid }" >
-        <input type="text" id="confirmPassword" placeholder="Введите имя"
-               [(ngModel)]="user.confirmPassword"  formControlName="confirmPassword" >
-        <div class="regConfirmPasswordErrorMassage">
+        <input type="text" id="confirmPassword" placeholder="Введите имя"  formControlName="confirmPassword" >
+        <div class="updConfirmPasswordErrorMassage">
           <div *ngIf="updUserForm.controls['confirmPassword'].invalid
               && (updUserForm.controls['confirmPassword'].dirty
               || updUserForm.controls['confirmPassword'].touched)" >
@@ -75,6 +102,8 @@
           </div>
         </div>
       </div>
+      <button type="button" (click)="setNewPassword()">Сохранить</button>
+     </div>
 
 
 
@@ -89,7 +118,7 @@
                                               && submitted)),
                         'regBirthDateValid': updUserForm.controls['day' && 'month' && 'year'].valid }" >
         <select formControlName="day" >
-          <option *ngFor="let day of days" [value]="day" >
+          <option *ngFor="let day of days" [value]="day">
             {{day}}
           </option>
         </select>
@@ -143,7 +172,7 @@
     </div>
     </div>
   </form>
-  <div>
-    {{currentUser| json}}
-  </div>
+</div>
+<div>
+  {{user| json}}
 </div>

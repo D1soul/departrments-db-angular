@@ -58,6 +58,21 @@ export class AuthenticationService {
   }
 
 
+  changePassword(username: string, password: string) {
+    return this.http.post<any>(this.loginUrl, {username, password})
+      .pipe(map(user => {
+        if (user && user.token) {
+
+          localStorage.setItem(this.jwtToken, user.token);
+          //localStorage.setItem('currentUser', JSON.stringify(user));
+          this.behaviorSubject.next(user);
+        }
+        return user;
+      }));
+  }
+
+
+
   logout() {
     return localStorage.removeItem(this.jwtToken);
   }

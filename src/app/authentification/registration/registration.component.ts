@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../service/authentication.service';
 import {Router} from '@angular/router';
 import {Role} from '../../entities/role';
+import {PasswordMatchValidator} from '../../service/password.match.validator';
 
 @Component({
   selector: 'app-registration',
@@ -18,8 +19,6 @@ export class RegistrationComponent implements OnInit {
   days = [];
   months = [];
   years = [];
-
-  userRole: Role.user;
 
   date = new Date();
   submitted: boolean = false;
@@ -112,10 +111,13 @@ export class RegistrationComponent implements OnInit {
 
 }
 
-export function PasswordMatchValidator(password: string, confirmPassword: string) {
-  return (matchForm: FormGroup) => {
-    const passwordValue  = matchForm.controls[password];
-    const confirmPasswordValue = matchForm.controls[confirmPassword];
+
+/*
+
+export function InitDate(day: string, month: string, year: string) {
+  return (dateForm: FormGroup) => {
+    const passwordValue  = dateForm.controls[day];
+    const confirmPasswordValue = dateForm.controls[month];
 
     if (confirmPasswordValue.errors && !confirmPasswordValue.errors.notEqual) {
       return;
@@ -128,3 +130,4 @@ export function PasswordMatchValidator(password: string, confirmPassword: string
     }
   }
 }
+*/
