@@ -1,9 +1,9 @@
-import {FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import { FormGroup, ValidatorFn } from '@angular/forms';
 
 export function PasswordMatchValidator(password: string, confirmPassword: string): ValidatorFn {
   return (matchForm: FormGroup) => {
-    const passwordValue  = matchForm.controls[password];
-    const confirmPasswordValue = matchForm.controls[confirmPassword];
+    const passwordValue  = matchForm.get(password);
+    const confirmPasswordValue = matchForm.get(confirmPassword);
 
     if (confirmPasswordValue.errors && !confirmPasswordValue.errors.notEqual) {
       return;

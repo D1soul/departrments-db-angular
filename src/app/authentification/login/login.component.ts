@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
   authorize(){
-    this.username = this.loginForm.controls.username.value;
-    this.password = this.loginForm.controls.password.value;
+    this.username = this.loginForm.get('username').value;
+    this.password = this.loginForm.get('password').value;
     if (this.loginForm.valid) {
       this.authenticationService.login(this.username, this.password).subscribe(user => {
 

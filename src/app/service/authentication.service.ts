@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable, of} from 'rxjs';
-import {catchError, map, tap} from 'rxjs/operators';
-import { User } from '../entities/user';
+import {catchError, map} from 'rxjs/operators';
+import {User} from '../entities/user';
+import {LoggingUser} from '../entities/logging.user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,32 +13,27 @@ export class AuthenticationService {
   private readonly loginUrl: string;
   private readonly adminUrl: string;
   private readonly userUrl: string;
+  private readonly changePasUrl: string;
   private readonly registrationUrl: string;
-  private isLoggedIn = false;
-  private  behaviorSubject: BehaviorSubject<User>;
+  private  behaviorSubject: BehaviorSubject<LoggingUser>;
   private redirectUrl: string = '/';
-  private jwtToken: string = 'token';
-  public currentUser: Observable<User>;
+  public currentUser: string = 'currentUser';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient ) {
     this.loginUrl = 'http://localhost:8080/auth/login';
     this.adminUrl = 'http://localhost:8080/admin';
     this.userUrl = 'http://localhost:8080/auth/users';
+    this.changePasUrl = 'http://localhost:8080/auth/changing-password';
     this.registrationUrl = 'http://localhost:8080/auth/registration';
-    this.behaviorSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.behaviorSubject.asObservable();
+    this.behaviorSubject = new BehaviorSubject<LoggingUser>(JSON.parse(localStorage.getItem(this.currentUser)));
   }
 
-  public get currentUserValue(): User {
+  public get currentUserValue(): LoggingUser{
     return this.behaviorSubject.value;
-  }
-
-  isUserLoggedIn(): boolean {
-    return this.isLoggedIn;
   }
 
   setRedirectUrl(url: string): void {
@@ -48,43 +44,32 @@ export class AuthenticationService {
     return this.http.post<any>(this.loginUrl, {username, password})
       .pipe(map(user => {
         if (user && user.token) {
-
-           localStorage.setItem(this.jwtToken, user.token);
-          //localStorage.setItem('currentUser', JSON.stringify(user));
+            console.log(user.roles.values());
+           localStorage.setItem(this.currentUser, JSON.stringify(user));
            this.behaviorSubject.next(user);
         }
         return user;
-      }));
+    }));
   }
 
-
-  changePassword(username: string, password: string) {
-    return this.http.post<any>(this.loginUrl, {username, password})
-      .pipe(map(user => {
-        if (user && user.token) {
-
-          localStorage.setItem(this.jwtToken, user.token);
-          //localStorage.setItem('currentUser', JSON.stringify(user));
-          this.behaviorSubject.next(user);
-        }
-        return user;
-      }));
+  changeOldPassword(username: string, password: string, newPassword: string, newConfirmPassword): Observable<any> {
+    return this.http.put<any>(this.changePasUrl,{username, password, newPassword, newConfirmPassword
+    }, this.httpOptions).pipe(
+        catchError(this.handleError<User>(`User with username: ${username} detail`)));
   }
-
-
 
   logout() {
-    return localStorage.removeItem(this.jwtToken);
+    localStorage.removeItem(this.currentUser);
+    this.behaviorSubject.next(null);
   }
 
-  getJwtToken() {
-    return localStorage.getItem(this.jwtToken);
-  }
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl).pipe(
       catchError(this.handleError<User[]>('User List')));
   }
+
+
 
   getUserDetails(username: string): Observable<User> {
     const getUserDetailUrl = `${this.userUrl}/${username}`;
@@ -123,7 +108,7 @@ export class AuthenticationService {
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      //console.error(error);
+      console.error(error);
       return  of (result as T);
     }
   }

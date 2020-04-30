@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../service/authentication.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PasswordMatchValidator} from '../../service/password.match.validator';
+import {InitDate} from '../../service/init.date';
 
 @Component({
   selector: 'app-update-user',
@@ -23,13 +24,10 @@ export class UpdateUserComponent implements OnInit {
   date = new Date();
   username: string;
   submitted: boolean = true;
-  currentUser: any;
   changePassword: boolean = false;
-
   constructor(private authenticationService: AuthenticationService,
               private router: Router, private formBuilder: FormBuilder,
               private route: ActivatedRoute) {
-      this.currentUser = authenticationService.currentUserValue;
       this.role = new Role();
   }
 
@@ -38,12 +36,15 @@ export class UpdateUserComponent implements OnInit {
     this.initUpdDate();
     this.getUserDetail();
     this.initUpdUserForms();
-    this.getBirthDateValue();
   }
 
   initUpdDate(){
-    for (let i = 1; i <= 31; i++){
-      this.days.push(i);
+    for (let i: number = 1; i <= 31; i++){
+      let day: string = i.toString();
+      if (i < 10) {
+        day = '0' + day;
+      }
+      this.days.push(day);
     }
 
     this.months = [
@@ -71,8 +72,7 @@ export class UpdateUserComponent implements OnInit {
     this.authenticationService.getUserDetails(this.username)
       .subscribe(user => {
         this.user = user;
-        this.birthDate = user.birthDate;
-        this.setBirthDateValue();
+        InitDate(this.updUserForm, 'day','month', 'year',  user.birthDate);
       });
   }
 
@@ -82,9 +82,9 @@ export class UpdateUserComponent implements OnInit {
           Validators.pattern("^(([А-я]+\\d*)+|([A-z]+\\d*)+)$"),
           Validators.minLength(1),
           Validators.maxLength(20)]],
-      oldPassword: [null],
-      newPassword: [null],
-      confirmPassword: [null],
+        oldPassword: [null],
+        newPassword: [null],
+        confirmPassword: [null],
         day: [null],
         month: [null],
         year: [null],
@@ -103,40 +103,38 @@ export class UpdateUserComponent implements OnInit {
     }); */
   }
 
-  setBirthDateValue() {
-      let birthDateValue = this.birthDate.split('/');
-      let day  = birthDateValue[0];
-      let month = birthDateValue[1];
-      let year = birthDateValue[2];
-      this.updUserForm.controls['day'].setValue(day);
-      this.updUserForm.controls['month'].setValue(month);
-      this.updUserForm.controls['year'].setValue(year);
-  }
-
   initPassword(){
     this.changePassword = true;
-    this.updUserForm.controls['oldPassword'].setValidators(Validators.required);
-    this.updUserForm.controls['newPassword'].setValidators([Validators.required, Validators.minLength(6)]);
-    this.updUserForm.controls['confirmPassword'].setValidators(Validators.required);
+    this.updUserForm.get('password').setValidators(Validators.required);
+    this.updUserForm.get('newPassword').setValidators([Validators.required, Validators.minLength(6)]);
+    this.updUserForm.get('confirmPassword').setValidators(Validators.required);
     this.updUserForm.setValidators(PasswordMatchValidator('newPassword', 'confirmPassword'));
   }
 
   setNewPassword(){
-     let pa =   this.updUserForm.get('oldPassword').value;
+    let currentUsersName = this.authenticationService.currentUserValue.username;
+    let oldPs: string = this.updUserForm.get('password').value;
+    let newPs: string =  this.updUserForm.get('newPassword').value;
+    let newConfirmPs: string = this.updUserForm.get('confirmPassword').value;
+    this.updUserForm.get('password').clearValidators();
+    this.updUserForm.get('newPassword').clearValidators();
+    this.updUserForm.get('confirmPassword').clearValidators();
+    this.authenticationService.changeOldPassword(currentUsersName, oldPs, newPs, newConfirmPs).subscribe();
+   // this.changePassword = false;
   }
 
-  getBirthDateValue() {
-    return this.updUserForm.controls['day'].value + '/'
-    + this.updUserForm.controls['month'].value + '/'
-    + this.updUserForm.controls['year'].value;
+  setBirthDateValue() {
+    return this.updUserForm.get('day').value + '/'
+    + this.updUserForm.get('month').value + '/'
+    + this.updUserForm.get('year').value;
   }
 
 
   updateUser(){
     this.user.roles = [this.role.admin];
-    this.user.birthDate = this.getBirthDateValue();
-   // if (this.updUserForm.valid) {
+    this.user.birthDate = this.setBirthDateValue();
+    if (this.updUserForm.valid) {
       this.authenticationService.updateUser(this.username, this.user).subscribe();
- //   }
+    }
   }
 }

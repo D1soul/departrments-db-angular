@@ -35,7 +35,7 @@ export class MainDepartmentService {
       catchError(this.handleError<MainDepartment>('Adding New Main Department')));
   }
 
-  updateMainDepartment(name: string, mainDepartment: MainDepartment): Observable<Object>{
+  updateMainDepartment(name: string, mainDepartment: MainDepartment){
     const urlId = `${this.url}/${name}`;
     return this.http.put(urlId, mainDepartment, this.httpOptions).pipe(
       catchError(this.handleError<MainDepartment>(`Updating Main Department with name: ${name}`)));

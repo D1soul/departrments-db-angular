@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../entities/user';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../service/authentication.service';
 import {Router} from '@angular/router';
 import {Role} from '../../entities/role';
-import {PasswordMatchValidator} from '../../service/password.match.validator';
+import { PasswordMatchValidator } from '../../service/password.match.validator';
 
 @Component({
   selector: 'app-registration',
@@ -26,7 +26,7 @@ export class RegistrationComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService,
               private router: Router, private formBuilder: FormBuilder) {
     this.user = new User();
-  //  this.role = new Role();
+    this.role = new Role();
   }
   ngOnInit(): void {
 
@@ -83,24 +83,20 @@ export class RegistrationComponent implements OnInit {
     );
   }
 
-
-
-
-   getBirthDateValue() {
-   return this.regForm.controls['day'].value + '/'
-        + this.regForm.controls['month'].value + '/'
-        + this.regForm.controls['year'].value;
+   setBirthDateValue() {
+   return this.regForm.get('day').value + '/'
+        + this.regForm.get('month').value + '/'
+        + this.regForm.get('year').value;
   }
 
   register(){
     this.submitted = true;
-    this.user.birthDate = this.getBirthDateValue();
-    this.user.roles = [ "user" ];
+    this.user.birthDate = this.setBirthDateValue();
+    this.user.roles = [this.role.user];
         if (this.regForm.valid) {
           this.authenticationService.registration(this.user)
         .subscribe(() => this.goToAllUsers());
     }
-
   }
 
 
@@ -111,23 +107,24 @@ export class RegistrationComponent implements OnInit {
 
 }
 
-
 /*
-
-export function InitDate(day: string, month: string, year: string) {
-  return (dateForm: FormGroup) => {
-    const passwordValue  = dateForm.controls[day];
-    const confirmPasswordValue = dateForm.controls[month];
-
-    if (confirmPasswordValue.errors && !confirmPasswordValue.errors.notEqual) {
-      return;
-    }
-
-    if (passwordValue.value !== confirmPasswordValue.value) {
-      confirmPasswordValue.setErrors({ notEqual: true });
-    } else {
-      confirmPasswordValue.setErrors(null);
-    }
+export function InitDate(day: AbstractControl, month: AbstractControl, year: AbstractControl, birthDate: string) {
+  let setDate(day, month, year, birthDate)
+  {
+    let birthDateValue = birthDate.split('/');
+    let dayValue = birthDateValue[0];
+    let monthValue = birthDateValue[1];
+    let yearValue = birthDateValue[2];
+    day.setValue(dayValue);
+    month.setValue(monthValue);
+    year.setValue(yearValue);
   }
 }
-*/
+
+ */
+
+
+
+
+
+

@@ -31,24 +31,24 @@
 
     <button type="button" (click)="initPassword()">Изменить пароль</button>
     <div *ngIf="changePassword">
-      <div class="updOldPasswordLabel">
-        <label for="oldPassword"><b>Пароль</b></label>
+      <div class="updPasswordLabel">
+        <label for="password"><b>Пароль</b></label>
       </div>
-      <div [ngClass]="{'updOldPasswordDefault': updUserForm.controls['oldPassword'].untouched,
-                       'updOldPasswordInvalid': updUserForm.controls['oldPassword'].invalid
-                                           && (updUserForm.controls['oldPassword'].dirty
-                                           || updUserForm.controls['oldPassword'].touched),
-                       'updOldPasswordValid': updUserForm.controls['oldPassword'].touched
-                                           && updUserForm.controls['oldPassword'].valid }" >
-        <input type="text" id="oldPassword" placeholder="Введите имя" formControlName="oldPassword" >
-        <div class="updOldPasswordErrorMassage">
-          <div *ngIf="updUserForm.controls['oldPassword'].invalid
-              && (updUserForm.controls['oldPassword'].dirty
-              || updUserForm.controls['oldPassword'].touched)" >
-            <div *ngIf="updUserForm.controls['oldPassword'].errors.required">
+      <div [ngClass]="{'updPasswordDefault': updUserForm.controls['password'].untouched,
+                       'updPasswordInvalid': updUserForm.controls['password'].invalid
+                                           && (updUserForm.controls['password'].dirty
+                                           || updUserForm.controls['password'].touched),
+                       'updPasswordValid': updUserForm.controls['password'].touched
+                                           && updUserForm.controls['password'].valid }" >
+        <input type="text" id="password" placeholder="Введите имя" formControlName="password" >
+        <div class="updPasswordErrorMassage">
+          <div *ngIf="updUserForm.controls['password'].invalid
+              && (updUserForm.controls['password'].dirty
+              || updUserForm.controls['password'].touched)" >
+            <div *ngIf="updUserForm.controls['password'].errors.required">
               <p>Поле не должно быть пустым!</p>
             </div>
-            <div *ngIf="updUserForm.controls['oldPassword'].errors.minlength">
+            <div *ngIf="updUserForm.controls['password'].errors.minlength">
               <p>Пароль должен содержать минимум 6 символов!</p>
             </div>
           </div>
@@ -173,6 +173,7 @@
     </div>
   </form>
 </div>
-<div>
-  {{user| json}}
-</div>
+ <!--   <div>
+      {{currentUser.username| json}}
+    </div>
+-->

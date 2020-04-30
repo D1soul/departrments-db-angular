@@ -1,4 +1,4 @@
 export class Role{
-  user = 'user';
-  admin =  'admin';
+  user = 'User';
+  admin = 'Admin';
 }
