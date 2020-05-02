@@ -1,6 +1,6 @@
 import {FormGroup} from '@angular/forms';
 
-export function InitDate(dateForm: FormGroup, day: string, month: string, year: string, birthDate: string) {
+export function GetBirthDate(dateForm: FormGroup, day: string, month: string, year: string, birthDate: string) {
   let birthDateValue = birthDate.split('/');
   let dayValue = birthDateValue[0];
   let monthValue = birthDateValue[1];

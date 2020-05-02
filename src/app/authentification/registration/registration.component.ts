@@ -5,6 +5,8 @@ import {AuthenticationService} from '../../service/authentication.service';
 import {Router} from '@angular/router';
 import {Role} from '../../entities/role';
 import { PasswordMatchValidator } from '../../service/password.match.validator';
+import {InitBirthDate} from '../../service/init.birth.date';
+import {SetBirthDate} from '../../service/set.bitrh.date';
 
 @Component({
   selector: 'app-registration',
@@ -19,8 +21,6 @@ export class RegistrationComponent implements OnInit {
   days = [];
   months = [];
   years = [];
-
-  date = new Date();
   submitted: boolean = false;
 
   constructor(private authenticationService: AuthenticationService,
@@ -32,35 +32,8 @@ export class RegistrationComponent implements OnInit {
 
   //  this.user.roles.push(this.userRole);
 
-    this.initRegDate();
+    InitBirthDate(this.days, this.months, this.years);
     this.initRegUserForm();
-  }
-
-  initRegDate(){
-    for (let i = 1; i <= 31; i++){
-      this.days.push(i);
-    }
-
-    this.months = [
-      {id: 1, name: 'января'},
-      {id: 2, name: 'февраля'},
-      {id: 3, name: 'марта'},
-      {id: 4, name: 'апреля'},
-      {id: 5, name: 'мая'},
-      {id: 6, name: 'июня'},
-      {id: 7, name: 'июля'},
-      {id: 8, name: 'августа'},
-      {id: 9, name: 'сентября'},
-      {id: 10, name: 'октября'},
-      {id: 11, name: 'ноября'},
-      {id: 12, name: 'декабря'}
-    ];
-
-    for (let i = (this.date.getFullYear() - 18); i > (this.date.getFullYear() - 100); i--) {
-      this.years.push(i);
-    }
-
-
   }
 
   initRegUserForm(){
@@ -83,15 +56,9 @@ export class RegistrationComponent implements OnInit {
     );
   }
 
-   setBirthDateValue() {
-   return this.regForm.get('day').value + '/'
-        + this.regForm.get('month').value + '/'
-        + this.regForm.get('year').value;
-  }
-
   register(){
     this.submitted = true;
-    this.user.birthDate = this.setBirthDateValue();
+    this.user.birthDate = SetBirthDate(this.regForm, 'day', 'month', 'year');
     this.user.roles = [this.role.user];
         if (this.regForm.valid) {
           this.authenticationService.registration(this.user)
@@ -99,30 +66,10 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-
   goToAllUsers(){
     this.router.navigate(['/user_detail/', this.user.username]);
   }
-
-
 }
-
-/*
-export function InitDate(day: AbstractControl, month: AbstractControl, year: AbstractControl, birthDate: string) {
-  let setDate(day, month, year, birthDate)
-  {
-    let birthDateValue = birthDate.split('/');
-    let dayValue = birthDateValue[0];
-    let monthValue = birthDateValue[1];
-    let yearValue = birthDateValue[2];
-    day.setValue(dayValue);
-    month.setValue(monthValue);
-    year.setValue(yearValue);
-  }
-}
-
- */
-
 
 
 

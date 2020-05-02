@@ -5,7 +5,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../service/authentication.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PasswordMatchValidator} from '../../service/password.match.validator';
-import {InitDate} from '../../service/init.date';
+import {GetBirthDate} from '../../service/get.birth.date';
+import {InitBirthDate} from '../../service/init.birth.date';
+import {SetBirthDate} from '../../service/set.bitrh.date';
 
 @Component({
   selector: 'app-update-user',
@@ -21,7 +23,6 @@ export class UpdateUserComponent implements OnInit {
   days = [];
   months = [];
   years = [];
-  date = new Date();
   username: string;
   submitted: boolean = true;
   changePassword: boolean = false;
@@ -31,40 +32,10 @@ export class UpdateUserComponent implements OnInit {
       this.role = new Role();
   }
 
-
   ngOnInit() {
-    this.initUpdDate();
+    InitBirthDate(this.days, this.months, this.years);
     this.getUserDetail();
     this.initUpdUserForms();
-  }
-
-  initUpdDate(){
-    for (let i: number = 1; i <= 31; i++){
-      let day: string = i.toString();
-      if (i < 10) {
-        day = '0' + day;
-      }
-      this.days.push(day);
-    }
-
-    this.months = [
-      {id: 1, name: 'января'},
-      {id: 2, name: 'февраля'},
-      {id: 3, name: 'марта'},
-      {id: 4, name: 'апреля'},
-      {id: 5, name: 'мая'},
-      {id: 6, name: 'июня'},
-      {id: 7, name: 'июля'},
-      {id: 8, name: 'августа'},
-      {id: 9, name: 'сентября'},
-      {id: 10, name: 'октября'},
-      {id: 11, name: 'ноября'},
-      {id: 12, name: 'декабря'}
-    ];
-
-    for (let i = this.date.getFullYear(); i > (this.date.getFullYear() - 100); i--) {
-      this.years.push(i);
-    }
   }
 
   public getUserDetail(){
@@ -72,7 +43,7 @@ export class UpdateUserComponent implements OnInit {
     this.authenticationService.getUserDetails(this.username)
       .subscribe(user => {
         this.user = user;
-        InitDate(this.updUserForm, 'day','month', 'year',  user.birthDate);
+        GetBirthDate(this.updUserForm, 'day','month', 'year',  user.birthDate);
       });
   }
 
@@ -123,16 +94,9 @@ export class UpdateUserComponent implements OnInit {
    // this.changePassword = false;
   }
 
-  setBirthDateValue() {
-    return this.updUserForm.get('day').value + '/'
-    + this.updUserForm.get('month').value + '/'
-    + this.updUserForm.get('year').value;
-  }
-
-
   updateUser(){
     this.user.roles = [this.role.admin];
-    this.user.birthDate = this.setBirthDateValue();
+    this.user.birthDate = SetBirthDate(this.updUserForm, 'day', 'month', 'year');
     if (this.updUserForm.valid) {
       this.authenticationService.updateUser(this.username, this.user).subscribe();
     }
