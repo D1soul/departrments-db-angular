@@ -1,45 +1,39 @@
 <div *ngIf="subDepartment">
   <h2>{{subDepartment.name}}</h2>
-  <div>
-    <tr>
-      <td class="sub-dept_id">
-        <label ><b>ID</b></label>
-        <span>{{subDepartment.id}}</span>
-      </td>
-      <td>
-        <button class="edit_button" (click)="goToUpdateSubDepartment(subDepartment.name)">Редактировать</button>
-      </td>
-    </tr>
+  <div class="sdDIdHead" >
+    <div class="sdDId">
+      <label ><b>ID</b></label>
+      <span>{{subDepartment.id}}</span>
+    </div>
+    <div class="sdDUpd">
+      <button  (click)="goToUpdateSubDepartment(subDepartment.name)">Редактировать</button>
+    </div>
   </div>
-  <tr>
-    <td class="sub-dept_name" ><label><b>Название</b></label><span>{{subDepartment.name}}</span></td>
-  </tr>
-  <div class="main_dept"><b>Главный департамент</b></div>
-  <div class="md_label"><b>Название</b></div>
-  <div class="main_dept_a">
+  <div class="sdDName" >
+    <label><b>Название</b></label>
+    <span>{{subDepartment.name}}</span>
+  </div>
+
+  <div class="sdDMainDeptHead"><b>Главный департамент</b></div>
+  <div class="sdDMainDeptName"><b>Название</b></div>
+  <div class="sdDMainDept">
     <a routerLink="/main_department-detail/{{subDepartment.mainDepartment}}">
-      {{subDepartment.mainDepartment}}
+      <div>{{subDepartment.mainDepartment}}</div>
     </a>
   </div>
   <div>
-    <div class="emps"><b>Сотрудники</b></div>
-    <div class="empls_labels">
-      <tr>
-        <td class="ln_label"><b>Фамилия</b></td>
-        <td class="fn_label"><b>Имя</b></td>
-        <td class="mn_label"><b>Отчество</b></td>
-      </tr>
+    <div class="sdDEmpls"><b>Сотрудники</b></div>
+    <div class="sdDEmplsHead">
+      <div class="sdDLN"><b>Фамилия</b></div>
+      <div class="sdDFN"><b>Имя</b></div>
+      <div class="sdDMN"><b>Отчество</b></div>
     </div>
-    <ul class="emps_list" *ngFor="let employee of subDepartment.employees">
-      <li>
+    <div class="sdDEmplsList" *ngFor="let employee of subDepartment.employees">
         <a routerLink="/sub-dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
-          <tr>
-            <td>{{employee.lastName}}</td>
-            <td>{{employee.firstName}}</td>
-            <td>{{employee.middleName}}</td>
-          </tr>
+          <div>{{employee.lastName}}</div>
+          <div>{{employee.firstName}}</div>
+          <div>{{employee.middleName}}</div>
         </a>
-      </li>
-    </ul>
+    </div>
   </div>
 </div>

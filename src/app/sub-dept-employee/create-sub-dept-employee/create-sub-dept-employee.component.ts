@@ -5,6 +5,8 @@ import { Router} from '@angular/router';
 import { SubDepartment } from '../../entities/sub-department';
 import { SubDepartmentService } from '../../service/sub-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {SetBirthDate} from '../../service/set.bitrh.date';
+import {InitBirthDate} from '../../service/init.birth.date';
 
 @Component({
   selector: 'app-create-sub-dept-employee',
@@ -16,6 +18,9 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
   subDeptEmployee: SubDeptEmployee;
   subDepartments: SubDepartment[];
   sEmpCrForm: FormGroup;
+  days = [];
+  months = [];
+  years = [];
   submitted: boolean = false;
 
   constructor(private subDeptEmployeeService: SubDeptEmployeeService,
@@ -25,6 +30,7 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
+    InitBirthDate(this.days, this.months, this.years);
     this.initSubDeptEmpForm();
     this.selectSubDepartment();
   }
@@ -36,32 +42,31 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
 
   initSubDeptEmpForm(){
     this.sEmpCrForm = this.formBuilder.group({
-      "lastName": [null, [Validators.required,
+      lastName: [null, [Validators.required,
                           Validators.pattern("^([А-я]+|[A-z]+)$"),
                           Validators.minLength(2),
                           Validators.maxLength(20)]],
-      "firstName": [null, [Validators.required,
+      firstName: [null, [Validators.required,
                            Validators.pattern("^([А-я]+|[A-z]+)$"),
                            Validators.minLength(2),
                            Validators.maxLength(20)]],
-      "middleName": [null, [Validators.required,
+      middleName: [null, [Validators.required,
                             Validators.pattern("^(([А-я]+|[A-z]+)|(-))$"),
                             Validators.minLength(1),
                             Validators.maxLength(25)]],
-      "birthDate": [null, [Validators.required,
-                           Validators.pattern("^\\d{2}/((января)|(февраля)"
-                                             + "|(марта)|(апреля)|(мая)|(июня)|(июля)"
-                                             + "|(августа)|(сентября)|(октября)"
-                                             + "|(ноября)|(декабря))/\\d{4}$")]],
-      "passport": [null, [Validators.required,
+      day: [null, [Validators.required]],
+      month: [null, [Validators.required]],
+      year: [null, [Validators.required]],
+      passport: [null, [Validators.required,
                           Validators.pattern("^(Серия:\\s?)\\d{2}\\s"
                                             + "\\d{2}\\s(Номер:\\s?)\\d{6}$")]],
-      "subDepartment": [null,[Validators.required]]
+      subDepartment: [null,[Validators.required]]
     });
   }
 
   addSubDeptEmployee(){
     this.submitted = true;
+    this.subDeptEmployee.birthDate = SetBirthDate(this.sEmpCrForm, 'day', 'month', 'year');
     if(this.sEmpCrForm.valid) {
       this.subDeptEmployeeService.addSubDeptEmployee(this.subDeptEmployee)
         .subscribe(result => this.goToAllSubEmployees());

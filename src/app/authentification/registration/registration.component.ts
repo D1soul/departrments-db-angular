@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from '../../entities/user';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthenticationService} from '../../service/authentication.service';
-import {Router} from '@angular/router';
-import {Role} from '../../entities/role';
+import { Component, OnInit } from '@angular/core';
+import { User } from '../../entities/user';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from '../../service/authentication.service';
+import { Router } from '@angular/router';
+import { Role } from '../../entities/role';
 import { PasswordMatchValidator } from '../../service/password.match.validator';
-import {InitBirthDate} from '../../service/init.birth.date';
-import {SetBirthDate} from '../../service/set.bitrh.date';
+import { InitBirthDate } from '../../service/init.birth.date';
+import { SetBirthDate } from '../../service/set.bitrh.date';
 
 @Component({
   selector: 'app-registration',
@@ -29,9 +29,6 @@ export class RegistrationComponent implements OnInit {
     this.role = new Role();
   }
   ngOnInit(): void {
-
-  //  this.user.roles.push(this.userRole);
-
     InitBirthDate(this.days, this.months, this.years);
     this.initRegUserForm();
   }

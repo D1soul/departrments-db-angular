@@ -1,4 +1,4 @@
-.md_emp_body{
+.mainDeptEmplList{
   border-radius: 40px/15px 15px 0 0;
   border: ridge 1px rgba(0, 0, 0, 0.22);
   background-color: white;
@@ -7,7 +7,7 @@
   box-shadow: inset 3px 0 3px rgba(0, 0, 0, 0.44);
   position: relative;
 }
-.id_label{
+.mdELIdHead{
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
   z-index: 3;
   text-align: center;
@@ -21,7 +21,7 @@
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   background-color: rgba(217, 217, 217, 0.25);
 }
-.last_name_label{
+.mdELLastNameHead{
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
   padding: 5px 0 0 0;
@@ -31,7 +31,7 @@
   text-align: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
 }
-.first_name_label{
+.mdELFirstNameHead{
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
   padding: 5px 0 0 0;
@@ -42,7 +42,7 @@
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
 }
 
-.middle_name_label{
+.mdELMiddleNameHead{
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
   padding: 5px 0 0 0;
@@ -54,7 +54,7 @@
   border-top-right-radius: 40px 15px;
 }
 
-.md_emp_id{
+.mdELId{
   background-color: rgba(122, 122, 122, 0.11);
   display: inline-block;
   position: relative;
@@ -68,27 +68,27 @@
   z-index: 1;
 }
 
-.md_emp_last_name{
+.mdELLastName{
   padding-left: 10px;
   width: 158px;
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   position: relative;
 }
 
-.md_emp_first_name{
+.mdELFirstName{
   padding-left: 10px;
   width: 158px;
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   position: relative;
 }
 
-.md_emp_middle_name{
+.mdELMiddleName{
   padding-left: 10px;
   width: 158px;
   position: relative;
 }
 
-.list{
+.mdEList{
   padding: 0;
   background-color: white;
   border-bottom: ridge 1px rgba(0, 0, 0, 0.4);
@@ -98,7 +98,7 @@
   list-style-type: none;
 }
 
-.md_emp_a{
+.mdELNav{
   height: 25px;
   width: 547px;
   padding: 0;
@@ -107,7 +107,7 @@
   z-index: 1;
 }
 
-.list a{
+.mdEList a{
   z-index: 1;
   text-decoration: none;
   display: block;
@@ -117,7 +117,7 @@
   text-shadow: 0 1px 1px rgba(126, 126, 126, 0);
 }
 
-button.delete_md_emp{
+.deleteMDE{
   background-color: rgba(255, 0, 0, 0.31);
   font-size: medium;
   text-align: center;
@@ -129,27 +129,27 @@ button.delete_md_emp{
   left: 545px;
   bottom: 0;
   right: 0;
-  padding: 0;
   border: solid 1px rgba(0, 0, 0, 0.4);
   outline: none;
   cursor: pointer;
 }
 
-.md_emp_a:hover{
+.mdELNav:hover{
   background-color: rgba(130, 140, 155, 0.16);
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
   z-index: 2;
 }
 
-button.delete_md_emp:hover{
+.deleteMDE:hover{
   box-shadow: inset 0 0 10px red;
 }
 
-.list a:hover{
+.mdEList a:hover{
   color: #000000;
   text-shadow: 0 1px 1px rgb(255, 255, 255);
 }
-.add_button{
+
+.addMDE{
   height: 50px;
   width: 150px;
   margin-left: 452px;
@@ -162,7 +162,7 @@ button.delete_md_emp:hover{
   cursor: pointer;
   outline: none;
 }
-.add_button:hover{
+.addMDE:hover{
   background-image: linear-gradient(to bottom, #ccc, #555);
   box-shadow: inset 0 0 10px white;
 }

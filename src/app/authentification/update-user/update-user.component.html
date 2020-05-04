@@ -107,16 +107,16 @@
 
 
 
-      <div class="regBirthDateLabel">
+      <div class="updBirthDateLabel">
         <label ><b>Дата рождения</b></label>
       </div>
-      <div [ngClass]=" {'regBirthDateDefault': updUserForm.controls['day' && 'month' && 'year'].untouched,
-                        'regBirthDateInvalid': ((updUserForm.controls['day' && 'month' && 'year'].invalid
+      <div [ngClass]=" {'updBirthDateDefault': updUserForm.controls['day' && 'month' && 'year'].untouched,
+                        'updBirthDateInvalid': ((updUserForm.controls['day' && 'month' && 'year'].invalid
                                               && updUserForm.controls['day' && 'month' && 'year'].touched)
                                               ||(updUserForm.controls['day' && 'month' && 'year'].invalid
                                               && !updUserForm.controls['day' && 'month' && 'year'].touched
                                               && submitted)),
-                        'regBirthDateValid': updUserForm.controls['day' && 'month' && 'year'].valid }" >
+                        'updBirthDateValid': updUserForm.controls['day' && 'month' && 'year'].valid }" >
         <select formControlName="day" >
           <option *ngFor="let day of days" [value]="day">
             {{day}}
@@ -134,7 +134,7 @@
           </option>
         </select>
       </div>
-      <div class="regDateErrorMassage">
+      <div class="updDateErrorMassage">
         <div *ngIf="((updUserForm.controls['day' && 'month' && 'year'].invalid
                       && updUserForm.controls['day' && 'month' && 'year'].touched)
                       ||(updUserForm.controls['day' && 'month' && 'year'].invalid

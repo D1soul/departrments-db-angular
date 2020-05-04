@@ -1,30 +1,30 @@
 <div>
  <h2>Сотрудники Главных Департаментов</h2>
- <div class="md_emp_body">
+ <div class="mainDeptEmplList">
    <tr>
-     <td class="id_label"><b>ID</b></td>
-     <td class="last_name_label"><b>Фамилия</b></td>
-     <td class="first_name_label"><b>Имя</b></td>
-     <td class="middle_name_label"><b>Отчество</b></td>
+     <td class="mdELIdHead"><b>ID</b></td>
+     <td class="mdELLastNameHead"><b>Фамилия</b></td>
+     <td class="mdELFirstNameHead"><b>Имя</b></td>
+     <td class="mdELMiddleNameHead"><b>Отчество</b></td>
    </tr>
-   <ul class="list" *ngFor="let employee of mainDeptEmployees">
-     <li class="md_emp_a" >
+   <ul class="mdEList" *ngFor="let employee of mainDeptEmployees">
+     <li class="mdELNav" >
        <a routerLink="/main_dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
          <tr>
-         <td  class="md_emp_id">{{employee.id}}</td>
-         <td class="md_emp_last_name">{{employee.lastName}}</td>
-         <td class="md_emp_first_name">{{employee.firstName}}</td>
-         <td class="md_emp_middle_name">{{employee.middleName}}</td>
+         <td  class="mdELId">{{employee.id}}</td>
+         <td class="mdELLastName">{{employee.lastName}}</td>
+         <td class="mdELFirstName">{{employee.firstName}}</td>
+         <td class="mdELMiddleName">{{employee.middleName}}</td>
          </tr>
        </a>
      </li>
-     <button class="delete_md_emp" title="delete hero"
+     <button class="deleteMDE"
             (click)="deleteMainDeptEmployee(
             employee.lastName,
             employee.firstName,
             employee.middleName)">x</button>
    </ul>
  </div>
-  <button class="add_button" (click)="goToAddMainDeptEmployee()">Добавить Сотрудника</button>
+  <button class="addMDE" (click)="goToAddMainDeptEmployee()">Добавить Сотрудника</button>
 </div>
 

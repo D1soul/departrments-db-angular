@@ -38,7 +38,7 @@
           <div class="main_dept_label">
             <label><b>Главный Департамент</b></label>
           </div>
-          <div class="main_dept" >
+          <div class="sdDMainDeptHead" >
             <select [(ngModel)]="subDepartment.mainDepartment" formControlName="mainDepartment" >
               <option *ngFor="let mainDepartment of mainDepartments" [ngValue]="mainDepartment.name" >
                 {{mainDepartment.name}}

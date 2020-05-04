@@ -286,7 +286,7 @@
   z-index: 2;
 }
 
-.main_dept select{
+.sdDMainDeptHead select{
   width: 789px;
   height: 39px;
   box-shadow: 3px 0 5px rgba(0,0,0,0.22);

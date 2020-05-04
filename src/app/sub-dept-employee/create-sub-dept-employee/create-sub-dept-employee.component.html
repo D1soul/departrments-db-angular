@@ -1,19 +1,19 @@
 <div>
   <form [formGroup]="sEmpCrForm" novalidate (ngSubmit)="addSubDeptEmployee()" >
     <h2>Добавление сотрудника</h2>
-    <div class="cr_sub-dept_emp">
-      <div class="last_name_label">
-        <label><b>Фамилия</b></label>
+    <div class="crSubDeptEmpl">
+      <div class="crSDELastNameLabel">
+        <label for="lastName"><b>Фамилия</b></label>
       </div>
-      <div [ngClass]="{'last_name_default': sEmpCrForm.controls['lastName'].untouched,
-                         'last_name_invalid': sEmpCrForm.controls['lastName'].invalid
+      <div [ngClass]="{'crSDELastNameDefault': sEmpCrForm.controls['lastName'].untouched,
+                       'crSDELastNameInvalid': sEmpCrForm.controls['lastName'].invalid
                                             && (sEmpCrForm.controls['lastName'].dirty
                                             || sEmpCrForm.controls['lastName'].touched),
-                         'last_name_valid': sEmpCrForm.controls['lastName'].touched
+                       'crSDELastNameValid': sEmpCrForm.controls['lastName'].touched
                                             && sEmpCrForm.controls['lastName'].valid }" >
         <input type="text" id="lastName" placeholder="Введите фамилию"
                [(ngModel)]="subDeptEmployee.lastName"  formControlName="lastName" >
-        <div class="last_name_error_massage">
+        <div class="crSDELastNameErrorMassage">
           <div *ngIf="sEmpCrForm.controls['lastName'].invalid
                 && (sEmpCrForm.controls['lastName'].dirty
                 || sEmpCrForm.controls['lastName'].touched)" >
@@ -33,18 +33,18 @@
           </div>
         </div>
       </div>
-      <div class="first_name_label">
-        <label><b>Имя</b></label>
+      <div class="crSDEFirstNameLabel">
+        <label for="firstName"><b>Имя</b></label>
       </div>
-      <div [ngClass]="{'first_name_default': sEmpCrForm.controls['firstName'].untouched,
-                       'first_name_invalid': sEmpCrForm.controls['firstName'].invalid
+      <div [ngClass]="{'crSDEFirstNameDefault': sEmpCrForm.controls['firstName'].untouched,
+                       'crSDEFirstNameInvalid': sEmpCrForm.controls['firstName'].invalid
                                            && (sEmpCrForm.controls['firstName'].dirty
                                            || sEmpCrForm.controls['firstName'].touched),
-                       'first_name_valid': sEmpCrForm.controls['firstName'].touched
+                       'crSDEFirstNameValid': sEmpCrForm.controls['firstName'].touched
                                            && sEmpCrForm.controls['firstName'].valid }" >
         <input type="text" id="firstName" placeholder="Введите имя"
                [(ngModel)]="subDeptEmployee.firstName"  formControlName="firstName" >
-        <div class="first_name_error_massage">
+        <div class="crSDEFirstNameErrorMassage">
           <div *ngIf="sEmpCrForm.controls['firstName'].invalid
               && (sEmpCrForm.controls['firstName'].dirty
               || sEmpCrForm.controls['firstName'].touched)" >
@@ -64,19 +64,19 @@
           </div>
         </div>
       </div>
-      <div class="middle_name_label">
-        <label><b>Отчество</b></label>
+      <div class="crSDEMiddleNameLabel">
+        <label for="middleName"><b>Отчество</b></label>
       </div>
-      <div [ngClass]="{'middle_name_default': sEmpCrForm.controls['middleName'].untouched,
-                       'middle_name_invalid': sEmpCrForm.controls['middleName'].invalid
+      <div [ngClass]="{'crSDEMiddleNameDefault': sEmpCrForm.controls['middleName'].untouched,
+                       'crSDEMiddleNameInvalid': sEmpCrForm.controls['middleName'].invalid
                                             && (sEmpCrForm.controls['middleName'].dirty
                                             || sEmpCrForm.controls['middleName'].touched),
-                       'middle_name_valid': sEmpCrForm.controls['middleName'].touched
+                       'crSDEMiddleNameValid': sEmpCrForm.controls['middleName'].touched
                                             && sEmpCrForm.controls['middleName'].valid }" >
         <input type="text" id="middleName"
                placeholder="Введите отчество (Если отсутствует введите - )"
                [(ngModel)]="subDeptEmployee.middleName"  formControlName="middleName" >
-        <div class="middle_name_error_massage">
+        <div class="crSDEMiddleNameErrorMassage">
           <div *ngIf="sEmpCrForm.controls['middleName'].invalid
             && (sEmpCrForm.controls['middleName'].dirty
             || sEmpCrForm.controls['middleName'].touched)" >
@@ -93,6 +93,50 @@
           </div>
         </div>
       </div>
+
+      <div class="crSDEBirthDateLabel">
+        <label ><b>Дата рождения</b></label>
+      </div>
+      <div [ngClass]=" {'crSDEBirthDateDefault': sEmpCrForm.controls['day' && 'month' && 'year'].untouched,
+                        'crSDEBirthDateInvalid': ((sEmpCrForm.controls['day' && 'month' && 'year'].invalid
+                                              && sEmpCrForm.controls['day' && 'month' && 'year'].touched)
+                                              ||(sEmpCrForm.controls['day' && 'month' && 'year'].invalid
+                                              && !sEmpCrForm.controls['day' && 'month' && 'year'].touched
+                                              && submitted)),
+                        'crSDEBirthDateValid': sEmpCrForm.controls['day' && 'month' && 'year'].valid }" >
+        <select formControlName="day" >
+          <option hidden [ngValue]="null"><p>День</p></option>
+          <option *ngFor="let day of days" [value]="day" >
+            {{day}}
+          </option>
+        </select>
+
+        <select formControlName="month"  >
+          <option hidden [ngValue]="null"><p>Месяц</p></option>
+          <option *ngFor="let month of months" [value]="month.name" >
+            {{month.name}}
+          </option>
+        </select>
+        <select  formControlName="year" >
+          <option hidden [ngValue]="null">Год</option>
+          <option *ngFor="let year of years"  [value]="year">
+            {{year}}
+          </option>
+        </select>
+      </div>
+      <div class="crSDEBirthDateErrorMassage">
+        <div *ngIf="((sEmpCrForm.controls['day' && 'month' && 'year'].invalid
+                      && sEmpCrForm.controls['day' && 'month' && 'year'].touched)
+                      ||(sEmpCrForm.controls['day' && 'month' && 'year'].invalid
+                      && !sEmpCrForm.controls['day' && 'month' && 'year'].touched
+                      && submitted))" >
+          <div *ngIf="sEmpCrForm.controls['day' && 'month' && 'year'].errors.required">
+            <p>Укажите дату!</p>
+          </div>
+        </div>
+      </div>
+
+      <!--
       <div class="birth_date_label">
         <label><b>Дата рождения</b></label>
       </div>
@@ -121,19 +165,21 @@
           </div>
         </div>
       </div>
-      <div class="passport_label">
-        <label><b>Паспортные данные</b></label>
+
+      -->
+      <div class="crSDEPassportLabel">
+        <label for="passport"><b>Паспортные данные</b></label>
       </div>
-      <div [ngClass]="{'passport_default': sEmpCrForm.controls['passport'].untouched,
-                       'passport_invalid': sEmpCrForm.controls['passport'].invalid
+      <div [ngClass]="{'crSDEPassportDefault': sEmpCrForm.controls['passport'].untouched,
+                       'crSDEPassportInvalid': sEmpCrForm.controls['passport'].invalid
                                            && (sEmpCrForm.controls['passport'].dirty
                                            || sEmpCrForm.controls['passport'].touched),
-                       'passport_valid': sEmpCrForm.controls['passport'].touched
+                       'crSDEPassportValid': sEmpCrForm.controls['passport'].touched
                                            && sEmpCrForm.controls['passport'].valid }" >
         <input type="text" id="passport"
                placeholder="Введите данные (Серия: .. .. Номер: ......)"
                [(ngModel)]="subDeptEmployee.passport"  formControlName="passport" >
-        <div class="passport_error_massage">
+        <div class="crSDEPassportErrorMassage">
           <div *ngIf="sEmpCrForm.controls['passport'].invalid
               && (sEmpCrForm.controls['passport'].dirty
               || sEmpCrForm.controls['passport'].touched)" >
@@ -149,30 +195,30 @@
           </div>
         </div>
       </div>
-      <div class="sub-dept_label">
-        <label><b>Подотдел</b></label>
+      <div class="crSDESubDeptLabel">
+        <label for="sdeSd"><b>Подотдел</b></label>
       </div>
-      <div [ngClass]=" {'sub-dept_default': sEmpCrForm.controls['subDepartment'].untouched,
-                        'sub-dept_invalid': ((sEmpCrForm.controls['subDepartment'].invalid
+      <div [ngClass]=" {'crSDESubDeptDefault': sEmpCrForm.controls['subDepartment'].untouched,
+                        'crSDESubDeptInvalid': ((sEmpCrForm.controls['subDepartment'].invalid
                                               && sEmpCrForm.controls['subDepartment'].touched)
                                               ||(sEmpCrForm.controls['subDepartment'].invalid
                                               && !sEmpCrForm.controls['subDepartment'].touched
                                               && submitted)),
-                        'sub-dept_valid' : sEmpCrForm.controls['subDepartment'].valid }" >
-        <select [(ngModel)]="subDeptEmployee.subDepartment" formControlName="subDepartment" >
+                        'crSDESubDeptValid' : sEmpCrForm.controls['subDepartment'].valid }" >
+        <select id="sdeSd" [(ngModel)]="subDeptEmployee.subDepartment" formControlName="subDepartment" >
           <option hidden [ngValue]="null"><p>Выберите Подотдел</p></option>
           <option *ngFor="let subDepartment of subDepartments" >
             {{subDepartment.name}}
           </option>
         </select>
-        <div class="sub-dept_error_massage">
+        <div class="crSDESubDeptErrorMassage">
           <div *ngIf="((sEmpCrForm.controls['subDepartment'].invalid
                                             && sEmpCrForm.controls['subDepartment'].touched)
                                             ||(sEmpCrForm.controls['subDepartment'].invalid
                                             && !sEmpCrForm.controls['subDepartment'].touched
                                             && submitted))" >
             <div *ngIf="sEmpCrForm.controls['subDepartment'].errors.required">
-              <p class="sub-dept_error_massage_p">Подотдел не выбран!</p>
+              <p>Подотдел не выбран!</p>
             </div>
           </div>
         </div>

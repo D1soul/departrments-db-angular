@@ -1,53 +1,40 @@
 <div *ngIf="mainDepartment">
   <h2>{{mainDepartment.name}}</h2>
-  <div>
-    <tr>
-      <td class="main_dept_id">
-        <label ><b>ID</b></label>
-        <span>{{mainDepartment.id}}</span>
-      </td>
-      <td>
-        <button class="edit_button" (click)="goToUpdateMainDepartment(mainDepartment.name)">Редактировать</button>
-      </td>
-    </tr>
-  </div>
-  <tr>
-    <td class="main_dept_name" ><label><b>Название</b></label><span>{{mainDepartment.name}}</span></td>
-  </tr>
-  <div>
-    <div class="emps"><b>Сотрудники</b></div>
-    <div class="empls_labels">
-      <tr>
-        <td class="ln_label"><b>Фамилия</b></td>
-        <td class="fn_label"><b>Имя</b></td>
-        <td class="mn_label"><b>Отчество</b></td>
-      </tr>
+  <div class="mdDIdHead">
+    <div class="mdDId">
+      <label ><b>ID</b></label>
+      <span>{{mainDepartment.id}}</span>
     </div>
-    <ul class="emps_list" *ngFor="let employee of mainDepartment.employees">
-      <li>
-        <a routerLink="/main_dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
-        <tr>
-          <td>{{employee.lastName}}</td>
-          <td>{{employee.firstName}}</td>
-          <td>{{employee.middleName}}</td>
-        </tr>
-      </a>
-      </li>
-    </ul>
+    <div class="mdDUpd">
+      <button id="upd" (click)="goToUpdateMainDepartment(mainDepartment.name)">Редактировать</button>
+    </div>
+  </div>
+  <div class="mdDName">
+      <label><b>Название</b></label>
+      <span>{{mainDepartment.name}}</span>
   </div>
   <div>
-    <div class="sub-depts"><b>Подотделы</b></div>
-    <div class="sub-depts_label"><b>Название</b></div>
-    <ul class="sub_depts_list" *ngFor="let subDepartment of mainDepartment.subDepartments">
-      <li>
-        <a routerLink="/sub-department-detail/{{subDepartment.name}}">
-          <tr>
-            <td>{{subDepartment.name}}</td>
-          </tr>
-        </a>
-      </li>
-    </ul>
+    <div class="mdDEmpls"><b>Сотрудники</b></div>
+    <div class="mdDEmplsHead">
+        <div class="mdDLN"><b>Фамилия</b></div>
+        <div class="mdDFN"><b>Имя</b></div>
+        <div class="mdDMN"><b>Отчество</b></div>
+    </div>
+    <div class="mdDEmplsList" *ngFor="let employee of mainDepartment.employees">
+        <a routerLink="/main_dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
+          <div >{{employee.lastName}}</div>
+          <div >{{employee.firstName}}</div>
+          <div >{{employee.middleName}}</div>
+      </a>
+    </div>
   </div>
-
-
+  <div>
+    <div class="mdDSubDepts"><b>Подотделы</b></div>
+    <div class="mdDSDName"><b>Название</b></div>
+    <div class="mdDSDList" *ngFor="let subDepartment of mainDepartment.subDepartments">
+        <a routerLink="/sub-department-detail/{{subDepartment.name}}">
+            <div>{{subDepartment.name}}</div>
+        </a>
+    </div>
+  </div>
 </div>

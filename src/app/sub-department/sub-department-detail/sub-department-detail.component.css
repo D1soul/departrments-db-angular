@@ -1,37 +1,65 @@
-.sub-dept_id{
+.sdDIdHead{
+  height: 27px;
+  width: 723px;
+  display: block;
+}
+
+.sdDId{
   height: 25px;
-  width: 613px;
+  width: 610px;
   border: solid 1px rgba(0, 0, 0, 0.4);
 }
 
-.sub-dept_id label{
+.sdDId b{
+  position: relative;
+  top: 4px;
+  left: 9px;
+}
+
+.sdDId label{
+  width: 121px;
+  height: 26px;
+  display: inline-block;
   border-right: solid 1px rgba(0, 0, 0, 0.4);
-  padding: 4px 93px 8px 10px;
   background-color: rgba(217, 217, 217, 0.25);
   box-shadow: 3px 0 5px rgba(0,0,0,0.22);
 }
-.sub-dept_id span{
-  padding-left: 20px;
+.sdDId span{
+  position: relative;
+  top: 4px;
+  left: 20px;
 }
 
-.sub-dept_name{
+.sdDName{
+  display: inline-block;
   height: 25px;
   width: 720px;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   border-left: solid 1px rgba(0, 0, 0, 0.4);
 }
-.sub-dept_name label{
-  padding: 0 42px 8px 10px;
+.sdDName label{
+  width: 121px;
+  height: 26px;
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   background-color: rgba(217, 217, 217, 0.25);
   box-shadow: 3px 0 5px rgba(0,0,0,0.22);
+  display: inline-block;
 }
-.sub-dept_name span {
+
+.sdDName b{
+  position: relative;
+  top: 4px;
+  left: 9px;
+}
+
+.sdDName span {
+  position: relative;
+  top: 4px;
   padding-left: 20px;
 }
 
-.main_dept{
+.sdDMainDeptHead{
   padding: 4px 13px 4px 13px;
   text-align: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
@@ -42,8 +70,7 @@
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
 }
 
-.md_label{
-  padding: 5px 0 0 0;
+.sdDMainDeptName{
   margin-left: 121px;
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
@@ -56,8 +83,12 @@
   border-right: solid 1px rgba(0, 0, 0, 0.4);
 }
 
-.main_dept_a{
-  border-bottom: ridge 1px rgba(0, 0, 0, 0.4);
+.sdDMainDeptName b{
+  position: relative;
+  top: 4px;
+}
+
+.sdDMainDept{
   border-left: ridge 1px rgba(0, 0, 0, 0.4);
   border-right: ridge 1px rgba(0, 0, 0, 0.4);
   list-style-type: none;
@@ -65,9 +96,10 @@
   width: 599px;
   padding: 0;
   margin: 0 0 0 121px;
+  display: inline-block;
 }
 
-.main_dept_a a{
+.sdDMainDept a{
   padding: 0 0 0 10px;
   z-index: 1;
   text-decoration: none;
@@ -78,18 +110,23 @@
   text-shadow: 0 1px 1px rgba(126, 126, 126, 0);
 }
 
-.main_dept_a:hover{
+.sdDMainDept div{
+  position: relative;
+  top: 3px;
+}
+
+.sdDMainDept:hover{
   background-color: rgba(130, 140, 155, 0.16);
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
   z-index: 2;
 }
 
-.main_dept_a a:hover{
+.sdDMainDept a:hover{
   color: #000000;
   text-shadow: 0 1px 1px rgb(255, 255, 255);
 }
 
-.emps{
+.sdDEmpls{
   padding: 4px 13px 4px 13px;
   margin-top: -1px;
   text-align: center;
@@ -99,14 +136,12 @@
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
 }
 
-.empls_labels{
+.sdDEmplsHead{
   margin-left: 121px;
-  margin-bottom: 1px;
-  padding: 0;
-  height: 28px;
+  height: 25px;
+  width: 601px;
 }
-.ln_label{
-  padding: 5px 0 0 0;
+.sdDLN{
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
@@ -115,11 +150,15 @@
   text-align: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-left: solid 1px rgba(0, 0, 0, 0.4);
+  display: inline-block;
 }
 
-.fn_label{
-  padding: 5px 0 0 0;
-  margin-left: 40px;
+.sdDLN b{
+  position: relative;
+  top: 4px;
+}
+
+.sdDFN{
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
@@ -127,37 +166,47 @@
   width: 200px;
   text-align: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
+  display: inline-block;
 }
-.mn_label{
+
+.sdDFN b{
+  position: relative;
+  top: 4px;
+}
+
+.sdDMN{
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
-  padding: 5px 0 0 0;
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
   height: 25px;
-  width: 198.3px;
+  width: 199px;
   text-align: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-right: solid 1px rgba(0, 0, 0, 0.4);
+  display: inline-block;
 }
 
+.sdDMN b{
+  position: relative;
+  top: 4px;
+}
 
-.emps_list {
+.sdDEmplsList {
   border-bottom: ridge 1px rgba(0, 0, 0, 0.4);
   border-left: ridge 1px rgba(0, 0, 0, 0.4);
   list-style-type: none;
   height: 25px;
   width: 600px;
-  padding: 0;
   margin: 0 0 0 121px;
 }
 
-.emps_list:hover{
+.sdDEmplsList:hover{
   background-color: rgba(130, 140, 155, 0.16);
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
   z-index: 2;
 }
 
-.emps_list a{
+.sdDEmplsList a{
   z-index: 1;
   text-decoration: none;
   display: block;
@@ -167,32 +216,15 @@
   text-shadow: 0 1px 1px rgba(126, 126, 126, 0);
 }
 
-.emps_list a:hover{
+.sdDEmplsList a:hover{
   color: #000000;
   text-shadow: 0 1px 1px rgb(255, 255, 255);
 }
 
-.emps_list td{
-  height: 25px;
+.sdDEmplsList div{
+  height: 22px;
   width: 189px;
   border-right: ridge 1px rgba(0, 0, 0, 0.4);
-  padding: 0 0 0 10px;
-}
-
-.edit_button{
-  height: 30px;
-  width: 107px;
-  border-radius: 0 15px 0 0;
-  border: 1px solid  rgba(0, 0, 0, 0.4);
-  background-color: #ccc;
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.09), 0 1px 1px rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient(to bottom, #efefef, #777);
-  background-clip: padding-box;
-  cursor: pointer;
-  outline: none;
-}
-
-.edit_button:hover{
-  background-image: linear-gradient(to bottom, #ccc, #555);
-  box-shadow: inset 0 0 10px white;
+  padding: 4px 0 0 10px;
+  display: inline-block;
 }
