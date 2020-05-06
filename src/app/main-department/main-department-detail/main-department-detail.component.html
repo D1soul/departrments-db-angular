@@ -2,7 +2,7 @@
   <h2>{{mainDepartment.name}}</h2>
   <div class="mdDIdHead">
     <div class="mdDId">
-      <label ><b>ID</b></label>
+      <div ><b>ID</b></div>
       <span>{{mainDepartment.id}}</span>
     </div>
     <div class="mdDUpd">
@@ -10,21 +10,21 @@
     </div>
   </div>
   <div class="mdDName">
-      <label><b>Название</b></label>
+      <div><b>Название</b></div>
       <span>{{mainDepartment.name}}</span>
   </div>
   <div>
     <div class="mdDEmpls"><b>Сотрудники</b></div>
     <div class="mdDEmplsHead">
-        <div class="mdDLN"><b>Фамилия</b></div>
-        <div class="mdDFN"><b>Имя</b></div>
-        <div class="mdDMN"><b>Отчество</b></div>
+        <span class="mdDLN"><b>Фамилия</b></span>
+        <span class="mdDFN"><b>Имя</b></span>
+        <span class="mdDMN"><b>Отчество</b></span>
     </div>
     <div class="mdDEmplsList" *ngFor="let employee of mainDepartment.employees">
         <a routerLink="/main_dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
-          <div >{{employee.lastName}}</div>
-          <div >{{employee.firstName}}</div>
-          <div >{{employee.middleName}}</div>
+          <span >{{employee.lastName}}</span>
+          <span >{{employee.firstName}}</span>
+          <span >{{employee.middleName}}</span>
       </a>
     </div>
   </div>
@@ -33,7 +33,7 @@
     <div class="mdDSDName"><b>Название</b></div>
     <div class="mdDSDList" *ngFor="let subDepartment of mainDepartment.subDepartments">
         <a routerLink="/sub-department-detail/{{subDepartment.name}}">
-            <div>{{subDepartment.name}}</div>
+            <span>{{subDepartment.name}}</span>
         </a>
     </div>
   </div>

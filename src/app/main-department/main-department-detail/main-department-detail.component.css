@@ -1,24 +1,24 @@
 .mdDIdHead{
-  height: 27px;
+  height: 32px;
   width: 723px;
   display: block;
 }
 
 .mdDId{
-  height: 25px;
+  height: 30px;
   width: 610px;
   border: solid 1px rgba(0, 0, 0, 0.4);
 }
 
 .mdDId b{
   position: relative;
-  top: 4px;
+  top: 6px;
   left: 9px;
 }
 
-.mdDId label{
+.mdDId div{
   width: 121px;
-  height: 26px;
+  height: 30px;
   display: inline-block;
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   background-color: rgba(217, 217, 217, 0.25);
@@ -26,26 +26,25 @@
 }
 .mdDId span{
   position: relative;
-  top: 4px;
+  top: 6px;
   left: 20px;
 }
 
 .mdDName{
   display: inline-block;
-  height: 25px;
+  height: 30px;
   width: 720px;
-  padding: 0;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   border-left: solid 1px rgba(0, 0, 0, 0.4);
 }
 .mdDName b{
   position: relative;
-  top: 4px;
+  top: 6px;
   left: 9px;
 }
-.mdDName label{
-  height: 25px;
+.mdDName div{
+  height: 30px;
   width: 121px;
   display: inline-block;
   border-right: solid 1px rgba(0, 0, 0, 0.4);
@@ -54,22 +53,28 @@
 }
 .mdDName span {
   position: relative;
-  top: 4px;
+  top: 6px;
   padding-left: 20px;
 }
+
 .mdDEmpls{
-  padding: 4px 13px 3px 13px;
   text-align: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   border-left: solid 1px rgba(0, 0, 0, 0.4);
-  width: 694px;
+  width: 720px;
+  height: 30px;
   background-color: rgba(217, 217, 217, 0.25);
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
 }
+.mdDEmpls b{
+  position: relative;
+  top: 6px;
+}
+
 .mdDEmplsHead{
   margin-left: 121px;
-  height: 25px;
+  height: 31px;
   width: 601px;
 }
 
@@ -77,23 +82,24 @@
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
-  height: 25px;
+  height: 30px;
   width: 200px;
   text-align: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-left: solid 1px rgba(0, 0, 0, 0.4);
   display: inline-block;
 }
+
 .mdDLN b{
   position: relative;
-  top: 4px;
+  top: 6px;
 }
 
 .mdDFN{
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
-  height: 25px;
+  height: 30px;
   width: 200px;
   text-align: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
@@ -102,32 +108,31 @@
 
 .mdDFN b{
   position: relative;
-  top: 4px;
+  top: 6px;
 }
 
 .mdDMN{
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
-  height: 25px;
+  height: 30px;
   width: 199px;
   text-align: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   display: inline-block;
-
 }
 
 .mdDMN b{
   position: relative;
-  top: 4px;
+  top: 6px;
 }
 
 .mdDEmplsList {
   border-bottom: ridge 1px rgba(0, 0, 0, 0.4);
   border-left: ridge 1px rgba(0, 0, 0, 0.4);
   list-style-type: none;
-  height: 25px;
+  height: 30px;
   width: 600px;
   margin: 0 0 0 121px;
 }
@@ -142,7 +147,7 @@
   z-index: 1;
   text-decoration: none;
   display: block;
-  height: 24px;
+  height: 30px;
   width: 600px;
   color: #5b5b5b;
   text-shadow: 0 1px 1px rgba(126, 126, 126, 0);
@@ -153,27 +158,32 @@
   text-shadow: 0 1px 1px rgb(255, 255, 255);
 }
 
-.mdDEmplsList div{
-  height: 22px;
+.mdDEmplsList span{
+  height: 24px;
   width: 189px;
   border-right: ridge 1px rgba(0, 0, 0, 0.4);
-  padding: 4px 0 0 10px;
+  padding: 6px 0 0 10px;
   display: inline-block;
 }
 
 .mdDSubDepts{
-  padding: 4px 13px 3px 13px;
   margin-top: -1px;
+  height: 30px;
   text-align: center;
   border: solid 1px rgba(0, 0, 0, 0.4);
-  width: 694px;
+  width: 720px;
   background-color: rgba(217, 217, 217, 0.25);
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
 }
 
+.mdDSubDepts b{
+  position: relative;
+  top: 6px;
+}
+
 .mdDSDName{
   margin-left: 121px;
-  height: 25px;
+  height: 30px;
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
@@ -186,7 +196,7 @@
 
 .mdDSDName b{
   position: relative;
-  top: 4px;
+  top: 6px;
 }
 
 .mdDSDList{
@@ -194,14 +204,15 @@
   border-left: ridge 1px rgba(0, 0, 0, 0.4);
   border-right: ridge 1px rgba(0, 0, 0, 0.4);
   list-style-type: none;
-  height: 26px;
+  height: 30px;
   width: 589px;
   padding-left: 10px;
   margin: 0 0 0 121px;
 }
 
-.mdDSDList div{
-  padding-top: 4px;
+.mdDSDList span{
+  position: relative;
+  top: 6px;
 }
 
 .mdDSDList:hover{
@@ -211,11 +222,10 @@
 }
 
 .mdDSDList a{
-  padding: 0;
   z-index: 1;
   text-decoration: none;
   display: block;
-  height: 25px;
+  height: 30px;
   width: 598px;
   color: #5b5b5b;
   text-shadow: 0 1px 1px rgba(126, 126, 126, 0);
@@ -228,7 +238,7 @@
 
 .mdDUpd{
   display: block;
-  height: 25px;
+  height: 30px;
   width: 110px;;
   border-bottom: 1px solid  red;
 }
@@ -249,7 +259,7 @@
   outline: none;
 }
 
-.mdDIdHead label:hover{
+.mdDIdHead div:hover{
   background-image: linear-gradient(to bottom, #ccc, #555);
   box-shadow: inset 0 0 10px white;
   color: rgba(235, 235, 235, 0.8);

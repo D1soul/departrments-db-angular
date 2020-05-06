@@ -57,9 +57,12 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
       day: [null, [Validators.required]],
       month: [null, [Validators.required]],
       year: [null, [Validators.required]],
-      passport: [null, [Validators.required,
+    /*  passport: [null, [Validators.required,
                           Validators.pattern("^(Серия:\\s?)\\d{2}\\s"
-                                            + "\\d{2}\\s(Номер:\\s?)\\d{6}$")]],
+                                            + "\\d{2}\\s(Номер:\\s?)\\d{6}$")]], */
+      passportSF:[null],
+      passportSS:[null],
+      passportN:[null],
       subDepartment: [null,[Validators.required]]
     });
   }

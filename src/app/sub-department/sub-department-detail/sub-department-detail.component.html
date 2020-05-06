@@ -2,7 +2,7 @@
   <h2>{{subDepartment.name}}</h2>
   <div class="sdDIdHead" >
     <div class="sdDId">
-      <label ><b>ID</b></label>
+      <div><b>ID</b></div>
       <span>{{subDepartment.id}}</span>
     </div>
     <div class="sdDUpd">
@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="sdDName" >
-    <label><b>Название</b></label>
+    <div><b>Название</b></div>
     <span>{{subDepartment.name}}</span>
   </div>
 
@@ -18,21 +18,21 @@
   <div class="sdDMainDeptName"><b>Название</b></div>
   <div class="sdDMainDept">
     <a routerLink="/main_department-detail/{{subDepartment.mainDepartment}}">
-      <div>{{subDepartment.mainDepartment}}</div>
+      <span>{{subDepartment.mainDepartment}}</span>
     </a>
   </div>
   <div>
     <div class="sdDEmpls"><b>Сотрудники</b></div>
     <div class="sdDEmplsHead">
-      <div class="sdDLN"><b>Фамилия</b></div>
-      <div class="sdDFN"><b>Имя</b></div>
-      <div class="sdDMN"><b>Отчество</b></div>
+      <span class="sdDLN"><b>Фамилия</b></span>
+      <span class="sdDFN"><b>Имя</b></span>
+      <span class="sdDMN"><b>Отчество</b></span>
     </div>
     <div class="sdDEmplsList" *ngFor="let employee of subDepartment.employees">
         <a routerLink="/sub-dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
-          <div>{{employee.lastName}}</div>
-          <div>{{employee.firstName}}</div>
-          <div>{{employee.middleName}}</div>
+          <span>{{employee.lastName}}</span>
+          <span>{{employee.firstName}}</span>
+          <span>{{employee.middleName}}</span>
         </a>
     </div>
   </div>

@@ -1,4 +1,4 @@
-.cr_main_dept_emp{
+.crMainDeptEmpl{
   margin-top: 30px;
   height: 426px;
   width:980px;
@@ -7,7 +7,7 @@
   box-shadow: inset 3px 0 5px rgba(0,0,0,0.22);
 }
 
-.last_name_label{
+.crMDELastNameLabel{
   border: solid 1px rgba(0, 0, 0, 0.4);
   position: relative;
   padding-top: 8px;
@@ -21,7 +21,7 @@
   z-index: 2;
 }
 
-.last_name_default input{
+.crMDELastNameDefault input{
   font-size: 12pt;
   border: solid 1px rgba(0, 0, 0, 0.4);
   padding-left: 10px;
@@ -34,7 +34,7 @@
   top: -37px;
 }
 
-.last_name_invalid input{
+.crMDELastNameInvalid input{
   font-size: 12pt;
   border: solid 1px rgba(205, 0, 0, 0.4);
   box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
@@ -47,7 +47,7 @@
   width: 869px;
 }
 
-.last_name_valid input{
+.crMDELastNameValid input{
   font-size: 12pt;
   border: solid 1px rgba(0, 205, 0, 0.4);
   box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
@@ -60,7 +60,22 @@
   width: 869px;
 }
 
-.first_name_label{
+.crMDELastNameErrorMassage{
+  width: 789px;
+  height: 53px;
+  left: 97px;
+  top: -36px;
+  position: relative;
+}
+
+.crMDELastNameErrorMassage p{
+  padding-left: 10px;
+  font-size: 11pt;
+  margin: 0;
+  color: rgba(205, 0, 0, 0.4);
+}
+
+.crMDEFirstNameLabel{
   border: solid 1px rgba(0, 0, 0, 0.4);
   position: relative;
   padding-top: 8px;
@@ -74,7 +89,7 @@
   z-index: 2;
 }
 
-.first_name_default input{
+.crMDEFirstNameDefault input{
   font-size: 12pt;
   border: solid 1px rgba(0, 0, 0, 0.4);
   padding-left: 10px;
@@ -87,7 +102,7 @@
   top: -76px;
 }
 
-.first_name_invalid input{
+.crMDEFirstNameInvalid input{
   font-size: 12pt;
   border: solid 1px rgba(205, 0, 0, 0.4);
   box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
@@ -100,7 +115,7 @@
   width: 869px;
 }
 
-.first_name_valid input{
+.crMDEFirstNameValid input{
   font-size: 12pt;
   border: solid 1px rgba(0, 205, 0, 0.4);
   box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
@@ -113,7 +128,22 @@
   width: 869px;
 }
 
-.middle_name_label{
+.crMDEFirstNameErrorMassage{
+  width: 789px;
+  height: 53px;
+  left: 97px;
+  top: -75px;
+  position: relative;
+}
+
+.crMDEFirstNameErrorMassage p{
+  padding-left: 10px;
+  font-size: 11pt;
+  margin: 0;
+  color: rgba(205, 0, 0, 0.4);
+}
+
+.crMDEMiddleNameLabel{
   border: solid 1px rgba(0, 0, 0, 0.4);
   position: relative;
   padding-top: 8px;
@@ -127,7 +157,7 @@
   z-index: 2;
 }
 
-.middle_name_default input{
+.crMDEMiddleNameDefault input{
   font-size: 12pt;
   border: solid 1px rgba(0, 0, 0, 0.4);
   padding-left: 10px;
@@ -140,7 +170,7 @@
   top: -117px;
 }
 
-.middle_name_invalid input{
+.crMDEMiddleNameInvalid input{
   font-size: 12pt;
   border: solid 1px rgba(205, 0, 0, 0.4);
   box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
@@ -153,7 +183,7 @@
   width: 869px;
 }
 
-.middle_name_valid input{
+.crMDEMiddleNameValid input{
   font-size: 12pt;
   border: solid 1px rgba(0, 205, 0, 0.4);
   box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
@@ -166,7 +196,22 @@
   width: 869px;
 }
 
-.birth_date_label{
+.crMDEMiddleNameErrorMassage{
+  width: 789px;
+  height: 53px;
+  left: 97px;
+  top: -117px;
+  position: relative;
+}
+
+.crMDEMiddleNameErrorMassage p{
+  padding-left: 10px;
+  font-size: 11pt;
+  margin: 0;
+  color: rgba(205, 0, 0, 0.4);
+}
+
+.crMDEBirthDateLabel{
   border: solid 1px rgba(0, 0, 0, 0.4);
   position: relative;
   padding-top: 8px;
@@ -176,50 +221,54 @@
   background-color: rgba(217, 217, 217, 0.25);
   box-shadow: 3px 0 5px rgba(0,0,0,0.22);
   left: 2px;
-  top: -117px;
+  top: -150px;
   z-index: 2;
 }
 
-.birth_date_default input{
-  font-size: 12pt;
-  border: solid 1px rgba(0, 0, 0, 0.4);
-  padding-left: 10px;
-  outline: none;
-  height: 35px;
-  width: 323px;
+.crMDEBirthDateDefault select{
+  height: 39px;
+  position: relative;
+  left: 137px;
+  top: -189px;
   box-shadow: 3px 0 5px rgba(0,0,0,0.22);
-  position: relative;
-  left: 137px;
-  top: -156px;
+  cursor: pointer;
 }
 
-.birth_date_invalid input{
-  font-size: 12pt;
-  border: solid 1px rgba(205, 0, 0, 0.4);
+.crMDEBirthDateInvalid select{
+  height: 39px;
+  position: relative;
+  left: 137px;
+  top: -189px;
   box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
-  padding-left: 10px;
-  position: relative;
-  left: 137px;
-  top: -156px;
-  outline: none;
-  height: 35px;
-  width: 323px;
+  cursor: pointer;
 }
 
-.birth_date_valid input{
-  font-size: 12pt;
-  border: solid 1px rgba(0, 205, 0, 0.4);
+.crMDEBirthDateValid select{
+  height: 39px;
+  position: relative;
+  left: 137px;
+  top: -189px;
   box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
-  padding-left: 10px;
-  position: relative;
-  left: 137px;
-  top: -156px;
-  outline: none;
-  height: 35px;
-  width: 323px;
+  cursor: pointer;
 }
 
-.passport_label {
+.crMDEBirthDateErrorMassage{
+  width: 789px;
+  height: 20px;
+  left: 137px;
+  top: -189px;
+  position: relative;
+  z-index: -1;
+}
+
+.crMDEBirthDateErrorMassage p{
+  padding-left: 5px;
+  font-size: 11pt;
+  margin: 0;
+  color: rgba(205, 0, 0, 0.4);
+}
+
+.crMDEPassportLabel {
   border: solid 1px rgba(0, 0, 0, 0.4);
   position: relative;
   padding-top: 8px;
@@ -233,7 +282,7 @@
   z-index: 2;
 }
 
-.passport_default input{
+.crMDEPassportDefault input{
   font-size: 12pt;
   border: solid 1px rgba(0, 0, 0, 0.4);
   padding-left: 10px;
@@ -246,7 +295,7 @@
   top: -270px;
 }
 
-.passport_invalid input{
+.crMDEPassportInvalid input{
   font-size: 12pt;
   border: solid 1px rgba(205, 0, 0, 0.4);
   box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
@@ -259,7 +308,7 @@
   width: 322px;
 }
 
-.passport_valid input{
+.crMDEPassportValid input{
   font-size: 12pt;
   border: solid 1px rgba(0, 205, 0, 0.4);
   box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
@@ -272,7 +321,22 @@
   width: 322px;
 }
 
-.main_dept_label{
+.crMDEPassportErrorMassage{
+  width: 322px;
+  height: 36px;
+  left: 644px;
+  top: -270px;
+  position: relative;
+}
+
+.crMDEPassportErrorMassage p{
+  padding-left: 10px;
+  font-size: 11pt;
+  margin: 0;
+  color: rgba(205, 0, 0, 0.4);
+}
+
+.crMDESubDeptLabel{
   border: solid 1px rgba(0, 0, 0, 0.4);
   position: relative;
   padding-top: 8px;
@@ -286,7 +350,7 @@
   z-index: 2;
 }
 
-.main_dept_default select {
+.crMDESubDeptDefault select {
   width: 789px;
   height: 39px;
   box-shadow: 3px 0 5px rgba(0,0,0,0.22);
@@ -297,7 +361,7 @@
   cursor: pointer;
 }
 
-.main_dept_invalid select {
+.crMDESubDeptInvalid select {
   width: 789px;
   height: 39px;
   box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
@@ -308,7 +372,7 @@
   cursor: pointer;
 }
 
-.main_dept_valid select {
+.crMDESubDeptValid select {
   width: 789px;
   height: 39px;
   box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
@@ -319,82 +383,7 @@
   cursor: pointer;
 }
 
-.last_name_error_massage{
-  width: 789px;
-  height: 53px;
-  left: 97px;
-  top: -36px;
-  position: relative;
-}
-
-.last_name_error_massage p{
-  padding-left: 10px;
-  font-size: 11pt;
-  margin: 0;
-  color: rgba(205, 0, 0, 0.4);
-}
-
-.first_name_error_massage{
-  width: 789px;
-  height: 53px;
-  left: 97px;
-  top: -75px;
-  position: relative;
-}
-
-.first_name_error_massage p{
-  padding-left: 10px;
-  font-size: 11pt;
-  margin: 0;
-  color: rgba(205, 0, 0, 0.4);
-}
-
-.middle_name_error_massage{
-  width: 789px;
-  height: 53px;
-  left: 97px;
-  top: -117px;
-  position: relative;
-}
-
-.middle_name_error_massage p{
-  padding-left: 10px;
-  font-size: 11pt;
-  margin: 0;
-  color: rgba(205, 0, 0, 0.4);
-}
-
-.birth_date_error_massage{
-  width: 323px;
-  height: 36px;
-  left: 136px;
-  top: -155px;
-  position: relative;
-}
-
-.birth_date_error_massage p{
-  padding-left: 10px;
-  font-size: 11pt;
-  margin: 0;
-  color: rgba(205, 0, 0, 0.4);
-}
-
-.passport_error_massage{
-  width: 322px;
-  height: 36px;
-  left: 644px;
-  top: -270px;
-  position: relative;
-}
-
-.passport_error_massage p{
-  padding-left: 10px;
-  font-size: 11pt;
-  margin: 0;
-  color: rgba(205, 0, 0, 0.4);
-}
-
-.main_dept_error_massage{
+.crMDEMainDeptErrorMassage{
   width: 789px;
   height: 20px;
   left: 189px;
@@ -402,14 +391,14 @@
   position: relative;
 }
 
-.main_dept_error_massage p{
+.crMDEMainDeptErrorMassage p{
   padding-left: 3px;
   font-size: 11pt;
   margin: 0;
   color: rgba(205, 0, 0, 0.4);
 }
 
-.cr_main_dept_emp button{
+.crMainDeptEmpl button{
   position: relative;
   height: 50px;
   left: 831px;
@@ -425,7 +414,7 @@
   outline: none;
 }
 
-.cr_main_dept_emp button:hover{
+.crMainDeptEmpl button:hover{
   background-image: linear-gradient(to bottom, #ccc, #555);
   box-shadow: inset 0 0 10px white;
 }

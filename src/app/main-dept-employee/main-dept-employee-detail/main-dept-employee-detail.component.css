@@ -1,24 +1,24 @@
 .mdEDIdHead{
-  height: 27px;
+  height: 32px;
   width: 723px;
   display: block;
 }
 
 .mdEDId{
-  height: 25px;
+  height: 30px;
   width: 613px;
   border: solid 1px rgba(0, 0, 0, 0.4);
 }
 
 .mdEDId b{
   position: relative;
-  top: 4px;
+  top: 6px;
   left: 9px;
 }
 
-.mdEDId label{
+.mdEDId div{
   width: 169px;
-  height: 26px;
+  height: 30px;
   display: inline-block;
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   background-color: rgba(217, 217, 217, 0.25);
@@ -27,21 +27,21 @@
 
 .mdEDId span{
   position: relative;
-  top: 4px;
+  top: 6px;
   left: 20px;
 }
 
 .mdEDLastName{
-  height: 25px;
+  height: 30px;
   width: 720px;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   border-left: solid 1px rgba(0, 0, 0, 0.4);
 }
 
-.mdEDLastName label{
+.mdEDLastName div{
   width: 169px;
-  height: 26px;
+  height: 30px;
   display: inline-block;
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   background-color: rgba(217, 217, 217, 0.25);
@@ -50,26 +50,26 @@
 
 .mdEDLastName span {
   position: relative;
-  top: 4px;
+  top: 6px;
   padding-left: 20px;
 }
 .mdEDLastName b{
   position: relative;
-  top: 4px;
+  top: 6px;
   left: 9px;
 }
 
 .mdEDFirstName{
-  height: 25px;
+  height: 30px;
   width: 720px;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   border-left: solid 1px rgba(0, 0, 0, 0.4);
 }
 
-.mdEDFirstName label{
+.mdEDFirstName div{
   width: 169px;
-  height: 26px;
+  height: 30px;
   display: inline-block;
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   background-color: rgba(217, 217, 217, 0.25);
@@ -78,27 +78,27 @@
 
 .mdEDFirstName span {
   position: relative;
-  top: 4px;
+  top: 6px;
   padding-left: 20px;
 }
 
 .mdEDFirstName b{
   position: relative;
-  top: 4px;
+  top: 6px;
   left: 9px;
 }
 
 .mdEDMiddleName{
-  height: 25px;
+  height: 30px;
   width: 720px;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   border-left: solid 1px rgba(0, 0, 0, 0.4);
 }
 
-.mdEDMiddleName label{
+.mdEDMiddleName div{
   width: 169px;
-  height: 26px;
+  height: 30px;
   display: inline-block;
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   background-color: rgba(217, 217, 217, 0.25);
@@ -107,27 +107,27 @@
 
 .mdEDMiddleName span {
   position: relative;
-  top: 4px;
+  top: 6px;
   padding-left: 20px;
 }
 
 .mdEDMiddleName b{
   position: relative;
-  top: 4px;
+  top: 6px;
   left: 9px;
 }
 
 .mdEDBirthDate{
-  height: 25px;
+  height: 30px;
   width: 720px;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   border-left: solid 1px rgba(0, 0, 0, 0.4);
 }
 
-.mdEDBirthDate label{
+.mdEDBirthDate div{
   width: 169px;
-  height: 26px;
+  height: 30px;
   display: inline-block;
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   background-color: rgba(217, 217, 217, 0.25);
@@ -136,27 +136,27 @@
 
 .mdEDBirthDate span {
   position: relative;
-  top: 4px;
+  top: 6px;
   padding-left: 20px;
 }
 
 .mdEDBirthDate b{
   position: relative;
-  top: 4px;
+  top: 6px;
   left: 9px;
 }
 
 .mdEDPassport{
-  height: 25px;
+  height: 30px;
   width: 720px;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   border-left: solid 1px rgba(0, 0, 0, 0.4);
 }
 
-.mdEDPassport label{
+.mdEDPassport div{
   width: 169px;
-  height: 26px;
+  height: 30px;
   display: inline-block;
   border-right: solid 1px rgba(0, 0, 0, 0.4);
   background-color: rgba(217, 217, 217, 0.25);
@@ -165,12 +165,12 @@
 
 .mdEDPassport span {
   position: relative;
-  top: 4px;
+  top: 6px;
   padding-left: 20px;
 }
 .mdEDPassport b{
   position: relative;
-  top: 4px;
+  top: 6px;
   left: 9px;
 }
 
@@ -178,7 +178,7 @@
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
-  height: 25px;
+  height: 30px;
   width: 720px;
   text-align: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
@@ -188,7 +188,7 @@
 
 .mdEDMainDeptHead b{
   position: relative;
-  top: 4px;
+  top: 6px;
 }
 
 .mdEDMainDeptName{
@@ -196,7 +196,7 @@
   border-left: ridge 1px rgba(0, 0, 0, 0.4);
   border-right: ridge 1px rgba(0, 0, 0, 0.4);
   list-style-type: none;
-  height: 25px;
+  height: 30px;
   width: 550px;
   margin: 0 0 0 170px;
   text-align: center;
@@ -206,7 +206,7 @@
 
 .mdEDMainDeptName b{
   position: relative;
-  top: 4px;
+  top: 6px;
 }
 
 .mdEDMainDept{
@@ -214,15 +214,15 @@
   border-right: ridge 1px rgba(0, 0, 0, 0.4);
   border-bottom: ridge 1px rgba(0, 0, 0, 0.4);
   list-style-type: none;
-  height: 25px;
+  height: 30px;
   width: 550px;
   margin: 0 0 0 170px;
   display: inline-block;
 }
 
-.mdEDMainDept div{
+.mdEDMainDept span{
   position: relative;
-  top: 3px;
+  top: 6px;
 }
 
 .mdEDMainDept:hover{
@@ -236,7 +236,7 @@
   z-index: 1;
   text-decoration: none;
   display: block;
-  height: 25px;
+  height: 30px;
   width: 600px;
   color: #5b5b5b;
   text-shadow: 0 1px 1px rgba(126, 126, 126, 0);

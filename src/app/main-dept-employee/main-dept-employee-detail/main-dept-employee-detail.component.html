@@ -2,7 +2,7 @@
   <h2>{{mainDeptEmployee.lastName}} {{mainDeptEmployee.firstName}} {{mainDeptEmployee.middleName}}</h2>
   <div class="mdEDIdHead">
       <div class="mdEDId">
-        <label ><b>ID</b></label>
+        <div ><b>ID</b></div>
         <span>{{mainDeptEmployee.id}}</span>
       </div>
       <div>
@@ -10,26 +10,31 @@
                  mainDeptEmployee.firstName, mainDeptEmployee.middleName)">Редактировать</button>
       </div>
   </div>
-    <div class="mdEDLastName" ><label><b>Фамилия</b></label>
+    <div class="mdEDLastName" >
+      <div><b>Фамилия</b></div>
       <span>{{mainDeptEmployee.lastName}}</span>
     </div>
-    <div class="mdEDFirstName" ><label><b>Имя</b></label>
+    <div class="mdEDFirstName" >
+      <div><b>Имя</b></div>
       <span>{{mainDeptEmployee.firstName}}</span>
     </div>
-     <div class="mdEDMiddleName" ><label><b>Отчество</b></label>
-      <span>{{mainDeptEmployee.middleName}}</span>
+     <div class="mdEDMiddleName" >
+       <div><b>Отчество</b></div>
+       <span>{{mainDeptEmployee.middleName}}</span>
     </div>
-    <div class="mdEDBirthDate" ><label><b>Дата рождения</b></label>
+    <div class="mdEDBirthDate" >
+      <div><b>Дата рождения</b></div>
       <span>{{mainDeptEmployee.birthDate}}</span>
     </div>
-    <div class="mdEDPassport" ><label><b>Паспортные данные</b></label>
+    <div class="mdEDPassport" >
+      <div><b>Паспортные данные</b></div>
       <span>{{mainDeptEmployee.passport}}</span>
     </div>
   <div class="mdEDMainDeptHead"><b>Главный департамент</b></div>
   <div class="mdEDMainDeptName"><b>Название</b></div>
   <div class="mdEDMainDept">
     <a routerLink="/main_department-detail/{{mainDeptEmployee.mainDepartment}}">
-     <div>{{mainDeptEmployee.mainDepartment}}</div>
+     <span>{{mainDeptEmployee.mainDepartment}}</span>
     </a>
   </div>
 </div>

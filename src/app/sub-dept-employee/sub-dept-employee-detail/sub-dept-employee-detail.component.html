@@ -2,7 +2,7 @@
   <h2>{{subDeptEmployee.lastName}} {{subDeptEmployee.firstName}} {{subDeptEmployee.middleName}}</h2>
   <div class="sdEDIdHead">
     <div class="sdEDId">
-      <label ><b>ID</b></label>
+      <div ><b>ID</b></div>
       <span>{{subDeptEmployee.id}}</span>
     </div>
     <div>
@@ -10,26 +10,26 @@
                  subDeptEmployee.firstName, subDeptEmployee.middleName)">Редактировать</button>
     </div>
   </div>
-  <div class="sdEDLastName" ><label><b>Фамилия</b></label>
+  <div class="sdEDLastName" ><div><b>Фамилия</b></div>
     <span>{{subDeptEmployee.lastName}}</span>
   </div>
-  <div class="sdEDFirstName" ><label><b>Имя</b></label>
+  <div class="sdEDFirstName" ><div><b>Имя</b></div>
     <span>{{subDeptEmployee.firstName}}</span>
   </div>
-  <div class="sdEDMiddleName" ><label><b>Отчество</b></label>
+  <div class="sdEDMiddleName" ><div><b>Отчество</b></div>
     <span>{{subDeptEmployee.middleName}}</span>
   </div>
-  <div class="sdEDBirthDate" ><label><b>Дата рождения</b></label>
+  <div class="sdEDBirthDate" ><div><b>Дата рождения</b></div>
     <span>{{subDeptEmployee.birthDate}}</span>
   </div>
-  <div class="sdEDPassport" ><label><b>Паспортные данные</b></label>
+  <div class="sdEDPassport" ><div><b>Паспортные данные</b></div>
     <span>{{subDeptEmployee.passport}}</span>
   </div>
   <div class="sdEDSubDeptHead"><b>Департамент</b></div>
   <div class="sdEDSubDeptName"><b>Название</b></div>
   <div class="sdEDSubDept">
     <a routerLink="/sub-department-detail/{{subDeptEmployee.subDepartment}}">
-      <div>{{subDeptEmployee.subDepartment}}</div>
+      <span>{{subDeptEmployee.subDepartment}}</span>
     </a>
   </div>
 </div>
