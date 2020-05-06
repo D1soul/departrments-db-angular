@@ -254,14 +254,56 @@
   z-index: 2;
 }
 
-.crSDEPassportDefault input{
+
+.crSDEPassportDefault .series input{
+  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
+  border-top: solid 1px rgba(0, 0, 0, 0.4);
+  border-left: 0;
+  border-right: 0;
+  outline: none;
+  height: 30px;
+  width: 20px;
+}
+
+.crSDEPassportDefault .series{
   font-size: 12pt;
-  border: solid 1px rgba(0, 0, 0, 0.4);
+  width: 20px;
+}
+
+
+.crSDEPassportInvalid span{
+  font-size: 12pt;
+  border-bottom: solid 1px rgba(205, 0, 0, 0.4);
+  border-top: solid 1px rgba(205, 0, 0, 0.4);
+  box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
   padding: 0 0 0 10px;
   outline: none;
   height: 30px;
   width: 322px;
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
+}
+
+.crSDEPassportValid span{
+  font-size: 12pt;
+  border-bottom: solid 1px rgba(0, 205, 0, 0.4);
+  border-top: solid 1px rgba(0, 205, 0, 0.4);
+  box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
+  padding: 0 0 0 10px;
+  outline: none;
+  height: 30px;
+  width: 322px;
+}
+
+.crSDEPassportDefault input{
+  font-size: 12pt;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
+  border-top: solid 1px rgba(0, 0, 0, 0.4);
+  border-left: 0;
+  border-right: 0;
+  padding: 0 0 0 10px;
+  width: 30px;
+  outline: none;
+  height: 30px;
+  box-shadow:  0 3px 05px rgba(0,0,0,0.22);
 }
 
 .crSDEPassportInvalid input{
@@ -271,7 +313,6 @@
   padding: 0 0 0 10px;
   outline: none;
   height: 30px;
-  width: 322px;
 }
 
 .crSDEPassportValid input{
@@ -281,7 +322,6 @@
   padding: 0 0 0 10px;
   outline: none;
   height: 30px;
-  width: 322px;
 }
 
 

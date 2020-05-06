@@ -7,6 +7,7 @@ import { SubDepartmentService } from '../../service/sub-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {SetBirthDate} from '../../service/set.bitrh.date';
 import {InitBirthDate} from '../../service/init.birth.date';
+import {SetPassport} from '../../service/set.passport';
 
 @Component({
   selector: 'app-create-sub-dept-employee',
@@ -60,19 +61,20 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
     /*  passport: [null, [Validators.required,
                           Validators.pattern("^(Серия:\\s?)\\d{2}\\s"
                                             + "\\d{2}\\s(Номер:\\s?)\\d{6}$")]], */
-      passportSF:[null],
-      passportSS:[null],
-      passportN:[null],
+      seriesF:[null, [Validators.required, Validators.minLength(2)]],
+      seriesS:[null, [Validators.required, Validators.minLength(2)]],
+      number:[null, [Validators.required, Validators.minLength(6)]],
       subDepartment: [null,[Validators.required]]
     });
   }
 
   addSubDeptEmployee(){
     this.submitted = true;
+    this.subDeptEmployee.passport = SetPassport(this.sEmpCrForm, 'seriesF', 'seriesS', 'number');
     this.subDeptEmployee.birthDate = SetBirthDate(this.sEmpCrForm, 'day', 'month', 'year');
     if(this.sEmpCrForm.valid) {
       this.subDeptEmployeeService.addSubDeptEmployee(this.subDeptEmployee)
-        .subscribe(result => this.goToAllSubEmployees());
+        .subscribe(() => this.goToAllSubEmployees());
     }
   }
 
