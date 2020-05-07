@@ -15,16 +15,18 @@
 
 .crSDELastNameDefault, .crSDELastNameInvalid, .crSDELastNameValid{
   display: inline-block;
+  margin: 2px 0 0 2px;
   height: 32px;
 }
 .crSDELastNameDefault label, .crSDELastNameInvalid label, .crSDELastNameValid label{
+  position: relative;
   float: left;
   border: solid 1px rgba(0, 0, 0, 0.4);
   width: 90px;
   height: 30px;
   background-color: rgba(217, 217, 217, 0.25);
   box-shadow: 3px 0 5px rgba(0,0,0,0.22);
-  z-index: 2;
+  z-index: 5;
 }
 
 .crSDELastNameDefault b, .crSDELastNameInvalid b, .crSDELastNameValid b{
@@ -34,6 +36,7 @@
 }
 
 .crSDELastNameDefault input{
+  float: left;
   font-size: 12pt;
   border: solid 1px rgba(0, 0, 0, 0.4);
   padding: 0 0 0 10px;
@@ -44,6 +47,7 @@
 }
 
 .crSDELastNameInvalid input{
+  float: left;
   font-size: 12pt;
   border: solid 1px rgba(205, 0, 0, 0.4);
   box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
@@ -54,6 +58,7 @@
 }
 
 .crSDELastNameValid input{
+  float: left;
   font-size: 12pt;
   border: solid 1px rgba(0, 205, 0, 0.4);
   box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
@@ -64,24 +69,27 @@
 }
 
 .crSDELastNameErrorMassage{
+  padding: 0;
   width: 789px;
   height: 53px;
-  display: block;
+  float: left;
 }
 
 .crSDELastNameErrorMassage p{
-  padding: 0 0 0 10px;
+  margin: 0 0 0 103px;
   font-size: 11pt;
   color: rgba(205, 0, 0, 0.4);
 }
 
 .crSDEFirstNameDefault, .crSDEFirstNameInvalid, .crSDEFirstNameValid{
   display: inline-block;
-  height: 30px;
+  margin: 50px 0 0 2px;
+  height: 32px;
 }
 
 .crSDEFirstNameDefault label, .crSDEFirstNameInvalid label, .crSDEFirstNameValid label{
   float: left;
+  position: relative;
   border: solid 1px rgba(0, 0, 0, 0.4);
   width: 90px;
   height: 30px;
@@ -97,16 +105,18 @@
 }
 
 .crSDEFirstNameDefault input{
+  float: left;
   font-size: 12pt;
   border: solid 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
   padding: 0 0 0 10px;
   outline: none;
   height: 30px;
   width: 869px;
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
 }
 
 .crSDEFirstNameInvalid input{
+  float: left;
   font-size: 12pt;
   border: solid 1px rgba(205, 0, 0, 0.4);
   box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
@@ -117,6 +127,7 @@
 }
 
 .crSDEFirstNameValid input{
+  float: left;
   font-size: 12pt;
   border: solid 1px rgba(0, 205, 0, 0.4);
   box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
@@ -129,19 +140,19 @@
 .crSDEFirstNameErrorMassage{
   width: 789px;
   height: 53px;
-  display: inline-block;
+  float: left;
 }
 
 .crSDEFirstNameErrorMassage p{
-  padding: 0 0 0 10px;
+  margin: 0 0 0 103px;
   font-size: 11pt;
-  margin: 0;
   color: rgba(205, 0, 0, 0.4);
 }
 
 .crSDEMiddleNameDefault, .crSDEMiddleNameInvalid, .crSDEMiddleNameValid{
   display: inline-block;
-  height: 28px;
+  margin: 50px 0 0 2px;
+  height: 32px;
 }
 
 .crSDEMiddleNameDefault label, .crSDEMiddleNameInvalid label, .crSDEMiddleNameValid label{
@@ -193,14 +204,19 @@
 .crSDEMiddleNameErrorMassage{
   width: 789px;
   height: 53px;
-  display: inline-block;
+  float: left;
 }
 
 .crSDEMiddleNameErrorMassage p{
-  padding: 0 0 0 10px;
+  margin: 0 0 0 103px;
   font-size: 11pt;
-  margin: 0;
   color: rgba(205, 0, 0, 0.4);
+}
+
+.crSDEBirthDateDefault, .crSDEBirthDateInvalid, .crSDEBirthDateValid{
+  display: inline-block;
+  margin: 50px 0 0 2px;
+  height: 32px;
 }
 
 .crSDEBirthDateDefault label, .crSDEBirthDateInvalid label, .crSDEBirthDateValid label{
@@ -214,18 +230,21 @@
 }
 
 .crSDEBirthDateDefault select{
+  outline: none;
   height: 32px;
   box-shadow: 3px 0 5px rgba(0,0,0,0.22);
   cursor: pointer;
 }
 
-.crSDEBirthDateInvalid select{
+.crSDEBirthDateInvalid select:disabled{
+  outline: none;
   height: 32px;
   box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
   cursor: pointer;
 }
 
 .crSDEBirthDateValid select{
+  outline: none;
   height: 32px;
   box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
   cursor: pointer;
@@ -238,14 +257,14 @@
 }
 
 .crSDEBirthDateErrorMassage p{
-  padding-left: 5px;
+  margin: 0 0 0 133px;
   font-size: 11pt;
-  margin: 0;
   color: rgba(205, 0, 0, 0.4);
 }
 
 .crSDEPassportDefault label, .crSDEPassportInvalid  label, .crSDEPassportValid label{
   float: left;
+  position: relative;
   border: solid 1px rgba(0, 0, 0, 0.4);
   width: 162px;
   height: 30px;
@@ -254,153 +273,129 @@
   z-index: 2;
 }
 
-.crSDEPassportDefault .series, .number{
-  box-shadow:0 2px 5px rgba(0, 0, 0, 0.4);
-}
-
-.crSDEPassportDefault .series{
+.crSDEPassportDefault .seriesF{
+  position: relative;
   font-size: 12pt;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-top: solid 1px rgba(0, 0, 0, 0.4);
-
+  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
   display: inline-block;
   height: 30px;
+  z-index: 1;
 }
 
-.crSDEPassportDefault .series span{
+.crSDEPassportDefault .seriesF span,
+.crSDEPassportInvalid .seriesF span,
+.crSDEPassportValid .seriesF span{
   float: left;
   padding-top: 6px;
   padding-left: 6px;
 }
 
-.crSDEPassportDefault .series input{
-  display: inline-block;
+.crSDEPassportDefault .seriesF input,
+.crSDEPassportInvalid .seriesF input,
+.crSDEPassportValid .seriesF input {
+  position: relative;
   border: 0;
   outline: none;
   height: 26px;
   width: 20px;
   margin-left: 6px;
-}
-
-.crSDEPassportDefault .number{
-  font-size: 12pt;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
-  border-top: solid 1px rgba(0, 0, 0, 0.4);
-  display: inline-block;
-  height: 30px;
+  z-index: 1;
 }
 
 
-.crSDEPassportDefault .number span{
-  float: left;
-  padding-top: 6px;
-  padding-left: 6px;
-}
-
-.crSDEPassportDefault .number input{
-  display: inline-block;
-  border: 0;
-  outline: none;
-  height: 26px;
-  width: 70px;
-  margin-left: 6px;
-}
-
-
-
-.crSDEPassportInvalid .series{
-  font-size: 12pt;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
-  border-top: solid 1px rgba(0, 0, 0, 0.4);
-
-  display: inline-block;
-  height: 30px;
-}
-
-.crSDEPassportDefault .series span{
-  float: left;
-  padding-top: 6px;
-  padding-left: 6px;
-}
-
-.crSDEPassportDefault .series input{
-  display: inline-block;
-  border: 0;
-  outline: none;
-  height: 26px;
-  width: 20px;
-  margin-left: 6px;
-}
-
-.crSDEPassportDefault .number{
-  font-size: 12pt;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
-  border-top: solid 1px rgba(0, 0, 0, 0.4);
-  display: inline-block;
-  height: 30px;
-}
-
-
-.crSDEPassportDefault .number span{
-  float: left;
-  padding-top: 6px;
-  padding-left: 6px;
-}
-
-.crSDEPassportDefault .number input{
-  display: inline-block;
-  border: 0;
-  outline: none;
-  height: 26px;
-  width: 70px;
-  margin-left: 6px;
-}
-
-
-
-
-.crSDEPassportInvalid span{
-  display: inline-block;
+.crSDEPassportInvalid .seriesF {
+  position: relative;
   font-size: 12pt;
   border-bottom: solid 1px rgba(205, 0, 0, 0.4);
   border-top: solid 1px rgba(205, 0, 0, 0.4);
   box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
-  padding: 0 0 0 10px;
-  outline: none;
+  display: inline-block;
   height: 30px;
-  width: 322px;
+  z-index: 1;
 }
 
-.crSDEPassportValid span{
+.crSDEPassportDefault .seriesS{
+  position: relative;
   font-size: 12pt;
-  border-bottom: solid 1px rgba(0, 205, 0, 0.4);
-  border-top: solid 1px rgba(0, 205, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
-  padding: 0 0 0 10px;
-  outline: none;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
+  border-top: solid 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
+  display: inline-block;
   height: 30px;
-  width: 322px;
+  z-index: 2;
+  background-color:white;
 }
 
-
-.crSDEPassportInvalid input{
+.crSDEPassportInvalid .seriesS{
+  position: relative;
   font-size: 12pt;
-  border: solid 1px rgba(205, 0, 0, 0.4);
+  border-bottom: solid 1px rgba(205, 0, 0, 0.4);
+  border-top: solid 1px rgba(205, 0, 0, 0.4);
   box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
-  padding: 0 0 0 10px;
-  outline: none;
+  display: inline-block;
   height: 30px;
+  z-index: 2;
+  background-color:white;
 }
 
-.crSDEPassportValid input{
-  font-size: 12pt;
-  border: solid 1px rgba(0, 205, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
-  padding: 0 0 0 10px;
+
+.crSDEPassportDefault .seriesS input,
+.crSDEPassportInvalid .seriesS input,
+.crSDEPassportValid .seriesS input{
+  border: 0;
   outline: none;
+  height: 26px;
+  width: 20px;
+  margin-left: 6px;
+  z-index: 2;
+}
+
+.crSDEPassportDefault .number{
+  position: relative;
+  font-size: 12pt;
+  border-right: solid 1px rgba(0, 0, 0, 0.4);
+  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
+  border-top: solid 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
+  display: inline-block;
   height: 30px;
+  z-index: 3;
+  background-color:white;
+}
+
+.crSDEPassportInvalid .number{
+  position: relative;
+  font-size: 12pt;
+  border-right: solid 1px rgba(205, 0, 0, 0.4);
+  border-bottom: solid 1px rgba(205, 0, 0, 0.4);
+  border-top: solid 1px rgba(205, 0, 0, 0.4);
+  box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
+  display: inline-block;
+  height: 30px;
+  z-index: 3;
+  background-color:white;
+}
+
+
+
+.crSDEPassportDefault .number span,
+.crSDEPassportInvalid .number span,
+.crSDEPassportValid .number span{
+  float: left;
+  padding-top: 6px;
+  padding-left: 6px;
+}
+
+.crSDEPassportDefault .number input,
+.crSDEPassportInvalid .number input,
+.crSDEPassportValid .number input{
+  border: 0;
+  outline: none;
+  height: 26px;
+  width: 70px;
+  margin-left: 6px;
 }
 
 

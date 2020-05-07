@@ -2,94 +2,93 @@
   <form [formGroup]="sEmpCrForm" novalidate (ngSubmit)="addSubDeptEmployee()" >
     <h2>Добавление сотрудника</h2>
     <div class="crSubDeptEmpl">
-
-        <div [ngClass]="{'crSDELastNameDefault': sEmpCrForm.get('lastName').untouched,
-                         'crSDELastNameInvalid': sEmpCrForm.get('lastName').invalid
-                                              && (sEmpCrForm.get('lastName').dirty
-                                              || sEmpCrForm.get('lastName').touched),
-                         'crSDELastNameValid': sEmpCrForm.get('lastName').touched
-                                              && sEmpCrForm.get('lastName').valid }" >
-          <label for="lastName"><b>Фамилия</b></label>
-          <input type="text" id="lastName" placeholder="Введите фамилию"
-                 [(ngModel)]="subDeptEmployee.lastName"  formControlName="lastName" >
-          <div class="crSDELastNameErrorMassage">
-            <div *ngIf="sEmpCrForm.get('lastName').invalid
-                  && (sEmpCrForm.get('lastName').dirty
-                  || sEmpCrForm.get('lastName').touched)" >
-              <div *ngIf="sEmpCrForm.get('lastName').errors.required">
-                <p>Поле не должно быть пустым!</p>
-              </div>
-              <div *ngIf="sEmpCrForm.get('lastName').errors.minlength
-                          || sEmpCrForm.get('lastName').errors.pattern">
-                <p>Некорректная фамилия!</p>
-              </div>
-              <div *ngIf="sEmpCrForm.get('lastName').errors.minlength">
-                <p>Фамилия слишком короткая!</p>
-              </div>
-              <div *ngIf="sEmpCrForm.get('lastName').errors.pattern">
-                <p>Фамилия должна содержать только кириллические, или латинские буквы!</p>
-              </div>
+      <div [ngClass]="{'crSDELastNameDefault': sEmpCrForm.get('lastName').untouched,
+                       'crSDELastNameInvalid': sEmpCrForm.get('lastName').invalid
+                                             && !sEmpCrForm.get('lastName').touched
+                                             && submitted,
+                       'crSDELastNameValid': sEmpCrForm.get('lastName').touched
+                                             && sEmpCrForm.get('lastName').valid }" >
+        <label for="lastName"><b>Фамилия</b></label>
+        <input type="text" id="lastName" placeholder="Введите фамилию"
+               [(ngModel)]="subDeptEmployee.lastName"  formControlName="lastName" >
+        <div class="crSDELastNameErrorMassage">
+          <div *ngIf="sEmpCrForm.get('lastName').invalid
+                && (sEmpCrForm.get('lastName').dirty
+                || sEmpCrForm.get('lastName').touched)" >
+            <div *ngIf="sEmpCrForm.get('lastName').errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="sEmpCrForm.get('lastName').errors.minlength
+                        || sEmpCrForm.get('lastName').errors.pattern">
+              <p>Некорректная фамилия!</p>
+            </div>
+            <div *ngIf="sEmpCrForm.get('lastName').errors.minlength">
+              <p>Фамилия слишком короткая!</p>
+            </div>
+            <div *ngIf="sEmpCrForm.get('lastName').errors.pattern">
+              <p>Фамилия должна содержать только кириллические, или латинские буквы!</p>
             </div>
           </div>
         </div>
+      </div>
 
 
-        <div [ngClass]="{'crSDEFirstNameDefault': sEmpCrForm.get('firstName').untouched,
-                         'crSDEFirstNameInvalid': sEmpCrForm.get('firstName').invalid
-                                             && (sEmpCrForm.get('firstName').dirty
-                                             || sEmpCrForm.get('firstName').touched),
-                         'crSDEFirstNameValid': sEmpCrForm.get('firstName').touched
-                                             && sEmpCrForm.get('firstName').valid }" >
-          <label for="firstName"><b>Имя</b></label>
-          <input type="text" id="firstName" placeholder="Введите имя"
-                 [(ngModel)]="subDeptEmployee.firstName"  formControlName="firstName" >
-          <div class="crSDEFirstNameErrorMassage">
-            <div *ngIf="sEmpCrForm.get('firstName').invalid
-                && (sEmpCrForm.get('firstName').dirty
-                || sEmpCrForm.get('firstName').touched)" >
-              <div *ngIf="sEmpCrForm.get('firstName').errors.required">
-                <p>Поле не должно быть пустым!</p>
-              </div>
-              <div *ngIf="sEmpCrForm.get('firstName').errors.minlength
-                        || sEmpCrForm.get('firstName').errors.pattern">
-                <p>Некорректное имя!</p>
-              </div>
-              <div *ngIf="sEmpCrForm.get('firstName').errors.minlength">
-                <p>Имя слишком короткое!</p>
-              </div>
-              <div *ngIf="sEmpCrForm.get('firstName').errors.pattern">
-                <p>Имя должно содержать только кириллические, или латинские буквы!</p>
-              </div>
+      <div [ngClass]="{'crSDEFirstNameDefault': sEmpCrForm.get('firstName').untouched,
+                       'crSDEFirstNameInvalid': sEmpCrForm.get('firstName').invalid
+                                              && !sEmpCrForm.get('firstName').touched
+                                              && submitted,
+                       'crSDEFirstNameValid': sEmpCrForm.get('firstName').touched
+                                           && sEmpCrForm.get('firstName').valid }" >
+        <label for="firstName"><b>Имя</b></label>
+        <input type="text" id="firstName" placeholder="Введите имя"
+               [(ngModel)]="subDeptEmployee.firstName"  formControlName="firstName" >
+        <div class="crSDEFirstNameErrorMassage">
+          <div *ngIf="sEmpCrForm.get('firstName').invalid
+              && (sEmpCrForm.get('firstName').dirty
+              || sEmpCrForm.get('firstName').touched)" >
+            <div *ngIf="sEmpCrForm.get('firstName').errors.required">
+              <p>Поле не должно быть пустым!</p>
+            </div>
+            <div *ngIf="sEmpCrForm.get('firstName').errors.minlength
+                      || sEmpCrForm.get('firstName').errors.pattern">
+              <p>Некорректное имя!</p>
+            </div>
+            <div *ngIf="sEmpCrForm.get('firstName').errors.minlength">
+              <p>Имя слишком короткое!</p>
+            </div>
+            <div *ngIf="sEmpCrForm.get('firstName').errors.pattern">
+              <p>Имя должно содержать только кириллические, или латинские буквы!</p>
             </div>
           </div>
         </div>
+      </div>
 
-        <div [ngClass]="{'crSDEMiddleNameDefault': sEmpCrForm.get('middleName').untouched,
-                         'crSDEMiddleNameInvalid': sEmpCrForm.get('middleName').invalid
-                                              && (sEmpCrForm.get('middleName').dirty
-                                              || sEmpCrForm.get('middleName').touched),
-                         'crSDEMiddleNameValid': sEmpCrForm.get('middleName').valid }" >
-          <label for="middleName"><b>Отчество</b></label>
-          <input type="text" id="middleName"
-                 placeholder="Введите отчество (Если отсутствует введите - )"
-                 [(ngModel)]="subDeptEmployee.middleName"  formControlName="middleName" >
-          <div class="crSDEMiddleNameErrorMassage">
-            <div *ngIf="sEmpCrForm.get('middleName').invalid
-              && (sEmpCrForm.get('middleName').dirty
-              || sEmpCrForm.get('middleName').touched)" >
-              <div *ngIf="sEmpCrForm.get('middleName').errors.required">
-                <p>Поле не должно быть пустым!</p>
-             </div>
-              <div *ngIf="sEmpCrForm.get('middleName').errors.minlength
-                      || sEmpCrForm.get('middleName').errors.pattern">
-                <p>Некорректное отчество!</p>
-              </div>
-              <div *ngIf="sEmpCrForm.get('middleName').errors.pattern">
-                <p>Отчество должно содержать только кириллические, или латинские буквы, либо дефис!</p>
-              </div>
+      <div [ngClass]="{'crSDEMiddleNameDefault': sEmpCrForm.get('middleName').untouched,
+                       'crSDEMiddleNameInvalid': sEmpCrForm.get('middleName').invalid
+                                               && !sEmpCrForm.get('middleName').touched
+                                               && submitted,
+                       'crSDEMiddleNameValid': sEmpCrForm.get('middleName').valid }" >
+        <label for="middleName"><b>Отчество</b></label>
+        <input type="text" id="middleName"
+               placeholder="Введите отчество (Если отсутствует введите - )"
+               [(ngModel)]="subDeptEmployee.middleName"  formControlName="middleName" >
+        <div class="crSDEMiddleNameErrorMassage">
+          <div *ngIf="sEmpCrForm.get('middleName').invalid
+            && (sEmpCrForm.get('middleName').dirty
+            || sEmpCrForm.get('middleName').touched)" >
+            <div *ngIf="sEmpCrForm.get('middleName').errors.required">
+              <p>Поле не должно быть пустым!</p>
            </div>
-          </div>
+            <div *ngIf="sEmpCrForm.get('middleName').errors.minlength
+                    || sEmpCrForm.get('middleName').errors.pattern">
+              <p>Некорректное отчество!</p>
+            </div>
+            <div *ngIf="sEmpCrForm.get('middleName').errors.pattern">
+              <p>Отчество должно содержать только кириллические, или латинские буквы, либо дефис!</p>
+            </div>
+         </div>
         </div>
+      </div>
 
       <div [ngClass]=" {'crSDEBirthDateDefault': sEmpCrForm.get('day' && 'month' && 'year').untouched,
                         'crSDEBirthDateInvalid': ((sEmpCrForm.get('day' && 'month' && 'year').invalid
@@ -121,11 +120,9 @@
 
       </div>
       <div class="crSDEBirthDateErrorMassage">
-        <div *ngIf="((sEmpCrForm.get('day' && 'month' && 'year').invalid
-                      && sEmpCrForm.get('day' && 'month' && 'year').touched)
-                      ||(sEmpCrForm.get('day' && 'month' && 'year').invalid
+        <div *ngIf="(sEmpCrForm.get('day' && 'month' && 'year').invalid
                       && !sEmpCrForm.get('day' && 'month' && 'year').touched
-                      && submitted))" >
+                      && submitted)" >
           <div *ngIf="sEmpCrForm.get('day' && 'month' && 'year').errors.required">
             <p>Укажите дату!</p>
           </div>
@@ -141,14 +138,16 @@
                                               && submitted)),
                         'crSDEPassportValid': sEmpCrForm.get('seriesF' && 'seriesS' && 'number').touched && sEmpCrForm.get('seriesF' && 'seriesS' && 'number').valid }" >
         <label ><b>Паспортные данные</b></label>
-        <div class="series">
+        <div class="seriesF">
           <span>Серия: </span>
-          <input id="seriesF" type="text" maxlength="2" minlength="2" formControlName="seriesF" aria-label="passport" placeholder="_ _">
-          <input id="seriesS" type="text" maxlength="2" minlength="2" formControlName="seriesS" aria-label="passport" placeholder="_ _">
+          <input id="seriesF" type="text" formControlName="seriesF" aria-label="passport" placeholder="_ _">
+        </div>
+        <div class="seriesS">
+          <input id="seriesS" type="text" formControlName="seriesS" aria-label="passport" placeholder="_ _">
         </div>
         <div class="number">
           <span>Номер: </span>
-          <input id="number" type="text" maxlength="6" minlength="6" formControlName="number" aria-label="passport" placeholder="_ _ _ _ _ _">
+          <input id="number" type="text" formControlName="number" aria-label="passport" placeholder="_ _ _ _ _ _">
         </div>
 
         <div class="crSDEPassportErrorMassage">

@@ -16,6 +16,8 @@ import {SetPassport} from '../../service/set.passport';
 })
 export class CreateSubDeptEmployeeComponent implements OnInit {
 
+  date: Date;
+
   subDeptEmployee: SubDeptEmployee;
   subDepartments: SubDepartment[];
   sEmpCrForm: FormGroup;
@@ -42,6 +44,7 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
   }
 
   initSubDeptEmpForm(){
+
     this.sEmpCrForm = this.formBuilder.group({
       lastName: [null, [Validators.required,
                           Validators.pattern("^([А-я]+|[A-z]+)$"),
@@ -58,9 +61,9 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
       day: [null, [Validators.required]],
       month: [null, [Validators.required]],
       year: [null, [Validators.required]],
-      seriesF:[null, [Validators.required, Validators.pattern("\\d{2}")]],
-      seriesS:[null, [Validators.required, Validators.pattern("\\d{2}")]],
-      number:[null, [Validators.required, Validators.pattern("\\d{6}")]],
+      seriesF:[null, [Validators.required, Validators.maxLength(2), Validators.pattern("\\d{2}")]],
+      seriesS:[null, [Validators.required, Validators.maxLength(2), Validators.pattern("\\d{2}")]],
+      number:[null, [Validators.required, Validators.maxLength(6), Validators.pattern("\\d{6}")]],
       subDepartment: [null,[Validators.required]]
     });
   }
