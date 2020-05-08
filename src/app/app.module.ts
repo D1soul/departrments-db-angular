@@ -61,7 +61,8 @@ import {JwtTokenInterceptor} from './jwt.token.interceptor';
         BrowserModule,
         HttpClientModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        BrowserAnimationsModule
     ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: JwtTokenInterceptor, multi: true },

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import { SubDeptEmployee } from '../../entities/sub-dept-employee';
 import { SubDeptEmployeeService } from '../../service/sub-dept-employee.service';
 import { Router} from '@angular/router';
@@ -8,15 +8,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {SetBirthDate} from '../../service/set.bitrh.date';
 import {InitBirthDate} from '../../service/init.birth.date';
 import {SetPassport} from '../../service/set.passport';
+import {state, style, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-create-sub-dept-employee',
   templateUrl: './create-sub-dept-employee.component.html',
-  styleUrls: ['./create-sub-dept-employee.component.css']
+  styleUrls: ['./create-sub-dept-employee.component.css'],
+  animations: [
+    trigger('validationStatus', [])
+  ]
 })
 export class CreateSubDeptEmployeeComponent implements OnInit {
-
-  date: Date;
 
   subDeptEmployee: SubDeptEmployee;
   subDepartments: SubDepartment[];
@@ -25,6 +27,7 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
   months = [];
   years = [];
   submitted: boolean = false;
+  validation: string;
 
   constructor(private subDeptEmployeeService: SubDeptEmployeeService,
               private subDepartmentService: SubDepartmentService,
@@ -38,13 +41,13 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
     this.selectSubDepartment();
   }
 
+
   selectSubDepartment(){
     this.subDepartmentService.getAllSubDepartments()
       .subscribe(subDepartments => this.subDepartments = subDepartments);
   }
 
   initSubDeptEmpForm(){
-
     this.sEmpCrForm = this.formBuilder.group({
       lastName: [null, [Validators.required,
                           Validators.pattern("^([А-я]+|[A-z]+)$"),
@@ -61,9 +64,12 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
       day: [null, [Validators.required]],
       month: [null, [Validators.required]],
       year: [null, [Validators.required]],
-      seriesF:[null, [Validators.required, Validators.maxLength(2), Validators.pattern("\\d{2}")]],
-      seriesS:[null, [Validators.required, Validators.maxLength(2), Validators.pattern("\\d{2}")]],
-      number:[null, [Validators.required, Validators.maxLength(6), Validators.pattern("\\d{6}")]],
+      seriesF:[null, [Validators.required,
+                      Validators.pattern("\\d{2}")]],
+      seriesS:[null, [Validators.required,
+                      Validators.pattern("\\d{2}")]],
+      number:[null, [Validators.required,
+                     Validators.pattern("\\d{6}")]],
       subDepartment: [null,[Validators.required]]
     });
   }
@@ -81,4 +87,6 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
   goToAllSubEmployees(){
     this.router.navigate(['/sub-dept_employees']);
   }
+
+
 }
