@@ -49,7 +49,8 @@ export class RegistrationComponent implements OnInit {
     },
       {
         validators: PasswordMatchValidator('password', 'confirmPassword')
-      }
+      },
+
     );
   }
 

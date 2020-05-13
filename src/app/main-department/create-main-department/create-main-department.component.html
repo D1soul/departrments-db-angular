@@ -3,7 +3,7 @@
     <h2>Добавление главного департамерта</h2>
     <div class="cr_main_dept">
       <div class="name_label">
-        <label ><b>Название</b></label>
+        <label for="name"><b>Название</b></label>
       </div>
       <div [ngClass]="{'name_default': mDeptCrForm.controls['name'].untouched,
                       'name_invalid': ((mDeptCrForm.controls['name'].invalid && (mDeptCrForm.controls['name'].dirty

@@ -104,20 +104,20 @@
                                               && !mEmpCrForm.get('day' && 'month' && 'year').touched
                                               && submitted)),
                         'crMDEBirthDateValid': mEmpCrForm.get('day' && 'month' && 'year').valid }" >
-        <select formControlName="day" >
-          <option hidden [ngValue]="null"><p>День</p></option>
+        <select formControlName="day" aria-label="birthDate" >
+          <option hidden [ngValue]="null">День</option>
           <option *ngFor="let day of days" [value]="day" >
             {{day}}
           </option>
         </select>
 
-        <select formControlName="month"  >
-          <option hidden [ngValue]="null"><p>Месяц</p></option>
+        <select formControlName="month" aria-label="birthDate" >
+          <option hidden [ngValue]="null">Месяц</option>
           <option *ngFor="let month of months" [value]="month.name" >
             {{month.name}}
           </option>
         </select>
-        <select  formControlName="year" >
+        <select  formControlName="year" aria-label="birthDate" >
           <option hidden [ngValue]="null">Год</option>
           <option *ngFor="let year of years"  [value]="year">
             {{year}}
@@ -176,7 +176,7 @@
                                               && submitted)),
                         'crMDEMainDeptValid' : mEmpCrForm.get('mainDepartment').valid }" >
         <select id="mdeSd" [(ngModel)]="mainDeptEmployee.mainDepartment" formControlName="mainDepartment" >
-          <option hidden [ngValue]="null"><p>Главный департамент</p></option>
+          <option hidden [ngValue]="null">Главный департамент</option>
           <option *ngFor="let mainDepartment of mainDepartments" >
             {{mainDepartment.name}}
           </option>
