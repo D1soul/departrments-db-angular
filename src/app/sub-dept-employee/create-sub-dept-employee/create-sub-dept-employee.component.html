@@ -20,7 +20,7 @@
                   ||  sEmpCrForm.get('lastName').untouched
                   ||  sEmpCrForm.get('lastName').touched) && submitted" >
             <div *ngIf="sEmpCrForm.get('lastName').errors.required">
-              <p>Поле Обязательно для заполнения!</p>
+              <p>Поле обязательно для заполнения!</p>
             </div>
             <div *ngIf="sEmpCrForm.get('lastName').errors.pattern">
               <p>Допускаются только кириллические, или латинские буквы!</p>
@@ -47,7 +47,7 @@
                       ||  sEmpCrForm.get('firstName').touched)
                       && submitted" >
             <div *ngIf="sEmpCrForm.get('firstName').errors.required">
-              <p>Поле Обязательно для заполнения!</p>
+              <p>Поле обязательно для заполнения!</p>
             </div>
             <div *ngIf="sEmpCrForm.get('firstName').errors.pattern">
               <p>Допускаются только кириллические, или латинские буквы!</p>
@@ -75,7 +75,7 @@
                       ||  sEmpCrForm.get('middleName').touched)
                       && submitted" >
             <div *ngIf="sEmpCrForm.get('middleName').errors.required">
-              <p>Поле Обязательно для заполнения!</p>
+              <p>Поле обязательно для заполнения!</p>
             </div>
             <div *ngIf="sEmpCrForm.get('middleName').errors.pattern">
               <p>Допускаются только кириллические, или латинские буквы, либо дефис!</p>
@@ -157,7 +157,7 @@
                      || sEmpCrForm.get('number').invalid)
                      && submitted)" >
             <div *ngIf="sEmpCrForm.get('seriesF' || 'seriesS' || 'number').errors.required">
-              <p>Поле Обязательно для заполнения!</p>
+              <p>Поле обязательно для заполнения!</p>
             </div>
             <div *ngIf="sEmpCrForm.get('seriesF' || 'seriesS' || 'number').errors.pattern">
               <p>Допускаются только цифры!</p>
