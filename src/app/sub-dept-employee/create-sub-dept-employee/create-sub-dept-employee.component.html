@@ -9,8 +9,9 @@
                                              ||  sEmpCrForm.get('lastName').untouched
                                              ||  sEmpCrForm.get('lastName').touched)
                                              && submitted,
-
-                       'crSDEValidationValid': sEmpCrForm.get('lastName').valid}" >
+                       'crSDEValidationValid': sEmpCrForm.get('lastName').valid,
+                       'crSDEValidationValidAndFocused': sEmpCrForm.get('lastName').valid
+                        &&  sEmpCrForm.get('lastName') === sEmpCrForm.get(inputName) }" >
         <label for="lastName"><b>Фамилия</b></label>
         <input type="text" id="lastName" placeholder="Введите фамилию"
                [(ngModel)]="subDeptEmployee.lastName" formControlName="lastName"  >
@@ -37,7 +38,9 @@
                                               ||  sEmpCrForm.get('firstName').untouched
                                               ||  sEmpCrForm.get('firstName').touched)
                                               && submitted,
-                        'crSDEValidationValid': sEmpCrForm.get('firstName').valid }" >
+                        'crSDEValidationValid': sEmpCrForm.get('firstName').valid,
+                        'crSDEValidationValidAndFocused': sEmpCrForm.get('firstName').valid
+                        &&  sEmpCrForm.get('firstName') === sEmpCrForm.get(inputName) }" >
         <label for="firstName"><b>Имя</b></label>
         <input type="text" id="firstName" placeholder="Введите имя"
                [(ngModel)]="subDeptEmployee.firstName" formControlName="firstName" >
@@ -64,7 +67,9 @@
                                              ||  sEmpCrForm.get('middleName').untouched
                                              ||  sEmpCrForm.get('middleName').touched)
                                              && submitted,
-                       'crSDEValidationValid': sEmpCrForm.get('middleName').valid }" >
+                       'crSDEValidationValid': sEmpCrForm.get('middleName').valid,
+                       'crSDEValidationValidAndFocused': sEmpCrForm.get('middleName').valid
+                        &&  sEmpCrForm.get('middleName') === sEmpCrForm.get(inputName) }" >
         <label for="middleName"><b>Отчество</b></label>
         <input type="text" id="middleName"
                placeholder="Введите отчество (Если отсутствует введите - )"
@@ -93,9 +98,15 @@
                                                && submitted,
                         'crSDEValidationValid': sEmpCrForm.get('day').valid
                                              && sEmpCrForm.get('month').valid
-                                             && sEmpCrForm.get('year').valid}" >
+                                             && sEmpCrForm.get('year').valid,
+                        'crSDEValidationValidAndFocused':  (sEmpCrForm.get('day').valid
+                                                         && sEmpCrForm.get('month').valid
+                                                         && sEmpCrForm.get('year').valid)
+                              &&  (sEmpCrForm.get('day') === sEmpCrForm.get(inputName)
+                              ||   sEmpCrForm.get('month') === sEmpCrForm.get(inputName)
+                              ||   sEmpCrForm.get('year') === sEmpCrForm.get(inputName)) }" >
         <label ><b>Дата рождения</b> </label>
-        <select  id="day"  formControlName="day" aria-label="birthDate">
+        <select  id="day" formControlName="day" aria-label="birthDate">
           <option hidden [ngValue]="null">День</option>
           <option *ngFor="let day of days" [value]="day" >
             {{day}}
@@ -137,7 +148,13 @@
                                                  && submitted),
                         'crSDEValidationValid': sEmpCrForm.get('seriesF').valid
                                              && sEmpCrForm.get('seriesS').valid
-                                             && sEmpCrForm.get('number').valid}" >
+                                             && sEmpCrForm.get('number').valid,
+                        'crSDEValidationValidAndFocused':  (sEmpCrForm.get('seriesF').valid
+                                                         && sEmpCrForm.get('seriesS').valid
+                                                         && sEmpCrForm.get('number').valid)
+                         &&  (sEmpCrForm.get('seriesF') === sEmpCrForm.get(inputName)
+                         ||   sEmpCrForm.get('seriesS') === sEmpCrForm.get(inputName)
+                         ||   sEmpCrForm.get('number') === sEmpCrForm.get(inputName)) }" >
         <label ><b>Паспортные данные</b></label>
         <div class="series">
           <span>Серия: </span>
@@ -174,7 +191,9 @@
                                               ||  sEmpCrForm.get('subDepartment').untouched)
                                               ||(sEmpCrForm.get('subDepartment').invalid
                                               && submitted)),
-                        'crSDEValidationValid' : sEmpCrForm.get('subDepartment').valid }" >
+                        'crSDEValidationValid' : sEmpCrForm.get('subDepartment').valid,
+                        'crSDEValidationValidAndFocused': sEmpCrForm.get('subDepartment').valid
+                        &&  sEmpCrForm.get('subDepartment') === sEmpCrForm.get(inputName)  }" >
         <label for="sdeSd"><b>Подотдел</b></label>
         <select id="sdeSd" [(ngModel)]="subDeptEmployee.subDepartment" formControlName="subDepartment" >
           <option hidden [ngValue]="null">Выберите Подотдел</option>
