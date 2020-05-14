@@ -3,22 +3,24 @@ import { NgControl} from '@angular/forms';
 
 
 @Directive({
-  selector:  '[formControl], [formControlName]'
- // selector:  'input:focus)'
-//  selector:  '.crSDEValidationInvalid input'
-  // selector:  '[formGroup]'
+  selector:  '[formControl, [formControlName]'
 })
-export class OnFocusControl implements OnInit {
-//export class OnFocusControl {
-  constructor(private elementRef:  ElementRef, private ngControl: NgControl) {}
-  name: string;
+export class OnFocusControl implements OnInit, AfterContentInit {
+  constructor( private elementRef:  ElementRef, private ngControl: NgControl ) {}
+  nameFocus: string = '';
+  get elements(){
 
-  @HostListener('click')
-  onFocusClick(){
-   console.log(this.elementRef.nativeElement.id)
+    return this.elementRef;
   }
+
 
   ngOnInit(): void {
   //  console.log(this.elementRef.nativeElement.id)
   }
+  ngAfterContentInit(): void {
+  }
+
+
+
+
 }

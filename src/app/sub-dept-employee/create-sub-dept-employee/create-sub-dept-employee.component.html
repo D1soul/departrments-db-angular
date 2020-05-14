@@ -9,6 +9,7 @@
                                              ||  sEmpCrForm.get('lastName').untouched
                                              ||  sEmpCrForm.get('lastName').touched)
                                              && submitted,
+
                        'crSDEValidationValid': sEmpCrForm.get('lastName').valid}" >
         <label for="lastName"><b>Фамилия</b></label>
         <input type="text" id="lastName" placeholder="Введите фамилию"
@@ -193,6 +194,9 @@
         </div>
       </div>
       <button type="submit">Добавить</button>
+    </div>
+    <div>
+     name: {{inputName}}
     </div>
   </form>
 </div>
