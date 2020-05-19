@@ -6,22 +6,22 @@
       <div class="regUsernameLabel">
         <label for="username"><b>Логин</b></label>
       </div>
-      <div [ngClass]="{'regUsernameDefault': updUserForm.controls['username'].untouched,
-                         'regUsernameInvalid': updUserForm.controls['username'].invalid
-                                            && (updUserForm.controls['username'].dirty
-                                            || updUserForm.controls['username'].touched),
-                         'regUsernameValid': updUserForm.controls['username'].touched
-                                            && updUserForm.controls['username'].valid }" >
+      <div [ngClass]="{'regUsernameDefault': updUserForm.get('username').untouched,
+                         'regUsernameInvalid': updUserForm.get('username').invalid
+                                            && (updUserForm.get('username').dirty
+                                            || updUserForm.get('username').touched),
+                         'regUsernameValid': updUserForm.get('username').touched
+                                            && updUserForm.get('username').valid }" >
         <input type="text" id="username" placeholder="Введите логин"
                [(ngModel)]="user.username"  formControlName="username" >
         <div class="regUsernameErrorMassage">
-          <div *ngIf="updUserForm.controls['username'].invalid
-                && (updUserForm.controls['username'].dirty
-                || updUserForm.controls['username'].touched)" >
-            <div *ngIf="updUserForm.controls['username'].errors.required">
+          <div *ngIf="updUserForm.get('username').invalid
+                && (updUserForm.get('username').dirty
+                || updUserForm.get('username').touched)" >
+            <div *ngIf="updUserForm.get('username').errors.required">
               <p>Поле не должно быть пустым!</p>
             </div>
-            <div *ngIf="updUserForm.controls['username'].errors.pattern">
+            <div *ngIf="updUserForm.get('username').errors.pattern">
               <p>Логин должен содержать только кириллические, или латинские буквы, либо цифры!</p>
             </div>
           </div>
@@ -29,26 +29,26 @@
       </div>
 
 
-    <button type="button" (click)="initPassword()">Изменить пароль</button>
+    <button type="button" (click)="initPasswordForm()">Изменить пароль</button>
     <div *ngIf="changePassword">
       <div class="updPasswordLabel">
         <label for="password"><b>Пароль</b></label>
       </div>
-      <div [ngClass]="{'updPasswordDefault': updUserForm.controls['password'].untouched,
-                       'updPasswordInvalid': updUserForm.controls['password'].invalid
-                                           && (updUserForm.controls['password'].dirty
-                                           || updUserForm.controls['password'].touched),
-                       'updPasswordValid': updUserForm.controls['password'].touched
-                                           && updUserForm.controls['password'].valid }" >
+      <div [ngClass]="{'updPasswordDefault': updUserForm.get('password').untouched,
+                       'updPasswordInvalid':updUserForm.get('password').invalid
+                                           && (updUserForm.get('password').dirty
+                                           || updUserForm.get('password').touched),
+                       'updPasswordValid': updUserForm.get('password').touched
+                                           && updUserForm.get('password').valid }" >
         <input type="text" id="password" placeholder="Введите имя" formControlName="password" >
         <div class="updPasswordErrorMassage">
-          <div *ngIf="updUserForm.controls['password'].invalid
-              && (updUserForm.controls['password'].dirty
-              || updUserForm.controls['password'].touched)" >
-            <div *ngIf="updUserForm.controls['password'].errors.required">
-              <p>Поле не должно быть пустым!</p>
+          <div *ngIf="updUserForm.get('password').invalid
+              && (updUserForm.get('password').dirty
+              || updUserForm.get('password').touched)" >
+            <div *ngIf="updUserForm.get('password').errors.notFound">
+              <p>{{errorMessage}}</p>
             </div>
-            <div *ngIf="updUserForm.controls['password'].errors.minlength">
+            <div *ngIf="updUserForm.get('password').errors.minlength">
               <p>Пароль должен содержать минимум 6 символов!</p>
             </div>
           </div>
@@ -59,22 +59,22 @@
       <div class="updNewPasswordLabel">
         <label for="newPassword"><b>Пароль</b></label>
       </div>
-      <div [ngClass]="{'updNewPasswordDefault': updUserForm.controls['newPassword'].untouched,
-                       'updNewPasswordInvalid': updUserForm.controls['newPassword'].invalid
-                                           && (updUserForm.controls['newPassword'].dirty
-                                           || updUserForm.controls['newPassword'].touched),
-                       'updNewPasswordValid': updUserForm.controls['newPassword'].touched
-                                           && updUserForm.controls['newPassword'].valid }" >
+      <div [ngClass]="{'updNewPasswordDefault':updUserForm.get('newPassword').untouched,
+                       'updNewPasswordInvalid': updUserForm.get('newPassword').invalid
+                                           && (updUserForm.get('newPassword').dirty
+                                           || updUserForm.get('newPassword').touched),
+                       'updNewPasswordValid': updUserForm.get('newPassword').touched
+                                           && updUserForm.get('newPassword').valid }" >
         <input type="text" id="newPassword" placeholder="Введите имя"
                 formControlName="newPassword" >
         <div class="updNewPasswordErrorMassage">
-          <div *ngIf="updUserForm.controls['newPassword'].invalid
-              && (updUserForm.controls['newPassword'].dirty
-              || updUserForm.controls['newPassword'].touched)" >
-            <div *ngIf="updUserForm.controls['newPassword'].errors.required">
+          <div *ngIf="updUserForm.get('newPassword').invalid
+              && (updUserForm.get('newPassword').dirty
+              || updUserForm.get('newPassword').touched)" >
+            <div *ngIf="updUserForm.get('newPassword').errors.required">
               <p>Поле не должно быть пустым!</p>
             </div>
-            <div *ngIf="updUserForm.controls['newPassword'].errors.minlength">
+            <div *ngIf="updUserForm.get('newPassword').errors.minlength">
               <p>Пароль должен содержать минимум 6 символов!</p>
             </div>
           </div>
@@ -84,19 +84,19 @@
        <div class="updConfirmPasswordLabel">
         <label for="confirmPassword"><b>Пароль</b></label>
       </div>
-      <div [ngClass]="{'updConfirmPasswordDefault': updUserForm.controls['confirmPassword'].untouched,
-                       'updConfirmPasswordInvalid': updUserForm.controls['confirmPassword'].touched ,
-                       'updConfirmPasswordValid': updUserForm.controls['confirmPassword'].touched
-                                           && updUserForm.controls['confirmPassword'].valid }" >
+      <div [ngClass]="{'updConfirmPasswordDefault': updUserForm.get('confirmPassword').untouched,
+                       'updConfirmPasswordInvalid': updUserForm.get('confirmPassword').touched ,
+                       'updConfirmPasswordValid': updUserForm.get('confirmPassword').touched
+                                           && updUserForm.get('confirmPassword').valid }" >
         <input type="text" id="confirmPassword" placeholder="Введите имя"  formControlName="confirmPassword" >
         <div class="updConfirmPasswordErrorMassage">
-          <div *ngIf="updUserForm.controls['confirmPassword'].invalid
-              && (updUserForm.controls['confirmPassword'].dirty
-              || updUserForm.controls['confirmPassword'].touched)" >
-            <div *ngIf="updUserForm.controls['confirmPassword'].errors.required">
+          <div *ngIf="updUserForm.get('confirmPassword').invalid
+              && (updUserForm.get('confirmPassword').dirty
+              || updUserForm.get('confirmPassword').touched)" >
+            <div *ngIf="updUserForm.get('confirmPassword').errors.required">
               <p>Поле не должно быть пустым!</p>
             </div>
-            <div *ngIf="updUserForm.controls['confirmPassword'].errors.notEqual">
+            <div *ngIf="updUserForm.get('confirmPassword').errors.notEqual">
               <p>Пароли не совпадают!</p>
             </div>
           </div>
@@ -149,11 +149,11 @@
       <div class="regGenderLabel">
         <label ><b>Пол</b></label>
       </div>
-      <div [ngClass]=" {'regGenderGroup': updUserForm.controls['gender'].untouched,
-                        'regGenderGroupInvalid': ((updUserForm.controls['gender'].invalid
-                                              && updUserForm.controls['gender'].touched)
-                                              ||(updUserForm.controls['gender'].invalid
-                                              && !updUserForm.controls['gender'].touched
+      <div [ngClass]=" {'regGenderGroup': updUserForm.get('gender').untouched,
+                        'regGenderGroupInvalid': ((updUserForm.get('gender').invalid
+                                              && updUserForm.get('gender').touched)
+                                              ||(updUserForm.get('gender').invalid
+                                              && !updUserForm.get('gender').touched
                                               && submitted))
                                                               }" >
         <input type="radio" id="male" value="male" formControlName="gender" [(ngModel)]="user.gender" >
@@ -162,8 +162,8 @@
         <label  for="female">Женский</label>
       </div>
       <div class="regGenderErrorMassage">
-        <div *ngIf="((updUserForm.controls['gender'].invalid && submitted))" >
-          <div *ngIf="updUserForm.controls['gender'].errors.required">
+        <div *ngIf="((updUserForm.get('gender').invalid && submitted))" >
+          <div *ngIf="updUserForm.get('gender').errors.required">
             <p>Укажите пол!</p>
           </div>
         </div>

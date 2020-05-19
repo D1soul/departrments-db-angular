@@ -8,4 +8,5 @@ export function GetBirthDate(dateForm: FormGroup, day: string, month: string, ye
   dateForm.get(day).setValue(dayValue);
   dateForm.get(month).setValue(monthValue);
   dateForm.get(year).setValue(yearValue);
+
 }

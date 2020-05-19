@@ -1,30 +1,27 @@
-<div>
+<div class="subDeptEmls">
   <h2>Сотрудники Подотделов</h2>
   <div class="subDeptEmplList">
-    <tr>
-      <td class="sdELIdHead"><b>ID</b></td>
-      <td class="sdELLastNameHead"><b>Фамилия</b></td>
-      <td class="sdELFirstNameHead"><b>Имя</b></td>
-      <td class="sdELMiddleNameHead"><b>Отчество</b></td>
-    </tr>
-    <ul class="sdEList" *ngFor="let employee of subDeptEmployees">
-      <li class="sdELNav" >
-        <a routerLink="/sub-dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
-          <tr>
-            <td  class="sdELId">{{employee.id}}</td>
-            <td class="sdELLastName">{{employee.lastName}}</td>
-            <td class="sdELFirstName">{{employee.firstName}}</td>
-            <td class="sdELMiddleName">{{employee.middleName}}</td>
-          </tr>
-        </a>
-      </li>
+    <div class="sdEHead">
+      <span><b>ID</b></span>
+      <span><b>Фамилия</b></span>
+      <span><b>Имя</b></span>
+      <span><b>Отчество</b></span>
+    </div>
+    <div *ngFor="let employee of subDeptEmployees" class="sdEList">
+      <a routerLink="/sub-dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
+        <div class="subDeptEmplNav">
+          <span>{{employee.id}}</span>
+          <span>{{employee.lastName}}</span>
+          <span>{{employee.firstName}}</span>
+          <span>{{employee.middleName}}</span>
+        </div>
+      </a>
       <button class="deleteSDE"
               (click)="deleteSubDeptEmployee(
             employee.lastName,
             employee.firstName,
             employee.middleName)">x</button>
-    </ul>
+    </div>
   </div>
   <button class="addSDE" (click)="goToAddSubDeptEmployee()">Добавить Сотрудника</button>
 </div>
-

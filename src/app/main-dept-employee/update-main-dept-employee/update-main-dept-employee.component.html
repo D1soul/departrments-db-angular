@@ -2,161 +2,199 @@
   <form [formGroup]="mEmpUpdForm" novalidate (ngSubmit)="updateMainDeptEmployee()" >
     <h2>Редактирование данных сотрудника</h2>
     <div *ngIf="mainDeptEmployee">
-      <div class="upd_main_dept_emp">
-        <div class="last_name_label">
-          <label><b>Фамилия</b></label>
-        </div>
-        <div [ngClass]="{'last_name_default': mEmpUpdForm.controls['lastName'].untouched,
-                         'last_name_invalid': mEmpUpdForm.controls['lastName'].invalid
-                                            && (mEmpUpdForm.controls['lastName'].dirty
-                                            || mEmpUpdForm.controls['lastName'].touched),
-                         'last_name_valid': mEmpUpdForm.controls['lastName'].touched
-                                            && mEmpUpdForm.controls['lastName'].valid }" >
-          <input type="text" id="lastName"
-                 [(ngModel)]="mainDeptEmployee.lastName"  formControlName="lastName" >
-          <div class="last_name_error_massage">
-            <div *ngIf="mEmpUpdForm.controls['lastName'].invalid
-                && (mEmpUpdForm.controls['lastName'].dirty
-                || mEmpUpdForm.controls['lastName'].touched)" >
-              <div *ngIf="mEmpUpdForm.controls['lastName'].errors.required">
-                <p>Поле не должно быть пустым!</p>
+      <div class="updMainDeptEmpl">
+        <div  class="updMDELastName"
+              [ngClass]="{'updMDEValidationDefault': !submitted,
+                       'updMDEValidationInvalid': mEmpUpdForm.get('lastName').invalid
+                                             && submitted,
+                       'updMDEValidationValid': mEmpUpdForm.get('lastName').valid,
+                       'updMDEValidationValidAndFocused': mEmpUpdForm.get('lastName').valid
+                        &&  mEmpUpdForm.get('lastName') === mEmpUpdForm.get(inputName) }" >
+          <label for="lastName"><b>Фамилия</b></label>
+          <input type="text" id="lastName" formControlName="lastName"  >
+
+          <div class="updMDELastNameErrorMassage">
+            <div *ngIf="mEmpUpdForm.get('lastName').invalid
+                  &&  submitted" >
+              <div *ngIf="mEmpUpdForm.get('lastName').errors.required">
+                <p>Поле обязательно для заполнения!</p>
               </div>
-              <div *ngIf="mEmpUpdForm.controls['lastName'].errors.minlength
-                        || mEmpUpdForm.controls['lastName'].errors.pattern">
-                <p>Некорректная фамилия!</p>
-              </div>
-              <div *ngIf="mEmpUpdForm.controls['lastName'].errors.minlength">
-                <p>Фамилия слишком короткая!</p>
-              </div>
-              <div *ngIf="mEmpUpdForm.controls['lastName'].errors.pattern">
-                <p>Фамилия должна содержать только кириллические, или латинские буквы!</p>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div class="first_name_label">
-        <label><b>Имя</b></label>
-      </div>
-      <div [ngClass]="{'first_name_default': mEmpUpdForm.controls['firstName'].untouched,
-                       'first_name_invalid': mEmpUpdForm.controls['firstName'].invalid
-                                           && (mEmpUpdForm.controls['firstName'].dirty
-                                           || mEmpUpdForm.controls['firstName'].touched),
-                       'first_name_valid': mEmpUpdForm.controls['firstName'].touched
-                                           && mEmpUpdForm.controls['firstName'].valid }" >
-        <input type="text" id="firstName"
-               [(ngModel)]="mainDeptEmployee.firstName"  formControlName="firstName" >
-        <div class="first_name_error_massage">
-          <div *ngIf="mEmpUpdForm.controls['firstName'].invalid
-              && (mEmpUpdForm.controls['firstName'].dirty
-              || mEmpUpdForm.controls['firstName'].touched)" >
-            <div *ngIf="mEmpUpdForm.controls['firstName'].errors.required">
-              <p>Поле не должно быть пустым!</p>
-            </div>
-            <div *ngIf="mEmpUpdForm.controls['firstName'].errors.minlength
-                      || mEmpUpdForm.controls['firstName'].errors.pattern">
-              <p>Некорректное имя!</p>
-            </div>
-            <div *ngIf="mEmpUpdForm.controls['firstName'].errors.minlength">
-              <p>Имя слишком короткое!</p>
-            </div>
-            <div *ngIf="mEmpUpdForm.controls['firstName'].errors.pattern">
-              <p>Имя должно содержать только кириллические, или латинские буквы!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="middle_name_label">
-        <label><b>Отчество</b></label>
-      </div>
-      <div [ngClass]="{'middle_name_default': mEmpUpdForm.controls['middleName'].untouched,
-                       'middle_name_invalid': mEmpUpdForm.controls['middleName'].invalid
-                                            && (mEmpUpdForm.controls['middleName'].dirty
-                                            || mEmpUpdForm.controls['middleName'].touched),
-                       'middle_name_valid': mEmpUpdForm.controls['middleName'].touched
-                                            && mEmpUpdForm.controls['middleName'].valid }" >
-        <input type="text" id="middleName"
-               [(ngModel)]="mainDeptEmployee.middleName"  formControlName="middleName" >
-        <div class="middle_name_error_massage">
-          <div *ngIf="mEmpUpdForm.controls['middleName'].invalid
-            && (mEmpUpdForm.controls['middleName'].dirty
-            || mEmpUpdForm.controls['middleName'].touched)" >
-            <div *ngIf="mEmpUpdForm.controls['middleName'].errors.required">
-              <p>Поле не должно быть пустым!</p>
-            </div>
-            <div *ngIf="mEmpUpdForm.controls['middleName'].errors.minlength
-                    || mEmpUpdForm.controls['middleName'].errors.pattern">
-              <p>Некорректное отчество!</p>
-            </div>
-            <div *ngIf="mEmpUpdForm.controls['middleName'].errors.pattern">
-              <p>Отчество должно содержать только кириллические, или латинские буквы, либо дефис!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="birth_date_label">
-        <label><b>Дата рождения</b></label>
-      </div>
-      <div [ngClass]="{'birth_date_default': mEmpUpdForm.controls['birthDate'].untouched,
-                       'birth_date_invalid': mEmpUpdForm.controls['birthDate'].invalid
-                                           && (mEmpUpdForm.controls['birthDate'].dirty
-                                           || mEmpUpdForm.controls['birthDate'].touched),
-                       'birth_date_valid': mEmpUpdForm.controls['birthDate'].touched
-                                           && mEmpUpdForm.controls['birthDate'].valid }" >
-        <input type="text" id="birthDate"
-               [(ngModel)]="mainDeptEmployee.birthDate"  formControlName="birthDate" >
-          <div class="birth_date_error_massage">
-            <div *ngIf="mEmpUpdForm.controls['birthDate'].invalid
-              && (mEmpUpdForm.controls['birthDate'].dirty
-              || mEmpUpdForm.controls['birthDate'].touched)" >
-            <div *ngIf="mEmpUpdForm.controls['birthDate'].errors.required">
-              <p>Поле не должно быть пустым!</p>
-            </div>
-            <div *ngIf="mEmpUpdForm.controls['birthDate'].errors.pattern">
-              <p>Некорректная дата!</p>
-            </div>
-            <div *ngIf="mEmpUpdForm.controls['birthDate'].errors.pattern">
-              <p>Образец: 01/сентября/1970</p>
-            </div>
-          </div>
-        </div>
-      </div>
-        <div class="passport_label">
-          <label><b>Паспортные данные</b></label>
-        </div>
-        <div [ngClass]="{'passport_default': mEmpUpdForm.controls['passport'].untouched,
-                       'passport_invalid': mEmpUpdForm.controls['passport'].invalid
-                                           && (mEmpUpdForm.controls['passport'].dirty
-                                           || mEmpUpdForm.controls['passport'].touched),
-                       'passport_valid': mEmpUpdForm.controls['passport'].touched
-                                           && mEmpUpdForm.controls['passport'].valid }" >
-          <input type="text" id="passport"
-                 [(ngModel)]="mainDeptEmployee.passport"  formControlName="passport" >
-          <div class="passport_error_massage">
-            <div *ngIf="mEmpUpdForm.controls['passport'].invalid
-              && (mEmpUpdForm.controls['passport'].dirty
-              || mEmpUpdForm.controls['passport'].touched)" >
-              <div *ngIf="mEmpUpdForm.controls['passport'].errors.required">
-                <p>Поле не должно быть пустым!</p>
-              </div>
-              <div *ngIf="mEmpUpdForm.controls['passport'].errors.pattern">
-                <p>Некорректные паспортные данные!</p>
-              </div>
-              <div *ngIf="mEmpUpdForm.controls['passport'].errors.pattern">
-                <p>Образец: Серия: 00 00 Номер: 000000</p>
+              <div *ngIf="mEmpUpdForm.get('lastName').errors.pattern">
+                <p>Допускаются только кириллические, или латинские буквы!</p>
               </div>
             </div>
           </div>
         </div>
-        <div>
-          <div class="main_dept_label">
-            <label><b>Главный Департамент</b></label>
+
+        <div  class="updMDEFirstName"
+              [ngClass]="{'updMDEValidationDefault': !submitted,
+                        'updMDEValidationInvalid': mEmpUpdForm.get('firstName').invalid
+                                              && (mEmpUpdForm.get('firstName').dirty
+                                              ||  mEmpUpdForm.get('firstName').untouched
+                                              ||  mEmpUpdForm.get('firstName').touched)
+                                              && submitted,
+                        'updMDEValidationValid': mEmpUpdForm.get('firstName').valid,
+                        'updMDEValidationValidAndFocused': mEmpUpdForm.get('firstName').valid
+                        &&  mEmpUpdForm.get('firstName') === mEmpUpdForm.get(inputName) }" >
+          <label for="firstName"><b>Имя</b></label>
+          <input type="text" id="firstName" formControlName="firstName" >
+          <div class="updMDEFirstNameErrorMassage">
+            <div *ngIf="mEmpUpdForm.get('firstName').invalid
+                      && (mEmpUpdForm.get('firstName').dirty
+                      ||  mEmpUpdForm.get('firstName').untouched
+                      ||  mEmpUpdForm.get('firstName').touched)
+                      && submitted" >
+              <div *ngIf="mEmpUpdForm.get('firstName').errors.required">
+                <p>Поле обязательно для заполнения!</p>
+              </div>
+              <div *ngIf="mEmpUpdForm.get('firstName').errors.pattern">
+                <p>Допускаются только кириллические, или латинские буквы!</p>
+              </div>
+            </div>
           </div>
-          <div class="sdDMainDeptHead" >
-            <select [(ngModel)]="mainDeptEmployee.mainDepartment" formControlName="mainDepartment" >
-              <option *ngFor="let mainDepartment of mainDepartments" [ngValue]="mainDepartment.name" >
-                {{mainDepartment.name}}
-              </option>
-            </select>
+        </div>
+
+        <div class="updMDEMiddleName"
+             [ngClass]="{'updMDEValidationDefault': !submitted,
+                       'updMDEValidationInvalid': mEmpUpdForm.get('middleName').invalid
+                                             && (mEmpUpdForm.get('middleName').dirty
+                                             ||  mEmpUpdForm.get('middleName').untouched
+                                             ||  mEmpUpdForm.get('middleName').touched)
+                                             && submitted,
+                       'updMDEValidationValid': mEmpUpdForm.get('middleName').valid,
+                       'updMDEValidationValidAndFocused': mEmpUpdForm.get('middleName').valid
+                        &&  mEmpUpdForm.get('middleName') === mEmpUpdForm.get(inputName) }" >
+          <label for="middleName"><b>Отчество</b></label>
+          <input type="text" id="middleName" formControlName="middleName" >
+          <div class="updMDEMiddleNameErrorMassage">
+            <div *ngIf="mEmpUpdForm.get('middleName').invalid
+                      && (mEmpUpdForm.get('middleName').dirty
+                      ||  mEmpUpdForm.get('middleName').untouched
+                      ||  mEmpUpdForm.get('middleName').touched)
+                      && submitted" >
+              <div *ngIf="mEmpUpdForm.get('middleName').errors.required">
+                <p>Поле обязательно для заполнения!</p>
+              </div>
+              <div *ngIf="mEmpUpdForm.get('middleName').errors.pattern">
+                <p>Допускаются только кириллические, или латинские буквы, либо дефис!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="updMDEMainDept"
+             [ngClass]=" {'updMDEValidationDefault': !submitted,
+                        'updMDEValidationInvalid': (mEmpUpdForm.get('mainDepartment').invalid
+                                              &&  submitted),
+                         'updMDEValidationValid': mEmpUpdForm.get('mainDepartment').valid,
+                         'updMDEValidationValidAndFocused': mEmpUpdForm.get('mainDepartment').valid
+                        &&  mEmpUpdForm.get('mainDepartment') === mEmpUpdForm.get(inputName) }" >
+          <label for="mainDepartment"><b>Подотдел</b></label>
+          <select id="mainDepartment" >
+            <option hidden [ngValue]="null">Выберите Департамент</option>
+            <option *ngFor="let mainDepartment of mainDepartments"  >
+              {{mainDepartment.name}}
+            </option>
+          </select>
+          <div class="updMDEMainDeptErrorMassage">
+            <div *ngIf="(mEmpUpdForm.get('mainDepartment').invalid
+                      && (mEmpUpdForm.get('mainDepartment').touched
+                      || mEmpUpdForm.get('mainDepartment').untouched)
+                      && submitted)" >
+              <div *ngIf="mEmpUpdForm.get('mainDepartment').errors.required">
+                <p>Департамент не выбран!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="updMDEBirthDate"
+             [ngClass]=" {'updMDEValidationDefault': !submitted,
+                        'updMDEValidationInvalid': (mEmpUpdForm.get('day').invalid
+                                               || mEmpUpdForm.get('month').invalid
+                                               || mEmpUpdForm.get('year').invalid )
+                                               && submitted,
+                        'updMDEValidationValid': mEmpUpdForm.get('day').valid
+                                             && mEmpUpdForm.get('month').valid
+                                             && mEmpUpdForm.get('year').valid,
+                        'updMDEValidationValidAndFocused':  (mEmpUpdForm.get('day').valid
+                                                         && mEmpUpdForm.get('month').valid
+                                                         && mEmpUpdForm.get('year').valid)
+                              &&  (mEmpUpdForm.get('day') === mEmpUpdForm.get(inputName)
+                              ||   mEmpUpdForm.get('month') === mEmpUpdForm.get(inputName)
+                              ||   mEmpUpdForm.get('year') === mEmpUpdForm.get(inputName)) }" >
+          <label ><b>Дата рождения</b> </label>
+          <select  id="day" formControlName="day" aria-label="birthDate">
+            <option hidden [value]="null">День</option>
+            <option *ngFor="let day of days" [value]="day" >
+              {{day}}
+            </option>
+          </select>
+          <select id="month" formControlName="month" aria-label="birthDate" >
+            <option hidden [value]="null">Месяц</option>
+            <option *ngFor="let month of months" [value]="month.name" >
+              {{month.name}}
+            </option>
+          </select>
+          <select  id="year" formControlName="year" aria-label="birthDate">
+            <option hidden [value]="null">Год</option>
+            <option *ngFor="let year of years"  [value]="year">
+              {{year}}
+            </option>
+          </select>
+          <div class="updMDEBirthDateErrorMassage">
+            <div *ngIf="(mEmpUpdForm.get('day').invalid
+                 || mEmpUpdForm.get('month').invalid
+                 || mEmpUpdForm.get('year').invalid
+                 )
+                 && submitted" >
+              <div *ngIf="mEmpUpdForm.get('day').errors.required
+                   || mEmpUpdForm.get('month').errors.required
+                   || mEmpUpdForm.get('year').errors.required">
+                <p>Дата не указана!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="updMDEPassport"
+             [ngClass]=" {'updMDEValidationDefault': !submitted,
+                        'updMDEValidationInvalid': ((mEmpUpdForm.get('seriesF').invalid
+                                                 || mEmpUpdForm.get('seriesS').invalid
+                                                 || mEmpUpdForm.get('number').invalid)
+                                                 && submitted),
+                        'updMDEValidationValid': mEmpUpdForm.get('seriesF').valid
+                                             && mEmpUpdForm.get('seriesS').valid
+                                             && mEmpUpdForm.get('number').valid,
+                        'updMDEValidationValidAndFocused':  (mEmpUpdForm.get('seriesF').valid
+                                                         && mEmpUpdForm.get('seriesS').valid
+                                                         && mEmpUpdForm.get('number').valid)
+                         &&  (mEmpUpdForm.get('seriesF') === mEmpUpdForm.get(inputName)
+                         ||   mEmpUpdForm.get('seriesS') === mEmpUpdForm.get(inputName)
+                         ||   mEmpUpdForm.get('number') === mEmpUpdForm.get(inputName)) }" >
+          <label ><b>Паспортные данные</b></label>
+          <span>Серия:</span>
+          <input id="seriesF" type="text" maxlength="2"
+                 formControlName="seriesF" aria-label="passport" placeholder=". .">
+          <input id="seriesS" type="text" maxlength="2"
+                 formControlName="seriesS" aria-label="passport" placeholder=". .">
+          <span>Номер:</span>
+          <input id="number" type="text"  maxlength="6"
+                 formControlName="number" aria-label="passport" placeholder=". . . . . .">
+          <div class="updMDEPassportErrorMassage">
+            <div *ngIf="((mEmpUpdForm.get('seriesF').invalid
+                     || mEmpUpdForm.get('seriesS').invalid
+                     || mEmpUpdForm.get('number').invalid)
+                     && submitted)" >
+              <div *ngIf="mEmpUpdForm.get('seriesF' || 'seriesS' || 'number').errors.required">
+                <p>Поле обязательно для заполнения!</p>
+              </div>
+              <div *ngIf="mEmpUpdForm.get('seriesF' || 'seriesS' || 'number').errors.pattern">
+                <p>Допускаются только цифры!</p>
+              </div>
+            </div>
           </div>
         </div>
       <button type="submit" >Обновить</button>

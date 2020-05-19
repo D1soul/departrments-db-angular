@@ -1,16 +1,12 @@
-import {AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {SubDeptEmployee} from '../../entities/sub-dept-employee';
-import {SubDeptEmployeeService} from '../../service/sub-dept-employee.service';
-import {Router} from '@angular/router';
-import {SubDepartment} from '../../entities/sub-department';
-import {SubDepartmentService} from '../../service/sub-department.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {SetBirthDate} from '../../service/set.bitrh.date';
-import {InitBirthDate} from '../../service/init.birth.date';
-import {SetPassport} from '../../service/set.passport';
-import {trigger} from '@angular/animations';
-import {OnFocusControl} from '../../service/on.focus.control';
-import {GetElementOnFocus} from '../../service/get.element.on.focus';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { SubDeptEmployee } from '../../entities/sub-dept-employee';
+import { SubDeptEmployeeService } from '../../service/sub-dept-employee.service';
+import { Router } from '@angular/router';
+import { SubDepartment } from '../../entities/sub-department';
+import { SubDepartmentService } from '../../service/sub-department.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { InitBirthDate } from '../../service/init.birth.date';
+import { trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-create-sub-dept-employee',
@@ -29,7 +25,7 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
   months = [];
   years = [];
   submitted: boolean = false;
-  inputName: string;
+  inputName: string = '';
 
   constructor(private subDeptEmployeeService: SubDeptEmployeeService,
               private subDepartmentService: SubDepartmentService,
@@ -37,17 +33,15 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
     this.subDeptEmployee = new SubDeptEmployee();
   }
 
-  @ViewChildren(OnFocusControl) inputs:  QueryList<OnFocusControl>;
-
   ngOnInit() {
-    InitBirthDate(this.days, this.months, this.years);
     this.initSubDeptEmpForm();
+    InitBirthDate(this.days, this.months, this.years);
     this.selectSubDepartment();
+    this.getSubDeptEmplFormValue(this.subDeptEmployee);
     this.getCrSDEFocusedElementName();
   }
 
   selectSubDepartment(){
-
     this.subDepartmentService.getAllSubDepartments()
       .subscribe(subDepartments => this.subDepartments = subDepartments)
   }
@@ -55,11 +49,11 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
   initSubDeptEmpForm(){
     this.sEmpCrForm = this.formBuilder.group({
       lastName: [null, [Validators.required,
-                          Validators.pattern("^([А-я]+|[A-z]+)$")]],
+                        Validators.pattern("^([А-я]+|[A-z]+)$")]],
       firstName: [null, [Validators.required,
-                           Validators.pattern("^([А-я]+|[A-z]+)$")]],
+                         Validators.pattern("^([А-я]+|[A-z]+)$")]],
       middleName: [null, [Validators.required,
-                            Validators.pattern("^(([А-я]+|[A-z]+)|(-))$")]],
+                          Validators.pattern("^(([А-я]+|[A-z]+)|(-))$")]],
       day: [null, [Validators.required]],
       month: [null, [Validators.required]],
       year: [null, [Validators.required]],
@@ -73,9 +67,25 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
     });
   }
 
+  getSubDeptEmplFormValue(subDeptEmployee){
+    this.sEmpCrForm.valueChanges.subscribe(formData =>{
+      subDeptEmployee.lastName = formData.lastName;
+      subDeptEmployee.firstName = formData.firstName;
+      subDeptEmployee.middleName = formData.middleName;
+      subDeptEmployee.birthDate = formData.day + '/'
+                                + formData.month + '/'
+                                + formData.year;
+      subDeptEmployee.passport = 'Серия: ' + formData.seriesF
+                               + ' ' + formData.seriesS
+                               + ' Номер: ' + formData.number;
+      subDeptEmployee.subDepartment = formData.subDepartment;
+    });
+  }
+
   getCrSDEFocusedElementName(){
-    let elements = [].slice.call((this.elementRef.nativeElement).querySelectorAll('[formControlName]'));
-    elements.forEach( element =>{
+    let elements = [].slice.call((this.elementRef.nativeElement)
+      .querySelectorAll('[formControlName]'));
+    elements.forEach(element => {
       element.addEventListener('focus', () => {
         this.inputName = element.id;
       });
@@ -87,18 +97,13 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
 
   addSubDeptEmployee(){
     this.submitted = true;
-    this.subDeptEmployee.passport = SetPassport(this.sEmpCrForm, 'seriesF', 'seriesS', 'number');
-    this.subDeptEmployee.birthDate = SetBirthDate(this.sEmpCrForm, 'day', 'month', 'year');
     if(this.sEmpCrForm.valid) {
       this.subDeptEmployeeService.addSubDeptEmployee(this.subDeptEmployee)
         .subscribe(() => this.goToAllSubEmployees());
-        GetElementOnFocus(this.elementRef);
     }
   }
 
   goToAllSubEmployees(){
     this.router.navigate(['/sub-dept_employees']);
   }
-
-
 }

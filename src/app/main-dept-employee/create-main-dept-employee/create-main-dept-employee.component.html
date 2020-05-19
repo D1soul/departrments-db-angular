@@ -1,200 +1,204 @@
 <div>
   <form [formGroup]="mEmpCrForm" novalidate (ngSubmit)="addMainDeptEmployee()" >
-    <h2>Добавление сотрудника</h2>
+    <h2>Добавление сотрудника департамента</h2>
     <div class="crMainDeptEmpl">
-      <div class="crMDELastNameLabel">
+      <div  class="crMDELastName"
+            [ngClass]="{'crMDEValidationDefault': !submitted,
+                        'crMDEValidationInvalid': mEmpCrForm.get('lastName').invalid
+                                             && submitted,
+                        'crMDEValidationValid': mEmpCrForm.get('lastName').valid,
+                        'crMDEValidationValidAndFocused': mEmpCrForm.get('lastName').valid
+                            &&  mEmpCrForm.get('lastName') === mEmpCrForm.get(inputName) }" >
         <label for="lastName"><b>Фамилия</b></label>
-      </div>
-      <div [ngClass]="{'crMDELastNameDefault': mEmpCrForm.get('lastName').untouched,
-                       'crMDELastNameInvalid':  mEmpCrForm.get('lastName').invalid
-                                            && (mEmpCrForm.get('lastName').dirty
-                                            ||  mEmpCrForm.get('lastName').touched),
-                       'crMDELastNameValid': mEmpCrForm.get('lastName').touched
-                                            &&  mEmpCrForm.get('lastName').valid }" >
         <input type="text" id="lastName" placeholder="Введите фамилию"
-               [(ngModel)]="mainDeptEmployee.lastName"  formControlName="lastName" >
+               formControlName="lastName"  >
+
         <div class="crMDELastNameErrorMassage">
-          <div *ngIf=" mEmpCrForm.get('lastName').invalid
-                && ( mEmpCrForm.get('lastName').dirty
-                ||  mEmpCrForm.get('lastName').touched)" >
+          <div *ngIf="mEmpCrForm.get('lastName').invalid
+                  &&  submitted" >
             <div *ngIf="mEmpCrForm.get('lastName').errors.required">
-              <p>Поле не должно быть пустым!</p>
-            </div>
-            <div *ngIf=" mEmpCrForm.get('lastName').errors.minlength
-                        || mEmpCrForm.get('lastName').errors.pattern">
-              <p>Некорректная фамилия!</p>
-            </div>
-            <div *ngIf="mEmpCrForm.get('lastName').errors.minlength">
-              <p>Фамилия слишком короткая!</p>
+              <p>Поле обязательно для заполнения!</p>
             </div>
             <div *ngIf="mEmpCrForm.get('lastName').errors.pattern">
-              <p>Фамилия должна содержать только кириллические, или латинские буквы!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="crMDEFirstNameLabel">
-        <label for="firstName"><b>Имя</b></label>
-      </div>
-      <div [ngClass]="{'crMDEFirstNameDefault': mEmpCrForm.get('firstName').untouched,
-                       'crMDEFirstNameInvalid': mEmpCrForm.get('firstName').invalid
-                                           && (mEmpCrForm.get('firstName').dirty
-                                           || mEmpCrForm.get('firstName').touched),
-                       'crMDEFirstNameValid': mEmpCrForm.get('firstName').touched
-                                           && mEmpCrForm.get('firstName').valid }" >
-        <input type="text" id="firstName" placeholder="Введите имя"
-               [(ngModel)]="mainDeptEmployee.firstName"  formControlName="firstName" >
-        <div class="crMDEFirstNameErrorMassage">
-          <div *ngIf="mEmpCrForm.get('firstName').invalid
-              && (mEmpCrForm.get('firstName').dirty
-              || mEmpCrForm.get('firstName').touched)" >
-            <div *ngIf="mEmpCrForm.get('firstName').errors.required">
-              <p>Поле не должно быть пустым!</p>
-            </div>
-            <div *ngIf="mEmpCrForm.get('firstName').errors.minlength
-                      || mEmpCrForm.get('firstName').errors.pattern">
-              <p>Некорректное имя!</p>
-            </div>
-            <div *ngIf="mEmpCrForm.get('firstName').errors.minlength">
-              <p>Имя слишком короткое!</p>
-            </div>
-            <div *ngIf="mEmpCrForm.get('firstName').errors.pattern">
-              <p>Имя должно содержать только кириллические, или латинские буквы!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="crMDEMiddleNameLabel">
-        <label for="middleName"><b>Отчество</b></label>
-      </div>
-      <div [ngClass]="{'crMDEMiddleNameDefault': mEmpCrForm.get('middleName').untouched,
-                       'crMDEMiddleNameInvalid': mEmpCrForm.get('middleName').invalid
-                                            && (mEmpCrForm.get('middleName').dirty
-                                            || mEmpCrForm.get('middleName').touched),
-                       'crMDEMiddleNameValid': mEmpCrForm.get('middleName').touched
-                                            && mEmpCrForm.get('middleName').valid }" >
-        <input type="text" id="middleName"
-               placeholder="Введите отчество (Если отсутствует введите - )"
-               [(ngModel)]="mainDeptEmployee.middleName"  formControlName="middleName" >
-        <div class="crMDEMiddleNameErrorMassage">
-          <div *ngIf="mEmpCrForm.get('middleName').invalid
-            && (mEmpCrForm.get('middleName').dirty
-            || mEmpCrForm.get('middleName').touched)" >
-            <div *ngIf="mEmpCrForm.get('middleName').errors.required">
-              <p>Поле не должно быть пустым!</p>
-            </div>
-            <div *ngIf="mEmpCrForm.get('middleName').errors.minlength
-                    || mEmpCrForm.get('middleName').errors.pattern">
-              <p>Некорректное отчество!</p>
-            </div>
-            <div *ngIf="mEmpCrForm.get('middleName').errors.pattern">
-              <p>Отчество должно содержать только кириллические, или латинские буквы, либо дефис!</p>
+              <p>Допускаются только кириллические, или латинские буквы!</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="crMDEBirthDateLabel">
-        <label ><b>Дата рождения</b></label>
+      <div  class="crMDEFirstName"
+            [ngClass]="{'crMDEValidationDefault': !submitted,
+                        'crMDEValidationInvalid': mEmpCrForm.get('firstName').invalid
+                                              && (mEmpCrForm.get('firstName').dirty
+                                              ||  mEmpCrForm.get('firstName').untouched
+                                              ||  mEmpCrForm.get('firstName').touched)
+                                              && submitted,
+                        'crMDEValidationValid': mEmpCrForm.get('firstName').valid,
+                        'crMDEValidationValidAndFocused': mEmpCrForm.get('firstName').valid
+                        &&  mEmpCrForm.get('firstName') === mEmpCrForm.get(inputName) }" >
+        <label for="firstName"><b>Имя</b></label>
+        <input type="text" id="firstName" placeholder="Введите имя"
+               formControlName="firstName" >
+        <div class="crMDEFirstNameErrorMassage">
+          <div *ngIf="mEmpCrForm.get('firstName').invalid
+                      && (mEmpCrForm.get('firstName').dirty
+                      ||  mEmpCrForm.get('firstName').untouched
+                      ||  mEmpCrForm.get('firstName').touched)
+                      && submitted" >
+            <div *ngIf="mEmpCrForm.get('firstName').errors.required">
+              <p>Поле обязательно для заполнения!</p>
+            </div>
+            <div *ngIf="mEmpCrForm.get('firstName').errors.pattern">
+              <p>Допускаются только кириллические, или латинские буквы!</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div [ngClass]=" {'crMDEBirthDateDefault': mEmpCrForm.get('day' && 'month' && 'year').untouched,
-                        'crMDEBirthDateInvalid': ((mEmpCrForm.get('day' && 'month' && 'year').invalid
-                                              && mEmpCrForm.get('day' && 'month' && 'year').touched)
-                                              ||(mEmpCrForm.get('day' && 'month' && 'year').invalid
-                                              && !mEmpCrForm.get('day' && 'month' && 'year').touched
-                                              && submitted)),
-                        'crMDEBirthDateValid': mEmpCrForm.get('day' && 'month' && 'year').valid }" >
-        <select formControlName="day" aria-label="birthDate" >
-          <option hidden [ngValue]="null">День</option>
+
+      <div class="crMDEMiddleName"
+           [ngClass]="{'crMDEValidationDefault': !submitted,
+                       'crMDEValidationInvalid': mEmpCrForm.get('middleName').invalid
+                                             && (mEmpCrForm.get('middleName').dirty
+                                             ||  mEmpCrForm.get('middleName').untouched
+                                             ||  mEmpCrForm.get('middleName').touched)
+                                             && submitted,
+                       'crMDEValidationValid': mEmpCrForm.get('middleName').valid,
+                       'crMDEValidationValidAndFocused': mEmpCrForm.get('middleName').valid
+                        &&  mEmpCrForm.get('middleName') === mEmpCrForm.get(inputName) }" >
+        <label for="middleName"><b>Отчество</b></label>
+        <input type="text" id="middleName"
+               placeholder="Введите отчество (Если отсутствует введите - )"
+               formControlName="middleName" >
+        <div class="crMDEMiddleNameErrorMassage">
+          <div *ngIf="mEmpCrForm.get('middleName').invalid
+                      && (mEmpCrForm.get('middleName').dirty
+                      ||  mEmpCrForm.get('middleName').untouched
+                      ||  mEmpCrForm.get('middleName').touched)
+                      && submitted" >
+            <div *ngIf="mEmpCrForm.get('middleName').errors.required">
+              <p>Поле обязательно для заполнения!</p>
+            </div>
+            <div *ngIf="mEmpCrForm.get('middleName').errors.pattern">
+              <p>Допускаются только кириллические, или латинские буквы, либо дефис!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="crMDEBirthDate"
+           [ngClass]=" {'crMDEValidationDefault': !submitted,
+                        'crMDEValidationInvalid': (mEmpCrForm.get('day').invalid
+                                               || mEmpCrForm.get('month').invalid
+                                               || mEmpCrForm.get('year').invalid )
+                                               && submitted,
+                        'crMDEValidationValid': mEmpCrForm.get('day').valid
+                                             && mEmpCrForm.get('month').valid
+                                             && mEmpCrForm.get('year').valid,
+                        'crMDEValidationValidAndFocused':  (mEmpCrForm.get('day').valid
+                                                         && mEmpCrForm.get('month').valid
+                                                         && mEmpCrForm.get('year').valid)
+                              &&  (mEmpCrForm.get('day') === mEmpCrForm.get(inputName)
+                              ||   mEmpCrForm.get('month') === mEmpCrForm.get(inputName)
+                              ||   mEmpCrForm.get('year') === mEmpCrForm.get(inputName)) }" >
+        <label ><b>Дата рождения</b> </label>
+        <select  id="day" formControlName="day" aria-label="birthDate">
+          <option hidden [value]="null">День</option>
           <option *ngFor="let day of days" [value]="day" >
             {{day}}
           </option>
         </select>
-
-        <select formControlName="month" aria-label="birthDate" >
-          <option hidden [ngValue]="null">Месяц</option>
+        <select id="month" formControlName="month" aria-label="birthDate" >
+          <option hidden [value]="null">Месяц</option>
           <option *ngFor="let month of months" [value]="month.name" >
             {{month.name}}
           </option>
         </select>
-        <select  formControlName="year" aria-label="birthDate" >
-          <option hidden [ngValue]="null">Год</option>
+        <select  id="year" formControlName="year" aria-label="birthDate">
+          <option hidden [value]="null">Год</option>
           <option *ngFor="let year of years"  [value]="year">
             {{year}}
           </option>
         </select>
-      </div>
-      <div class="crMDEBirthDateErrorMassage">
-        <div *ngIf="((mEmpCrForm.get('day' && 'month' && 'year').invalid
-                      && mEmpCrForm.get('day' && 'month' && 'year').touched)
-                      ||(mEmpCrForm.get('day' && 'month' && 'year').invalid
-                      && !mEmpCrForm.get('day' && 'month' && 'year').touched
-                      && submitted))" >
-          <div *ngIf="mEmpCrForm.get('day' && 'month' && 'year').errors.required">
-            <p>Укажите дату!</p>
+        <div class="crMDEBirthDateErrorMassage">
+          <div *ngIf="(mEmpCrForm.get('day').invalid
+                 || mEmpCrForm.get('month').invalid
+                 || mEmpCrForm.get('year').invalid
+                 )
+                 && submitted" >
+            <div *ngIf="mEmpCrForm.get('day').errors.required
+                   || mEmpCrForm.get('month').errors.required
+                   || mEmpCrForm.get('year').errors.required">
+              <p>Дата не указана!</p>
+            </div>
           </div>
         </div>
       </div>
 
-
-      <div class="crMDEPassportLabel">
-        <label for="passport"><b>Паспортные данные</b></label>
-      </div>
-      <div [ngClass]="{'crMDEPassportDefault': mEmpCrForm.get('passport').untouched,
-                       'crMDEPassportInvalid': mEmpCrForm.get('passport').invalid
-                                           && (mEmpCrForm.get('passport').dirty
-                                           || mEmpCrForm.get('passport').touched),
-                       'crMDEPassportValid': mEmpCrForm.get('passport').touched
-                                           && mEmpCrForm.get('passport').valid }" >
-        <input type="text" id="passport"
-               placeholder="Введите данные (Серия: .. .. Номер: ......)"
-               [(ngModel)]="mainDeptEmployee.passport"  formControlName="passport" >
+      <div class="crMDEPassport"
+           [ngClass]=" {'crMDEValidationDefault': !submitted,
+                        'crMDEValidationInvalid': ((mEmpCrForm.get('seriesF').invalid
+                                                 || mEmpCrForm.get('seriesS').invalid
+                                                 || mEmpCrForm.get('number').invalid)
+                                                 && submitted),
+                        'crMDEValidationValid': mEmpCrForm.get('seriesF').valid
+                                             && mEmpCrForm.get('seriesS').valid
+                                             && mEmpCrForm.get('number').valid,
+                        'crMDEValidationValidAndFocused':  (mEmpCrForm.get('seriesF').valid
+                                                         && mEmpCrForm.get('seriesS').valid
+                                                         && mEmpCrForm.get('number').valid)
+                         &&  (mEmpCrForm.get('seriesF') === mEmpCrForm.get(inputName)
+                         ||   mEmpCrForm.get('seriesS') === mEmpCrForm.get(inputName)
+                         ||   mEmpCrForm.get('number') === mEmpCrForm.get(inputName)) }" >
+        <label ><b>Паспортные данные</b></label>
+        <span>Серия:</span>
+        <input id="seriesF" type="text" maxlength="2"
+               formControlName="seriesF" aria-label="passport" placeholder=". .">
+        <input id="seriesS" type="text" maxlength="2"
+               formControlName="seriesS" aria-label="passport" placeholder=". .">
+        <span>Номер:</span>
+        <input id="number" type="text"  maxlength="6"
+               formControlName="number" aria-label="passport" placeholder=". . . . . .">
         <div class="crMDEPassportErrorMassage">
-          <div *ngIf="mEmpCrForm.get('passport').invalid
-              && (mEmpCrForm.get('passport').dirty
-              || mEmpCrForm.get('passport').touched)" >
-            <div *ngIf="mEmpCrForm.get('passport').errors.required">
-              <p>Поле не должно быть пустым!</p>
+          <div *ngIf="((mEmpCrForm.get('seriesF').invalid
+                     || mEmpCrForm.get('seriesS').invalid
+                     || mEmpCrForm.get('number').invalid)
+                     && submitted)" >
+            <div *ngIf="mEmpCrForm.get('seriesF' || 'seriesS' || 'number').errors.required">
+              <p>Поле обязательно для заполнения!</p>
             </div>
-            <div *ngIf="mEmpCrForm.get('passport').errors.pattern">
-              <p>Некорректные паспортные данные!</p>
-            </div>
-            <div *ngIf="mEmpCrForm.get('passport').errors.pattern">
-              <p>Образец: Серия: 00 00 Номер: 000000</p>
+            <div *ngIf="mEmpCrForm.get('seriesF' || 'seriesS' || 'number').errors.pattern">
+              <p>Допускаются только цифры!</p>
             </div>
           </div>
         </div>
       </div>
-      <div class="crMDEMainDeptLabel">
-        <label for="mdeSd"><b>Подотдел</b></label>
-      </div>
-      <div [ngClass]=" {'crMDEMainDeptDefault': mEmpCrForm.get('mainDepartment').untouched,
-                        'crMDEMainDeptInvalid': ((mEmpCrForm.get('mainDepartment').invalid
-                                              && mEmpCrForm.get('mainDepartment').touched)
-                                              ||(mEmpCrForm.get('mainDepartment').invalid
-                                              && !mEmpCrForm.get('mainDepartment').touched
-                                              && submitted)),
-                        'crMDEMainDeptValid' : mEmpCrForm.get('mainDepartment').valid }" >
-        <select id="mdeSd" [(ngModel)]="mainDeptEmployee.mainDepartment" formControlName="mainDepartment" >
-          <option hidden [ngValue]="null">Главный департамент</option>
+
+      <div class="crMDEMainDept"
+           [ngClass]=" {'crMDEValidationDefault': !submitted,
+                        'crMDEValidationInvalid': (mEmpCrForm.get('mainDepartment').invalid
+                                              &&  submitted),
+                         'crMDEValidationValid': mEmpCrForm.get('mainDepartment').valid,
+                         'crMDEValidationValidAndFocused': mEmpCrForm.get('mainDepartment').valid
+                        &&  mEmpCrForm.get('mainDepartment') === mEmpCrForm.get(inputName) }" >
+        <label for="mainDepartment"><b>Департамент</b></label>
+        <select id="mainDepartment" formControlName="mainDepartment" >
+          <option hidden [value]="null">Выберите Департамент</option>
           <option *ngFor="let mainDepartment of mainDepartments" >
             {{mainDepartment.name}}
           </option>
         </select>
         <div class="crMDEMainDeptErrorMassage">
-          <div *ngIf="((mEmpCrForm.get('mainDepartment').invalid
-                                            && mEmpCrForm.get('mainDepartment').touched)
-                                            ||(mEmpCrForm.get('mainDepartment').invalid
-                                            && !mEmpCrForm.get('mainDepartment').touched
-                                            && submitted))" >
+          <div *ngIf="(mEmpCrForm.get('mainDepartment').invalid
+                      && (mEmpCrForm.get('mainDepartment').touched
+                      || mEmpCrForm.get('mainDepartment').untouched)
+                      && submitted)" >
             <div *ngIf="mEmpCrForm.get('mainDepartment').errors.required">
-              <p>Подотдел не выбран!</p>
+              <p>Департамент не выбран!</p>
             </div>
           </div>
         </div>
       </div>
-      <button type="submit" >Добавить</button>
+      <button type="submit">Добавить</button>
     </div>
   </form>
 </div>
-

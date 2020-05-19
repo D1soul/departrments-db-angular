@@ -85,7 +85,7 @@
   cursor: pointer;
 }
 
-.name_error_massage{
+.updNameErrorMassage{
   width: 789px;
   height: 53px;
   left: 97px;
@@ -93,7 +93,7 @@
   position: relative;
 }
 
-.name_error_massage p{
+.updNameErrorMassage p{
   padding-left: 10px;
   font-size: 11pt;
   margin: 0;

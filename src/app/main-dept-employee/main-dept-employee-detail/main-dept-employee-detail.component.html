@@ -1,40 +1,42 @@
-<div *ngIf="mainDeptEmployee">
+<div *ngIf="mainDeptEmployee" class="mainDeptEmplDetail">
   <h2>{{mainDeptEmployee.lastName}} {{mainDeptEmployee.firstName}} {{mainDeptEmployee.middleName}}</h2>
   <div class="mdEDIdHead">
-      <div class="mdEDId">
-        <div ><b>ID</b></div>
-        <span>{{mainDeptEmployee.id}}</span>
-      </div>
-      <div>
-        <button class="edit_button" (click)="goToUpdateMainDeptEmployee(mainDeptEmployee.lastName,
+    <div class="mdEDId">
+      <span><b>ID</b></span>
+      <span>{{mainDeptEmployee.id}}</span>
+    </div>
+    <div class="mdEDUpd">
+      <button (click)="goToUpdateMainDeptEmployee(mainDeptEmployee.lastName,
                  mainDeptEmployee.firstName, mainDeptEmployee.middleName)">Редактировать</button>
-      </div>
+    </div>
   </div>
-    <div class="mdEDLastName" >
-      <div><b>Фамилия</b></div>
-      <span>{{mainDeptEmployee.lastName}}</span>
-    </div>
-    <div class="mdEDFirstName" >
-      <div><b>Имя</b></div>
-      <span>{{mainDeptEmployee.firstName}}</span>
-    </div>
-     <div class="mdEDMiddleName" >
-       <div><b>Отчество</b></div>
-       <span>{{mainDeptEmployee.middleName}}</span>
-    </div>
-    <div class="mdEDBirthDate" >
-      <div><b>Дата рождения</b></div>
+  <div class="mdEDLastName">
+    <span><b>Фамилия</b></span>
+    <span>{{mainDeptEmployee.lastName}}</span>
+  </div>
+  <div class="mdEDFirstName">
+    <span><b>Имя</b></span>
+    <span>{{mainDeptEmployee.firstName}}</span>
+  </div>
+  <div class="mdEDMiddleName">
+    <span><b>Отчество</b></span>
+    <span>{{mainDeptEmployee.middleName}}</span>
+  </div>
+  <div>
+    <div class="mdEDBirthDate">
+      <span><b>Дата рождения</b></span>
       <span>{{mainDeptEmployee.birthDate}}</span>
     </div>
-    <div class="mdEDPassport" >
-      <div><b>Паспортные данные</b></div>
+    <div class="mdEDPassport">
+      <span><b>Паспортные данные</b></span>
       <span>{{mainDeptEmployee.passport}}</span>
     </div>
-  <div class="mdEDMainDeptHead"><b>Главный департамент</b></div>
+  </div>
+  <div class="mdEDMainDeptHead"><b>Департамент</b></div>
   <div class="mdEDMainDeptName"><b>Название</b></div>
   <div class="mdEDMainDept">
     <a routerLink="/main_department-detail/{{mainDeptEmployee.mainDepartment}}">
-     <span>{{mainDeptEmployee.mainDepartment}}</span>
+      <span>{{mainDeptEmployee.mainDepartment}}</span>
     </a>
   </div>
 </div>

@@ -1,24 +1,24 @@
-<div *ngIf="mainDepartment">
+<div *ngIf="mainDepartment" class="mainDeptDetail">
   <h2>{{mainDepartment.name}}</h2>
   <div class="mdDIdHead">
     <div class="mdDId">
-      <div ><b>ID</b></div>
+      <span><b>ID</b></span>
       <span>{{mainDepartment.id}}</span>
     </div>
     <div class="mdDUpd">
-      <button id="upd" (click)="goToUpdateMainDepartment(mainDepartment.name)">Редактировать</button>
+      <button (click)="goToUpdateMainDepartment(mainDepartment.name)">Редактировать</button>
     </div>
   </div>
   <div class="mdDName">
-      <div><b>Название</b></div>
+      <span><b>Название</b></span>
       <span>{{mainDepartment.name}}</span>
   </div>
   <div>
     <div class="mdDEmpls"><b>Сотрудники</b></div>
     <div class="mdDEmplsHead">
-        <span class="mdDLN"><b>Фамилия</b></span>
-        <span class="mdDFN"><b>Имя</b></span>
-        <span class="mdDMN"><b>Отчество</b></span>
+        <span><b>Фамилия</b></span>
+        <span><b>Имя</b></span>
+        <span><b>Отчество</b></span>
     </div>
     <div class="mdDEmplsList" *ngFor="let employee of mainDepartment.employees">
         <a routerLink="/main_dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">

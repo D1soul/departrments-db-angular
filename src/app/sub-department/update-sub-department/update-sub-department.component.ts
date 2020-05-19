@@ -30,10 +30,10 @@ export class UpdateSubDepartmentComponent implements OnInit {
 
   getSubDepartmentDetail() {
     this.name = this.route.snapshot.params['name'];
-    this.subDepartmentService.getSubDepartmentDetail(this.name)
-      .subscribe(subDepartment => this.subDepartment = subDepartment);
     this.mainDepartmentService.getAllMainDepartments()
       .subscribe(mainDepartments => this.mainDepartments = mainDepartments);
+    this.subDepartmentService.getSubDepartmentDetail(this.name)
+      .subscribe(subDepartment => this.subDepartment = subDepartment);
   }
 
   initSubDeptForm(){

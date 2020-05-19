@@ -26,6 +26,7 @@ export class UpdateUserComponent implements OnInit {
   username: string;
   submitted: boolean = true;
   changePassword: boolean = false;
+  errorMessage: string;
   constructor(private authenticationService: AuthenticationService,
               private router: Router, private formBuilder: FormBuilder,
               private route: ActivatedRoute) {
@@ -35,7 +36,7 @@ export class UpdateUserComponent implements OnInit {
   ngOnInit() {
     InitBirthDate(this.days, this.months, this.years);
     this.getUserDetail();
-    this.initUpdUserForms();
+    this.createUpdUserForms();
   }
 
   public getUserDetail(){
@@ -43,11 +44,14 @@ export class UpdateUserComponent implements OnInit {
     this.authenticationService.getUserDetails(this.username)
       .subscribe(user => {
         this.user = user;
-        GetBirthDate(this.updUserForm, 'day','month', 'year',  user.birthDate);
+
+
+        this.initUpdUserForms(user);
+
       });
   }
 
-  initUpdUserForms(){
+  createUpdUserForms(){
     this.updUserForm = this.formBuilder.group({
         username: [null, [Validators.required,
           Validators.pattern("^(([А-я]+\\d*)+|([A-z]+\\d*)+)$"),
@@ -61,20 +65,27 @@ export class UpdateUserComponent implements OnInit {
         year: [null],
         gender: [null, [Validators.required]],
         roles: [null, [Validators.required]]
-      }
-    );
-
-   /* this.changePasswordForm = this.formBuilder.group({
-      password: [null, [Validators.required,
-        Validators.minLength(6)]],
-      confirmPassword: [null, [Validators.required]],
-    },
-    {
-      validators: PasswordMatchValidator('password', 'confirmPassword')
-    }); */
+    });
   }
 
-  initPassword(){
+
+  initUpdUserForms(user) {
+    let birthDateValue = user.birthDate.split('/');
+    this.updUserForm.setValue({
+      username: user.username,
+      oldPassword: '',
+      newPassword: '',
+      confirmPassword: '',
+      day: birthDateValue[0],
+      month: birthDateValue[1],
+      year: birthDateValue[2],
+      gender: user.gender,
+      roles: user.roles
+    });
+  }
+
+
+  initPasswordForm(){
     this.changePassword = true;
     this.updUserForm.get('password').setValidators(Validators.required);
     this.updUserForm.get('newPassword').setValidators([Validators.required, Validators.minLength(6)]);
@@ -90,8 +101,13 @@ export class UpdateUserComponent implements OnInit {
     this.updUserForm.get('password').clearValidators();
     this.updUserForm.get('newPassword').clearValidators();
     this.updUserForm.get('confirmPassword').clearValidators();
-    this.authenticationService.changeOldPassword(currentUsersName, oldPs, newPs, newConfirmPs).subscribe();
-   // this.changePassword = false;
+    this.authenticationService.changeOldPassword(
+      currentUsersName, oldPs, newPs, newConfirmPs).subscribe((err) => {
+        this.errorMessage = this.authenticationService.errorMessage;
+        this.errorMessage = err;
+        this.updUserForm.get('password').setErrors({'notFound': true});
+    });
+    this.changePassword = false;
   }
 
   updateUser(){

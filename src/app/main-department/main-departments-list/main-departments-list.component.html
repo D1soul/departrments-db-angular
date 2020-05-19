@@ -1,20 +1,20 @@
-<div>
- <h2>Главные Департаменты</h2>
- <div class="mainDeptList">
-   <tr>
-    <td class="mdLIdHead"><b>ID</b></td>
-    <td class="mdLNameHead"><b>Название</b></td>
-   </tr>
-   <ul *ngFor="let mainDepartment of mainDepartments" class="mdList">
-     <li class="mdLNav">
+<div class="mainDepts">
+  <h2>Главные Департаменты</h2>
+  <div class="mainDeptList">
+   <div class="mdHead">
+    <span><b>ID</b></span>
+    <span><b>Название</b></span>
+   </div>
+     <div *ngFor="let mainDepartment of mainDepartments" class="mdList">
        <a routerLink="/main_department-detail/{{mainDepartment.name}}">
-         <div  class="mdLId">{{mainDepartment.id}}</div>
-          {{mainDepartment.name}}
+         <div class="mainDeptNav">
+           <span>{{mainDepartment.id}}</span>
+           <span>{{mainDepartment.name}}</span>
+         </div>
        </a>
-     </li>
-     <button class="deleteMD"
-             (click)="deleteMainDepartment(mainDepartment.name)">x</button>
-  </ul>
- </div>
- <button class="addMD" (click)="goToAddMainDepartment()">Добавить департамент</button>
+       <button class="deleteMD"
+               (click)="deleteMainDepartment(mainDepartment.name)">x</button>
+    </div>
+  </div>
+  <button class="addMD" (click)="goToAddMainDepartment()">Добавить департамент</button>
 </div>

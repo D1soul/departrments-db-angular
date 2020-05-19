@@ -1,94 +1,125 @@
-.subDeptList{
-  border-radius: 40px/15px 15px 0 0;
-  border: ridge 1px rgba(0, 0, 0, 0.22);
-  background-color: white;
-  width: 720px;
-  margin: 0;
-  box-shadow: inset 3px 0 3px rgba(0, 0, 0, 0.44);
-  position: relative;
-}
-.sdLIdHead{
-  box-shadow: 0 3px 5px rgba(0,0,0,0.22);
-  z-index: 3;
-  text-align: center;
-  position: static;
-  height: 25px;
-  width: 43px;
-  left: 2px;
-  top: 0;
-  border-radius: 40px/25px 0 0 0;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
-  background-color: rgba(217, 217, 217, 0.25);
+.subDepts{
+  display: inline-block;
+  width: 777px;
 }
 
-.sdLNameHead{
-  margin-left: 40px;
+.subDeptList{
+  border-radius: 40px/15px 15px 0 0;
+  border: solid 1px rgb(180, 180, 180);
+  background-color: white;
+  width: 777px;
+  margin: 0;
+  box-shadow: inset 0 0 5px rgb(80, 80, 80);
+  float: left;
+  padding: 0 0 3px 0;
+}
+
+.sdHead{
+  margin-top: 4px;
+  margin-left: 3px;
+  height: 26px;
+  width: 770px;
+}
+
+.sdHead b{
+  top: 3px;
+  position: relative;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+}
+
+.sdHead span:nth-child(1){
+  text-align: center;
+  float: left;
+  height: 25px;
+  width: 40px;
+  box-shadow: 0 3px 5px rgb(180, 180, 180);
+  border-right: solid 1px rgb(130, 130, 130);
+  border-bottom: solid 1px rgb(130, 130, 130);
+  background-color: rgba(197, 197, 197, 0.2);
+  border-radius: 43px/25px 0 0 0;
+  z-index: 3;
+  position: relative;
+}
+
+.sdHead span:nth-child(2){
+  float: left;
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
-  padding: 5px 0 0 0;
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
   height: 25px;
-  width: 675px;
+  width: 729px;
   text-align: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-top-right-radius: 40px 15px;
-}
-
-.sdLId{
-  background-color: rgba(122, 122, 122, 0.11);
-  display: inline-block;
   position: relative;
-  color: #515151;
-  margin: 0;
-  text-align: center;
-  top: 0;
-  height:25px;
-  width: 38px;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  z-index: 1;
 }
 
 .sdList{
   padding: 0;
   background-color: white;
   border-bottom: ridge 1px rgba(0, 0, 0, 0.4);
-  margin: 0 0 0 5px;
-  width: 715px;
-  height: 25px;
+  margin: 0 0 0 3px;
+  width: 770px;
+  height: 30px;
   list-style-type: none;
+  float: left;
 }
 
 .sdList a{
-  z-index: 1;
   text-decoration: none;
-  display: block;
-  height: 20px;
-  width: 620px;
+  height: 30px;
+  width: 540px;
   color: #5b5b5b;
   text-shadow: 0 1px 1px rgba(126, 126, 126, 0);
 }
 
-
-.sdLNav{
-  height: 25px;
-  width: 665px;
-  padding: 0;
-  margin: 0;
-  position: relative;
-  z-index: 1;
+.sdList a:hover{
+  color: #000000;
+  text-shadow: 0 1px 1px rgb(255, 255, 255);
 }
+
+.subDeptNav {
+  height: 30px;
+  width: 720px;
+  float: left;
+}
+
+.subDeptNav:hover{
+  background-color: rgba(130, 140, 155, 0.16);
+  box-shadow: 0 3px 5px rgba(0,0,0,0.22);
+  z-index: 2;
+  position: relative;
+}
+
+.subDeptNav span:nth-child(1){
+  background-color: rgba(122, 122, 122, 0.11);
+  float: left;
+  color: #515151;
+  margin: 0;
+  text-align: center;
+  padding: 6px 0 0 0 ;
+  height:24px;
+  width: 40px;
+  border-right: solid 1px rgba(0, 0, 0, 0.4);
+}
+
+.subDeptNav span:nth-child(2){
+  float: left;
+  height: 24px;
+  padding: 6px 0 0 6px;
+  width: 673px;
+}
+
 
 .deleteSD{
   background-color: rgba(255, 0, 0, 0.31);
   font-size: medium;
   text-align: center;
   color: white;
-  height:25px;
+  height:30px;
   width: 50px;
   position: relative;
-  top: -25px;
-  left: 665px;
   bottom: 0;
   right: 0;
   padding: 0;
@@ -101,21 +132,11 @@
   box-shadow: inset 0 0 10px red;
 }
 
-.sdLNav:hover{
-  background-color: rgba(130, 140, 155, 0.16);
-  box-shadow: 0 3px 5px rgba(0,0,0,0.22);
-  z-index: 2;
-}
-
-.sdList a:hover{
-  color: #000000;
-  text-shadow: 0 1px 1px rgb(255, 255, 255);
-}
-
 .addSD{
   height: 50px;
   width: 150px;
-  margin-left: 571px;
+  margin: 0 0 0 628px;
+  display: inline-block;
   border-radius: 0 0 15px 0;
   border: 1px solid  rgba(0, 0, 0, 0.4);
   background-color: #ccc;
@@ -124,6 +145,7 @@
   background-clip: padding-box;
   cursor: pointer;
   outline: none;
+  float: initial;
 }
 
 .addSD:hover{

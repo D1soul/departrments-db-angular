@@ -1,13 +1,21 @@
+.subDeptEmplDetail{
+  display: inline-block;
+  width: 703px;
+}
+
 .sdEDIdHead{
   height: 32px;
-  width: 723px;
-  display: block;
+  width: 699px;
+  display: inline-block;
+  float: left;
 }
 
 .sdEDId{
   height: 30px;
-  width: 613px;
-  border: solid 1px rgba(0, 0, 0, 0.4);
+  width: 587px;
+  border: solid 1px rgb(180, 180, 180);
+  float: left;
+  background-color: rgb(255, 255, 255);
 }
 
 .sdEDId b{
@@ -16,70 +24,96 @@
   left: 9px;
 }
 
-.sdEDId div{
-  width: 169px;
+.sdEDId span:nth-child(1){
+  width: 94px;
   height: 30px;
   display: inline-block;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  background-color: rgba(217, 217, 217, 0.25);
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
+  border-right: solid 1px rgb(180, 180, 180);
+  background-color: rgb(245, 245, 245);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 
-.sdEDId span{
+.sdEDId span:nth-child(2){
   position: relative;
   top: 6px;
-  left: 20px;
+  left: 10px;
+}
+.sdEDUpd{
+  height: 31px;
+  width: 110px;;
+  border-bottom: 1px solid rgb(180, 180, 180);
+  float: right;
+}
+
+.sdEDUpd button{
+  height: 31px;
+  width: 109px;
+  border-left: 0;
+  border-right: 1px solid  rgb(180, 180, 180);
+  border-top: 1px solid  rgb(180, 180, 180);
+  border-bottom: 0;
+  border-radius: 0 15px 0 0;
+  background-clip: padding-box;
+  cursor: pointer;
+  outline: none;
+  background-color:  rgb(204, 204, 204);
+  box-shadow: inset 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  background-image: linear-gradient(to bottom, rgb(239, 239, 239), rgb(119, 119, 119));
+  font-family: "Times New Roman", serif;
+  font-size: 12pt;
+  color: rgb(60, 60, 60);
+  transition-duration: 0.5s;
+}
+
+.sdEDUpd button:hover{
+  background-image: linear-gradient(to bottom, rgb(205, 205, 205), rgb(85, 85, 85));
+  box-shadow: inset 0 0 10px rgb(230, 230, 230);
+  text-shadow: rgb(255, 255, 255);
+  color: rgb(50, 50, 50);
+  transition-duration: 0.5s;
 }
 
 .sdEDLastName{
-  height: 30px;
-  width: 720px;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  border-left: solid 1px rgba(0, 0, 0, 0.4);
-}
-
-.sdEDLastName div{
-  width: 169px;
-  height: 30px;
+  float: left;
   display: inline-block;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  background-color: rgba(217, 217, 217, 0.25);
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
+  height: 30px;
+  width: 696px;
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-left: solid 1px rgb(180, 180, 180);
+  background-color: rgb(255, 255, 255);
 }
 
-.sdEDLastName span {
-  position: relative;
-  top: 6px;
-  left: 20px;
-}
 .sdEDLastName b{
   position: relative;
   top: 6px;
   left: 9px;
 }
 
-.sdEDFirstName{
+.sdEDLastName span:nth-child(1){
   height: 30px;
-  width: 720px;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  border-left: solid 1px rgba(0, 0, 0, 0.4);
-}
-
-.sdEDFirstName div{
-  width: 169px;
-  height: 30px;
+  width: 94px;
   display: inline-block;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  background-color: rgba(217, 217, 217, 0.25);
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
+  border-right: solid 1px rgb(180, 180, 180);
+  background-color: rgb(245, 245, 245);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 
-.sdEDFirstName span {
+.sdEDLastName span:nth-child(2){
   position: relative;
   top: 6px;
-  left: 20px;
+  padding-left: 10px;
+}
+
+.sdEDFirstName{
+  float: left;
+  display: inline-block;
+  height: 30px;
+  width: 696px;
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-left: solid 1px rgb(180, 180, 180);
+  background-color: rgb(255, 255, 255);
 }
 
 .sdEDFirstName b{
@@ -88,27 +122,30 @@
   left: 9px;
 }
 
-.sdEDMiddleName{
+.sdEDFirstName span:nth-child(1){
   height: 30px;
-  width: 720px;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  border-left: solid 1px rgba(0, 0, 0, 0.4);
-}
-
-.sdEDMiddleName div{
-  width: 169px;
-  height: 30px;
+  width: 94px;
   display: inline-block;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  background-color: rgba(217, 217, 217, 0.25);
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
+  border-right: solid 1px rgb(180, 180, 180);
+  background-color: rgb(245, 245, 245);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 
-.sdEDMiddleName span {
+.sdEDFirstName span:nth-child(2){
   position: relative;
   top: 6px;
-  left: 20px;
+  padding-left: 10px;
+}
+
+.sdEDMiddleName{
+  float: left;
+  display: inline-block;
+  height: 30px;
+  width: 696px;
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-left: solid 1px rgb(180, 180, 180);
+  background-color: rgb(255, 255, 255);
 }
 
 .sdEDMiddleName b{
@@ -117,27 +154,30 @@
   left: 9px;
 }
 
-.sdEDBirthDate{
+.sdEDMiddleName span:nth-child(1){
   height: 30px;
-  width: 720px;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  border-left: solid 1px rgba(0, 0, 0, 0.4);
-}
-
-.sdEDBirthDate div{
-  width: 169px;
-  height: 30px;
+  width: 94px;
   display: inline-block;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  background-color: rgba(217, 217, 217, 0.25);
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
+  border-right: solid 1px rgb(180, 180, 180);
+  background-color: rgb(245, 245, 245);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 
-.sdEDBirthDate span {
+.sdEDMiddleName span:nth-child(2){
   position: relative;
   top: 6px;
-  left: 20px;
+  padding-left: 10px;
+}
+
+.sdEDBirthDate{
+  float: left;
+  display: inline-block;
+  height: 30px;
+  width: 298px;
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-left: solid 1px rgb(180, 180, 180);
+  background-color: rgb(255, 255, 255);
 }
 
 .sdEDBirthDate b{
@@ -146,44 +186,64 @@
   left: 9px;
 }
 
-.sdEDPassport{
+.sdEDBirthDate span:nth-child(1){
   height: 30px;
-  width: 720px;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  border-left: solid 1px rgba(0, 0, 0, 0.4);
-}
-
-.sdEDPassport div{
-  width: 169px;
-  height: 30px;
+  width: 132px;
   display: inline-block;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  background-color: rgba(217, 217, 217, 0.25);
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
+  border-right: solid 1px rgb(180, 180, 180);
+  background-color: rgb(245, 245, 245);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 
-.sdEDPassport span {
+.sdEDBirthDate span:nth-child(2){
   position: relative;
   top: 6px;
-  left: 20px;
+  padding-left: 10px;
 }
+
+.sdEDPassport{
+  float: left;
+  display: inline-block;
+  height: 30px;
+  width: 396px;
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-left: solid 1px rgb(180, 180, 180);
+  background-color: rgb(255, 255, 255);
+}
+
 .sdEDPassport b{
   position: relative;
   top: 6px;
   left: 9px;
 }
 
-.sdEDSubDeptHead{
-  background-color: rgba(217, 217, 217, 0.25);
-  z-index: 3;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.22);
+.sdEDPassport span:nth-child(1){
   height: 30px;
-  width: 720px;
+  width: 170px;
+  display: inline-block;
+  border-right: solid 1px rgb(180, 180, 180);
+  background-color: rgb(245, 245, 245);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+}
+
+.sdEDPassport span:nth-child(2){
+  position: relative;
+  top: 6px;
+  padding-left: 10px;
+}
+
+.sdEDSubDeptHead{
   text-align: center;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
-  border-left: solid 1px rgba(0, 0, 0, 0.4);
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-left: solid 1px rgb(180, 180, 180);
+  padding: 0 0 0 97px;
+  width: 599px;
+  height: 30px;
+  background-color: rgb(245, 245, 245);
+  box-shadow: 0 3px 5px rgb(180, 180, 180);
+  float: left;
 }
 
 .sdEDSubDeptHead b{
@@ -192,16 +252,18 @@
 }
 
 .sdEDSubDeptName{
-  border-bottom: ridge 1px rgba(0, 0, 0, 0.4);
-  border-left: ridge 1px rgba(0, 0, 0, 0.4);
-  border-right: ridge 1px rgba(0, 0, 0, 0.4);
-  list-style-type: none;
+  float: left;
+  margin: 0 0 0 97px;
+  z-index: 3;
+  box-shadow: 0 3px 5px rgb(180, 180, 180);
   height: 30px;
-  width: 550px;
-  margin: 0 0 0 170px;
+  width: 599px;
   text-align: center;
-  background-color: rgba(217, 217, 217, 0.25);
-  box-shadow: 0 3px 5px rgba(0,0,0,0.22);
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-left: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  background-color: rgb(245, 245, 245);
+  position: relative;
 }
 
 .sdEDSubDeptName b{
@@ -210,24 +272,26 @@
 }
 
 .sdEDSubDept{
-  border-left: ridge 1px rgba(0, 0, 0, 0.4);
-  border-right: ridge 1px rgba(0, 0, 0, 0.4);
-  border-bottom: ridge 1px rgba(0, 0, 0, 0.4);
+  background-color: rgb(255, 255, 255);
+  float: left;
+  border-left: ridge 1px rgb(180, 180, 180);
+  border-right: ridge 1px rgb(180, 180, 180);
   list-style-type: none;
   height: 30px;
-  width: 550px;
-  margin: 0 0 0 170px;
+  width: 599px;
+  margin: 0 0 0 97px;
   display: inline-block;
 }
 
 .sdEDSubDept span{
+  margin: 0;
   position: relative;
   top: 6px;
 }
 
 .sdEDSubDept:hover{
-  background-color: rgba(130, 140, 155, 0.16);
-  box-shadow: 0 3px 5px rgba(0,0,0,0.22);
+  background-color: rgb(240, 240, 240);
+  box-shadow: 0 3px 5px rgb(180, 180, 180);
   z-index: 2;
 }
 
@@ -239,10 +303,10 @@
   height: 30px;
   width: 600px;
   color: #5b5b5b;
-  text-shadow: 0 1px 1px rgba(126, 126, 126, 0);
+  text-shadow: 0 0 1px rgb(226, 226, 226);
 }
 
 .sdEDSubDept a:hover{
   color: #000000;
-  text-shadow: 0 1px 1px rgb(255, 255, 255);
+  text-shadow: 0 0 1px rgb(255, 255, 255);
 }

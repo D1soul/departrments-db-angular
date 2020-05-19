@@ -22,6 +22,8 @@ export class RegistrationComponent implements OnInit {
   months = [];
   years = [];
   submitted: boolean = false;
+  hasError: boolean = false;
+  errorMessage:string = 'da';
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router, private formBuilder: FormBuilder) {
@@ -54,13 +56,29 @@ export class RegistrationComponent implements OnInit {
     );
   }
 
+  get regFormControls(){
+    return this.regForm.controls;
+  }
+
+  get getRegUsername(){
+    return this.regForm.get('username');
+  }
+
+
   register(){
+    let a =  this.regFormControls.day.value;
     this.submitted = true;
     this.user.birthDate = SetBirthDate(this.regForm, 'day', 'month', 'year');
     this.user.roles = [this.role.user];
-        if (this.regForm.valid) {
-          this.authenticationService.registration(this.user)
-        .subscribe(() => this.goToAllUsers());
+
+    if (this.regForm.valid) {
+      this.authenticationService.registration(this.user)
+        .subscribe(() => this.goToAllUsers(), (err) => {
+          console.log(err);
+          this.errorMessage = this.authenticationService.errorMessage;
+          //   this.errorMessage = err;
+             this.regForm.get('username').setErrors( {'thisUsernameIsTaken': true});
+        });
     }
   }
 

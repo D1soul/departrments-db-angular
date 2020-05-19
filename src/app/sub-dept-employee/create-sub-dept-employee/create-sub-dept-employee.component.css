@@ -1,7 +1,11 @@
+h2{
+  margin: 20px 0 20px 0;
+}
+
 .crSubDeptEmpl{
-  margin-top: 30px;
-  height: 426px;
-  width:796px;
+  margin: 0;
+  height: 264px;
+  width:781px;
   border: solid 1px rgb(180, 180, 180);
   box-shadow: inset 3px 0 5px rgb(180, 180, 180);
   background-color: rgb(255, 255, 255);
@@ -11,114 +15,86 @@
   position: relative;
   top: 6px;
   left: 10px;
+  font-family: "Times New Roman", serif;
+  font-size: 12pt;
 }
 
 .crSubDeptEmpl p{
   font-size: 11pt;
-  color: rgba(205, 0, 0, 0.4);
+  color: rgb(240, 150, 150);
   margin: 0;
 }
 
 .crSDEValidationDefault input {
-  border: solid 1px rgb(180, 180, 180);
+  border-top: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-left: 0;
   box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 
 .crSDEValidationInvalid input {
-  border: solid 1px rgba(205, 0, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
-}
-
-.crSDEValidationInvalid select {
-  border: solid 1px rgba(205, 0, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
-}
-
-.crSDEValidationDefault select{
-  border: solid 1px rgb(180, 180, 180);
-  box-shadow: 3px 0 5px rgb(180, 180, 180);
+  border-top: solid 1px rgb(240, 150, 150);
+  border-right: solid 1px rgb(240, 150, 150);
+  border-bottom: solid 1px rgb(240, 150, 150);
+  border-left: 0;
+  box-shadow: 3px 0 5px rgb(240, 150, 150);
 }
 
 .crSDEValidationValid input {
-  border: solid 1px rgb(180, 180, 180);
+  border-top: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-left: 0;
   box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 
 .crSDEValidationValidAndFocused input{
-  border: solid 1px rgba(0, 205, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
+  border-top: solid 1px rgb(190, 240, 190);
+  border-right: solid 1px rgb(190, 240, 190);
+  border-bottom: solid 1px rgb(190, 240, 190);
+  border-left: 0;
+  box-shadow: 3px 0 5px rgb(190, 240, 190);
 }
 
+.crSDEValidationDefault select{
+  border-top: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-left: solid 1px rgb(255, 255, 255);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+}
 
+.crSDEValidationInvalid select {
+  border-top: solid 1px rgb(240, 150, 150);
+  border-right: solid 1px rgb(240, 150, 150);
+  border-bottom: solid 1px rgb(240, 150, 150);
+  border-left: solid 1px rgb(255, 255, 255);
+  box-shadow: 3px 0 5px rgb(240, 150, 150);
+}
 
 .crSDEValidationValid select{
-  border: solid 1px rgb(180, 180, 180);
+  border-top: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-left: solid 1px rgb(255, 255, 255);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 
 .crSDEValidationValidAndFocused select{
-  border: solid 1px rgba(0, 205, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
-}
-
-.crSDEValidationDefault .series {
-  border-bottom: solid 1px rgb(180, 180, 180);
-  border-top: solid 1px rgb(180, 180, 180);
-  box-shadow: 3px 0 5px rgb(180, 180, 180);
-}
-
-.crSDEValidationInvalid .series {
-  border-bottom: solid 1px rgba(205, 0, 0, 0.4);
-  border-top: solid 1px rgba(205, 0, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
-}
-
-.crSDEValidationValid .series {
-  border-bottom: solid 1px rgb(180, 180, 180);
-  border-top: solid 1px rgb(180, 180, 180);
-  box-shadow: 3px 0 5px rgb(180, 180, 180);
-}
-
-.crSDEValidationValidAndFocused .series {
-  border-bottom: solid 1px rgba(0, 205, 0, 0.4);
-  border-top: solid 1px rgba(0, 205, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
-}
-
-.crSDEValidationDefault .number{
-  border-bottom: solid 1px rgb(180, 180, 180);
-  border-top: solid 1px rgb(180, 180, 180);
-  border-right: solid 1px rgb(180, 180, 180);
-  box-shadow: 3px 0 5px rgb(180, 180, 180);
-}
-
-.crSDEValidationInvalid .number {
-  border-bottom: solid 1px rgba(205, 0, 0, 0.4);
-  border-top: solid 1px rgba(205, 0, 0, 0.4);
-  border-right: solid 1px rgba(205, 0, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
-}
-
-.crSDEValidationValid .number{
-  border-bottom: solid 1px rgb(180, 180, 180);
-  border-top: solid 1px rgb(180, 180, 180);
-  border-right: solid 1px rgb(180, 180, 180);
-  box-shadow: 3px 0 5px rgb(180, 180, 180);
-}
-
-.crSDEValidationValidAndFocused .number {
-  border-bottom: solid 1px rgba(0, 205, 0, 0.4);
-  border-top: solid 1px rgba(0, 205, 0, 0.4);
-  border-right: solid 1px rgba(0, 205, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
+  border-top: solid 1px rgb(190, 240, 190);
+  border-right: solid 1px rgb(190, 240, 190);
+  border-bottom: solid 1px rgb(190, 240, 190);
+  border-left: solid 1px rgb(255, 255, 255);
+  box-shadow: 3px 0 5px rgb(190, 240, 190);
 }
 
 .crSDELastName{
   display: inline-block;
   float: left;
-  margin: 2px 0 0 3px;
+  margin: 3px 0 0 3px;
   height: 52px;
-  width: 691px;
+  width: 777px;
 }
 
 .crSDELastName label{
@@ -126,19 +102,21 @@
   float: left;
   border: solid 1px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
-  background-color: rgba(217, 217, 217, 0.25);
-  width: 90px;
+  background-color: rgb(245, 245, 245);
+  width: 94px;
   height: 30px;
+  font-size: 12pt;
   z-index: 2;
 }
 
 .crSDELastName input{
   float: left;
-  font-size: 12pt;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
   padding: 0 0 0 10px;
   outline: none;
   height: 30px;
-  width: 587px;
+  width: 668px;
   background-color: rgb(255, 255, 255);
 }
 
@@ -147,7 +125,7 @@
   height: 20px;
   width: 300px;
   float: left;
-  margin: 0 0 0 103px;
+  margin: 0 0 0 107px;
 }
 
 .crSDEFirstName{
@@ -155,35 +133,36 @@
   margin: 0 0 0 3px;
   height: 52px;
   float: left;
-  width: 691px;
+  width: 777px;
 }
 
 .crSDEFirstName label{
   float: left;
   position: relative;
   border: solid 1px rgb(180, 180, 180);
-  width: 90px;
+  width: 94px;
   height: 30px;
-  background-color: rgba(217, 217, 217, 0.25);
+  background-color: rgb(245, 245, 245);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   z-index: 2;
 }
 
 .crSDEFirstName input{
   float: left;
-  font-size: 12pt;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
   background-color: rgb(255, 255, 255);
   padding: 0 0 0 10px;
   outline: none;
   height: 30px;
-  width: 587px;
+  width: 668px;
 }
 
 .crSDEFirstNameErrorMassage{
   width: 300px;
   height: 20px;
   float: left;
-  margin: 0 0 0 103px;
+  margin: 0 0 0 107px;
 }
 
 .crSDEMiddleName {
@@ -191,144 +170,35 @@
   margin: 0 0 0 3px;
   height: 52px;
   float: left;
-  width: 691px;
+  width: 777px;
 }
 
 .crSDEMiddleName label{
+  position: relative;
   float: left;
   border: solid 1px rgb(180, 180, 180);
-  width: 90px;
+  width: 94px;
   height: 30px;
-  background-color: rgba(217, 217, 217, 0.25);
+  background-color: rgb(245, 245, 245);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   z-index: 2;
 }
 
 .crSDEMiddleName input{
-  font-size: 12pt;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
   background-color: rgb(255, 255, 255);
   padding: 0 0 0 10px;
   outline: none;
   height: 30px;
-  width: 587px;
+  width: 668px;
 }
 
 .crSDEMiddleNameErrorMassage{
   width: 300px;
   height: 20px;
   float: left;
-  margin: 0 0 0 103px;
-}
-
-.crSDEBirthDate {
-  display: inline-block;
-  margin: 0 0 0 3px;
-  height: 52px;
-  float: left;
-}
-
-.crSDEBirthDate label{
-  float: left;
-  border: solid 1px rgb(180, 180, 180);
-  width: 123px;
-  height: 30px;
-  background-color: rgba(217, 217, 217, 0.25);
-  box-shadow: 3px 0 5px rgb(180, 180, 180);
-  z-index: 4;
-  position: relative;
-}
-
-.crSDEBirthDate select{
-  outline: none;
-  height: 32px;
-  cursor: pointer;
-  z-index: 3;
-  background-color: rgb(255, 255, 255);
-  position: relative;
-}
-
-.crSDEBirthDateErrorMassage{
-  margin: 0 0 0 130px;
-  width: 150px;
-  height: 20px;
-  float: bottom;
-}
-
-.crSDEPassport{
-  display: inline-block;
-  margin: 0;
-  height: 52px;
-  float: left;
-}
-
-.crSDEPassport label{
-  float: left;
-  position: relative;
-  border: solid 1px rgb(180, 180, 180);
-  width: 162px;
-  height: 30px;
-  background-color: rgba(217, 217, 217, 0.25);
-  box-shadow: 3px 0 5px rgb(180, 180, 180);
-  z-index: 2;
-}
-
-.crSDEPassport .series{
-  background-color: rgb(255, 255, 255);
-  position: relative;
-  font-size: 12pt;
-  display: inline-block;
-  height: 30px;
-  z-index: 1;
-}
-
-.crSDEPassport .series span{
-  float: left;
-  padding-top: 6px;
-  padding-left: 6px;
-}
-
-.crSDEPassport .series input {
-  position: relative;
-  border: 0;
-  outline: none;
-  height: 26px;
-  width: 20px;
-  margin: 3px 0 0 6px;
-  padding: 0;
-  z-index: 1;
-  box-shadow: none;
-}
-
-.crSDEPassport .number{
-  position: relative;
-  font-size: 12pt;
-  display: inline-block;
-  height: 30px;
-  z-index: 3;
-  padding: 0 0 0 1px;
-  background-color: rgb(255, 255, 255);
-}
-
-.crSDEPassport .number span{
-  float: left;
-  padding-top: 6px;
-  padding-left: 6px;
-}
-
-.crSDEPassport .number input{
-  border: 0;
-  outline: none;
-  height: 26px;
-  width: 50px;
-  margin: 3px 0 0 6px;
-  padding: 0;
-  box-shadow: none;
-}
-
-.crSDEPassportErrorMassage{
-  width: 216px;
-  height: 36px;
-  margin-left: 165px;
+  margin: 0 0 0 107px;
 }
 
 .crSDESubDept {
@@ -336,47 +206,169 @@
   margin: 0 0 0 3px;
   height: 52px;
   float: left;
+  width: 776px;
 }
 
 .crSDESubDept label{
+  position: relative;
   float: left;
   border: solid 1px rgb(180, 180, 180);
-  width: 90px;
+  width: 94px;
   height: 30px;
-  background-color: rgba(217, 217, 217, 0.25);
+  background-color: rgb(245, 245, 245);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   z-index: 2;
 }
 
 .crSDESubDept select {
-  width: 599px;
+  padding: 0 0 0 7px;
+  width: 679px;
   height: 32px;
   outline: none;
   cursor: pointer;
   background-color: rgb(255, 255, 255);
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
 }
 
 .crSDESubDeptErrorMassage{
   width: 530px;
   height: 20px;
-  margin: 0 0 0  182px;
+  margin: 0 0 0  108px;
+}
+
+.crSDEBirthDate {
+  display: inline-block;
+  margin: 0 0 0 3px;
+  width: 341px;
+  height: 52px;
+  float: left;
+}
+
+.crSDEBirthDate label{
+  float: left;
+  border: solid 1px rgb(180, 180, 180);
+  width: 130px;
+  height: 30px;
+  background-color: rgb(245, 245, 245);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+  z-index: 4;
+  position: relative;
+}
+
+.crSDEBirthDate select:nth-child(2),
+.crSDEBirthDate select:nth-child(4){
+  outline: none;
+  height: 32px;
+  cursor: pointer;
+  z-index: 3;
+  width: 60px;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+}
+
+.crSDEBirthDate select:nth-child(3){
+  outline: none;
+  height: 32px;
+  cursor: pointer;
+  z-index: 3;
+  width: 88px;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+}
+
+.crSDEBirthDateErrorMassage{
+  margin: 0 0 0 136px;
+  width: 150px;
+  height: 20px;
+  float: bottom;
+}
+
+.crSDEPassport{
+  display: inline-block;
+  margin: 0 0 0 6px;
+  height: 52px;
+  width: 428px;
+  float: left;
+}
+
+.crSDEPassport label{
+  float: left;
+  position: relative;
+  border: solid 1px rgb(180, 180, 180);
+  width: 168px;
+  height: 30px;
+  background-color: rgb(245, 245, 245);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+  z-index: 2;
+}
+
+.crSDEPassport span{
+  float: left;
+  height: 24px;
+  width: 57px;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+  padding: 6px 0 0 6px;
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-top: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+  background-color: rgb(245, 245, 245);
+}
+
+.crSDEPassport input:nth-child(3),
+.crSDEPassport input:nth-child(4){
+  outline: none;
+  height: 30px;
+  width: 25px;
+  margin: 0;
+  padding: 0 0 0 6px;
+  float: left;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+}
+
+.crSDEPassport input:nth-child(6){
+  float: left;
+  outline: none;
+  height: 30px;
+  width: 59px;
+  padding: 0 0 0 6px;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+}
+
+.crSDEPassportErrorMassage{
+  width: 220px;
+  height: 36px;
+  margin-left: 176px;
 }
 
 .crSubDeptEmpl button{
+  margin: 2px 0 0 632px;
   height: 50px;
   width: 150px;
   border-radius: 0 0 15px 0;
   border: 1px solid  rgb(180, 180, 180);
-  background-color: #ccc;
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.09), 0 1px 1px rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient(to bottom, #efefef, #777);
+  background-color:  rgb(204, 204, 204);
+  box-shadow: inset 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  background-image: linear-gradient(to bottom, rgb(239, 239, 239), rgb(119, 119, 119));
   background-clip: padding-box;
   cursor: pointer;
   outline: none;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+  color: rgb(60, 60, 60);
 }
 
 .crSubDeptEmpl button:hover{
-  background-image: linear-gradient(to bottom, #ccc, #555);
-  box-shadow: inset 0 0 10px white;
+  background-image: linear-gradient(to bottom, rgb(205, 205, 205), rgb(85, 85, 85));
+  box-shadow: inset 0 0 10px rgb(255, 255, 255);
+  text-shadow: rgb(255, 255, 255);
+  color: rgb(50, 50, 50);
 }
-

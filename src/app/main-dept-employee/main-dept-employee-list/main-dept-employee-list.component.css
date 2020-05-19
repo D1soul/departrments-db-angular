@@ -1,40 +1,64 @@
+.mainDeptEmls{
+  display: inline-block;
+  width: 605px;
+}
+
 .mainDeptEmplList{
   border-radius: 40px/15px 15px 0 0;
-  border: ridge 1px rgba(0, 0, 0, 0.22);
+  border: solid 1px rgb(180, 180, 180);
   background-color: white;
-  width: 600px;
+  width: 603px;
   margin: 0;
-  box-shadow: inset 3px 0 3px rgba(0, 0, 0, 0.44);
+  box-shadow: inset 0 0 5px rgb(80, 80, 80);
+  float: left;
+  padding: 0 0 3px 0;
+}
+
+.mdEHead{
+  margin-top: 4px;
+  margin-left: 3px;
+  height: 26px;
+  width: 597px;
+}
+
+.mdEHead b{
+  top: 3px;
+  position: relative;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+}
+
+.mdEHead span:nth-child(1){
+  text-align: center;
+  float: left;
+  height: 25px;
+  width: 40px;
+  box-shadow: 0 3px 5px rgb(180, 180, 180);
+  border-right: solid 1px rgb(130, 130, 130);
+  border-bottom: solid 1px rgb(130, 130, 130);
+  background-color: rgba(197, 197, 197, 0.2);
+  border-radius: 43px/25px 0 0 0;
+  z-index: 3;
   position: relative;
 }
-.mdELIdHead{
-  box-shadow: 0 3px 5px rgba(0,0,0,0.22);
-  z-index: 3;
-  text-align: center;
-  position: static;
-  height: 25px;
-  width: 41px;
-  left: 2px;
-  top: 0;
-  border-radius: 40px/25px 0 0 0;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
-  background-color: rgba(217, 217, 217, 0.25);
-}
-.mdELLastNameHead{
+
+.mdEHead span:nth-child(2){
+  float: left;
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
-  padding: 5px 0 0 0;
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
   height: 25px;
   width: 168px;
   text-align: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
+  position: relative;
 }
-.mdELFirstNameHead{
+
+.mdEHead span:nth-child(3){
+  float: left;
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
-  padding: 5px 0 0 0;
+  position: relative;
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
   height: 25px;
   width: 169px;
@@ -42,79 +66,89 @@
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
 }
 
-.mdELMiddleNameHead{
+.mdEHead span:nth-child(4){
+  float: left;
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
-  padding: 5px 0 0 0;
+  position: relative;
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
   height: 25px;
-  width: 220px;
+  width: 219px;
   text-align: center;
   border-bottom: solid 1px rgba(0, 0, 0, 0.4);
   border-top-right-radius: 40px 15px;
-}
-
-.mdELId{
-  background-color: rgba(122, 122, 122, 0.11);
-  display: inline-block;
-  position: relative;
-  color: #515151;
-  margin: 0;
-  text-align: center;
-  top: 0;
-  height:25px;
-  width: 36px;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  z-index: 1;
-}
-
-.mdELLastName{
-  padding-left: 10px;
-  width: 158px;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  position: relative;
-}
-
-.mdELFirstName{
-  padding-left: 10px;
-  width: 158px;
-  border-right: solid 1px rgba(0, 0, 0, 0.4);
-  position: relative;
-}
-
-.mdELMiddleName{
-  padding-left: 10px;
-  width: 158px;
-  position: relative;
 }
 
 .mdEList{
   padding: 0;
   background-color: white;
   border-bottom: ridge 1px rgba(0, 0, 0, 0.4);
-  margin: 0 0 0 5px;
-  width: 592px;
-  height: 25px;
+  margin: 0 0 0 3px;
+  width: 597px;
+  height: 30px;
   list-style-type: none;
-}
-
-.mdELNav{
-  height: 25px;
-  width: 547px;
-  padding: 0;
-  margin: 0;
-  position: relative;
-  z-index: 1;
+  float: left;
 }
 
 .mdEList a{
-  z-index: 1;
   text-decoration: none;
-  display: block;
-  height: 20px;
-  width: 542px;
+  height: 30px;
+  width: 540px;
   color: #5b5b5b;
   text-shadow: 0 1px 1px rgba(126, 126, 126, 0);
+}
+
+.mdEList a:hover{
+  color: #000000;
+  text-shadow: 0 1px 1px rgb(255, 255, 255);
+}
+
+.mainDeptEmplNav {
+  height: 30px;
+  width: 547px;
+  float: left;
+}
+
+.mainDeptEmplNav span:nth-child(1){
+  background-color: rgba(122, 122, 122, 0.11);
+  float: left;
+  color: #515151;
+  margin: 0;
+  text-align: center;
+  padding: 6px 0 0 0 ;
+  height:24px;
+  width: 40px;
+  border-right: solid 1px rgba(0, 0, 0, 0.4);
+}
+
+.mainDeptEmplNav span:nth-child(2){
+  float: left;
+  height: 24px;
+  padding: 6px 0 0 6px;
+  width: 162px;
+  border-right: solid 1px rgba(0, 0, 0, 0.4);
+}
+
+.mainDeptEmplNav span:nth-child(3){
+  float: left;
+  height: 24px;
+  padding: 6px 0 0 6px;
+  width: 162px;
+  border-right: solid 1px rgba(0, 0, 0, 0.4);
+}
+
+.mainDeptEmplNav span:nth-child(4){
+  float: left;
+  height: 24px;
+  padding: 6px 0 0 6px;
+  width: 160px;
+}
+
+.mainDeptEmplNav:hover{
+  background-color: rgba(130, 140, 155, 0.16);
+  box-shadow: 0 3px 5px rgba(0,0,0,0.22);
+  z-index: 2;
+  position: relative;
 }
 
 .deleteMDE{
@@ -122,31 +156,19 @@
   font-size: medium;
   text-align: center;
   color: white;
-  height:25px;
+  height:30px;
   width: 50px;
   position: relative;
-  top: -25px;
-  left: 545px;
   bottom: 0;
   right: 0;
+  padding: 0;
   border: solid 1px rgba(0, 0, 0, 0.4);
   outline: none;
   cursor: pointer;
 }
 
-.mdELNav:hover{
-  background-color: rgba(130, 140, 155, 0.16);
-  box-shadow: 0 3px 5px rgba(0,0,0,0.22);
-  z-index: 2;
-}
-
 .deleteMDE:hover{
   box-shadow: inset 0 0 10px red;
-}
-
-.mdEList a:hover{
-  color: #000000;
-  text-shadow: 0 1px 1px rgb(255, 255, 255);
 }
 
 .addMDE{
@@ -166,5 +188,3 @@
   background-image: linear-gradient(to bottom, #ccc, #555);
   box-shadow: inset 0 0 10px white;
 }
-
-

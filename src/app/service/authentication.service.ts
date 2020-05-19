@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable, of} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {BehaviorSubject, Observable, of, throwError} from 'rxjs';
+import {catchError, map } from 'rxjs/operators';
 import {User} from '../entities/user';
 import {LoggingUser} from '../entities/logging.user';
 
@@ -15,6 +15,7 @@ export class AuthenticationService {
   private readonly userUrl: string;
   private readonly changePasUrl: string;
   private readonly registrationUrl: string;
+  public errorMessage: string;
   private  behaviorSubject: BehaviorSubject<LoggingUser>;
   private redirectUrl: string = '/';
   public currentUser: string = 'currentUser';
@@ -55,7 +56,7 @@ export class AuthenticationService {
   changeOldPassword(username: string, password: string, newPassword: string, newConfirmPassword): Observable<any> {
     return this.http.put<any>(this.changePasUrl,{username, password, newPassword, newConfirmPassword
     }, this.httpOptions).pipe(
-        catchError(this.handleError<User>(`User with username: ${username} detail`)));
+        catchError(this.handleError<string>(`change old password`)));
   }
 
   logout() {
@@ -77,10 +78,27 @@ export class AuthenticationService {
       catchError(this.handleError<User>(`User with username: ${username} detail`)));
   }
 
+
   registration(user: User): Observable<User> {
-    return this.http.post<User>(this.registrationUrl, user, this.httpOptions).pipe(
-      catchError(this.handleError<User>('Adding New User')));
+    return this.http.post<any>(this.registrationUrl, user, this.httpOptions).pipe(
+
+      catchError(this.handleError<any>('Adding New User')))
   }
+
+
+/*  registration(user: User): Observable<any> {
+    try {
+      return this.http.post<any>(this.registrationUrl, user, this.httpOptions);
+    }
+    catch (e) {
+      catchError(this.handleError<any>('Adding New User')),
+        map(massage =>{
+          console.log('eas', massage);
+          localStorage.setItem('massage', e);
+          return massage;});
+    }
+
+  } */
 
   updateUser(username: string, user: User): Observable<Object>{
     const urlUpdateUser = `${this.userUrl}/${username}`;
@@ -106,10 +124,11 @@ export class AuthenticationService {
       catchError(this.handleError<User>(`Deleting User with Username: ${username}`)));
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T> (operation = 'operation') {
     return (error: any): Observable<T> => {
-      console.error(error);
-      return  of (result as T);
+      this.errorMessage = error;
+      console.error(operation + ': ' + error);
+      return  throwError(error);
     }
   }
 

@@ -1,31 +1,38 @@
-<div *ngIf="subDeptEmployee">
+<div *ngIf="subDeptEmployee" class="subDeptEmplDetail">
   <h2>{{subDeptEmployee.lastName}} {{subDeptEmployee.firstName}} {{subDeptEmployee.middleName}}</h2>
   <div class="sdEDIdHead">
     <div class="sdEDId">
-      <div ><b>ID</b></div>
+      <span><b>ID</b></span>
       <span>{{subDeptEmployee.id}}</span>
     </div>
-    <div>
-      <button class="edit_button" (click)="goToUpdateSubDeptEmployee(subDeptEmployee.lastName,
+    <div class="sdEDUpd">
+      <button (click)="goToUpdateSubDeptEmployee(subDeptEmployee.lastName,
                  subDeptEmployee.firstName, subDeptEmployee.middleName)">Редактировать</button>
     </div>
   </div>
-  <div class="sdEDLastName" ><div><b>Фамилия</b></div>
+  <div class="sdEDLastName">
+    <span><b>Фамилия</b></span>
     <span>{{subDeptEmployee.lastName}}</span>
   </div>
-  <div class="sdEDFirstName" ><div><b>Имя</b></div>
+  <div class="sdEDFirstName">
+    <span><b>Имя</b></span>
     <span>{{subDeptEmployee.firstName}}</span>
   </div>
-  <div class="sdEDMiddleName" ><div><b>Отчество</b></div>
+  <div class="sdEDMiddleName">
+    <span><b>Отчество</b></span>
     <span>{{subDeptEmployee.middleName}}</span>
   </div>
-  <div class="sdEDBirthDate" ><div><b>Дата рождения</b></div>
-    <span>{{subDeptEmployee.birthDate}}</span>
+  <div>
+    <div class="sdEDBirthDate">
+      <span><b>Дата рождения</b></span>
+      <span>{{subDeptEmployee.birthDate}}</span>
+    </div>
+    <div class="sdEDPassport">
+      <span><b>Паспортные данные</b></span>
+      <span>{{subDeptEmployee.passport}}</span>
+    </div>
   </div>
-  <div class="sdEDPassport" ><div><b>Паспортные данные</b></div>
-    <span>{{subDeptEmployee.passport}}</span>
-  </div>
-  <div class="sdEDSubDeptHead"><b>Департамент</b></div>
+  <div class="sdEDSubDeptHead"><b>Подотдел</b></div>
   <div class="sdEDSubDeptName"><b>Название</b></div>
   <div class="sdEDSubDept">
     <a routerLink="/sub-department-detail/{{subDeptEmployee.subDepartment}}">

@@ -1,40 +1,30 @@
 <div>
   <form [formGroup]="mDeptCrForm" novalidate (ngSubmit)="addMainDepartment()" >
     <h2>Добавление главного департамерта</h2>
-    <div class="cr_main_dept">
-      <div class="name_label">
+    <div class="crMainDept">
+      <div class="crMDName"
+           [ngClass]="{'crMDValidationDefault': !submitted,
+                       'crMDValidationInvalid': mDeptCrForm.get('name').invalid && submitted,
+                       'crMDValidationValid': mDeptCrForm.get('name').valid,
+                       'crMDValidationValidAndFocused': mDeptCrForm.get('name').valid
+                        &&  mDeptCrForm.get('name') === mDeptCrForm.get(inputName) }" >
         <label for="name"><b>Название</b></label>
-      </div>
-      <div [ngClass]="{'name_default': mDeptCrForm.controls['name'].untouched,
-                      'name_invalid': ((mDeptCrForm.controls['name'].invalid && (mDeptCrForm.controls['name'].dirty
-                                      || mDeptCrForm.controls['name'].touched))
-                                      ||(mDeptCrForm.controls['name'].invalid && submitted)),
-                       'name_valid': mDeptCrForm.controls['name'].touched
-                                        && mDeptCrForm.controls['name'].valid }" >
-        <input type="text" id="name" placeholder="Введите название"
-               [(ngModel)]="mainDepartment.name" formControlName="name" >
-        <div class="name_error_massage">
-          <div *ngIf="((mDeptCrForm.controls['name'].invalid
-                  && (mDeptCrForm.controls['name'].dirty
-                  || mDeptCrForm.controls['name'].touched))
-                  ||(mDeptCrForm.controls['name'].invalid && submitted))" >
-            <div *ngIf="mDeptCrForm.controls['name'].errors.required">
-              <p>Поле не должно быть пустым!</p>
+        <input type="text" id="name" formControlName="name" >
+        <div class="crNameErrorMassage">
+          <div *ngIf="mDeptCrForm.get('name').invalid && submitted" >
+            <div *ngIf="mDeptCrForm.get('name').errors.required">
+              <p>Поле обязательно для заполнения!</p>
             </div>
-            <div *ngIf="mDeptCrForm.controls['name'].errors.minlength
-                        || mDeptCrForm.controls['name'].errors.pattern">
-              <p>Некорректное название!</p>
-            </div>
-            <div *ngIf="mDeptCrForm.controls['name'].errors.minlength">
+            <div *ngIf="mDeptCrForm.get('name').errors.minlength">
               <p>Название слишком короткое!</p>
             </div>
-            <div *ngIf="mDeptCrForm.controls['name'].errors.pattern">
+            <div *ngIf="mDeptCrForm.get('name').errors.pattern">
               <p>Название должно содержать только кириллические, или латинские буквы и пробелы!</p>
             </div>
           </div>
         </div>
       </div>
-     <button type="submit">Добавить</button>
+      <button type="submit">Добавить</button>
     </div>
   </form>
 </div>
