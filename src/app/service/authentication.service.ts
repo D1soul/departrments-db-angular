@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable, of, throwError} from 'rxjs';
-import {catchError, map } from 'rxjs/operators';
-import {User} from '../entities/user';
-import {LoggingUser} from '../entities/logging.user';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { User } from '../entities/user';
+import { LoggingUser } from '../entities/logging.user';
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +45,6 @@ export class AuthenticationService {
     return this.http.post<any>(this.loginUrl, {username, password})
       .pipe(map(user => {
         if (user && user.token) {
-            console.log(user.roles.values());
            localStorage.setItem(this.currentUser, JSON.stringify(user));
            this.behaviorSubject.next(user);
         }
@@ -78,7 +77,6 @@ export class AuthenticationService {
       catchError(this.handleError<User>(`User with username: ${username} detail`)));
   }
 
-
   registration(user: User): Observable<User> {
     return this.http.post<any>(this.registrationUrl, user, this.httpOptions).pipe(
 
@@ -86,37 +84,12 @@ export class AuthenticationService {
   }
 
 
-/*  registration(user: User): Observable<any> {
-    try {
-      return this.http.post<any>(this.registrationUrl, user, this.httpOptions);
-    }
-    catch (e) {
-      catchError(this.handleError<any>('Adding New User')),
-        map(massage =>{
-          console.log('eas', massage);
-          localStorage.setItem('massage', e);
-          return massage;});
-    }
-
-  } */
 
   updateUser(username: string, user: User): Observable<Object>{
     const urlUpdateUser = `${this.userUrl}/${username}`;
     return this.http.put(urlUpdateUser, user, this.httpOptions).pipe(
       catchError(this.handleError<User>(`Updating User with username: ${username}`)));
   }
-
-
-  /*
-    updateMainDeptEmployee(
-    lastName: string, firstName: string, middleName: string,
-    mainDeptEmployee: MainDeptEmployee): Observable<Object>{
-      const urlFullName = `${this.url}/${lastName}/${firstName}/${middleName}`;
-      return this.http.put(urlFullName, mainDeptEmployee, this.httpOptions).pipe(
-        catchError(this.handleError<MainDeptEmployee>(
-          `Updating Main Dept Employee with Full Name: ${lastName} ${firstName} ${middleName}`)));
-  }
-   */
 
   deleteUser(username: string): Observable<User> {
     const urlDeleteUser = `${this.userUrl}/${username}`;
@@ -131,5 +104,4 @@ export class AuthenticationService {
       return  throwError(error);
     }
   }
-
 }

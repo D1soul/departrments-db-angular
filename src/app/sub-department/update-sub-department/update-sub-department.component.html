@@ -2,49 +2,51 @@
   <form [formGroup]="sDeptUpdForm" novalidate (ngSubmit)="updateSubDepartment()" >
     <h2>Редактирование данных подотдела</h2>
     <div *ngIf="subDepartment">
-      <div class="upd_sub-dept">
-        <div class="name_label">
-          <label ><b>Название</b></label>
-        </div>
-        <div [ngClass]="{'name_default': sDeptUpdForm.controls['name'].untouched,
-                         'name_invalid': sDeptUpdForm.controls['name'].invalid
-                                        && (sDeptUpdForm.controls['name'].dirty
-                                        || sDeptUpdForm.controls['name'].touched),
-                         'name_valid': sDeptUpdForm.controls['name'].touched
-                                        && sDeptUpdForm.controls['name'].valid }" >
-          <input type="text" id="name"
-                 [(ngModel)]="subDepartment.name" formControlName="name" >
-          <div class="name_error_massage">
-            <div *ngIf="sDeptUpdForm.controls['name'].invalid
-                && (sDeptUpdForm.controls['name'].dirty
-                || sDeptUpdForm.controls['name'].touched)" >
-              <div *ngIf="sDeptUpdForm.controls['name'].errors.required">
-                <p>Поле не должно быть пустым!</p>
+      <div class="updSubDept">
+        <div class="updSDName"
+             [ngClass]="{'updSDValidationDefault': sDeptUpdForm.get('name').untouched,
+                         'updSDValidationInvalid': sDeptUpdForm.get('name').invalid,
+                         'updSDValidationValid': sDeptUpdForm.get('name').valid,
+                         'updSDValidationValidAndFocused': sDeptUpdForm.get('name').valid
+                        &&  sDeptUpdForm.get('name') === sDeptUpdForm.get(inputName) }" >
+          <label for="name"><b>Название</b></label>
+          <input type="text" id="name" formControlName="name" >
+          <div class="updSDNameErrorMassage">
+            <div *ngIf="sDeptUpdForm.get('name').invalid" >
+              <div *ngIf="sDeptUpdForm.get('name').errors.required">
+                <p>Поле обязательно для заполнения!</p>
               </div>
-              <div *ngIf="sDeptUpdForm.controls['name'].errors.minlength
-                        || sDeptUpdForm.controls['name'].errors.pattern">
-                <p>Некорректное название!</p>
-              </div>
-              <div *ngIf="sDeptUpdForm.controls['name'].errors.minlength">
+              <div *ngIf="sDeptUpdForm.get('name').errors.minlength">
                 <p>Название слишком короткое!</p>
               </div>
-              <div *ngIf="sDeptUpdForm.controls['name'].errors.pattern">
+              <div *ngIf="sDeptUpdForm.get('name').errors.pattern">
                 <p>Название должно содержать только кириллические, или латинские буквы и пробелы!</p>
               </div>
             </div>
           </div>
         </div>
-        <div>
-          <div class="main_dept_label">
-            <label><b>Главный Департамент</b></label>
+
+        <div class="updSDMainDept"
+             [ngClass]=" {'updSDValidationDefault': sDeptUpdForm.get('mainDepartment').untouched,
+                          'updSDValidationInvalid': sDeptUpdForm.get('mainDepartment').invalid,
+                          'updSDValidationValid': sDeptUpdForm.get('mainDepartment').valid,
+                          'updSDValidationValidAndFocused': sDeptUpdForm.get('mainDepartment').valid
+                          &&  sDeptUpdForm.get('mainDepartment') === sDeptUpdForm.get(inputName) }" >
+          <label for="mainDepartment"><b>Департамент</b></label>
+          <select id="mainDepartment" formControlName="mainDepartment" >
+            <option *ngFor="let mainDepartment of mainDepartments" [value]="mainDepartment.name" >
+              {{mainDepartment.name}}
+            </option>
+          </select>
+          <div class="updSDMainDeptErrorMassage">
+            <div *ngIf="(sDeptUpdForm.get('mainDepartment').invalid
+                    && (sDeptUpdForm.get('mainDepartment').touched
+                    || sDeptUpdForm.get('mainDepartment').untouched))" >
+              <div *ngIf="sDeptUpdForm.get('mainDepartment').errors.required">
+                <p>Департамент не выбран!</p>
+              </div>
+            </div>
           </div>
-          <div class="sdDMainDeptHead" >
-            <select [(ngModel)]="subDepartment.mainDepartment" formControlName="mainDepartment" >
-              <option *ngFor="let mainDepartment of mainDepartments" [ngValue]="mainDepartment.name" >
-                {{mainDepartment.name}}
-              </option>
-            </select>
-         </div>
         </div>
         <button type="submit">Обновить</button>
       </div>

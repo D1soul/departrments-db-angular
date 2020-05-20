@@ -5,6 +5,7 @@ import { MainDeptEmployeeService } from '../../service/main-dept-employee.servic
 import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {InitBirthDate} from '../../service/init.birth.date';
 @Component({
   selector: 'app-update-main-dept-employee',
   templateUrl: './update-main-dept-employee.component.html',
@@ -33,6 +34,7 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
   ngOnInit() {
     this.getMainDeptEmployeeDetail();
     this.createMainDeptEmpForm();
+    InitBirthDate(this.days, this.months, this.years);
     this.getMainDeptEmpFormValue(this.mainDeptEmployee);
     this.getUpdMDEFocusedElementName();
   }
@@ -113,16 +115,18 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
   }
 
   getUpdMDEFocusedElementName() {
-    let elements = [].slice.call((this.elementRef.nativeElement)
-      .querySelectorAll('[formControlName]'));
-    elements.forEach(element => {
-      element.addEventListener('focus', () => {
-        this.inputName = element.id;
+    setTimeout(()=>{
+      let elements = [].slice.call((this.elementRef.nativeElement)
+        .querySelectorAll('[formControlName]'));
+      elements.forEach( element =>{
+        element.addEventListener('focus', () => {
+          this.inputName = element.id;
+        });
+        element.addEventListener('blur', () => {
+          this.inputName = '';
+        })
       });
-      element.addEventListener('blur', () => {
-        this.inputName = '';
-      })
-    });
+    }, 50);
   }
 
 

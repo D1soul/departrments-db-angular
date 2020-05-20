@@ -1,123 +1,193 @@
-.upd_sub-dept{
-  margin-top: 30px;
-  height: 136px;
-  width:980px;
-  border: solid 1px rgba(0, 0, 0, 0.4);
-  outline: none;
-  box-shadow: inset 3px 0 5px rgba(0,0,0,0.22);
+h2{
+  margin: 20px 0 20px 0;
 }
 
-.name_label{
-  border: solid 1px rgba(0, 0, 0, 0.4);
+.updSubDept{
+  margin: 0;
+  height: 107px;
+  width:781px;
+  border: solid 1px rgb(180, 180, 180);
+  box-shadow: inset 3px 0 5px rgb(180, 180, 180);
+  background-color: rgb(255, 255, 255);
+}
+
+.updSubDept b{
   position: relative;
-  padding-top: 8px;
-  padding-left: 10px;
-  width: 83px;
-  height: 29px;
-  background-color: rgba(217, 217, 217, 0.25);
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
-  left: 2px;
-  top: 2px;
+  top: 6px;
+  left: 10px;
+  font-family: "Times New Roman", serif;
+  font-size: 12pt;
+}
+
+.updSubDept p{
+  font-size: 11pt;
+  color: rgb(240, 150, 150);
+  margin: 0;
+}
+
+.updSDValidationDefault input {
+  border-top: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-left: 0;
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+}
+
+.updSDValidationInvalid input {
+  border-top: solid 1px rgb(240, 150, 150);
+  border-right: solid 1px rgb(240, 150, 150);
+  border-bottom: solid 1px rgb(240, 150, 150);
+  border-left: 0;
+  box-shadow: 3px 0 5px rgb(240, 150, 150);
+  transition-duration: 0.5s;
+}
+
+.updSDValidationValid input {
+  border-top: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-left: 0;
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+  transition-duration: 0.5s;
+}
+
+.updSDValidationValidAndFocused input{
+  border-top: solid 1px rgb(190, 240, 190);
+  border-right: solid 1px rgb(190, 240, 190);
+  border-bottom: solid 1px rgb(190, 240, 190);
+  border-left: 0;
+  box-shadow: 3px 0 5px rgb(190, 240, 190);
+  transition-duration: 0.5s;
+}
+
+.updSDValidationDefault select{
+  border-top: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-left: solid 1px rgb(255, 255, 255);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+}
+
+.updSDValidationInvalid select {
+  border-top: solid 1px rgb(240, 150, 150);
+  border-right: solid 1px rgb(240, 150, 150);
+  border-bottom: solid 1px rgb(240, 150, 150);
+  border-left: solid 1px rgb(255, 255, 255);
+  box-shadow: 3px 0 5px rgb(240, 150, 150);
+}
+
+.updSDValidationValid select{
+  border-top: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-left: solid 1px rgb(255, 255, 255);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+}
+
+.updSDValidationValidAndFocused select{
+  border-top: solid 1px rgb(190, 240, 190);
+  border-right: solid 1px rgb(190, 240, 190);
+  border-bottom: solid 1px rgb(190, 240, 190);
+  border-left: solid 1px rgb(255, 255, 255);
+  box-shadow: 3px 0 5px rgb(190, 240, 190);
+}
+
+.updSDName{
+  display: inline-block;
+  float: left;
+  margin: 3px 0 0 3px;
+  height: 52px;
+  width: 777px;
+}
+
+.updSDName label{
+  position: relative;
+  float: left;
+  border: solid 1px rgb(180, 180, 180);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+  background-color: rgb(245, 245, 245);
+  width: 94px;
+  height: 30px;
+  font-size: 12pt;
   z-index: 2;
 }
 
-.name_default input{
-  font-size: 12pt;
-  border: solid 1px rgba(0, 0, 0, 0.4);
-  padding-left: 10px;
+.updSDName input{
+  float: left;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+  padding: 0 0 0 10px;
   outline: none;
-  height: 35px;
-  width: 869px;
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
-  position: relative;
-  left: 97px;
-  top: -37px;
+  height: 30px;
+  width: 668px;
+  background-color: rgb(255, 255, 255);
 }
 
-.name_invalid input{
-  font-size: 12pt;
-  border: solid 1px rgba(205, 0, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
-  padding-left: 10px;
-  position: relative;
-  left: 97px;
-  top: -37px;
-  outline: none;
-  height: 35px;
-  width: 869px;
+.updSDNameErrorMassage{
+  padding: 0;
+  height: 20px;
+  width: 668px;
+  float: left;
+  margin: 0 0 0 107px;
 }
 
-.name_valid input{
-  font-size: 12pt;
-  border: solid 1px rgba(0, 205, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
-  padding-left: 10px;
-  position: relative;
-  left: 97px;
-  top: -37px;
-  outline: none;
-  height: 35px;
-  width: 869px;
+.updSDMainDept {
+  display: inline-block;
+  margin: 0 0 0 3px;
+  height: 52px;
+  float: left;
+  width: 776px;
 }
 
-.main_dept_label{
-  border: solid 1px rgba(0, 0, 0, 0.4);
+.updSDMainDept label{
   position: relative;
-  padding-top: 8px;
-  padding-left: 10px;
-  width: 175px;
-  height: 29px;
-  background-color: rgba(217, 217, 217, 0.25);
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
-  left: 2px;
-  top: -36px;
+  float: left;
+  border: solid 1px rgb(180, 180, 180);
+  width: 114px;
+  height: 30px;
+  background-color: rgb(245, 245, 245);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
   z-index: 2;
 }
 
-.sdDMainDeptHead select{
-  width: 789px;
-  height: 39px;
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
-  position: relative;
-  left: 189px;
-  top: -75px;
+.updSDMainDept select {
+  padding: 0 0 0 7px;
+  width: 659px;
+  height: 32px;
   outline: none;
   cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+  border: 1px inherit;
 }
 
-.updNameErrorMassage{
-  width: 789px;
-  height: 53px;
-  left: 97px;
-  top: -36px;
-  position: relative;
+.updSDMainDeptErrorMassage{
+  width: 530px;
+  height: 20px;
+  margin: 0 0 0  128px;
 }
 
-.updNameErrorMassage p{
-  padding-left: 10px;
-  font-size: 11pt;
-  margin: 0;
-  color: rgba(205, 0, 0, 0.4);
-}
-
-.upd_sub-dept button{
-  position: relative;
+.updSubDept button{
+  margin: 2px 0 0 632px;
   height: 50px;
-  left: 831px;
-  top: -72px;
   width: 150px;
   border-radius: 0 0 15px 0;
-  border: 1px solid  rgba(0, 0, 0, 0.4);
-  background-color: #ccc;
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.09), 0 1px 1px rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient(to bottom, #efefef, #777);
+  border: 1px solid  rgb(180, 180, 180);
+  background-color:  rgb(204, 204, 204);
+  box-shadow: inset 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  background-image: linear-gradient(to bottom, rgb(239, 239, 239), rgb(119, 119, 119));
   background-clip: padding-box;
   cursor: pointer;
   outline: none;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+  color: rgb(60, 60, 60);
 }
 
-.upd_sub-dept button:hover{
-  background-image: linear-gradient(to bottom, #ccc, #555);
-  box-shadow: inset 0 0 10px white;
+.updSubDept button:hover{
+  background-image: linear-gradient(to bottom, rgb(205, 205, 205), rgb(85, 85, 85));
+  box-shadow: inset 0 0 10px rgb(255, 255, 255);
+  text-shadow: rgb(255, 255, 255);
+  color: rgb(50, 50, 50);
 }
-

@@ -86,16 +86,18 @@ export class CreateMainDeptEmployeeComponent implements OnInit{
   }
 
   getCrMDEFocusedElementName() {
-    let elements = [].slice.call((this.elementRef.nativeElement)
-      .querySelectorAll('[formControlName]'));
-    elements.forEach(element => {
-      element.addEventListener('focus', () => {
-        this.inputName = element.id;
+    setTimeout(()=>{
+      let elements = [].slice.call((this.elementRef.nativeElement)
+        .querySelectorAll('[formControlName]'));
+      elements.forEach( element =>{
+        element.addEventListener('focus', () => {
+          this.inputName = element.id;
+        });
+        element.addEventListener('blur', () => {
+          this.inputName = '';
+        })
       });
-      element.addEventListener('blur', () => {
-        this.inputName = '';
-      })
-    });
+    }, 50);
   }
 
   addMainDeptEmployee(){

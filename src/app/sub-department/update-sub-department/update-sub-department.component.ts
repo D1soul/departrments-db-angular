@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SubDepartment } from '../../entities/sub-department';
 import { SubDepartmentService } from '../../service/sub-department.service';
@@ -17,15 +17,19 @@ export class UpdateSubDepartmentComponent implements OnInit {
   subDepartment: SubDepartment;
   mainDepartments: MainDepartment[];
   sDeptUpdForm: FormGroup;
+  inputName: string = '';
 
   constructor(private route: ActivatedRoute, private router: Router,
               private subDepartmentService: SubDepartmentService,
               private mainDepartmentService: MainDepartmentService,
-              private formBuilder: FormBuilder) {}
+              private formBuilder: FormBuilder,
+              private elementRef: ElementRef) {}
 
   ngOnInit() {
     this.getSubDepartmentDetail();
-    this.initSubDeptForm()
+    this.createSubDeptForm();
+    this.getSubDeptFormValue(this.subDepartment);
+    this.getUpdSDFocusedElementName();
   }
 
   getSubDepartmentDetail() {
@@ -33,17 +37,48 @@ export class UpdateSubDepartmentComponent implements OnInit {
     this.mainDepartmentService.getAllMainDepartments()
       .subscribe(mainDepartments => this.mainDepartments = mainDepartments);
     this.subDepartmentService.getSubDepartmentDetail(this.name)
-      .subscribe(subDepartment => this.subDepartment = subDepartment);
+      .subscribe(subDepartment => {this.subDepartment = subDepartment;
+        this.initSubDeptForm(subDepartment);
+    });
   }
 
-  initSubDeptForm(){
+  createSubDeptForm(){
     this.sDeptUpdForm = this.formBuilder.group({
-      "name": [null, [Validators.required,
-        Validators.pattern("^(([А-я]+\\s?)+|([A-z]+\\s?)+)$"),
-        Validators.minLength(5),
-        Validators.maxLength(60)]],
-      "mainDepartment": [null,[Validators.required]]
+      name: [null, [Validators.required,
+                    Validators.pattern("^(([А-я]+\\s?)+|([A-z]+\\s?)+)$"),
+                    Validators.minLength(5),
+                    Validators.maxLength(60)]],
+      mainDepartment: [null,[Validators.required]]
     });
+  }
+
+  initSubDeptForm(subDepartment: SubDepartment){
+    this.sDeptUpdForm.setValue({
+      name: subDepartment.name,
+      mainDepartment: subDepartment.mainDepartment
+    })
+  }
+
+  getSubDeptFormValue(subDepartment: SubDepartment){
+    this.sDeptUpdForm.valueChanges.subscribe(formData =>{
+      subDepartment.name = formData.name;
+      subDepartment.mainDepartment = formData.mainDepartment;
+    });
+  }
+
+  getUpdSDFocusedElementName() {
+    setTimeout(()=>{
+      let elements = [].slice.call((this.elementRef.nativeElement)
+        .querySelectorAll('[formControlName]'));
+      elements.forEach( element =>{
+        element.addEventListener('focus', () => {
+          this.inputName = element.id;
+        });
+        element.addEventListener('blur', () => {
+          this.inputName = '';
+        })
+      });
+    }, 50);
   }
 
   updateSubDepartment(){

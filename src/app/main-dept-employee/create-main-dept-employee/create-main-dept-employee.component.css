@@ -219,7 +219,7 @@ h2{
   position: relative;
   float: left;
   border: solid 1px rgb(180, 180, 180);
-  width: 94px;
+  width: 114px;
   height: 30px;
   background-color: rgb(245, 245, 245);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
@@ -228,7 +228,7 @@ h2{
 
 .crMDEMainDept select {
   padding: 0 0 0 7px;
-  width: 679px;
+  width: 659px;
   height: 32px;
   outline: none;
   cursor: pointer;
@@ -240,7 +240,7 @@ h2{
 .crMDEMainDeptErrorMassage{
   width: 530px;
   height: 20px;
-  margin: 0 0 0  108px;
+  margin: 0 0 0  128px;
 }
 
 .crMDEBirthDate {

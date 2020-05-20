@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import { SubDepartment } from '../../entities/sub-department';
 import { SubDepartmentService } from '../../service/sub-department.service';
 import { MainDepartment } from '../../entities/main-department';
@@ -18,31 +18,57 @@ export class CreateSubDepartmentComponent implements OnInit{
   mainDepartments: MainDepartment[];
   sDeptCrForm: FormGroup;
   submitted: boolean = false;
+  inputName: string = '';
 
   constructor(private subDepartmentService: SubDepartmentService,
               private mainDepartmentService: MainDepartmentService,
-              private formBuilder: FormBuilder, private router: Router) {
+              private formBuilder: FormBuilder, private router: Router,
+              private elementRef: ElementRef) {
     this.subDepartment = new SubDepartment();
   }
 
   ngOnInit() {
     this.selectMainDepartment();
-    this.initSubDeptForm();
+    this.createSubDeptForm();
+    this.getSubDeptFormValue(this.subDepartment);
+    this.getCrSDFocusedElementName();
+  }
+
+  createSubDeptForm(){
+    this.sDeptCrForm = this.formBuilder.group({
+      name: [null, [Validators.required,
+                    Validators.pattern("^(([А-я]+\\s?)+|([A-z]+\\s?)+)$"),
+                    Validators.minLength(5),
+                    Validators.maxLength(60)]],
+      mainDepartment: [null,[Validators.required]]
+    });
   }
 
   selectMainDepartment(){
     this.mainDepartmentService.getAllMainDepartments()
-      .subscribe(mainDepartments => this.mainDepartments = mainDepartments);
+        .subscribe(mainDepartments => this.mainDepartments = mainDepartments);
   }
 
-  initSubDeptForm(){
-    this.sDeptCrForm = this.formBuilder.group({
-      "name": [null, [Validators.required,
-        Validators.pattern("^(([А-я]+\\s?)+|([A-z]+\\s?)+)$"),
-        Validators.minLength(5),
-        Validators.maxLength(60)]],
-      "mainDepartment": [null,[Validators.required]]
+  getSubDeptFormValue(subDepartment: SubDepartment){
+    this.sDeptCrForm.valueChanges.subscribe(formData =>{
+      subDepartment.name = formData.name;
+      subDepartment.mainDepartment = formData.mainDepartment;
     });
+  }
+
+  getCrSDFocusedElementName() {
+    setTimeout(()=>{
+      let elements = [].slice.call((this.elementRef.nativeElement)
+          .querySelectorAll('[formControlName]'));
+      elements.forEach( element =>{
+        element.addEventListener('focus', () => {
+          this.inputName = element.id;
+        });
+        element.addEventListener('blur', () => {
+          this.inputName = '';
+        })
+      });
+    }, 50);
   }
 
   addSubDepartment(){

@@ -9,8 +9,8 @@
                        'crMDValidationValidAndFocused': mDeptCrForm.get('name').valid
                         &&  mDeptCrForm.get('name') === mDeptCrForm.get(inputName) }" >
         <label for="name"><b>Название</b></label>
-        <input type="text" id="name" formControlName="name" >
-        <div class="crNameErrorMassage">
+        <input type="text" id="name" placeholder="Введите название" formControlName="name" >
+        <div class="crMDNameErrorMassage">
           <div *ngIf="mDeptCrForm.get('name').invalid && submitted" >
             <div *ngIf="mDeptCrForm.get('name').errors.required">
               <p>Поле обязательно для заполнения!</p>

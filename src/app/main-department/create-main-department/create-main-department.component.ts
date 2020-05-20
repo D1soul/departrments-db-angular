@@ -3,6 +3,7 @@ import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
 import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {GetElementOnFocus} from '../../service/get.element.on.focus';
 
 @Component({
   selector: 'app-create-main-department',
@@ -37,23 +38,25 @@ export class CreateMainDepartmentComponent implements OnInit{
     });
   }
 
-  getMainDeptFormValue(mainDepartment){
+  getMainDeptFormValue(mainDepartment: MainDepartment){
     this.mDeptCrForm.valueChanges.subscribe(formData =>{
       mainDepartment.name = formData.name;
     });
   }
 
   getCrMDFocusedElementName() {
-    let elements = [].slice.call((this.elementRef.nativeElement)
-      .querySelectorAll('[formControlName]'));
-    elements.forEach(element => {
-      element.addEventListener('focus', () => {
-        this.inputName = element.id;
+     setTimeout(()=>{
+      let elements = [].slice.call((this.elementRef.nativeElement)
+        .querySelectorAll('[formControlName]'));
+      elements.forEach( element =>{
+        element.addEventListener('focus', () => {
+          this.inputName = element.id;
+        });
+        element.addEventListener('blur', () => {
+          this.inputName = '';
+        })
       });
-      element.addEventListener('blur', () => {
-        this.inputName = '';
-      })
-    });
+    }, 50);
   }
 
   addMainDepartment(){

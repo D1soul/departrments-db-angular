@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import { SubDepartment } from '../entities/sub-department';
 import { catchError } from 'rxjs/operators';
 
@@ -10,6 +10,7 @@ import { catchError } from 'rxjs/operators';
 export class SubDepartmentService {
 
   private readonly url: string;
+  public errorMessage: string;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -47,10 +48,11 @@ export class SubDepartmentService {
       catchError(this.handleError<SubDepartment>(`Deleting Sub-Department with name: ${name}`)));
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T> (operation = 'operation') {
     return (error: any): Observable<T> => {
-      console.error(error);
-      return  of (result as T);
+      this.errorMessage = error;
+      console.error(operation + ': ' + error);
+      return  throwError(error);
     }
   }
 }

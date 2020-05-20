@@ -29,7 +29,8 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
 
   constructor(private subDeptEmployeeService: SubDeptEmployeeService,
               private subDepartmentService: SubDepartmentService,
-              private formBuilder: FormBuilder, private router: Router,  private elementRef: ElementRef ) {
+              private formBuilder: FormBuilder, private router: Router,
+              private elementRef: ElementRef ) {
     this.subDeptEmployee = new SubDeptEmployee();
   }
 
@@ -37,13 +38,13 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
     this.initSubDeptEmpForm();
     InitBirthDate(this.days, this.months, this.years);
     this.selectSubDepartment();
-    this.getSubDeptEmplFormValue(this.subDeptEmployee);
+    this.getSubDeptEmplFormValue(this.sEmpCrForm);
     this.getCrSDEFocusedElementName();
   }
 
   selectSubDepartment(){
     this.subDepartmentService.getAllSubDepartments()
-      .subscribe(subDepartments => this.subDepartments = subDepartments)
+      .subscribe(subDepartments => this.subDepartments = subDepartments);
   }
 
   initSubDeptEmpForm(){
@@ -67,32 +68,37 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
     });
   }
 
-  getSubDeptEmplFormValue(subDeptEmployee){
-    this.sEmpCrForm.valueChanges.subscribe(formData =>{
-      subDeptEmployee.lastName = formData.lastName;
-      subDeptEmployee.firstName = formData.firstName;
-      subDeptEmployee.middleName = formData.middleName;
-      subDeptEmployee.birthDate = formData.day + '/'
-                                + formData.month + '/'
-                                + formData.year;
-      subDeptEmployee.passport = 'Серия: ' + formData.seriesF
-                               + ' ' + formData.seriesS
-                               + ' Номер: ' + formData.number;
-      subDeptEmployee.subDepartment = formData.subDepartment;
+  getSubDeptEmplFormValue(form: FormGroup){
+    form.valueChanges.subscribe((formData) => {
+      setTimeout(() => {
+        let subDeptEmpl = this.subDeptEmployee;
+        subDeptEmpl.lastName = formData.lastName;
+        subDeptEmpl.firstName = formData.firstName;
+        subDeptEmpl.middleName = formData.middleName;
+        subDeptEmpl.birthDate = formData.day + '/'
+          + formData.month + '/'
+          + formData.year;
+        subDeptEmpl.passport = 'Серия: ' + formData.seriesF
+          + ' ' + formData.seriesS
+          + ' Номер: ' + formData.number;
+        subDeptEmpl.subDepartment = formData.subDepartment;
+      });
     });
   }
 
   getCrSDEFocusedElementName(){
-    let elements = [].slice.call((this.elementRef.nativeElement)
-      .querySelectorAll('[formControlName]'));
-    elements.forEach(element => {
-      element.addEventListener('focus', () => {
-        this.inputName = element.id;
+    setTimeout(()=>{
+      let elements = [].slice.call((this.elementRef.nativeElement)
+        .querySelectorAll('[formControlName]'));
+      elements.forEach( element =>{
+        element.addEventListener('focus', () => {
+          this.inputName = element.id;
+        });
+        element.addEventListener('blur', () => {
+          this.inputName = '';
+        })
       });
-      element.addEventListener('blur', () => {
-        this.inputName = '';
-      })
-    });
+    }, 50);
   }
 
   addSubDeptEmployee(){

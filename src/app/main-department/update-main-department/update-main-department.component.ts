@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
@@ -20,13 +20,14 @@ export class UpdateMainDepartmentComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router,
               private mainDepartmentService: MainDepartmentService,
               private formBuilder: FormBuilder,
-              private elementRef: ElementRef) {}
+              private elementRef: ElementRef) {
+  }
 
   ngOnInit() {
     this.createMainDeptForm();
     this.getMainDepartmentDetail();
+    this.mainDeptFormValue();
     this.getUpdMDFocusedElementName();
-    this.mainDeptFormValue(this.mainDepartment);
   }
 
   createMainDeptForm(){
@@ -53,27 +54,25 @@ export class UpdateMainDepartmentComponent implements OnInit {
     })
   }
 
-  get nameControl(){
-    return this.mDeptUpdForm.get('name');
-  }
-
-  mainDeptFormValue(mainDepartment){
+  mainDeptFormValue(){
     this.mDeptUpdForm.valueChanges.subscribe(formData =>{
-      mainDepartment.name = formData.name;
+      this.mainDepartment.name = formData.name;
     });
   }
 
   getUpdMDFocusedElementName(){
-    let elements = [].slice.call((this.elementRef.nativeElement)
-      .querySelectorAll('[formControlName]'));
-    elements.forEach( element =>{
-      element.addEventListener('focus', () => {
-        this.inputName = element.id;
+    setTimeout(()=>{
+      let elements = [].slice.call((this.elementRef.nativeElement)
+          .querySelectorAll('[formControlName]'));
+      elements.forEach( element =>{
+        element.addEventListener('focus', () => {
+          this.inputName = element.id;
+        });
+        element.addEventListener('blur', () => {
+          this.inputName = '';
+        })
       });
-      element.addEventListener('blur', () => {
-     //   this.inputName = '';
-      })
-    });
+    }, 50);
   }
 
   updateMainDepartment(){

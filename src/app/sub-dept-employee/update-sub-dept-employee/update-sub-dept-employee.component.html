@@ -165,7 +165,7 @@
                           &&  sEmpUpdForm.get('subDepartment') === sEmpUpdForm.get(inputName) }" >
           <label for="subDepartment"><b>Подотдел</b></label>
           <select id="subDepartment" formControlName="subDepartment" >
-            <option *ngFor="let subDepartment of subDepartments" [ngValue]="subDeptEmployee.subDepartment">
+            <option *ngFor="let subDepartment of subDepartments" [value]="subDepartment.name">
               {{subDepartment.name}}
             </option>
           </select>
@@ -174,8 +174,4 @@
       </div>
     </div>
   </form>
-</div>
-
-<div>
-  sd: {{subDeptEmployee| json}}
 </div>

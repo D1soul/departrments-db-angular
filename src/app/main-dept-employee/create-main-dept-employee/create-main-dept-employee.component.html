@@ -183,7 +183,7 @@
         <label for="mainDepartment"><b>Департамент</b></label>
         <select id="mainDepartment" formControlName="mainDepartment" >
           <option hidden [value]="null">Выберите Департамент</option>
-          <option *ngFor="let mainDepartment of mainDepartments" >
+          <option *ngFor="let mainDepartment of mainDepartments" [value]="mainDepartment.name" >
             {{mainDepartment.name}}
           </option>
         </select>
