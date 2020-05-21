@@ -1,42 +1,44 @@
-<div *ngIf="subDeptEmployee" class="subDeptEmplDetail">
+<div *ngIf="subDeptEmployee">
   <h2>{{subDeptEmployee.lastName}} {{subDeptEmployee.firstName}} {{subDeptEmployee.middleName}}</h2>
-  <div class="sdEDIdHead">
-    <div class="sdEDId">
-      <span><b>ID</b></span>
-      <span>{{subDeptEmployee.id}}</span>
+  <div  class="subDeptEmplDetail">
+    <div class="sdEDIdHead">
+      <div class="sdEDId">
+        <span><b>ID</b></span>
+        <span>{{subDeptEmployee.id}}</span>
+      </div>
+      <div class="sdEDUpd">
+        <button (click)="goToUpdateSubDeptEmployee(subDeptEmployee.lastName,
+                   subDeptEmployee.firstName, subDeptEmployee.middleName)">Редактировать</button>
+      </div>
     </div>
-    <div class="sdEDUpd">
-      <button (click)="goToUpdateSubDeptEmployee(subDeptEmployee.lastName,
-                 subDeptEmployee.firstName, subDeptEmployee.middleName)">Редактировать</button>
+    <div class="sdEDLastName">
+      <span><b>Фамилия</b></span>
+      <span>{{subDeptEmployee.lastName}}</span>
     </div>
-  </div>
-  <div class="sdEDLastName">
-    <span><b>Фамилия</b></span>
-    <span>{{subDeptEmployee.lastName}}</span>
-  </div>
-  <div class="sdEDFirstName">
-    <span><b>Имя</b></span>
-    <span>{{subDeptEmployee.firstName}}</span>
-  </div>
-  <div class="sdEDMiddleName">
-    <span><b>Отчество</b></span>
-    <span>{{subDeptEmployee.middleName}}</span>
-  </div>
-  <div>
-    <div class="sdEDBirthDate">
-      <span><b>Дата рождения</b></span>
-      <span>{{subDeptEmployee.birthDate}}</span>
+    <div class="sdEDFirstName">
+      <span><b>Имя</b></span>
+      <span>{{subDeptEmployee.firstName}}</span>
     </div>
-    <div class="sdEDPassport">
-      <span><b>Паспортные данные</b></span>
-      <span>{{subDeptEmployee.passport}}</span>
+    <div class="sdEDMiddleName">
+      <span><b>Отчество</b></span>
+      <span>{{subDeptEmployee.middleName}}</span>
     </div>
-  </div>
-  <div class="sdEDSubDeptHead"><b>Подотдел</b></div>
-  <div class="sdEDSubDeptName"><b>Название</b></div>
-  <div class="sdEDSubDept">
-    <a routerLink="/sub-department-detail/{{subDeptEmployee.subDepartment}}">
-      <span>{{subDeptEmployee.subDepartment}}</span>
-    </a>
+    <div>
+      <div class="sdEDBirthDate">
+        <span><b>Дата рождения</b></span>
+        <span>{{subDeptEmployee.birthDate}}</span>
+      </div>
+      <div class="sdEDPassport">
+        <span><b>Паспортные данные</b></span>
+        <span>{{subDeptEmployee.passport}}</span>
+      </div>
+    </div>
+    <div class="sdEDSubDeptHead"><b>Подотдел</b></div>
+    <div class="sdEDSubDeptName"><b>Название</b></div>
+    <div class="sdEDSubDept">
+      <a routerLink="/sub-department-detail/{{subDeptEmployee.subDepartment}}">
+        <span>{{subDeptEmployee.subDepartment}}</span>
+      </a>
+    </div>
   </div>
 </div>

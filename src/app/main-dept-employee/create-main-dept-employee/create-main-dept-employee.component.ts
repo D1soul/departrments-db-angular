@@ -6,6 +6,7 @@ import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InitBirthDate } from '../../service/init.birth.date';
+import { GetElementOnFocus } from '../../service/get.element.on.focus';
 
 @Component({
   selector: 'app-create-main-dept-employee',
@@ -46,15 +47,15 @@ export class CreateMainDeptEmployeeComponent implements OnInit{
   createMainDeptEmplForm(){
     this.mEmpCrForm = this.formBuilder.group({
       lastName: [null, [Validators.required,
-                        Validators.pattern("^([А-я]+|[A-z]+)$"),
+                        Validators.pattern("^([А-яЁё]+|[A-z]+)$"),
                         Validators.minLength(2),
                         Validators.maxLength(20)]],
       firstName: [null, [Validators.required,
-                         Validators.pattern("^([А-я]+|[A-z]+)$"),
+                         Validators.pattern("^([А-яЁё]+|[A-z]+)$"),
                          Validators.minLength(2),
                          Validators.maxLength(20)]],
       middleName: [null, [Validators.required,
-                          Validators.pattern("^(([А-я]+|[A-z]+)|(-))$"),
+                          Validators.pattern("^(([А-яЁё]+|[A-z]+)|(-))$"),
                           Validators.minLength(1),
                           Validators.maxLength(25)]],
       day: [null, [Validators.required]],
@@ -72,20 +73,24 @@ export class CreateMainDeptEmployeeComponent implements OnInit{
 
   getMainDeptEmplFormValue(mainDeptEmployee){
     this.mEmpCrForm.valueChanges.subscribe(formData =>{
-      mainDeptEmployee.lastName = formData.lastName;
-      mainDeptEmployee.firstName = formData.firstName;
-      mainDeptEmployee.middleName = formData.middleName;
-      mainDeptEmployee.birthDate = formData.day + '/'
-                                 + formData.month + '/'
-                                 + formData.year;
-      mainDeptEmployee.passport = 'Серия: ' + formData.seriesF
-                                + ' ' + formData.seriesS
-                                + ' Номер: ' + formData.number;
-      mainDeptEmployee.mainDepartment = formData.mainDepartment;
+      setTimeout(()=> {
+        let mainDeptEmpl = this.mainDeptEmployee;
+        mainDeptEmpl.lastName = formData.lastName;
+        mainDeptEmpl.firstName = formData.firstName;
+        mainDeptEmpl.middleName = formData.middleName;
+        mainDeptEmpl.birthDate = formData.day + '/'
+          + formData.month + '/'
+          + formData.year;
+        mainDeptEmployee.passport = 'Серия: ' + formData.seriesF
+          + ' ' + formData.seriesS
+          + ' Номер: ' + formData.number;
+        mainDeptEmployee.mainDepartment = formData.mainDepartment;
+      });
     });
   }
 
   getCrMDEFocusedElementName() {
+    GetElementOnFocus(this.elementRef);
     setTimeout(()=>{
       let elements = [].slice.call((this.elementRef.nativeElement)
         .querySelectorAll('[formControlName]'));
@@ -103,7 +108,6 @@ export class CreateMainDeptEmployeeComponent implements OnInit{
   addMainDeptEmployee(){
     this.submitted = true;
     if (this.mEmpCrForm.valid) {
-      console.log(this.mainDeptEmployee.birthDate);
       this.mainDeptEmployeeService.addMainDeptEmployee(this.mainDeptEmployee)
         .subscribe(result => this.goToAllMainEmployees());
     }

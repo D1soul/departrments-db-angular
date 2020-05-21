@@ -33,7 +33,7 @@ export class UpdateMainDepartmentComponent implements OnInit {
   createMainDeptForm(){
     this.mDeptUpdForm = this.formBuilder.group({
       name: [null, [Validators.required,
-        Validators.pattern("^(([А-я]+\\s?)+|([A-z]+\\s?)+)$"),
+        Validators.pattern("^(([А-яЁё]+\\s?)+|([A-z]+\\s?)+)$"),
         Validators.minLength(7),
         Validators.maxLength(60)]]
     });
@@ -55,8 +55,11 @@ export class UpdateMainDepartmentComponent implements OnInit {
   }
 
   mainDeptFormValue(){
-    this.mDeptUpdForm.valueChanges.subscribe(formData =>{
-      this.mainDepartment.name = formData.name;
+    this.mDeptUpdForm.valueChanges.subscribe(formData => {
+    setTimeout(() => {
+        let mainDept = this.mainDepartment;
+        mainDept.name = formData.name;
+      });
     });
   }
 

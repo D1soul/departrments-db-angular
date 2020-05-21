@@ -7,7 +7,6 @@ import { SubDepartmentService } from '../../service/sub-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InitBirthDate } from '../../service/init.birth.date';
 import { trigger } from '@angular/animations';
-
 @Component({
   selector: 'app-create-sub-dept-employee',
   templateUrl: './create-sub-dept-employee.component.html',
@@ -21,11 +20,13 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
   subDeptEmployee: SubDeptEmployee;
   subDepartments: SubDepartment[];
   sEmpCrForm: FormGroup;
+  data: Date;
   days = [];
   months = [];
   years = [];
   submitted: boolean = false;
   inputName: string = '';
+  col: Array<any>;
 
   constructor(private subDeptEmployeeService: SubDeptEmployeeService,
               private subDepartmentService: SubDepartmentService,
@@ -50,11 +51,11 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
   initSubDeptEmpForm(){
     this.sEmpCrForm = this.formBuilder.group({
       lastName: [null, [Validators.required,
-                        Validators.pattern("^([А-я]+|[A-z]+)$")]],
+                        Validators.pattern("^([А-яЁё]+|[A-z]+)$")]],
       firstName: [null, [Validators.required,
-                         Validators.pattern("^([А-я]+|[A-z]+)$")]],
+                         Validators.pattern("^([А-яЁё]+|[A-z]+)$")]],
       middleName: [null, [Validators.required,
-                          Validators.pattern("^(([А-я]+|[A-z]+)|(-))$")]],
+                          Validators.pattern("^(([А-яЁё]+|[A-z]+)|(-))$")]],
       day: [null, [Validators.required]],
       month: [null, [Validators.required]],
       year: [null, [Validators.required]],
@@ -76,14 +77,21 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
         subDeptEmpl.firstName = formData.firstName;
         subDeptEmpl.middleName = formData.middleName;
         subDeptEmpl.birthDate = formData.day + '/'
-          + formData.month + '/'
-          + formData.year;
+                              + formData.month + '/'
+                              + formData.year;
         subDeptEmpl.passport = 'Серия: ' + formData.seriesF
-          + ' ' + formData.seriesS
-          + ' Номер: ' + formData.number;
+                              + ' ' + formData.seriesS
+                              + ' Номер: ' + formData.number;
         subDeptEmpl.subDepartment = formData.subDepartment;
       });
     });
+
+    setTimeout(()=> {
+      this.days.length = 4;
+      this.sEmpCrForm.get('day').setValue('03');
+      return;
+    }, 10000);
+
   }
 
   getCrSDEFocusedElementName(){

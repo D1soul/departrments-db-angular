@@ -13,6 +13,7 @@ export class MainDeptEmployeeDetailComponent implements OnInit {
   lastName: string; firstName :string; middleName: string;
   mainDeptEmployee: MainDeptEmployee;
 
+
   constructor(private route: ActivatedRoute, private router: Router,
               private mainDeptEmployeeService: MainDeptEmployeeService) {}
 

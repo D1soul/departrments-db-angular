@@ -24,6 +24,8 @@ export function InitBirthDate(days =[], months =[], years =[]){
       {id: 12, name: 'декабря'}
     );
 
+
+
     for (let i = date.getFullYear(); i > (date.getFullYear() - 100); i--) {
       years.push(i);
     }

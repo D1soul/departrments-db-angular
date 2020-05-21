@@ -25,7 +25,6 @@ export class SubDepartmentsListComponent implements OnInit {
 
   deleteSubDepartment(name: string){
     this.subDepartmentService.deleteSubDepartment(name).subscribe(data => {
-      console.log(data);
       this.getAllSubDepartments();
     });
   }

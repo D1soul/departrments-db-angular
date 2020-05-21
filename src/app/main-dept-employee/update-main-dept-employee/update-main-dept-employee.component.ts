@@ -5,7 +5,8 @@ import { MainDeptEmployeeService } from '../../service/main-dept-employee.servic
 import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {InitBirthDate} from '../../service/init.birth.date';
+import { InitBirthDate } from '../../service/init.birth.date';
+
 @Component({
   selector: 'app-update-main-dept-employee',
   templateUrl: './update-main-dept-employee.component.html',
@@ -13,9 +14,9 @@ import {InitBirthDate} from '../../service/init.birth.date';
 })
 export class UpdateMainDeptEmployeeComponent implements OnInit {
 
-  lastName: string;
-  firstName: string;
-  middleName: string;
+  lastNameRoute: string;
+  firstNameRoute: string;
+  middleNameRoute: string;
   days = [];
   months = [];
   years = [];
@@ -23,7 +24,6 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
   mainDepartments: MainDepartment[];
   mEmpUpdForm: FormGroup;
   inputName: string = '';
-  submitted: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private mainDeptEmployeeService: MainDeptEmployeeService,
@@ -35,38 +35,38 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
     this.getMainDeptEmployeeDetail();
     this.createMainDeptEmpForm();
     InitBirthDate(this.days, this.months, this.years);
-    this.getMainDeptEmpFormValue(this.mainDeptEmployee);
+    this.getMainDeptEmpFormValue();
     this.getUpdMDEFocusedElementName();
   }
 
   getMainDeptEmployeeDetail() {
-    this.lastName = this.route.snapshot.params['lastName'];
-    this.firstName = this.route.snapshot.params['firstName'];
-    this.middleName = this.route.snapshot.params['middleName'];
+    this.lastNameRoute = this.route.snapshot.params['lastName'];
+    this.firstNameRoute = this.route.snapshot.params['firstName'];
+    this.middleNameRoute = this.route.snapshot.params['middleName'];
+    this.mainDepartmentService.getAllMainDepartments()
+      .subscribe(mainDepartments =>
+        this.mainDepartments = mainDepartments
+      );
     this.mainDeptEmployeeService.getMainDeptEmployeeDetail(
-      this.lastName, this.firstName, this.middleName)
+      this.lastNameRoute, this.firstNameRoute, this.middleNameRoute)
       .subscribe(mainDeptEmployee => {
         this.mainDeptEmployee = mainDeptEmployee;
         this.initMainDeptEmpForm(mainDeptEmployee);
     });
-    this.mainDepartmentService.getAllMainDepartments()
-      .subscribe(mainDepartments =>
-        this.mainDepartments = mainDepartments
-    );
   }
 
   createMainDeptEmpForm(){
     this.mEmpUpdForm = this.formBuilder.group({
       lastName: [null, [Validators.required,
-                        Validators.pattern("^([А-я]+|[A-z]+)$"),
+                        Validators.pattern("^([А-яЁё]+|[A-z]+)$"),
                         Validators.minLength(2),
                         Validators.maxLength(20)]],
       firstName: [null, [Validators.required,
-                         Validators.pattern("^([А-я]+|[A-z]+)$"),
+                         Validators.pattern("^([А-яЁё]+|[A-z]+)$"),
                          Validators.minLength(2),
                          Validators.maxLength(20)]],
       middleName: [null, [Validators.required,
-                          Validators.pattern("^(([А-я]+|[A-z]+)|(-))$"),
+                          Validators.pattern("^(([А-яЁё]+|[A-z]+)|(-))$"),
                           Validators.minLength(1),
                           Validators.maxLength(25)]],
       day: [null, [Validators.required]],
@@ -82,7 +82,7 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
     });
   }
 
-  initMainDeptEmpForm(mainDeptEmployee){
+  initMainDeptEmpForm(mainDeptEmployee: MainDeptEmployee){
     let birthDateValue = mainDeptEmployee.birthDate.split('/');
     let passportValue = mainDeptEmployee.passport.split(' ');
     this.mEmpUpdForm.setValue({
@@ -99,18 +99,21 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
     });
   }
 
-  getMainDeptEmpFormValue(mainDeptEmployee){
+  getMainDeptEmpFormValue(){
     this.mEmpUpdForm.valueChanges.subscribe(formData =>{
-      mainDeptEmployee.lastName = formData.lastName;
-      mainDeptEmployee.firstName = formData.firstName;
-      mainDeptEmployee.middleName = formData.middleName;
-      mainDeptEmployee.birthDate = formData.day + '/'
-                                 + formData.month + '/'
-                                 + formData.year;
-      mainDeptEmployee.passport = 'Серия: ' + formData.seriesF
-                                + ' ' + formData.seriesS
-                                + ' Номер: ' + formData.number;
-      mainDeptEmployee.mainDepartment = formData.mainDepartment;
+      setTimeout(() => {
+        let mainDeptEmpl = this.mainDeptEmployee;
+        mainDeptEmpl.lastName = formData.lastName;
+        mainDeptEmpl.firstName = formData.firstName;
+        mainDeptEmpl.middleName = formData.middleName;
+        mainDeptEmpl.birthDate = formData.day + '/'
+                               + formData.month + '/'
+                               + formData.year;
+        mainDeptEmpl.passport = 'Серия: ' + formData.seriesF
+                              + ' ' + formData.seriesS
+                              + ' Номер: ' + formData.number;
+        mainDeptEmpl.mainDepartment = formData.mainDepartment;
+      });
     });
   }
 
@@ -133,7 +136,7 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
   updateMainDeptEmployee(){
     if (this.mEmpUpdForm.valid) {
       this.mainDeptEmployeeService.updateMainDeptEmployee(
-        this.lastName, this.firstName, this.middleName, this.mainDeptEmployee)
+        this.lastNameRoute, this.firstNameRoute, this.middleNameRoute, this.mainDeptEmployee)
         .subscribe(() => this.goToAllMainDeptEmployees());
     }
   }

@@ -25,7 +25,7 @@ export class MainDepartmentsListComponent implements OnInit {
 
   deleteMainDepartment(name: string){
     this.mainDepartmentService.deleteMainDepartment(name)
-      .subscribe(data => {console.log(data);
+      .subscribe(data => {
     this.getAllMainDepartments();
     });
   }

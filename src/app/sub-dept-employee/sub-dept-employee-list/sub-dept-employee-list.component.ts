@@ -25,7 +25,7 @@ export class SubDeptEmployeeListComponent implements OnInit {
 
   deleteSubDeptEmployee(lastName: string, firstName: string, middleName: string){
     this.subDeptEmployeeService.deleteSubDeptEmployee(lastName, firstName, middleName)
-      .subscribe(data => { console.log(data);
+      .subscribe((data) => {
         this.getAllSubDeptEmployees();
       });
   }

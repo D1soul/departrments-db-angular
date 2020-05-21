@@ -1,32 +1,30 @@
 <div *ngIf="mainDepartment" >
   <form [formGroup]="mDeptUpdForm" novalidate (ngSubmit)="updateMainDepartment()" >
     <h2>Редактирование данныех главного департамента</h2>
-    <div >
-      <div class="updMainDept">
-        <div class="updMDName"
-             [ngClass]="{'updMDValidationDefault': mDeptUpdForm.get('name').untouched,
-                         'updMDValidationInvalid': mDeptUpdForm.get('name').invalid,
-                          'updMDValidationValid': mDeptUpdForm.get('name').valid,
-                          'updMDValidationValidAndFocused': mDeptUpdForm.get('name').valid
-                           &&  mDeptUpdForm.get('name') === mDeptUpdForm.get(inputName) }" >
-          <label for="name"><b>Название</b></label>
-          <input type="text" id="name" formControlName="name" >
-          <div class="updMDNameErrorMassage">
-            <div *ngIf="mDeptUpdForm.get('name').invalid" >
-              <div *ngIf="mDeptUpdForm.get('name').errors.required">
-                <p>Поле обязательно для заполнения!</p>
-              </div>
-              <div *ngIf="mDeptUpdForm.get('name').errors.minlength">
-                <p>Название слишком короткое!</p>
-              </div>
-              <div *ngIf="mDeptUpdForm.get('name').errors.pattern">
-                <p>Название должно содержать только кириллические, или латинские буквы и пробелы!</p>
-              </div>
+    <div class="updMainDept">
+      <div class="updMDName"
+           [ngClass]="{'updMDValidationDefault': mDeptUpdForm.get('name').untouched,
+                       'updMDValidationInvalid': mDeptUpdForm.get('name').invalid,
+                        'updMDValidationValid': mDeptUpdForm.get('name').valid,
+                        'updMDValidationValidAndFocused': mDeptUpdForm.get('name').valid
+                         &&  mDeptUpdForm.get('name') === mDeptUpdForm.get(inputName) }" >
+        <label for="name"><b>Название</b></label>
+        <input type="text" id="name" formControlName="name" >
+        <div class="updMDNameErrorMassage">
+          <div *ngIf="mDeptUpdForm.get('name').invalid" >
+            <div *ngIf="mDeptUpdForm.get('name').errors.required">
+              <p>Поле обязательно для заполнения!</p>
+            </div>
+            <div *ngIf="mDeptUpdForm.get('name').errors.minlength">
+              <p>Название слишком короткое!</p>
+            </div>
+            <div *ngIf="mDeptUpdForm.get('name').errors.pattern">
+              <p>Название должно содержать только кириллические, или латинские буквы и пробелы!</p>
             </div>
           </div>
         </div>
-        <button type="submit">Обновить</button>
-       </div>
+      </div>
+      <button type="submit">Обновить</button>
     </div>
   </form>
 </div>

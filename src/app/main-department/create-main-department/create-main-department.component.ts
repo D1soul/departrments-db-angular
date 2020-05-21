@@ -3,7 +3,6 @@ import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
 import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {GetElementOnFocus} from '../../service/get.element.on.focus';
 
 @Component({
   selector: 'app-create-main-department',
@@ -25,22 +24,25 @@ export class CreateMainDepartmentComponent implements OnInit{
 
   ngOnInit() {
     this.createMainDeptForm();
-    this.getMainDeptFormValue(this.mainDepartment);
+    this.getMainDeptFormValue();
     this.getCrMDFocusedElementName();
   }
 
   createMainDeptForm(){
     this.mDeptCrForm = this.formBuilder.group({
       name: [null, [Validators.required,
-        Validators.pattern("^(([А-я]+\\s?)+|([A-z]+\\s?)+)$"),
+        Validators.pattern("^(([А-яЁё]+\\s?)+|([A-z]+\\s?)+)$"),
         Validators.minLength(7),
         Validators.maxLength(60)]]
     });
   }
 
-  getMainDeptFormValue(mainDepartment: MainDepartment){
-    this.mDeptCrForm.valueChanges.subscribe(formData =>{
-      mainDepartment.name = formData.name;
+  getMainDeptFormValue(){
+    this.mDeptCrForm.valueChanges.subscribe(formData => {
+      setTimeout(() => {
+        let mainDept = this.mainDepartment;
+        mainDept.name = formData.name;
+      });
     });
   }
 

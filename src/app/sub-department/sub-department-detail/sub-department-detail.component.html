@@ -1,38 +1,41 @@
-<div *ngIf="subDepartment" class="subDeptDetail">
+<div *ngIf="subDepartment" >
   <h2>{{subDepartment.name}}</h2>
-  <div class="sdDIdHead" >
-    <div class="sdDId">
-      <span><b>ID</b></span>
-      <span>{{subDepartment.id}}</span>
+  <div class="subDeptDetail">
+    <div class="sdDIdHead" >
+      <div class="sdDId">
+        <span><b>ID</b></span>
+        <span>{{subDepartment.id}}</span>
+      </div>
+      <div class="sdDUpd">
+        <button  (click)="goToUpdateSubDepartment(subDepartment.name)">Редактировать</button>
+      </div>
     </div>
-    <div class="sdDUpd">
-      <button  (click)="goToUpdateSubDepartment(subDepartment.name)">Редактировать</button>
+    <div class="sdDName" >
+      <span><b>Название</b></span>
+      <span>{{subDepartment.name}}</span>
     </div>
-  </div>
-  <div class="sdDName" >
-    <span><b>Название</b></span>
-    <span>{{subDepartment.name}}</span>
-  </div>
-  <div class="sdDMainDeptHead"><b>Главный департамент</b></div>
-  <div class="sdDMainDeptName"><b>Название</b></div>
-  <div class="sdDMainDept">
-    <a routerLink="/main_department-detail/{{subDepartment.mainDepartment}}">
-      <span>{{subDepartment.mainDepartment}}</span>
-    </a>
-  </div>
-  <div>
-    <div class="sdDEmpls"><b>Сотрудники</b></div>
-    <div class="sdDEmplsHead">
-      <span><b>Фамилия</b></span>
-      <span><b>Имя</b></span>
-      <span><b>Отчество</b></span>
+    <div class="sdDMainDeptHead"><b>Главный департамент</b></div>
+    <div class="sdDMainDeptName"><b>Название</b></div>
+    <div class="sdDMainDept">
+      <a routerLink="/main_department-detail/{{subDepartment.mainDepartment}}">
+        <span>{{subDepartment.mainDepartment}}</span>
+      </a>
     </div>
-    <div class="sdDEmplsList" *ngFor="let employee of subDepartment.employees">
-        <a routerLink="/sub-dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
-          <span>{{employee.lastName}}</span>
-          <span>{{employee.firstName}}</span>
-          <span>{{employee.middleName}}</span>
-        </a>
+    <div>
+      <div class="sdDEmpls"><b>Сотрудники</b></div>
+      <div class="sdDEmplsHead">
+        <span><b>Фамилия</b></span>
+        <span><b>Имя</b></span>
+        <span><b>Отчество</b></span>
+      </div>
+      <div class="sdDEmplsList" *ngFor="let employee of subDepartment.employees">
+          <a routerLink="/sub-dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
+            <span>{{employee.lastName}}</span>
+            <span>{{employee.firstName}}</span>
+            <span>{{employee.middleName}}</span>
+          </a>
+      </div>
     </div>
   </div>
 </div>
+

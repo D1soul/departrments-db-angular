@@ -46,8 +46,8 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
     this.subDeptEmployeeService.getSubDeptEmployeeDetail(
       this.lastNameRoute, this.firstNameRote, this.middleNameRote)
       .subscribe(subDeptEmployee => {
-        this.initSubDeptEmplForm(subDeptEmployee);
         this.subDeptEmployee = subDeptEmployee;
+        this.initSubDeptEmplForm(subDeptEmployee);
     });
     this.subDepartmentService.getAllSubDepartments()
       .subscribe(subDepartments =>
@@ -57,11 +57,11 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
   createSubDeptEmpForm(){
     this.sEmpUpdForm = this.formBuilder.group({
       lastName: [null, [Validators.required,
-                        Validators.pattern("^([А-я]+|[A-z]+)$")]],
+                        Validators.pattern("^([А-яЁё]+|[A-z]+)$")]],
       firstName: [null, [Validators.required,
-                         Validators.pattern("^([А-я]+|[A-z]+)$")]],
+                         Validators.pattern("^([А-яЁё]+|[A-z]+)$")]],
       middleName: [null, [Validators.required,
-                          Validators.pattern("^(([А-я]+|[A-z]+)|(-))$")]],
+                          Validators.pattern("^(([А-яЁё]+|[A-z]+)|(-))$")]],
       day: [null, [Validators.required]],
       month: [null, [Validators.required]],
       year: [null, [Validators.required]],
@@ -76,22 +76,20 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
   }
 
   initSubDeptEmplForm(subDeptEmployee: SubDeptEmployee){
-    setTimeout(() => {
-      let birthDateValue = subDeptEmployee.birthDate.split('/');
-      let passportValue = subDeptEmployee.passport.split(' ');
-      this.sEmpUpdForm.setValue({
-        lastName: subDeptEmployee.lastName,
-        firstName: subDeptEmployee.firstName,
-        middleName: subDeptEmployee.middleName,
-        day: birthDateValue[0],
-        month: birthDateValue[1],
-        year: birthDateValue[2],
-        seriesF: passportValue[1],
-        seriesS: passportValue[2],
-        number: passportValue[4],
-        subDepartment: subDeptEmployee.subDepartment
-      });
-    })
+    let birthDateValue = subDeptEmployee.birthDate.split('/');
+    let passportValue = subDeptEmployee.passport.split(' ');
+    this.sEmpUpdForm.setValue({
+      lastName: subDeptEmployee.lastName,
+      firstName: subDeptEmployee.firstName,
+      middleName: subDeptEmployee.middleName,
+      day: birthDateValue[0],
+      month: birthDateValue[1],
+      year: birthDateValue[2],
+      seriesF: passportValue[1],
+      seriesS: passportValue[2],
+      number: passportValue[4],
+      subDepartment: subDeptEmployee.subDepartment
+    });
   }
 
   getSubDeptEmplFormValue(){
@@ -109,7 +107,7 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
                               + ' Номер: ' + formData.number;
         subDeptEmpl.subDepartment = formData.subDepartment;
       });
-    })
+    });
   }
 
   getCrSDEFocusedElementName(){

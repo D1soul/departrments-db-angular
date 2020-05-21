@@ -3,26 +3,36 @@ import {FormGroup} from '@angular/forms';
 
 export function GetElementOnFocus (elementRef: ElementRef){
  // console.log((this.elementRef.nativeElement).getElementsByTagName('input'));
-  console.log('3');
-  let nameFocus: string = '2';
-  setTimeout(()=> {
+ // setTimeout(()=> {
+
+  let nameFocus: string;
+    // }, 100)
 
     let elements = [].slice.call((elementRef.nativeElement).getElementsByTagName('input'));
 
     elements.forEach(element => {
       element.addEventListener('focus', () => {
+        setTimeout(() => {
+
+
         nameFocus = element.id;
+
+
+        }, 100);
+        console.log(nameFocus);
       });
 
       /*    element.addEventListener('blur', () => {
             name = '';
             console.log('lostName   ' + name);
           }) */
-      console.log('4');
-
     });
-    return nameFocus;
-  }, 100)
+
+    setTimeout(() => {
+      console.log(nameFocus);
+      return nameFocus;
+    }, 50);
+
 }
 
 

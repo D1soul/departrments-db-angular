@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SubDepartment } from '../../entities/sub-department';
 import { SubDepartmentService } from '../../service/sub-department.service';
@@ -28,7 +28,7 @@ export class UpdateSubDepartmentComponent implements OnInit {
   ngOnInit() {
     this.getSubDepartmentDetail();
     this.createSubDeptForm();
-    this.getSubDeptFormValue(this.subDepartment);
+    this.getSubDeptFormValue();
     this.getUpdSDFocusedElementName();
   }
 
@@ -45,9 +45,9 @@ export class UpdateSubDepartmentComponent implements OnInit {
   createSubDeptForm(){
     this.sDeptUpdForm = this.formBuilder.group({
       name: [null, [Validators.required,
-                    Validators.pattern("^(([А-я]+\\s?)+|([A-z]+\\s?)+)$"),
+                    Validators.pattern("^(([А-яЁё]+\\s?)+|([A-z]+\\s?)+)$"),
                     Validators.minLength(5),
-                    Validators.maxLength(60)]],
+                    Validators.maxLength(100)]],
       mainDepartment: [null,[Validators.required]]
     });
   }
@@ -59,10 +59,13 @@ export class UpdateSubDepartmentComponent implements OnInit {
     })
   }
 
-  getSubDeptFormValue(subDepartment: SubDepartment){
+  getSubDeptFormValue(){
     this.sDeptUpdForm.valueChanges.subscribe(formData =>{
-      subDepartment.name = formData.name;
-      subDepartment.mainDepartment = formData.mainDepartment;
+      setTimeout(() => {
+        let subDept = this.subDepartment;
+        subDept.name = formData.name;
+        subDept.mainDepartment = formData.mainDepartment;
+      });
     });
   }
 
