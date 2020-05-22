@@ -5,7 +5,7 @@ import { SubDeptEmployeeService } from '../../service/sub-dept-employee.service'
 import { SubDepartment } from '../../entities/sub-department';
 import { SubDepartmentService } from '../../service/sub-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { InitBirthDate } from '../../service/init.birth.date';
+import { InitDateFunction } from '../../service/init-date.function';
 
 @Component({
   selector: 'app-update-sub-dept-employee',
@@ -32,9 +32,9 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
               private elementRef: ElementRef) {}
 
   ngOnInit() {
+    InitDateFunction(this.days, this.months, this.years);
     this.createSubDeptEmpForm();
     this.getSubDeptEmployeeDetail();
-    InitBirthDate(this.days, this.months, this.years);
     this.getSubDeptEmplFormValue();
     this.getCrSDEFocusedElementName();
   }
@@ -94,6 +94,11 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
 
   getSubDeptEmplFormValue(){
     this.sEmpUpdForm.valueChanges.subscribe((formData) => {
+      let data = new Date(formData.year, this.months.indexOf(formData.month)+1, 0);
+      if(formData.day > data.getDate() ) {
+        this.sEmpUpdForm.get('day').setValue(data.getDate());
+        return;
+      }
       setTimeout(() => {
         let subDeptEmpl = this.subDeptEmployee;
         subDeptEmpl.lastName = formData.lastName;

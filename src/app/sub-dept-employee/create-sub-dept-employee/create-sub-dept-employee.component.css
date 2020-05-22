@@ -123,7 +123,7 @@ h2{
 .crSDELastNameErrorMassage{
   padding: 0;
   height: 20px;
-  width: 300px;
+  width: 530px;
   float: left;
   margin: 0 0 0 107px;
 }
@@ -159,7 +159,7 @@ h2{
 }
 
 .crSDEFirstNameErrorMassage{
-  width: 300px;
+  width: 530px;
   height: 20px;
   float: left;
   margin: 0 0 0 107px;
@@ -195,7 +195,7 @@ h2{
 }
 
 .crSDEMiddleNameErrorMassage{
-  width: 300px;
+  width: 530px;
   height: 20px;
   float: left;
   margin: 0 0 0 107px;

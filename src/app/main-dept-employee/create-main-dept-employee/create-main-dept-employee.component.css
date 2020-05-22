@@ -128,7 +128,7 @@ h2{
 .crMDELastNameErrorMassage{
   padding: 0;
   height: 20px;
-  width: 300px;
+  width: 530px;
   float: left;
   margin: 0 0 0 107px;
 }
@@ -165,7 +165,7 @@ h2{
 
 .crMDEFirstNameErrorMassage{
   transition-duration: 1s;
-  width: 300px;
+  width: 530px;
   height: 20px;
   float: left;
   margin: 0 0 0 107px;
@@ -201,7 +201,7 @@ h2{
 }
 
 .crMDEMiddleNameErrorMassage{
-  width: 300px;
+  width: 530px;
   height: 20px;
   float: left;
   margin: 0 0 0 107px;

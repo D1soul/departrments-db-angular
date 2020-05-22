@@ -5,7 +5,7 @@ import { MainDeptEmployeeService } from '../../service/main-dept-employee.servic
 import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { InitBirthDate } from '../../service/init.birth.date';
+import { InitDateFunction } from '../../service/init-date.function';
 
 @Component({
   selector: 'app-update-main-dept-employee',
@@ -32,9 +32,9 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
               private elementRef: ElementRef) {}
 
   ngOnInit() {
+    InitDateFunction(this.days, this.months, this.years);
     this.getMainDeptEmployeeDetail();
     this.createMainDeptEmpForm();
-    InitBirthDate(this.days, this.months, this.years);
     this.getMainDeptEmpFormValue();
     this.getUpdMDEFocusedElementName();
   }
@@ -101,6 +101,11 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
 
   getMainDeptEmpFormValue(){
     this.mEmpUpdForm.valueChanges.subscribe(formData =>{
+      let data = new Date(formData.year, this.months.indexOf(formData.month)+1, 0);
+      if(formData.day > data.getDate() ) {
+        this.mEmpUpdForm.get('day').setValue(data.getDate());
+        return;
+      }
       setTimeout(() => {
         let mainDeptEmpl = this.mainDeptEmployee;
         mainDeptEmpl.lastName = formData.lastName;

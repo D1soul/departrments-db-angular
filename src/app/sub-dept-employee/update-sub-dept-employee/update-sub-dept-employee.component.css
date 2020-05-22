@@ -25,14 +25,6 @@ h2{
   margin: 0;
 }
 
-.updSDEValidationDefault input {
-  border-top: solid 1px rgb(180, 180, 180);
-  border-right: solid 1px rgb(180, 180, 180);
-  border-bottom: solid 1px rgb(180, 180, 180);
-  border-left: 0;
-  box-shadow: 3px 0 5px rgb(180, 180, 180);
-}
-
 .updSDEValidationInvalid input {
   border-top: solid 1px rgb(240, 150, 150);
   border-right: solid 1px rgb(240, 150, 150);
@@ -55,14 +47,6 @@ h2{
   border-bottom: solid 1px rgb(190, 240, 190);
   border-left: 0;
   box-shadow: 3px 0 5px rgb(190, 240, 190);
-}
-
-.updSDEValidationDefault select{
-  border-top: solid 1px rgb(180, 180, 180);
-  border-right: solid 1px rgb(180, 180, 180);
-  border-bottom: solid 1px rgb(180, 180, 180);
-  border-left: solid 1px rgb(255, 255, 255);
-  box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 
 .updSDEValidationInvalid select {
@@ -123,7 +107,7 @@ h2{
 .updSDELastNameErrorMassage{
   padding: 0;
   height: 20px;
-  width: 300px;
+  width: 530px;
   float: left;
   margin: 0 0 0 107px;
 }
@@ -159,7 +143,7 @@ h2{
 }
 
 .updSDEFirstNameErrorMassage{
-  width: 300px;
+  width: 530px;
   height: 20px;
   float: left;
   margin: 0 0 0 107px;
@@ -195,7 +179,7 @@ h2{
 }
 
 .updSDEMiddleNameErrorMassage{
-  width: 300px;
+  width: 530px;
   height: 20px;
   float: left;
   margin: 0 0 0 107px;

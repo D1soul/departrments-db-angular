@@ -3,11 +3,10 @@
     <h2>Редактирование данных сотрудника</h2>
     <div class="updMainDeptEmpl">
       <div  class="updMDELastName"
-            [ngClass]="{'updMDEValidationDefault': mEmpUpdForm.get('lastName').untouched,
-                     'updMDEValidationInvalid': mEmpUpdForm.get('lastName').invalid,
-                     'updMDEValidationValid': mEmpUpdForm.get('lastName').valid,
-                     'updMDEValidationValidAndFocused': mEmpUpdForm.get('lastName').valid
-                      &&  mEmpUpdForm.get('lastName') === mEmpUpdForm.get(inputName) }" >
+            [ngClass]="{'updMDEValidationInvalid': mEmpUpdForm.get('lastName').invalid,
+                        'updMDEValidationValid': mEmpUpdForm.get('lastName').valid,
+                        'updMDEValidationValidAndFocused': mEmpUpdForm.get('lastName').valid
+                         &&  mEmpUpdForm.get('lastName') === mEmpUpdForm.get(inputName) }" >
         <label for="lastName"><b>Фамилия</b></label>
         <input type="text" id="lastName" formControlName="lastName"  >
 
@@ -24,8 +23,7 @@
       </div>
 
       <div  class="updMDEFirstName"
-            [ngClass]="{'updMDEValidationDefault':  mEmpUpdForm.get('firstName').untouched,
-                        'updMDEValidationInvalid': mEmpUpdForm.get('firstName').invalid
+            [ngClass]="{'updMDEValidationInvalid': mEmpUpdForm.get('firstName').invalid
                                               && (mEmpUpdForm.get('firstName').dirty
                                               ||  mEmpUpdForm.get('firstName').untouched
                                               ||  mEmpUpdForm.get('firstName').touched),
@@ -50,8 +48,7 @@
       </div>
 
       <div class="updMDEMiddleName"
-           [ngClass]="{'updMDEValidationDefault': mEmpUpdForm.get('middleName').untouched,
-                       'updMDEValidationInvalid': mEmpUpdForm.get('middleName').invalid
+           [ngClass]="{'updMDEValidationInvalid': mEmpUpdForm.get('middleName').invalid
                                              && (mEmpUpdForm.get('middleName').dirty
                                              ||  mEmpUpdForm.get('middleName').untouched
                                              ||  mEmpUpdForm.get('middleName').touched),
@@ -76,16 +73,10 @@
       </div>
 
       <div class="updMDEBirthDate"
-           [ngClass]=" {'updMDEValidationDefault': (mEmpUpdForm.get('day').untouched
-                                                 && mEmpUpdForm.get('month').untouched
-                                                 && mEmpUpdForm.get('year').untouched ),
-                      'updMDEValidationInvalid': (mEmpUpdForm.get('day').invalid
-                                             || mEmpUpdForm.get('month').invalid
-                                             || mEmpUpdForm.get('year').invalid ),
-                      'updMDEValidationValid': mEmpUpdForm.get('day').valid
+           [ngClass]=" {'updMDEValidationValid': mEmpUpdForm.get('day').valid
                                            && mEmpUpdForm.get('month').valid
                                            && mEmpUpdForm.get('year').valid,
-                      'updMDEValidationValidAndFocused':  (mEmpUpdForm.get('day').valid
+                         'updMDEValidationValidAndFocused':  (mEmpUpdForm.get('day').valid
                                                        && mEmpUpdForm.get('month').valid
                                                        && mEmpUpdForm.get('year').valid)
                             &&  (mEmpUpdForm.get('day') === mEmpUpdForm.get(inputName)
@@ -98,8 +89,8 @@
           </option>
         </select>
         <select id="month" formControlName="month" aria-label="birthDate" >
-          <option *ngFor="let month of months" [value]="month.name" >
-            {{month.name}}
+          <option *ngFor="let month of months" [value]="month" >
+            {{month}}
           </option>
         </select>
         <select  id="year" formControlName="year" aria-label="birthDate">
@@ -107,35 +98,21 @@
             {{year}}
           </option>
         </select>
-        <div class="updMDEBirthDateErrorMassage">
-          <div *ngIf="(mEmpUpdForm.get('day').invalid
-               || mEmpUpdForm.get('month').invalid
-               || mEmpUpdForm.get('year').invalid)" >
-            <div *ngIf="mEmpUpdForm.get('day').errors.required
-                 || mEmpUpdForm.get('month').errors.required
-                 || mEmpUpdForm.get('year').errors.required">
-              <p>Дата не указана!</p>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="updMDEPassport"
-           [ngClass]=" {'updMDEValidationDefault': (mEmpUpdForm.get('seriesF').untouched
-                                               && mEmpUpdForm.get('seriesS').untouched
-                                               && mEmpUpdForm.get('number').untouched),
-                      'updMDEValidationInvalid': ((mEmpUpdForm.get('seriesF').invalid
-                                               || mEmpUpdForm.get('seriesS').invalid
-                                               || mEmpUpdForm.get('number').invalid)),
-                      'updMDEValidationValid': mEmpUpdForm.get('seriesF').valid
-                                           && mEmpUpdForm.get('seriesS').valid
-                                           && mEmpUpdForm.get('number').valid,
-                      'updMDEValidationValidAndFocused':  (mEmpUpdForm.get('seriesF').valid
-                                                       && mEmpUpdForm.get('seriesS').valid
-                                                       && mEmpUpdForm.get('number').valid)
-                       &&  (mEmpUpdForm.get('seriesF') === mEmpUpdForm.get(inputName)
-                       ||   mEmpUpdForm.get('seriesS') === mEmpUpdForm.get(inputName)
-                       ||   mEmpUpdForm.get('number') === mEmpUpdForm.get(inputName)) }" >
+           [ngClass]=" {'updMDEValidationInvalid': ((mEmpUpdForm.get('seriesF').invalid
+                                                 || mEmpUpdForm.get('seriesS').invalid
+                                                 || mEmpUpdForm.get('number').invalid)),
+                        'updMDEValidationValid': mEmpUpdForm.get('seriesF').valid
+                                             && mEmpUpdForm.get('seriesS').valid
+                                             && mEmpUpdForm.get('number').valid,
+                        'updMDEValidationValidAndFocused':  (mEmpUpdForm.get('seriesF').valid
+                                                         && mEmpUpdForm.get('seriesS').valid
+                                                         && mEmpUpdForm.get('number').valid)
+                         &&  (mEmpUpdForm.get('seriesF') === mEmpUpdForm.get(inputName)
+                         ||   mEmpUpdForm.get('seriesS') === mEmpUpdForm.get(inputName)
+                         ||   mEmpUpdForm.get('number') === mEmpUpdForm.get(inputName)) }" >
         <label ><b>Паспортные данные</b></label>
         <span>Серия:</span>
         <input id="seriesF" type="text" maxlength="2"
@@ -160,8 +137,7 @@
       </div>
 
       <div class="updMDEMainDept"
-           [ngClass]=" {'updMDEValidationDefault': mEmpUpdForm.get('mainDepartment').untouched,
-                        'updMDEValidationValid': mEmpUpdForm.get('mainDepartment').valid,
+           [ngClass]=" {'updMDEValidationValid': mEmpUpdForm.get('mainDepartment').valid,
                         'updMDEValidationValidAndFocused': mEmpUpdForm.get('mainDepartment').valid
                       &&  mEmpUpdForm.get('mainDepartment') === mEmpUpdForm.get(inputName) }" >
         <label for="mainDepartment"><b>Департамент</b></label>

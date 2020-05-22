@@ -5,7 +5,7 @@ import { Router} from '@angular/router';
 import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { InitBirthDate } from '../../service/init.birth.date';
+import { InitDateFunction } from '../../service/init-date.function';
 import { GetElementOnFocus } from '../../service/get.element.on.focus';
 
 @Component({
@@ -33,7 +33,7 @@ export class CreateMainDeptEmployeeComponent implements OnInit{
 
   ngOnInit() {
     this.createMainDeptEmplForm();
-    InitBirthDate(this.days, this.months, this.years);
+    InitDateFunction(this.days, this.months, this.years);
     this.selectMainDepartment();
     this.getMainDeptEmplFormValue(this.mainDeptEmployee);
     this.getCrMDEFocusedElementName();
@@ -73,6 +73,11 @@ export class CreateMainDeptEmployeeComponent implements OnInit{
 
   getMainDeptEmplFormValue(mainDeptEmployee){
     this.mEmpCrForm.valueChanges.subscribe(formData =>{
+      let data = new Date(formData.year, this.months.indexOf(formData.month)+1, 0);
+      if(formData.day > data.getDate() ) {
+        this.mEmpCrForm.get('day').setValue(data.getDate());
+        return;
+      }
       setTimeout(()=> {
         let mainDeptEmpl = this.mainDeptEmployee;
         mainDeptEmpl.lastName = formData.lastName;

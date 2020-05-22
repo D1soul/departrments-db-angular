@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { SubDepartment } from '../../entities/sub-department';
 import { SubDepartmentService } from '../../service/sub-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { InitBirthDate } from '../../service/init.birth.date';
+import { InitDateFunction } from '../../service/init-date.function';
 import { trigger } from '@angular/animations';
 @Component({
   selector: 'app-create-sub-dept-employee',
@@ -20,13 +20,11 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
   subDeptEmployee: SubDeptEmployee;
   subDepartments: SubDepartment[];
   sEmpCrForm: FormGroup;
-  data: Date;
   days = [];
   months = [];
   years = [];
   submitted: boolean = false;
   inputName: string = '';
-  col: Array<any>;
 
   constructor(private subDeptEmployeeService: SubDeptEmployeeService,
               private subDepartmentService: SubDepartmentService,
@@ -37,7 +35,7 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.initSubDeptEmpForm();
-    InitBirthDate(this.days, this.months, this.years);
+    InitDateFunction(this.days, this.months, this.years);
     this.selectSubDepartment();
     this.getSubDeptEmplFormValue(this.sEmpCrForm);
     this.getCrSDEFocusedElementName();
@@ -71,6 +69,11 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
 
   getSubDeptEmplFormValue(form: FormGroup){
     form.valueChanges.subscribe((formData) => {
+      let data = new Date(formData.year, this.months.indexOf(formData.month)+1, 0);
+      if(formData.day > data.getDate() ) {
+        this.sEmpCrForm.get('day').setValue(data.getDate());
+        return;
+      }
       setTimeout(() => {
         let subDeptEmpl = this.subDeptEmployee;
         subDeptEmpl.lastName = formData.lastName;
@@ -85,13 +88,6 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
         subDeptEmpl.subDepartment = formData.subDepartment;
       });
     });
-
-    setTimeout(()=> {
-      this.days.length = 4;
-      this.sEmpCrForm.get('day').setValue('03');
-      return;
-    }, 10000);
-
   }
 
   getCrSDEFocusedElementName(){

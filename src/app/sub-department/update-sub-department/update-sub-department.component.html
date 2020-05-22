@@ -3,8 +3,7 @@
     <h2>Редактирование данных подотдела</h2>
     <div class="updSubDept">
       <div class="updSDName"
-           [ngClass]="{'updSDValidationDefault': sDeptUpdForm.get('name').untouched,
-                       'updSDValidationInvalid': sDeptUpdForm.get('name').invalid,
+           [ngClass]="{'updSDValidationInvalid': sDeptUpdForm.get('name').invalid,
                        'updSDValidationValid': sDeptUpdForm.get('name').valid,
                        'updSDValidationValidAndFocused': sDeptUpdForm.get('name').valid
                       &&  sDeptUpdForm.get('name') === sDeptUpdForm.get(inputName) }" >
@@ -26,9 +25,7 @@
       </div>
 
       <div class="updSDMainDept"
-           [ngClass]=" {'updSDValidationDefault': sDeptUpdForm.get('mainDepartment').untouched,
-                        'updSDValidationInvalid': sDeptUpdForm.get('mainDepartment').invalid,
-                        'updSDValidationValid': sDeptUpdForm.get('mainDepartment').valid,
+           [ngClass]=" {'updSDValidationValid': sDeptUpdForm.get('mainDepartment').valid,
                         'updSDValidationValidAndFocused': sDeptUpdForm.get('mainDepartment').valid
                         &&  sDeptUpdForm.get('mainDepartment') === sDeptUpdForm.get(inputName) }" >
         <label for="mainDepartment"><b>Департамент</b></label>
@@ -37,15 +34,6 @@
             {{mainDepartment.name}}
           </option>
         </select>
-        <div class="updSDMainDeptErrorMassage">
-          <div *ngIf="(sDeptUpdForm.get('mainDepartment').invalid
-                  && (sDeptUpdForm.get('mainDepartment').touched
-                  || sDeptUpdForm.get('mainDepartment').untouched))" >
-            <div *ngIf="sDeptUpdForm.get('mainDepartment').errors.required">
-              <p>Департамент не выбран!</p>
-            </div>
-          </div>
-        </div>
       </div>
       <button type="submit">Обновить</button>
     </div>

@@ -109,8 +109,8 @@
         </select>
         <select id="month" formControlName="month" aria-label="birthDate" >
           <option hidden [value]="null">Месяц</option>
-          <option *ngFor="let month of months" [value]="month.name" >
-            {{month.name}}
+          <option *ngFor="let month of months" [value]="month" >
+            {{month}}
           </option>
         </select>
         <select  id="year" formControlName="year" aria-label="birthDate">

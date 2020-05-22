@@ -1,13 +1,11 @@
-import {AfterContentInit, Component, DoCheck, OnChanges, OnInit} from '@angular/core';
+import {AfterContentInit, Component, DoCheck, ElementRef, OnChanges, OnInit} from '@angular/core';
 import {User} from '../../entities/user';
 import {Role} from '../../entities/role';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../service/authentication.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {PasswordMatchValidator} from '../../service/password.match.validator';
-import {GetBirthDate} from '../../service/get.birth.date';
-import {InitBirthDate} from '../../service/init.birth.date';
-import {SetBirthDate} from '../../service/set.bitrh.date';
+import {PasswordMatchValidator} from '../../service/password-match.validator';
+import {InitDateFunction} from '../../service/init-date.function';
 
 @Component({
   selector: 'app-update-user',
@@ -27,16 +25,21 @@ export class UpdateUserComponent implements OnInit {
   submitted: boolean = true;
   changePassword: boolean = false;
   errorMessage: string;
+  inputName: string = '';
+
+
   constructor(private authenticationService: AuthenticationService,
               private router: Router, private formBuilder: FormBuilder,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute, private elementRef: ElementRef) {
       this.role = new Role();
   }
 
   ngOnInit() {
-    InitBirthDate(this.days, this.months, this.years);
+    InitDateFunction(this.days, this.months, this.years);
     this.getUserDetail();
     this.createUpdUserForms();
+    this.getUpdUserFormValue();
+    this.getUpdUserFocusedElementName();
   }
 
   public getUserDetail(){
@@ -44,10 +47,7 @@ export class UpdateUserComponent implements OnInit {
     this.authenticationService.getUserDetails(this.username)
       .subscribe(user => {
         this.user = user;
-
-
         this.initUpdUserForms(user);
-
       });
   }
 
@@ -68,7 +68,6 @@ export class UpdateUserComponent implements OnInit {
     });
   }
 
-
   initUpdUserForms(user) {
     let birthDateValue = user.birthDate.split('/');
     this.updUserForm.setValue({
@@ -85,7 +84,49 @@ export class UpdateUserComponent implements OnInit {
   }
 
 
-  initPasswordForm(){
+  getUpdUserFormValue(){
+    this.updUserForm.valueChanges.subscribe((formData) => {
+      let data = new Date(formData.year, this.months.indexOf(formData.month)+1, 0);
+      if(formData.day > data.getDate() ) {
+        this.updUserForm.get('day').setValue(data.getDate());
+        return;
+      }
+      if (this.changePassword) {
+        this.updUserForm.get('oldPassword').setValidators(Validators.required);
+        this.updUserForm.get('newPassword').setValidators([Validators.required, Validators.minLength(6)]);
+        this.updUserForm.get('confirmPassword').setValidators(Validators.required);
+        this.updUserForm.setValidators(PasswordMatchValidator('newPassword', 'confirmPassword'));
+        return;
+      }
+      setTimeout(() => {
+        let regUser = this.user;
+        regUser.username = formData.username;
+        regUser.birthDate = formData.day + '/'
+          + formData.month + '/'
+          + formData.year;
+        regUser.gender = formData.gender;
+        regUser.roles = [this.role.user];
+      });
+    });
+  }
+
+  getUpdUserFocusedElementName(){
+    setTimeout(()=>{
+      let elements = [].slice.call((this.elementRef.nativeElement)
+        .querySelectorAll('[formControlName]'));
+      elements.forEach( element =>{
+        element.addEventListener('focus', () => {
+          this.inputName = element.id;
+        });
+        element.addEventListener('blur', () => {
+          this.inputName = '';
+        })
+      });
+    }, 50);
+  }
+
+
+/*  initPasswordForm(){
     this.changePassword = true;
     this.updUserForm.get('password').setValidators(Validators.required);
     this.updUserForm.get('newPassword').setValidators([Validators.required, Validators.minLength(6)]);
@@ -93,9 +134,11 @@ export class UpdateUserComponent implements OnInit {
     this.updUserForm.setValidators(PasswordMatchValidator('newPassword', 'confirmPassword'));
   }
 
+ */
+
   setNewPassword(){
     let currentUsersName = this.authenticationService.currentUserValue.username;
-    let oldPs: string = this.updUserForm.get('password').value;
+    let oldPs: string = this.updUserForm.get('oldPassword').value;
     let newPs: string =  this.updUserForm.get('newPassword').value;
     let newConfirmPs: string = this.updUserForm.get('confirmPassword').value;
     this.updUserForm.get('password').clearValidators();
@@ -112,7 +155,6 @@ export class UpdateUserComponent implements OnInit {
 
   updateUser(){
     this.user.roles = [this.role.admin];
-    this.user.birthDate = SetBirthDate(this.updUserForm, 'day', 'month', 'year');
     if (this.updUserForm.valid) {
       this.authenticationService.updateUser(this.username, this.user).subscribe();
     }

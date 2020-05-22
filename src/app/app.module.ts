@@ -29,7 +29,6 @@ import { RegistrationComponent } from './authentification/registration/registrat
 import { ErrorInterceptor } from './error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtTokenInterceptor } from './jwt.token.interceptor';
-import { OnFocusControl } from './service/on.focus.control';
 
 @NgModule({
   declarations: [
@@ -55,8 +54,8 @@ import { OnFocusControl } from './service/on.focus.control';
     UserDetailComponent,
     UpdateUserComponent,
     UserListComponent,
-    RegistrationComponent,
-    OnFocusControl
+    RegistrationComponent
+
   ],
     imports: [
         AppRoutingModule,
