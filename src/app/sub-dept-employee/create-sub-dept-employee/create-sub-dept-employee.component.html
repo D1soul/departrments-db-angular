@@ -14,13 +14,18 @@
                formControlName="lastName">
 
         <div class="crSDELastNameErrorMassage">
-          <div *ngIf="sEmpCrForm.get('lastName').invalid
-                  &&  submitted">
-            <div *ngIf="sEmpCrForm.get('lastName').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="sEmpCrForm.get('lastName').errors.pattern">
-              <p>Допускаются только кириллические, или латинские буквы!</p>
+          <div [ngClass]="{'crSDEHideErrors': sEmpCrForm.get('lastName').valid || !submitted,
+                           'crSDEShowErrors': sEmpCrForm.get('lastName').invalid && submitted}">
+            <div *ngIf="sEmpCrForm.get('lastName').invalid && submitted">
+              <div *ngIf="sEmpCrForm.get('lastName').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="sEmpCrForm.get('lastName').hasError('pattern')">
+                <p>Допускаются только кириллические, или латинские буквы!</p>
+              </div>
+              <div *ngIf="sEmpCrForm.get('lastName').hasError('subDeptEmplAlreadyExist')">
+                {{errorMessage}}
+              </div>
             </div>
           </div>
         </div>
@@ -40,16 +45,15 @@
         <input type="text" id="firstName" placeholder="Введите имя"
                formControlName="firstName">
         <div class="crSDEFirstNameErrorMassage">
-          <div *ngIf="sEmpCrForm.get('firstName').invalid
-                      && (sEmpCrForm.get('firstName').dirty
-                      ||  sEmpCrForm.get('firstName').untouched
-                      ||  sEmpCrForm.get('firstName').touched)
-                      && submitted">
-            <div *ngIf="sEmpCrForm.get('firstName').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="sEmpCrForm.get('firstName').errors.pattern">
-              <p>Допускаются только кириллические, или латинские буквы!</p>
+          <div [ngClass]="{'crSDEHideErrors': sEmpCrForm.get('firstName').valid || !submitted,
+                           'crSDEShowErrors': sEmpCrForm.get('firstName').invalid && submitted}">
+            <div *ngIf="sEmpCrForm.get('firstName').invalid && submitted">
+              <div *ngIf="sEmpCrForm.get('firstName').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="sEmpCrForm.get('firstName').hasError('pattern')">
+                <p>Допускаются только кириллические, или латинские буквы!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -70,16 +74,15 @@
                placeholder="Введите отчество (Если отсутствует введите - )"
                formControlName="middleName">
         <div class="crSDEMiddleNameErrorMassage">
-          <div *ngIf="sEmpCrForm.get('middleName').invalid
-                      && (sEmpCrForm.get('middleName').dirty
-                      ||  sEmpCrForm.get('middleName').untouched
-                      ||  sEmpCrForm.get('middleName').touched)
-                      && submitted">
-            <div *ngIf="sEmpCrForm.get('middleName').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="sEmpCrForm.get('middleName').errors.pattern">
-              <p>Допускаются только кириллические, или латинские буквы, либо дефис!</p>
+          <div [ngClass]="{'crSDEHideErrors': sEmpCrForm.get('middleName').valid || !submitted,
+                           'crSDEShowErrors': sEmpCrForm.get('middleName').invalid && submitted}">
+            <div *ngIf="sEmpCrForm.get('middleName').invalid && submitted">
+              <div *ngIf="sEmpCrForm.get('middleName').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="sEmpCrForm.get('middleName').hasError('pattern')">
+                <p>Допускаются только кириллические, или латинские буквы, либо дефис!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -120,15 +123,23 @@
           </option>
         </select>
         <div class="crSDEBirthDateErrorMassage">
-          <div *ngIf="(sEmpCrForm.get('day').invalid
-                 || sEmpCrForm.get('month').invalid
-                 || sEmpCrForm.get('year').invalid
-                 )
-                 && submitted">
-            <div *ngIf="sEmpCrForm.get('day').errors.required
-                   || sEmpCrForm.get('month').errors.required
-                   || sEmpCrForm.get('year').errors.required">
-              <p>Дата не указана!</p>
+          <div [ngClass]="{'crSDEHideErrors': (sEmpCrForm.get('day').valid
+                                            && sEmpCrForm.get('month').valid
+                                            && sEmpCrForm.get('year').valid)
+                                            || !submitted,
+                           'crSDEShowErrors': (sEmpCrForm.get('day').invalid
+                                            || sEmpCrForm.get('month').invalid
+                                            || sEmpCrForm.get('year').invalid)
+                                            && submitted}">
+            <div *ngIf="(sEmpCrForm.get('day').invalid
+                        || sEmpCrForm.get('month').invalid
+                        || sEmpCrForm.get('year').invalid)
+                        && submitted">
+              <div *ngIf="sEmpCrForm.get('day').hasError('required')
+                     || sEmpCrForm.get('month').hasError('required')
+                     || sEmpCrForm.get('year').hasError('required')">
+                <p>Дата не указана!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -159,15 +170,42 @@
         <input id="number" type="text" maxlength="6"
                formControlName="number" aria-label="passport" placeholder=". . . . . .">
         <div class="crSDEPassportErrorMassage">
-          <div *ngIf="((sEmpCrForm.get('seriesF').invalid
-                     || sEmpCrForm.get('seriesS').invalid
-                     || sEmpCrForm.get('number').invalid)
-                     && submitted)">
-            <div *ngIf="sEmpCrForm.get('seriesF' || 'seriesS' || 'number').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="sEmpCrForm.get('seriesF' || 'seriesS' || 'number').errors.pattern">
-              <p>Допускаются только цифры!</p>
+          <div [ngClass]="{'crSDEHideErrors': (sEmpCrForm.get('seriesF').valid
+                                            && sEmpCrForm.get('seriesS').valid
+                                            && sEmpCrForm.get('number').valid)
+                                            || !submitted,
+                           'crSDEShowErrors': (sEmpCrForm.get('seriesF').invalid
+                                            || sEmpCrForm.get('seriesS').invalid
+                                            || sEmpCrForm.get('number').invalid)
+                                            && submitted}">
+            <div *ngIf="(sEmpCrForm.get('seriesF').invalid
+                         || sEmpCrForm.get('seriesS').invalid
+                         || sEmpCrForm.get('number').invalid)
+                         && submitted">
+              <div *ngIf="(sEmpCrForm.get('seriesF').hasError('required')
+                          || sEmpCrForm.get('seriesS').hasError('required')
+                          || sEmpCrForm.get('number').hasError('required'))">
+                <p>Поля необходимо заполнить!</p>
+              </div>
+              <div *ngIf="((!sEmpCrForm.get('seriesF').hasError('required')
+                          && !sEmpCrForm.get('seriesS').hasError('required')
+                          && !sEmpCrForm.get('number').hasError('required'))
+                          && (sEmpCrForm.get('seriesF').hasError('pattern')
+                          || sEmpCrForm.get('seriesS').hasError('pattern')
+                          || sEmpCrForm.get('number').hasError('pattern')))">
+                <p>Допускаются только цифры!</p>
+              </div>
+              <div *ngIf="((!sEmpCrForm.get('seriesF').hasError('required')
+                          && !sEmpCrForm.get('seriesS').hasError('required')
+                          && !sEmpCrForm.get('number').hasError('required'))
+                          && (!sEmpCrForm.get('seriesF').hasError('pattern')
+                          && !sEmpCrForm.get('seriesS').hasError('pattern')
+                          && !sEmpCrForm.get('number').hasError('pattern'))
+                          && (sEmpCrForm.get('seriesF').hasError('minlength')
+                          || sEmpCrForm.get('seriesS').hasError('minlength')
+                          || sEmpCrForm.get('number').hasError('minlength')))">
+                <p>Всего должно быть десять цифр!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -188,12 +226,12 @@
           </option>
         </select>
         <div class="crSDESubDeptErrorMassage">
-          <div *ngIf="(sEmpCrForm.get('subDepartment').invalid
-                      && (sEmpCrForm.get('subDepartment').touched
-                      || sEmpCrForm.get('subDepartment').untouched)
-                      && submitted)">
-            <div *ngIf="sEmpCrForm.get('subDepartment').errors.required">
-              <p>Подотдел не выбран!</p>
+          <div [ngClass]="{'crSDEHideErrors': sEmpCrForm.get('subDepartment').valid || !submitted,
+                           'crSDEShowErrors': sEmpCrForm.get('subDepartment').invalid && submitted}">
+            <div *ngIf="sEmpCrForm.get('subDepartment').invalid && submitted" >
+              <div *ngIf="sEmpCrForm.get('subDepartment').hasError('required')">
+                <p>Подотдел не выбран!</p>
+              </div>
             </div>
           </div>
         </div>

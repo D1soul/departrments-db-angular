@@ -25,6 +25,7 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
   years = [];
   submitted: boolean = false;
   inputName: string = '';
+  errorMessage: string;
 
   constructor(private subDeptEmployeeService: SubDeptEmployeeService,
               private subDepartmentService: SubDepartmentService,
@@ -58,11 +59,14 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
       month: [null, [Validators.required]],
       year: [null, [Validators.required]],
       seriesF:[null, [Validators.required,
-                      Validators.pattern("\\d{2}")]],
+                      Validators.pattern("\\d+"),
+                      Validators.minLength(2)]],
       seriesS:[null, [Validators.required,
-                      Validators.pattern("\\d{2}")]],
+                      Validators.pattern("\\d+"),
+                      Validators.minLength(2)]],
       number:[null, [Validators.required,
-                     Validators.pattern("\\d{6}")]],
+                     Validators.pattern("\\d+"),
+                     Validators.minLength(6)]],
       subDepartment: [null,[Validators.required]],
     });
   }
@@ -109,7 +113,11 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
     this.submitted = true;
     if(this.sEmpCrForm.valid) {
       this.subDeptEmployeeService.addSubDeptEmployee(this.subDeptEmployee)
-        .subscribe(() => this.goToAllSubEmployees());
+        .subscribe(() => this.goToAllSubEmployees(),
+          error => {
+            this.errorMessage = error;
+            this.sEmpCrForm.get('lastName').setErrors( {'subDeptEmplAlreadyExist': true});
+        });
     }
   }
 

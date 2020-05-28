@@ -14,6 +14,7 @@ export class CreateMainDepartmentComponent implements OnInit{
   mainDepartment: MainDepartment;
   mDeptCrForm: FormGroup;
   submitted: boolean = false;
+  errorMessage: string;
   inputName: string = '';
 
   constructor(private mainDepartmentService: MainDepartmentService,
@@ -31,17 +32,15 @@ export class CreateMainDepartmentComponent implements OnInit{
   createMainDeptForm(){
     this.mDeptCrForm = this.formBuilder.group({
       name: [null, [Validators.required,
-        Validators.pattern("^(([А-яЁё]+\\s?)+|([A-z]+\\s?)+)$"),
-        Validators.minLength(7),
-        Validators.maxLength(60)]]
+                    Validators.pattern("^(([А-яЁё]\\s?)+|([A-z]\\s?)+)$"),
+                    Validators.minLength(7)]]
     });
   }
 
   getMainDeptFormValue(){
     this.mDeptCrForm.valueChanges.subscribe(formData => {
       setTimeout(() => {
-        let mainDept = this.mainDepartment;
-        mainDept.name = formData.name;
+        this.mainDepartment.name = formData.name;
       });
     });
   }
@@ -65,7 +64,11 @@ export class CreateMainDepartmentComponent implements OnInit{
     this.submitted = true;
     if (this.mDeptCrForm.valid) {
       this.mainDepartmentService.addMainDepartment(this.mainDepartment)
-        .subscribe(() => this.goToAllMainDepartments());
+        .subscribe(() => this.goToAllMainDepartments(),
+       error => {
+           this.errorMessage = error;
+           this.mDeptCrForm.get('name').setErrors( {'mainDepartmentAlreadyExist': true});
+      });
     }
   }
 

@@ -1,10 +1,11 @@
-<div *ngIf="user">
+<div *ngIf="user && user.username === currentUser">
   <form [formGroup]="updUserForm" novalidate (ngSubmit)="updateUser()" >
     <h2>Редактирование данных пользователя</h2>
-    <div class="updUser" >
+    <div class="updUser"
+         [ngClass]="{'updUserSmall': !changePassword,
+                     'updUserLarge': changePassword }">
       <div class="updUserUsername"
-           [ngClass]="{'updUserValidationInvalid': updUserForm.get('username').invalid
-                                               && submitted,
+           [ngClass]="{'updUserValidationInvalid': updUserForm.get('username').invalid,
                        'updUserValidationValid': updUserForm.get('username').valid,
                        'updUserValidationValidAndFocused': updUserForm.get('username').valid
                         &&  updUserForm.get('username') === updUserForm.get(inputName) }">
@@ -12,96 +13,133 @@
         <input type="text" id="username" placeholder="Введите логин"
                formControlName="username" >
         <div class="updUserUsernameErrorMassage">
-          <div *ngIf="this.updUserForm.get('username').invalid
-                && (this.updUserForm.get('username').dirty
-                || this.updUserForm.get('username').touched)" >
-            <div *ngIf="this.updUserForm.get('username').errors.required">
-              <p>Поле не должно быть пустым!</p>
-            </div>
-            <div *ngIf="this.updUserForm.get('username').errors.pattern">
-              <p>Логин должен содержать только кириллические, или латинские буквы, либо цифры!</p>
-            </div>
-            <div *ngIf="this.updUserForm.get('username').errors.thisUsernameIsTaken">
-              <p>{{errorMessage}}</p>
+          <div [ngClass]="{'updUserHideErrors': updUserForm.get('username').valid,
+                           'updUserShowErrors': updUserForm.get('username').invalid}">
+            <div *ngIf="updUserForm.get('username').invalid">
+              <div *ngIf="updUserForm.get('username').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="updUserForm.get('username').hasError('pattern')">
+                <p>Логин должен содержать только кириллические, или латинские буквы, либо цифры!</p>
+              </div>
+              <div *ngIf="updUserForm.get('username').hasError('thisUsernameIsTaken')">
+                {{errorMessage}}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <button type="button" class="passwordButton" (click)="changePassword = true">Изменить пароль</button>
-      <div [ngClass]="{'changePasswordShow': changePassword,
-                       'changePasswordHide': !changePassword }">
-        <div class="updUserPassword"
-              [ngClass]="{'updUserValidationDefault': updUserForm.get('oldPassword').untouched,
-                          'updUserValidationInvalid': updUserForm.get('oldPassword').invalid
-                                                    && (updUserForm.get('oldPassword').touched
-                                                    || updUserForm.get('oldPassword').dirty),
-                          'updUserValidationValid': updUserForm.get('oldPassword').valid,
-                          'updUserValidationValidAndFocused': updUserForm.get('oldPassword').valid
-                           &&  updUserForm.get('oldPassword') === updUserForm.get(inputName) }">
-          <label for="password"><b>Старый пароль</b></label>
-          <input type="text" id="password" placeholder="Введите старый пароль" formControlName="oldPassword" >
-          <div class="updUserPasswordErrorMassage">
-            <div *ngIf="updUserForm.get('oldPassword').invalid
-                && (updUserForm.get('oldPassword').dirty
-                || updUserForm.get('oldPassword').touched)" >
-              <div *ngIf="updUserForm.get('oldPassword').errors.notFound">
-                <p>{{errorMessage}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="updUserNewPassword"
-             [ngClass]="{'updUserValidationDefault': updUserForm.get('newPassword').untouched,
-                         'updUserValidationInvalid': updUserForm.get('newPassword').invalid
-                                                   && (updUserForm.get('newPassword').touched
-                                                   || updUserForm.get('newPassword').dirty),
-                         'updUserValidationValid': updUserForm.get('newPassword').valid,
-                         'updUserValidationValidAndFocused': updUserForm.get('newPassword').valid
-                          &&  updUserForm.get('newPassword') === updUserForm.get(inputName) }">
-          <label for="newPassword"><b>Новый пароль</b></label>
-          <input type="text" id="newPassword" placeholder="Введите новый пароль"
-                  formControlName="newPassword" >
-          <div class="updUserNewPasswordErrorMassage">
-            <div *ngIf="updUserForm.get('newPassword').invalid
-                && (updUserForm.get('newPassword').dirty
-                || updUserForm.get('newPassword').touched)" >
-              <div *ngIf="updUserForm.get('newPassword').errors.required">
-                <p>Поле не должно быть пустым!</p>
+      <div class="updUserEmail"
+           [ngClass]="{'updUserValidationInvalid': updUserForm.get('email').invalid,
+                       'updUserValidationValid': updUserForm.get('email').valid,
+                       'updUserValidationValidAndFocused': updUserForm.get('email').valid
+                        &&  updUserForm.get('email') === updUserForm.get(inputName) }">
+        <label for="email"><b>Е-мейл</b></label>
+        <input type="email" id="email" placeholder="Введите е-мейл"
+               formControlName="email" >
+        <div class="updUserEmailErrorMassage">
+          <div [ngClass]="{'updUserHideErrors': updUserForm.get('email').valid,
+                           'updUserShowErrors': updUserForm.get('email').invalid}">
+            <div *ngIf="updUserForm.get('email').invalid">
+              <div *ngIf="updUserForm.get('email').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
               </div>
-              <div *ngIf="updUserForm.get('newPassword').errors.minlength">
-                <p>Пароль должен содержать минимум 6 символов!</p>
+              <div *ngIf="updUserForm.get('email').hasError('pattern')">
+                <p>Емейл адрес невалидный!</p>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="updUserNewConfirmPassword"
-             [ngClass]="{'updUserValidationDefault': updUserForm.get('confirmPassword').untouched,
-                         'updUserValidationInvalid': updUserForm.get('confirmPassword').invalid
-                                                   && (updUserForm.get('confirmPassword').touched
-                                                   || updUserForm.get('confirmPassword').dirty),
-                         'updUserValidationValid': updUserForm.get('confirmPassword').valid,
-                         'updUserValidationValidAndFocused': updUserForm.get('confirmPassword').valid
-                          &&  updUserForm.get('confirmPassword') === updUserForm.get(inputName) }">
-          <label for="confirmPassword"><b>Подтверждение пароля</b></label>
-          <input type="text" id="confirmPassword" placeholder="Повторите новый пароль"  formControlName="confirmPassword" >
-          <div class="updUserNewConfirmPasswordErrorMassage">
-            <div *ngIf="updUserForm.get('confirmPassword').invalid
-                && (updUserForm.get('confirmPassword').dirty
-                || updUserForm.get('confirmPassword').touched)" >
-              <div *ngIf="updUserForm.get('confirmPassword').errors.required">
-                <p>Поле не должно быть пустым!</p>
+
+      <div  class="changePasswordMenu">
+          <button type="button"  (click)="changePassword = changePassword === false; changingPassword()">
+            <span *ngIf="!changePassword">Изменить пароль</span>
+            <span *ngIf="changePassword">Отмена</span>
+          </button>
+        <div class="changePassword"
+             [ngClass]="{'changePasswordShow': changePassword,
+                         'changePasswordHide': !changePassword }">
+          <div class="changePasswordContent">
+            <div class="updUserPassword"
+                  [ngClass]="{'updUserValidationDefault': !submitted,
+                              'updUserValidationInvalid': updUserForm.get('oldPassword').invalid && submitted,
+                              'updUserValidationValid': updUserForm.get('oldPassword').valid,
+                              'updUserValidationValidAndFocused': updUserForm.get('oldPassword').valid
+                               &&  updUserForm.get('oldPassword') === updUserForm.get(inputName) }">
+              <label for="password"><b>Старый пароль</b></label>
+              <input type="text" id="password" placeholder="Введите старый пароль" formControlName="oldPassword" >
+              <div class="updUserPasswordErrorMassage">
+                <div [ngClass]="{'updUserHideErrors': updUserForm.get('oldPassword').valid || !submitted,
+                                 'updUserShowErrors': updUserForm.get('oldPassword').invalid && submitted}">
+                  <div *ngIf="updUserForm.get('oldPassword').invalid
+                      && (updUserForm.get('oldPassword').dirty
+                      || updUserForm.get('oldPassword').touched)" >
+                    <div *ngIf="updUserForm.get('oldPassword').hasError('required')">
+                      <p>Поле необходимо заполнить!</p>
+                    </div>
+                    <div *ngIf="updUserForm.get('oldPassword').hasError('notFound')">
+                      <p>{{errorMessage}}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div *ngIf="updUserForm.get('confirmPassword').errors.notEqual">
-                <p>Пароли не совпадают!</p>
+            </div>
+
+            <div class="updUserNewPassword"
+                 [ngClass]="{'updUserValidationDefault': !submitted,
+                             'updUserValidationInvalid': updUserForm.get('newPassword').invalid && submitted,
+                             'updUserValidationValid': updUserForm.get('newPassword').valid,
+                             'updUserValidationValidAndFocused': updUserForm.get('newPassword').valid
+                              &&  updUserForm.get('newPassword') === updUserForm.get(inputName) }">
+              <label for="newPassword"><b>Новый пароль</b></label>
+              <input type="text" id="newPassword" placeholder="Введите новый пароль"
+                      formControlName="newPassword" >
+              <div class="updUserNewPasswordErrorMassage">
+                <div [ngClass]="{'updUserHideErrors': updUserForm.get('newPassword').valid || !submitted,
+                                 'updUserShowErrors': updUserForm.get('newPassword').invalid && submitted}">
+                  <div *ngIf="updUserForm.get('newPassword').invalid" >
+                    <div *ngIf="updUserForm.get('newPassword').hasError('required')">
+                      <p>Поле необходимо заполнить!</p>
+                    </div>
+                    <div *ngIf="updUserForm.get('newPassword').hasError('minlength')">
+                      <p>Пароль должен содержать минимум 6 символов!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="updUserNewConfirmPassword"
+                 [ngClass]="{'updUserValidationDefault': !submitted,
+                             'updUserValidationInvalid': updUserForm.get('confirmPassword').invalid && submitted,
+                             'updUserValidationValid': updUserForm.get('confirmPassword').valid,
+                             'updUserValidationValidAndFocused': updUserForm.get('confirmPassword').valid
+                              &&  updUserForm.get('confirmPassword') === updUserForm.get(inputName) }">
+              <label for="confirmPassword"><b>Подтверждение пароля</b></label>
+              <input type="text" id="confirmPassword" placeholder="Повторите новый пароль"
+                                                        formControlName="confirmPassword" >
+              <div class="updUserNewConfirmPasswordErrorMassage">
+                <div [ngClass]="{'updUserHideErrors': updUserForm.get('confirmPassword').valid || !submitted,
+                                 'updUserShowErrors': updUserForm.get('confirmPassword').invalid && submitted}">
+                  <div *ngIf="updUserForm.get('confirmPassword').invalid" >
+                    <div *ngIf="updUserForm.get('confirmPassword').hasError('required')">
+                      <p>Поле необходимо заполнить!</p>
+                    </div>
+                    <div *ngIf="updUserForm.get('confirmPassword').hasError('notEqual')">
+                      <p>Пароли не совпадают!</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <button type="button" (click)="setNewPassword()">Сохранить</button>
-       </div>
+          <button type="button" (click)="setNewPassword()">Сохранить</button>
+         </div>
+      </div>
 
       <div class="updUserBirthDate"
            [ngClass]=" {'updUserValidationValid': updUserForm.get('day').valid
@@ -145,6 +183,9 @@
     </div>
   </form>
 </div>
-<div>
-  {{inputName}}
+<div *ngIf="!user" class="updUserError">
+  <h2>{{errorMessage}}</h2>
+</div>
+<div *ngIf="user && user.username !== currentUser" class="updUserError">
+  <h2>Данная страница доступна только для владельца!</h2>
 </div>

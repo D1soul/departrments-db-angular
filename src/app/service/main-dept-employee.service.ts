@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable, of, throwError} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import { MainDeptEmployee } from '../entities/main-dept-employee';
 import { catchError } from 'rxjs/operators';
 
@@ -10,7 +10,6 @@ import { catchError } from 'rxjs/operators';
 export class MainDeptEmployeeService {
 
   private readonly url: string;
-  public errorMessage: string;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -57,7 +56,6 @@ export class MainDeptEmployeeService {
 
   private handleError<T> (operation = 'operation') {
     return (error: any): Observable<T> => {
-      this.errorMessage = error;
       console.error(operation + ': ' + error);
       return  throwError(error);
     }

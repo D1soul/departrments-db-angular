@@ -15,7 +15,6 @@ export class AuthenticationService {
   private readonly userUrl: string;
   private readonly changePasUrl: string;
   private readonly registrationUrl: string;
-  public errorMessage: string;
   private  behaviorSubject: BehaviorSubject<LoggingUser>;
   private redirectUrl: string = '/';
   public currentUser: string = 'currentUser';
@@ -55,7 +54,7 @@ export class AuthenticationService {
   changeOldPassword(username: string, password: string, newPassword: string, newConfirmPassword): Observable<any> {
     return this.http.put<any>(this.changePasUrl,{username, password, newPassword, newConfirmPassword
     }, this.httpOptions).pipe(
-        catchError(this.handleError<string>(`change old password`)));
+        catchError(this.handleError<string>(`change old password: `)));
   }
 
   logout() {
@@ -66,7 +65,7 @@ export class AuthenticationService {
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl).pipe(
-      catchError(this.handleError<User[]>('User List')));
+      catchError(this.handleError<User[]>('User List:')));
   }
 
 
@@ -83,8 +82,6 @@ export class AuthenticationService {
       catchError(this.handleError<any>('Adding New User')))
   }
 
-
-
   updateUser(username: string, user: User): Observable<Object>{
     const urlUpdateUser = `${this.userUrl}/${username}`;
     return this.http.put(urlUpdateUser, user, this.httpOptions).pipe(
@@ -99,7 +96,6 @@ export class AuthenticationService {
 
   private handleError<T> (operation = 'operation') {
     return (error: any): Observable<T> => {
-      this.errorMessage = error;
       console.error(operation + ': ' + error);
       return  throwError(error);
     }

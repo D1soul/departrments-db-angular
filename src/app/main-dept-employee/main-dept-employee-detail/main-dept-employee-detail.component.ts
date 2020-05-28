@@ -12,7 +12,7 @@ export class MainDeptEmployeeDetailComponent implements OnInit {
 
   lastName: string; firstName :string; middleName: string;
   mainDeptEmployee: MainDeptEmployee;
-
+  errorMessage: string;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private mainDeptEmployeeService: MainDeptEmployeeService) {}
@@ -27,7 +27,9 @@ export class MainDeptEmployeeDetailComponent implements OnInit {
   getMainDeptEmployeeDetail() {
     this.mainDeptEmployeeService.getMainDeptEmployeeDetail(
       this.lastName, this.firstName, this.middleName)
-      .subscribe(mainDeptEmployee => this.mainDeptEmployee = mainDeptEmployee);
+      .subscribe(mainDeptEmployee => this.mainDeptEmployee = mainDeptEmployee,
+        error => { this.errorMessage = error;
+      });
   }
 
   goToUpdateMainDeptEmployee(lastName: string, firstName: string, middleName: string) {

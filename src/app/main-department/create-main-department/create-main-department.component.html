@@ -10,16 +10,23 @@
                         &&  mDeptCrForm.get('name') === mDeptCrForm.get(inputName) }" >
         <label for="name"><b>Название</b></label>
         <input type="text" id="name" placeholder="Введите название" formControlName="name" >
-        <div class="crMDNameErrorMassage">
-          <div *ngIf="mDeptCrForm.get('name').invalid && submitted" >
-            <div *ngIf="mDeptCrForm.get('name').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="mDeptCrForm.get('name').errors.minlength">
-              <p>Название слишком короткое!</p>
-            </div>
-            <div *ngIf="mDeptCrForm.get('name').errors.pattern">
-              <p>Название должно содержать только кириллические, или латинские буквы и пробелы!</p>
+        <div class="crMDNameErrorMassage" >
+          <div [ngClass]="{'crMDHideErrors': mDeptCrForm.get('name').valid || !submitted,
+                           'crMDShowErrors': mDeptCrForm.get('name').invalid && submitted}">
+            <div *ngIf="mDeptCrForm.get('name').invalid && submitted">
+              <div *ngIf="mDeptCrForm.get('name').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="mDeptCrForm.get('name').hasError('minlength')
+                          && !mDeptCrForm.get('name').hasError('pattern')">
+                <p>Название слишком короткое!</p>
+              </div>
+              <div *ngIf="mDeptCrForm.get('name').hasError('pattern')">
+                <p>Название должно содержать только кириллические, или латинские буквы и пробелы!</p>
+              </div>
+              <div *ngIf="mDeptCrForm.get('name').hasError('mainDepartmentAlreadyExist')">
+                {{errorMessage}}
+              </div>
             </div>
           </div>
         </div>

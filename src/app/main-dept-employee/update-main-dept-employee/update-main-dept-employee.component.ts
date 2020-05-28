@@ -24,6 +24,7 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
   mainDepartments: MainDepartment[];
   mEmpUpdForm: FormGroup;
   inputName: string = '';
+  errorMessage: string;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private mainDeptEmployeeService: MainDeptEmployeeService,
@@ -52,32 +53,30 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
       .subscribe(mainDeptEmployee => {
         this.mainDeptEmployee = mainDeptEmployee;
         this.initMainDeptEmpForm(mainDeptEmployee);
-    });
+      },
+     error => this.errorMessage = error);
   }
 
   createMainDeptEmpForm(){
     this.mEmpUpdForm = this.formBuilder.group({
       lastName: [null, [Validators.required,
-                        Validators.pattern("^([А-яЁё]+|[A-z]+)$"),
-                        Validators.minLength(2),
-                        Validators.maxLength(20)]],
+                        Validators.pattern("^([А-яЁё]+|[A-z]+)$")]],
       firstName: [null, [Validators.required,
-                         Validators.pattern("^([А-яЁё]+|[A-z]+)$"),
-                         Validators.minLength(2),
-                         Validators.maxLength(20)]],
+                         Validators.pattern("^([А-яЁё]+|[A-z]+)$")]],
       middleName: [null, [Validators.required,
-                          Validators.pattern("^(([А-яЁё]+|[A-z]+)|(-))$"),
-                          Validators.minLength(1),
-                          Validators.maxLength(25)]],
+                          Validators.pattern("^(([А-яЁё]+|[A-z]+)|(-))$")]],
       day: [null, [Validators.required]],
       month: [null, [Validators.required]],
       year: [null, [Validators.required]],
       seriesF:[null, [Validators.required,
-                      Validators.pattern("\\d{2}")]],
+                      Validators.pattern("\\d+"),
+                      Validators.minLength(2)]],
       seriesS:[null, [Validators.required,
-                      Validators.pattern("\\d{2}")]],
+                      Validators.pattern("\\d+"),
+                      Validators.minLength(2)]],
       number:[null, [Validators.required,
-                     Validators.pattern("\\d{6}")]],
+                     Validators.pattern("\\d+"),
+                     Validators.minLength(6)]],
       mainDepartment: [null, [Validators.required]]
     });
   }

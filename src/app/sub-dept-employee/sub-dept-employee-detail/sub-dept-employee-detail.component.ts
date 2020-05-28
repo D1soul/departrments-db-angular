@@ -12,6 +12,7 @@ export class SubDeptEmployeeDetailComponent implements OnInit {
 
   lastName: string; firstName :string; middleName: string;
   subDeptEmployee: SubDeptEmployee;
+  errorMessage: string;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private subDeptEmployeeService: SubDeptEmployeeService) {}
@@ -26,7 +27,9 @@ export class SubDeptEmployeeDetailComponent implements OnInit {
     this.middleName = this.route.snapshot.params['middleName'];
     this.subDeptEmployeeService.getSubDeptEmployeeDetail(
       this.lastName, this.firstName, this.middleName)
-      .subscribe(subDeptEmployee => this.subDeptEmployee = subDeptEmployee);
+      .subscribe(subDeptEmployee => this.subDeptEmployee = subDeptEmployee,
+        error => { this.errorMessage = error;
+      });
   }
 
   goToUpdateSubDeptEmployee(lastName: string, firstName: string, middleName: string) {

@@ -11,12 +11,15 @@
         <input type="text" id="lastName" formControlName="lastName"  >
 
         <div class="updMDELastNameErrorMassage">
-          <div *ngIf="mEmpUpdForm.get('lastName').invalid" >
-            <div *ngIf="mEmpUpdForm.get('lastName').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="mEmpUpdForm.get('lastName').errors.pattern">
-              <p>Допускаются только кириллические, или латинские буквы!</p>
+          <div [ngClass]="{'updMDEHideErrors': mEmpUpdForm.get('lastName').valid,
+                           'updMDEShowErrors': mEmpUpdForm.get('lastName').invalid}">
+            <div *ngIf="mEmpUpdForm.get('lastName').invalid" >
+              <div *ngIf="mEmpUpdForm.get('lastName').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="mEmpUpdForm.get('lastName').hasError('pattern')">
+                <p>Допускаются только кириллические, или латинские буквы!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -33,15 +36,15 @@
         <label for="firstName"><b>Имя</b></label>
         <input type="text" id="firstName" formControlName="firstName" >
         <div class="updMDEFirstNameErrorMassage">
-          <div *ngIf="mEmpUpdForm.get('firstName').invalid
-                    && (mEmpUpdForm.get('firstName').dirty
-                    ||  mEmpUpdForm.get('firstName').untouched
-                    ||  mEmpUpdForm.get('firstName').touched)" >
-            <div *ngIf="mEmpUpdForm.get('firstName').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="mEmpUpdForm.get('firstName').errors.pattern">
-              <p>Допускаются только кириллические, или латинские буквы!</p>
+          <div [ngClass]="{'updMDEHideErrors': mEmpUpdForm.get('firstName').valid,
+                           'updMDEShowErrors': mEmpUpdForm.get('firstName').invalid}">
+            <div *ngIf="mEmpUpdForm.get('firstName').invalid">
+              <div *ngIf="mEmpUpdForm.get('firstName').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="mEmpUpdForm.get('firstName').hasError('pattern')">
+                <p>Допускаются только кириллические, или латинские буквы!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -58,15 +61,15 @@
         <label for="middleName"><b>Отчество</b></label>
         <input type="text" id="middleName" formControlName="middleName" >
         <div class="updMDEMiddleNameErrorMassage">
-          <div *ngIf="mEmpUpdForm.get('middleName').invalid
-                    && (mEmpUpdForm.get('middleName').dirty
-                    ||  mEmpUpdForm.get('middleName').untouched
-                    ||  mEmpUpdForm.get('middleName').touched)" >
-            <div *ngIf="mEmpUpdForm.get('middleName').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="mEmpUpdForm.get('middleName').errors.pattern">
-              <p>Допускаются только кириллические, или латинские буквы, либо дефис!</p>
+          <div [ngClass]="{'updMDEHideErrors': mEmpUpdForm.get('middleName').valid,
+                           'updMDEShowErrors': mEmpUpdForm.get('middleName').invalid}">
+            <div *ngIf="mEmpUpdForm.get('middleName').invalid">
+              <div *ngIf="mEmpUpdForm.get('middleName').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="mEmpUpdForm.get('middleName').hasError('pattern')">
+                <p>Допускаются только кириллические, или латинские буквы, либо дефис!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -123,14 +126,39 @@
         <input id="number" type="text"  maxlength="6"
                formControlName="number" aria-label="passport" placeholder=". . . . . .">
         <div class="updMDEPassportErrorMassage">
-          <div *ngIf="((mEmpUpdForm.get('seriesF').invalid
-                   || mEmpUpdForm.get('seriesS').invalid
-                   || mEmpUpdForm.get('number').invalid))" >
-            <div *ngIf="mEmpUpdForm.get('seriesF' || 'seriesS' || 'number').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="mEmpUpdForm.get('seriesF' || 'seriesS' || 'number').errors.pattern">
-              <p>Допускаются только цифры!</p>
+          <div [ngClass]="{'updMDEHideErrors': (mEmpUpdForm.get('seriesF').valid
+                                            && mEmpUpdForm.get('seriesS').valid
+                                            && mEmpUpdForm.get('number').valid),
+                           'updMDEShowErrors': (mEmpUpdForm.get('seriesF').invalid
+                                            || mEmpUpdForm.get('seriesS').invalid
+                                            || mEmpUpdForm.get('number').invalid)}">
+            <div *ngIf="(mEmpUpdForm.get('seriesF').invalid
+                         || mEmpUpdForm.get('seriesS').invalid
+                        || mEmpUpdForm.get('number').invalid)">
+              <div *ngIf="(mEmpUpdForm.get('seriesF').hasError('required')
+                          || mEmpUpdForm.get('seriesS').hasError('required')
+                          || mEmpUpdForm.get('number').hasError('required'))">
+                <p>Поля необходимо заполнить!</p>
+              </div>
+              <div *ngIf="((!mEmpUpdForm.get('seriesF').hasError('required')
+                          && !mEmpUpdForm.get('seriesS').hasError('required')
+                          && !mEmpUpdForm.get('number').hasError('required'))
+                          && (mEmpUpdForm.get('seriesF').hasError('pattern')
+                          || mEmpUpdForm.get('seriesS').hasError('pattern')
+                          || mEmpUpdForm.get('number').hasError('pattern')))">
+                <p>Допускаются только цифры!</p>
+              </div>
+              <div *ngIf="((!mEmpUpdForm.get('seriesF').hasError('required')
+                          && !mEmpUpdForm.get('seriesS').hasError('required')
+                          && !mEmpUpdForm.get('number').hasError('required'))
+                          && (!mEmpUpdForm.get('seriesF').hasError('pattern')
+                          && !mEmpUpdForm.get('seriesS').hasError('pattern')
+                          && !mEmpUpdForm.get('number').hasError('pattern'))
+                          && (mEmpUpdForm.get('seriesF').hasError('minlength')
+                          || mEmpUpdForm.get('seriesS').hasError('minlength')
+                          || mEmpUpdForm.get('number').hasError('minlength')))">
+                <p>Всего должно быть десять цифр!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -150,4 +178,7 @@
       <button type="submit" >Обновить</button>
     </div>
   </form>
+</div>
+<div *ngIf="!mainDeptEmployee" class="updMainDeptEmplError">
+  <h2>{{errorMessage}}</h2>
 </div>

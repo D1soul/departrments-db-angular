@@ -10,19 +10,24 @@
         <label for="name"><b>Название</b></label>
         <input type="text" id="name" formControlName="name" >
         <div class="updSDNameErrorMassage">
-          <div *ngIf="sDeptUpdForm.get('name').invalid" >
-            <div *ngIf="sDeptUpdForm.get('name').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="sDeptUpdForm.get('name').errors.minlength">
-              <p>Название слишком короткое!</p>
-            </div>
-            <div *ngIf="sDeptUpdForm.get('name').errors.pattern">
-              <p>Название должно содержать только кириллические, или латинские буквы и пробелы!</p>
+          <div [ngClass]="{'updSDHideErrors': sDeptUpdForm.get('name').valid,
+                           'updSDShowErrors': sDeptUpdForm.get('name').invalid}">
+            <div *ngIf="sDeptUpdForm.get('name').invalid">
+              <div *ngIf="sDeptUpdForm.get('name').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="sDeptUpdForm.get('name').hasError('minlength')
+                          && !sDeptUpdForm.get('name').hasError('pattern')">
+                <p>Название слишком короткое!</p>
+              </div>
+              <div *ngIf="sDeptUpdForm.get('name').hasError('pattern')">
+                <p>Название должно содержать только кириллические, или латинские буквы и пробелы!</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
 
       <div class="updSDMainDept"
            [ngClass]=" {'updSDValidationValid': sDeptUpdForm.get('mainDepartment').valid,
@@ -38,4 +43,7 @@
       <button type="submit">Обновить</button>
     </div>
   </form>
+</div>
+<div *ngIf="!subDepartment" class="updSubDeptError">
+  <h2>{{errorMessage}}</h2>
 </div>

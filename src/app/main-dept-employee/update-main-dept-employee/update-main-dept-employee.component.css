@@ -31,7 +31,7 @@ h2{
   border-bottom: solid 1px rgb(240, 150, 150);
   border-left: 0;
   box-shadow: 3px 0 5px rgb(240, 150, 150);
-  transition-duration: 0.5s;
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .updMDEValidationValid input {
@@ -40,7 +40,7 @@ h2{
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: 0;
   box-shadow: 3px 0 5px rgb(180, 180, 180);
-  transition-duration: 0.5s;
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .updMDEValidationValidAndFocused input{
@@ -49,7 +49,7 @@ h2{
   border-bottom: solid 1px rgb(190, 240, 190);
   border-left: 0;
   box-shadow: 3px 0 5px rgb(190, 240, 190);
-  transition-duration: 0.5s;
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .updMDEValidationInvalid select {
@@ -58,7 +58,7 @@ h2{
   border-bottom: solid 1px rgb(240, 150, 150);
   border-left: solid 1px rgb(255, 255, 255);
   box-shadow: 3px 0 5px rgb(240, 150, 150);
-  transition-duration: 0.5s;
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .updMDEValidationValid select{
@@ -67,7 +67,7 @@ h2{
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: solid 1px rgb(255, 255, 255);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
-  transition-duration: 0.5s;
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .updMDEValidationValidAndFocused select{
@@ -76,7 +76,24 @@ h2{
   border-bottom: solid 1px rgb(190, 240, 190);
   border-left: solid 1px rgb(255, 255, 255);
   box-shadow: 3px 0 5px rgb(190, 240, 190);
-  transition-duration: 0.5s;
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+}
+
+.updMDEHideErrors {
+  top: -15px;
+  position: relative;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.updMDEShowErrors {
+  transition: top 0.5s ease-in-out, opacity 0.2s ease-in 0.3s;
+  top: 0;
+  position: relative;
+  opacity: 1;
+  height: 19px;
+  overflow: hidden;
 }
 
 .updMDELastName{
@@ -336,30 +353,47 @@ h2{
 
 .updMDEPassportErrorMassage{
   width: 220px;
-  height: 36px;
+  transition: height 7s ease-in;
   margin-left: 176px;
+  float: left;
 }
 
 .updMainDeptEmpl button{
   margin: 2px 0 0 632px;
   height: 50px;
   width: 150px;
+  cursor: pointer;
   border-radius: 0 0 15px 0;
   border: 1px solid  rgb(180, 180, 180);
   background-color:  rgb(204, 204, 204);
   box-shadow: inset 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
   background-image: linear-gradient(to bottom, rgb(239, 239, 239), rgb(119, 119, 119));
-  background-clip: padding-box;
-  cursor: pointer;
-  outline: none;
   font-family: "Times New Roman", serif;
   font-size: 13pt;
-  color: rgb(60, 60, 60);
+  color: rgb(80, 80, 80);
+  outline: none;
+  transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
 }
 
 .updMainDeptEmpl button:hover{
   background-image: linear-gradient(to bottom, rgb(205, 205, 205), rgb(85, 85, 85));
-  box-shadow: inset 0 0 10px rgb(255, 255, 255);
+  box-shadow: inset 0 0 10px rgb(230, 230, 230);
   text-shadow: rgb(255, 255, 255);
   color: rgb(50, 50, 50);
+  transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+}
+
+.updMainDeptEmplError{
+  height: 50px;
+  width: max-content;
+  border: solid 1px rgb(240, 150, 150);
+  box-shadow: 0 0 5px rgb(240, 150, 150);
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+}
+.updMainDeptEmplError h2{
+  padding: 0 20px 0 20px;
+  margin: 10px 0 10px 0;
+  color: rgb(240, 150, 150);
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
 }

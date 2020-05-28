@@ -4,7 +4,7 @@ h2{
 
 .registration{
   margin: 0;
-  height: 264px;
+  height: 270px;
   width:582px;
   border: solid 1px rgb(180, 180, 180);
   box-shadow: inset 3px 0 5px rgb(180, 180, 180);
@@ -39,6 +39,7 @@ h2{
   border-bottom: solid 1px rgb(240, 150, 150);
   border-left: 0;
   box-shadow: 3px 0 5px rgb(240, 150, 150);
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .regUserValidationValid input {
@@ -47,6 +48,7 @@ h2{
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: 0;
   box-shadow: 3px 0 5px rgb(180, 180, 180);
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .regUserValidationValidAndFocused input{
@@ -55,6 +57,7 @@ h2{
   border-bottom: solid 1px rgb(190, 240, 190);
   border-left: 0;
   box-shadow: 3px 0 5px rgb(190, 240, 190);
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .regUserValidationDefault select{
@@ -63,6 +66,7 @@ h2{
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: solid 1px rgb(255, 255, 255);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .regUserValidationInvalid select {
@@ -71,6 +75,7 @@ h2{
   border-bottom: solid 1px rgb(240, 150, 150);
   border-left: solid 1px rgb(255, 255, 255);
   box-shadow: 3px 0 5px rgb(240, 150, 150);
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .regUserValidationValid select{
@@ -79,6 +84,7 @@ h2{
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: solid 1px rgb(255, 255, 255);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .regUserValidationValidAndFocused select{
@@ -87,6 +93,24 @@ h2{
   border-bottom: solid 1px rgb(190, 240, 190);
   border-left: solid 1px rgb(255, 255, 255);
   box-shadow: 3px 0 5px rgb(190, 240, 190);
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+}
+
+.regUserHideErrors {
+  top: -15px;
+  position: relative;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.regUserShowErrors {
+  transition: top 0.5s ease-in-out, opacity 0.2s ease-in 0.3s;
+  top: 0;
+  position: relative;
+  opacity: 1;
+  height: 19px;
+  overflow: hidden;
 }
 
 .regUserUsername{
@@ -128,10 +152,49 @@ h2{
   margin: 0 0 0 107px;
 }
 
-.regUserPassword{
+.regUserEmail{
   display: inline-block;
   float: left;
   margin: 3px 0 0 3px;
+  height: 52px;
+  width: 576px;
+}
+
+.regUserEmail label{
+  position: relative;
+  float: left;
+  border: solid 1px rgb(180, 180, 180);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+  background-color: rgb(245, 245, 245);
+  width: 94px;
+  height: 30px;
+  font-size: 12pt;
+  z-index: 2;
+}
+
+.regUserEmail input{
+  float: left;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+  padding: 0 0 0 10px;
+  outline: none;
+  height: 30px;
+  width: 469px;
+  background-color: rgb(255, 255, 255);
+}
+
+.regUserEmailErrorMassage{
+  padding: 0;
+  height: 20px;
+  width: 450px;
+  float: left;
+  margin: 0 0 0 107px;
+}
+
+.regUserPassword{
+  display: inline-block;
+  float: left;
+  margin: 0 0 0 3px;
   height: 52px;
   width: 576px;
 }
@@ -170,7 +233,7 @@ h2{
 .regUserConfirmPassword{
   display: inline-block;
   float: left;
-  margin: 3px 0 0 3px;
+  margin: 0 0 0 3px;
   height: 52px;
   width: 576px;
 }
@@ -203,7 +266,7 @@ h2{
   height: 20px;
   width: 450px;
   float: left;
-  margin: 0 0 0 107px;
+  margin: 0 0 0 200px;
 }
 
 .regUserBirthDate {
@@ -254,7 +317,7 @@ h2{
   margin: 0 0 0 136px;
   width: 150px;
   height: 20px;
-  float: bottom;
+  float: left;
 }
 
 .regUserGender{
@@ -298,7 +361,6 @@ h2{
   border-left: 0;
   box-shadow: inset 0 0 10px rgb(225, 225, 225),
   3px 0 5px rgb(180, 180, 180);
-
 }
 
 .regUserValidationInvalid.regUserGender label {
@@ -308,6 +370,7 @@ h2{
   border-left: 0;
   box-shadow: inset 0 0 10px rgb(225, 225, 225),
   3px 0 5px rgb(240, 150, 150);
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .regUserValidationValid.regUserGender label {
@@ -317,6 +380,7 @@ h2{
   border-left: 0;
   box-shadow: inset 0 0 10px rgb(225, 225, 225),
   3px 0 5px rgb(180, 180, 180);
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .regUserGender input:checked + label{
@@ -325,16 +389,22 @@ h2{
   text-shadow: 0 0 3px rgb(95, 95, 95);
   position: relative;
   z-index: 3;
+  transition: background-color 0.2s ease-in, color 0.1s ease-in,
+              text-shadow 0.1s ease-in-out, z-index  0.2s ease-in;
 }
 .regUserGender label:hover{
   background-color: rgb(240, 240, 240);
   color: rgb(0, 0, 0);
   text-shadow: 0 0 1px rgb(155, 155, 155);
+  transition: background-color 0.2s ease-in, color 0.1s ease-in,
+              text-shadow 0.1s ease-in-out;
 }
 
 .regUserGender input:checked + label:hover{
   background-color: rgb(216, 216, 216);
   text-shadow: 0 0 1px rgb(100, 100, 100);
+  transition: background-color 0.2s ease-in, color 0.1s ease-in,
+              text-shadow 0.1s ease-in-out, z-index  0.2s ease-in;
 }
 
 .regUserValidationValidAndFocused.regUserGender input + label{
@@ -344,34 +414,36 @@ h2{
   border-left: 0;
   box-shadow: inset 0 0 10px rgb(225, 225, 225),
   3px 0 5px rgb(190, 240, 190);
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 .regUserGenderErrorMassage{
   margin: 0 0 0 65px;
   width: 150px;
   height: 20px;
-  float: bottom;
+  float: left;
 }
 
 .registration button{
-  margin: 2px 0 0 632px;
+  margin: 5px 0 0 433px;
   height: 50px;
   width: 150px;
+  cursor: pointer;
   border-radius: 0 0 15px 0;
   border: 1px solid  rgb(180, 180, 180);
   background-color:  rgb(204, 204, 204);
   box-shadow: inset 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
   background-image: linear-gradient(to bottom, rgb(239, 239, 239), rgb(119, 119, 119));
-  background-clip: padding-box;
-  cursor: pointer;
-  outline: none;
   font-family: "Times New Roman", serif;
   font-size: 13pt;
-  color: rgb(60, 60, 60);
+  color: rgb(80, 80, 80);
+  outline: none;
+  transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
 }
 
 .registration button:hover{
   background-image: linear-gradient(to bottom, rgb(205, 205, 205), rgb(85, 85, 85));
-  box-shadow: inset 0 0 10px rgb(255, 255, 255);
+  box-shadow: inset 0 0 10px rgb(230, 230, 230);
   text-shadow: rgb(255, 255, 255);
   color: rgb(50, 50, 50);
+  transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
 }

@@ -38,4 +38,6 @@
     </div>
   </div>
 </div>
-
+<div *ngIf="!subDepartment" class="subDeptDetailError">
+  <h2>{{errorMessage}}</h2>
+</div>

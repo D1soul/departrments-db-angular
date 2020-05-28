@@ -11,12 +11,15 @@
         <input type="text" id="lastName" formControlName="lastName"  >
 
         <div class="updSDELastNameErrorMassage">
-          <div *ngIf="sEmpUpdForm.get('lastName').invalid" >
-            <div *ngIf="sEmpUpdForm.get('lastName').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="sEmpUpdForm.get('lastName').errors.pattern">
-              <p>Допускаются только кириллические, или латинские буквы!</p>
+          <div [ngClass]="{'updSDEHideErrors': sEmpUpdForm.get('lastName').valid,
+                           'updSDEShowErrors': sEmpUpdForm.get('lastName').invalid}">
+            <div *ngIf="sEmpUpdForm.get('lastName').invalid" >
+              <div *ngIf="sEmpUpdForm.get('lastName').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.get('lastName').hasError('pattern')">
+                <p>Допускаются только кириллические, или латинские буквы!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -29,19 +32,19 @@
                                               ||  sEmpUpdForm.get('firstName').touched),
                         'updSDEValidationValid': sEmpUpdForm.get('firstName').valid,
                         'updSDEValidationValidAndFocused': sEmpUpdForm.get('firstName').valid
-                        &&  sEmpUpdForm.get('firstName') === sEmpUpdForm.get(inputName) }" >
+                         &&  sEmpUpdForm.get('firstName') === sEmpUpdForm.get(inputName) }" >
         <label for="firstName"><b>Имя</b></label>
         <input type="text" id="firstName" formControlName="firstName" >
         <div class="updSDEFirstNameErrorMassage">
-          <div *ngIf="sEmpUpdForm.get('firstName').invalid
-                      && (sEmpUpdForm.get('firstName').dirty
-                      ||  sEmpUpdForm.get('firstName').untouched
-                      ||  sEmpUpdForm.get('firstName').touched)" >
-            <div *ngIf="sEmpUpdForm.get('firstName').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="sEmpUpdForm.get('firstName').errors.pattern">
-              <p>Допускаются только кириллические, или латинские буквы!</p>
+          <div [ngClass]="{'updSDEHideErrors': sEmpUpdForm.get('firstName').valid,
+                           'updSDEShowErrors': sEmpUpdForm.get('firstName').invalid}">
+            <div *ngIf="sEmpUpdForm.get('firstName').invalid">
+              <div *ngIf="sEmpUpdForm.get('firstName').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.get('firstName').hasError('pattern')">
+                <p>Допускаются только кириллические, или латинские буквы!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -58,15 +61,15 @@
         <label for="middleName"><b>Отчество</b></label>
         <input type="text" id="middleName" formControlName="middleName" >
         <div class="updSDEMiddleNameErrorMassage">
-          <div *ngIf="sEmpUpdForm.get('middleName').invalid
-                      && (sEmpUpdForm.get('middleName').dirty
-                      ||  sEmpUpdForm.get('middleName').untouched
-                      ||  sEmpUpdForm.get('middleName').touched)" >
-            <div *ngIf="sEmpUpdForm.get('middleName').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="sEmpUpdForm.get('middleName').errors.pattern">
-              <p>Допускаются только кириллические, или латинские буквы, либо дефис!</p>
+          <div [ngClass]="{'updSDEHideErrors': sEmpUpdForm.get('middleName').valid,
+                           'updSDEShowErrors': sEmpUpdForm.get('middleName').invalid}">
+            <div *ngIf="sEmpUpdForm.get('middleName').invalid">
+              <div *ngIf="sEmpUpdForm.get('middleName').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="sEmpUpdForm.get('middleName').hasError('pattern')">
+                <p>Допускаются только кириллические, или латинские буквы, либо дефис!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -74,14 +77,14 @@
 
       <div class="updSDEBirthDate"
            [ngClass]=" {'updSDEValidationValid': sEmpUpdForm.get('day').valid
-                                             && sEmpUpdForm.get('month').valid
-                                             && sEmpUpdForm.get('year').valid,
-                        'updSDEValidationValidAndFocused':  (sEmpUpdForm.get('day').valid
-                                                         && sEmpUpdForm.get('month').valid
-                                                         && sEmpUpdForm.get('year').valid)
-                              &&  (sEmpUpdForm.get('day') === sEmpUpdForm.get(inputName)
-                              ||   sEmpUpdForm.get('month') === sEmpUpdForm.get(inputName)
-                              ||   sEmpUpdForm.get('year') === sEmpUpdForm.get(inputName)) }" >
+                                           && sEmpUpdForm.get('month').valid
+                                           && sEmpUpdForm.get('year').valid,
+                         'updSDEValidationValidAndFocused':  (sEmpUpdForm.get('day').valid
+                                                       && sEmpUpdForm.get('month').valid
+                                                       && sEmpUpdForm.get('year').valid)
+                            &&  (sEmpUpdForm.get('day') === sEmpUpdForm.get(inputName)
+                            ||   sEmpUpdForm.get('month') === sEmpUpdForm.get(inputName)
+                            ||   sEmpUpdForm.get('year') === sEmpUpdForm.get(inputName)) }" >
         <label ><b>Дата рождения</b> </label>
         <select  id="day" formControlName="day" aria-label="birthDate">
           <option *ngFor="let day of days" [value]="day" >
@@ -101,10 +104,7 @@
       </div>
 
       <div class="updSDEPassport"
-           [ngClass]=" {'updSDEValidationDefault': (sEmpUpdForm.get('seriesF').untouched
-                                                 && sEmpUpdForm.get('seriesS').untouched
-                                                 && sEmpUpdForm.get('number').untouched),
-                        'updSDEValidationInvalid': ((sEmpUpdForm.get('seriesF').invalid
+           [ngClass]=" {'updSDEValidationInvalid': ((sEmpUpdForm.get('seriesF').invalid
                                                  || sEmpUpdForm.get('seriesS').invalid
                                                  || sEmpUpdForm.get('number').invalid)),
                         'updSDEValidationValid': sEmpUpdForm.get('seriesF').valid
@@ -119,22 +119,46 @@
         <label ><b>Паспортные данные</b></label>
         <span>Серия:</span>
         <input id="seriesF" type="text" maxlength="2"
-               formControlName="seriesF" aria-label="passport" >
+               formControlName="seriesF" aria-label="passport" placeholder=". .">
         <input id="seriesS" type="text" maxlength="2"
-               formControlName="seriesS" aria-label="passport" >
+               formControlName="seriesS" aria-label="passport" placeholder=". .">
         <span>Номер:</span>
         <input id="number" type="text"  maxlength="6"
-               formControlName="number" aria-label="passport" >
+               formControlName="number" aria-label="passport" placeholder=". . . . . .">
         <div class="updSDEPassportErrorMassage">
-          <div *ngIf="((sEmpUpdForm.get('seriesF').invalid
-                     || sEmpUpdForm.get('seriesS').invalid
-                     || sEmpUpdForm.get('number').invalid)
-                     )" >
-            <div *ngIf="sEmpUpdForm.get('seriesF' || 'seriesS' || 'number').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="sEmpUpdForm.get('seriesF' || 'seriesS' || 'number').errors.pattern">
-              <p>Допускаются только цифры!</p>
+          <div [ngClass]="{'updSDEHideErrors': (sEmpUpdForm.get('seriesF').valid
+                                            && sEmpUpdForm.get('seriesS').valid
+                                            && sEmpUpdForm.get('number').valid),
+                           'updSDEShowErrors': (sEmpUpdForm.get('seriesF').invalid
+                                            || sEmpUpdForm.get('seriesS').invalid
+                                            || sEmpUpdForm.get('number').invalid)}">
+            <div *ngIf="(sEmpUpdForm.get('seriesF').invalid
+                         || sEmpUpdForm.get('seriesS').invalid
+                        || sEmpUpdForm.get('number').invalid)">
+              <div *ngIf="(sEmpUpdForm.get('seriesF').hasError('required')
+                          || sEmpUpdForm.get('seriesS').hasError('required')
+                          || sEmpUpdForm.get('number').hasError('required'))">
+                <p>Поля необходимо заполнить!</p>
+              </div>
+              <div *ngIf="((!sEmpUpdForm.get('seriesF').hasError('required')
+                          && !sEmpUpdForm.get('seriesS').hasError('required')
+                          && !sEmpUpdForm.get('number').hasError('required'))
+                          && (sEmpUpdForm.get('seriesF').hasError('pattern')
+                          || sEmpUpdForm.get('seriesS').hasError('pattern')
+                          || sEmpUpdForm.get('number').hasError('pattern')))">
+                <p>Допускаются только цифры!</p>
+              </div>
+              <div *ngIf="((!sEmpUpdForm.get('seriesF').hasError('required')
+                          && !sEmpUpdForm.get('seriesS').hasError('required')
+                          && !sEmpUpdForm.get('number').hasError('required'))
+                          && (!sEmpUpdForm.get('seriesF').hasError('pattern')
+                          && !sEmpUpdForm.get('seriesS').hasError('pattern')
+                          && !sEmpUpdForm.get('number').hasError('pattern'))
+                          && (sEmpUpdForm.get('seriesF').hasError('minlength')
+                          || sEmpUpdForm.get('seriesS').hasError('minlength')
+                          || sEmpUpdForm.get('number').hasError('minlength')))">
+                <p>Всего должно быть десять цифр!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -143,15 +167,18 @@
       <div class="updSDESubDept"
            [ngClass]=" {'updSDEValidationValid': sEmpUpdForm.get('subDepartment').valid,
                         'updSDEValidationValidAndFocused': sEmpUpdForm.get('subDepartment').valid
-                        &&  sEmpUpdForm.get('subDepartment') === sEmpUpdForm.get(inputName) }" >
+                      &&  sEmpUpdForm.get('subDepartment') === sEmpUpdForm.get(inputName) }" >
         <label for="subDepartment"><b>Подотдел</b></label>
         <select id="subDepartment" formControlName="subDepartment" >
-          <option *ngFor="let subDepartment of subDepartments" [value]="subDepartment.name">
+          <option *ngFor="let subDepartment of subDepartments" [value]="subDepartment.name"  >
             {{subDepartment.name}}
           </option>
         </select>
       </div>
-      <button type="submit">Обновить</button>
+      <button type="submit" >Обновить</button>
     </div>
   </form>
+</div>
+<div *ngIf="!subDeptEmployee" class="updSubDeptEmplError">
+  <h2>{{errorMessage}}</h2>
 </div>

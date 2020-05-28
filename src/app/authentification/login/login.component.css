@@ -1,164 +1,170 @@
 .login{
-  margin-top: 30px;
   height: 157px;
-  width:456px;
-  border: solid 1px rgba(0, 0, 0, 0.4);
-  outline: none;
-  box-shadow: inset 3px 0 5px rgba(0,0,0,0.22);
-  margin-left: 50px;
+  width:556px;
+  border: solid 1px rgb(180, 180, 180);
+  box-shadow: inset 3px 0 5px rgb(180, 180, 180);
+  background-color: rgb(255, 255, 255);
   border-radius: 40px;
 }
 
-.logUsernameLabel{
-  border: solid 1px rgba(0, 0, 0, 0.4);
+.login b{
   position: relative;
-  padding-top: 8px;
-  padding-left: 33px;
-  width: 38px;
-  height: 29px;
-  background-color: rgba(217, 217, 217, 0.25);
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
-  left: 32px;
-  top: 27px;
-  z-index: 2;
-  border-radius: 40px 0 0 40px;
-}
-
-
-.logUsernameDefault input{
+  top: 8px;
+  float: right;
+  right: 10px;
+  font-family: "Times New Roman", serif;
   font-size: 12pt;
-  border: solid 1px rgba(0, 0, 0, 0.4);
-  padding-left: 10px;
-  outline: none;
-  height: 35px;
-  width: 300px;
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
-  position: relative;
-  left: 105px;
-  top: -12px;
-  border-radius: 0 40px 40px 0;
 }
 
-
-.logUsernameInvalid input{
-  font-size: 12pt;
-  border: solid 1px rgba(205, 0, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
-  border-radius: 0 40px 40px 0;
-  padding-left: 10px;
-  position: relative;
-  left: 105px;
-  top: -12px;
-  outline: none;
-  height: 35px;
-  width: 300px;
-}
-
-.logUsernameValid input{
-  font-size: 12pt;
-  border: solid 1px rgba(0, 205, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
-  border-radius: 0 40px 40px 0;
-  padding-left: 10px;
-  position: relative;
-  left: 105px;
-  top: -12px;
-  outline: none;
-  height: 35px;
-  width: 300px;
-}
-
-
-.logUsernameErrorMassage{
-  width: 300px;
-  height: 15px;
-  position: relative;
-  left: 105px;
-  top: -12px;
-}
-
-.logUsernameErrorMassage p{
-  padding-left: 10px;
+.login p{
   font-size: 11pt;
+  color: rgb(240, 150, 150);
   margin: 0;
-  color: rgba(205, 0, 0, 0.4);
 }
 
+.loginValidationDefault input {
+  border-top: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-left: 0;
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+}
 
-.logPasswordLabel{
-  border: solid 1px rgba(0, 0, 0, 0.4);
+.loginValidationInvalid input {
+  border-top: solid 1px rgb(240, 150, 150);
+  border-right: solid 1px rgb(240, 150, 150);
+  border-bottom: solid 1px rgb(240, 150, 150);
+  border-left: 0;
+  box-shadow: 3px 0 5px rgb(240, 150, 150);
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+}
+
+.loginValidationValid input {
+  border-top: solid 1px rgb(180, 180, 180);
+  border-right: solid 1px rgb(180, 180, 180);
+  border-bottom: solid 1px rgb(180, 180, 180);
+  border-left: 0;
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+}
+
+.loginValidationValidAndFocused input{
+  border-top: solid 1px rgb(190, 240, 190);
+  border-right: solid 1px rgb(190, 240, 190);
+  border-bottom: solid 1px rgb(190, 240, 190);
+  border-left: 0;
+  box-shadow: 3px 0 5px rgb(190, 240, 190);
+  transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+}
+
+.loginHideErrors {
+  top: -15px;
   position: relative;
-  padding-top: 8px;
-  padding-left: 10px;
-  width: 61px;
-  height: 29px;
-  background-color: rgba(217, 217, 217, 0.25);
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
-  border-radius: 40px 0 0 40px;
-  left: 32px;
-  top: -5px;
-  z-index: 2;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
 }
 
-
-.logPasswordDefault input{
-  font-size: 12pt;
-  border: solid 1px rgba(0, 0, 0, 0.4);
-  border-radius: 0 40px 40px 0;
-  padding-left: 10px;
-  outline: none;
-  height: 35px;
-  width: 300px;
-  box-shadow: 3px 0 5px rgba(0,0,0,0.22);
+.loginShowErrors {
+  transition: top 0.5s ease-in-out, opacity 0.2s ease-in 0.3s;
+  top: 0;
   position: relative;
-  left: 105px;
-  top: -44px;
+  opacity: 1;
+  height: 19px;
+  overflow: hidden;
 }
-
-
-.logPasswordInvalid input{
-  font-size: 12pt;
-  border: solid 1px rgba(205, 0, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(205, 0, 0, 0.4);
-  border-radius: 0 40px 40px 0;
-  padding-left: 10px;
-  position: relative;
-  left: 105px;
-  top: -44px;
-  outline: none;
-  height: 35px;
-  width: 300px;
-}
-
-.logPasswordValid input{
-  font-size: 12pt;
-  border: solid 1px rgba(0, 205, 0, 0.4);
-  box-shadow: 3px 0 5px rgba(0, 205, 0, 0.4);
-  border-radius: 0 40px 40px 0;
-  padding-left: 10px;
-  position: relative;
-  left: 105px;
-  top: -44px;
-  outline: none;
-  height: 35px;
-  width: 300px;
-}
-
-
-.logPasswordErrorMassage{
-  width: 300px;
+.loginErrorMassage{
+  padding: 0;
   height: 20px;
-  position: relative;
-  left: 105px;
-  top: -44px;
+  width: 450px;
+  float: left;
+  margin: 0;
 }
 
-.logPasswordErrorMassage p{
-  padding-left: 10px;
-  font-size: 11pt;
-  margin: 0;
-  color: rgba(205, 0, 0, 0.4);
+.loginUsername{
+  display: inline-block;
+  float: left;
+  height: 57px;
+  width: 390px;
+  margin: 0 0 0 40px;
 }
+
+.loginUsername label{
+  position: relative;
+  float: left;
+  border-radius: 40px 0 0 40px;
+  border: solid 1px rgb(180, 180, 180);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+  background-color: rgb(245, 245, 245);
+  width: 76px;
+  height: 35px;
+  font-size: 12pt;
+  z-index: 2;
+}
+
+.loginUsername input{
+  float: left;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+  padding: 0 0 0 10px;
+  outline: none;
+  border-radius: 0 40px 40px 0;
+  position: relative;
+  height: 35px;
+  width: 300px;
+  background-color: rgb(255, 255, 255);
+}
+
+.loginUsernameErrorMassage{
+  padding: 0;
+  height: 20px;
+  width: 300px;
+  float: left;
+  margin: 0 0 0 82px;
+}
+
+.loginPassword{
+  display: inline-block;
+  float: left;
+  margin: 0 0 0 40px;
+  height: 57px;
+  width: 390px;
+}
+
+.loginPassword label{
+  position: relative;
+  float: left;
+  border-radius: 40px 0 0 40px;
+  border: solid 1px rgb(180, 180, 180);
+  box-shadow: 3px 0 5px rgb(180, 180, 180);
+  background-color: rgb(245, 245, 245);
+  width: 76px;
+  height: 35px;
+  font-size: 12pt;
+  z-index: 2;
+}
+
+.loginPassword input{
+  float: left;
+  font-family: "Times New Roman", serif;
+  font-size: 13pt;
+  padding: 0 0 0 10px;
+  outline: none;
+  border-radius: 0 40px 40px 0;
+  position: relative;
+  height: 35px;
+  width: 300px;
+  background-color: rgb(255, 255, 255);
+}
+
+.loginPasswordErrorMassage{
+  padding: 0;
+  height: 20px;
+  width: 300px;
+  float: left;
+  margin: 0 0 0 82px;
+}
+
 .login_button button{
   position: relative;
   height: 50px;

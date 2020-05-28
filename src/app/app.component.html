@@ -1,17 +1,24 @@
 <div class="navigation">
   <h1>Департаменты</h1>
-  <tr >
     <nav>
-      <a routerLink="/main_departments"><td>Департаменты</td></a>
-      <a routerLink="/sub-departments"><td>Подотделы</td></a>
-      <a routerLink="/main_dept_employees"><td>Сотрудники департаментов</td></a>
-      <a routerLink="/sub-dept_employees"><td>Сотрудники подотделов</td></a>
+      <div class="navigationLinks">
+        <a routerLink="/main_departments" routerLinkActive="active">
+          <span>Департаменты</span>
+        </a>
+        <a routerLink="/sub-departments" routerLinkActive="active">
+          <span>Подотделы</span>
+        </a>
+        <a routerLink="/main_dept_employees" routerLinkActive="active">
+          <span>Сотрудники департаментов</span>
+        </a>
+        <a routerLink="/sub-dept_employees" routerLinkActive="active">
+
+          <span>Сотрудники подотделов</span>
+        </a>
+      </div>
     </nav>
-  </tr>
   <div>
     <button type="submit" (click)="logout()" >logout</button>
   </div>
 </div>
-
-
 <router-outlet></router-outlet>

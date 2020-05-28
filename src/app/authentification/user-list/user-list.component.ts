@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../service/authentication.service';
+import { User } from '../../entities/user';
+import {Role} from '../../entities/role';
 
 @Component({
   selector: 'app-user-list',
@@ -7,9 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
 
-  constructor() { }
+  users: User[];
+  role: Role;
+  constructor(private authenticationService: AuthenticationService, private router: Router) {}
 
   ngOnInit(): void {
   }
+  getAllUsers() {
+    this.authenticationService.getAllUsers()
+      .subscribe(users => this.users = users);
+  }
 
+  makeUserAdmin(username: string, user: User){
+    user.roles = [this.role.user, this.role.admin];
+    this.authenticationService.updateUser(username, user);
+  }
+
+  deleteUser(username: string){
+    this.authenticationService.deleteUser(username)
+      .subscribe(data => {
+        this.getAllUsers();
+    });
+  }
 }

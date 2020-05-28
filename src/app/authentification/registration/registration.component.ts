@@ -40,11 +40,13 @@ export class RegistrationComponent implements OnInit {
   createRegUserForm(){
     this.regForm = this.formBuilder.group({
       username: [null, [Validators.required,
-        Validators.pattern("^(([А-я]+\\d*)+|([A-z]+\\d*)+)$"),
-        Validators.minLength(1),
-        Validators.maxLength(20)]],
+                        Validators.pattern("^(([А-я]+\\d*)+|([A-z]+\\d*)+)$"),
+                        Validators.minLength(1),
+                        Validators.maxLength(20)]],
+      email: [null, [Validators.email,
+                     Validators.required]],
       password: [null, [Validators.required,
-        Validators.minLength(6)]],
+                        Validators.minLength(6)]],
       confirmPassword: [null, [Validators.required]],
       day: [null, [Validators.required]],
       month: [null, [Validators.required]],
@@ -66,6 +68,7 @@ export class RegistrationComponent implements OnInit {
       setTimeout(() => {
         let regUser = this.user;
         regUser.username = formData.username;
+        regUser.email = formData.email;
         regUser.password = formData.password;
         regUser.confirmPassword = formData.confirmPassword;
         regUser.birthDate = formData.day + '/'
@@ -94,12 +97,10 @@ export class RegistrationComponent implements OnInit {
 
   register(){
     this.submitted = true;
-   // this.user.roles = [this.role.user];
     if (this.regForm.valid) {
       this.authenticationService.registration(this.user)
-        .subscribe(() => this.goToAllUsers(), (err) => {
-        //  this.errorMessage = this.authenticationService.errorMessage;
-          this.errorMessage = err;
+        .subscribe(() => this.goToAllUsers(), error => {
+          this.errorMessage = error;
           this.regForm.get('username').setErrors( {'thisUsernameIsTaken': true});
         });
     }

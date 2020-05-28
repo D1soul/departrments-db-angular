@@ -19,6 +19,7 @@ export class CreateSubDepartmentComponent implements OnInit{
   sDeptCrForm: FormGroup;
   submitted: boolean = false;
   inputName: string = '';
+  errorMessage: string;
 
   constructor(private subDepartmentService: SubDepartmentService,
               private mainDepartmentService: MainDepartmentService,
@@ -37,9 +38,8 @@ export class CreateSubDepartmentComponent implements OnInit{
   createSubDeptForm(){
     this.sDeptCrForm = this.formBuilder.group({
       name: [null, [Validators.required,
-                    Validators.pattern("^(([А-яЁё]+\\s?)+|([A-z]+\\s?)+)$"),
-                    Validators.minLength(5),
-                    Validators.maxLength(100)]],
+                    Validators.pattern("^(([А-яЁё]\\s?)+|([A-z]\\s?)+)$"),
+                    Validators.minLength(5)]],
       mainDepartment: [null,[Validators.required]]
     });
   }
@@ -78,7 +78,11 @@ export class CreateSubDepartmentComponent implements OnInit{
     this.submitted = true;
     if (this.sDeptCrForm.valid) {
       this.subDepartmentService.addSubDepartment(this.subDepartment)
-        .subscribe(result => this.goToAllSubDepartments());
+        .subscribe(() => this.goToAllSubDepartments(),
+        error => {
+            this.errorMessage = error;
+            this.sDeptCrForm.get('lastName').setErrors( {'subDepartmentAlreadyExist': true});
+        });
     }
   }
 

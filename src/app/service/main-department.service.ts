@@ -10,7 +10,6 @@ import { catchError } from 'rxjs/operators';
 export class MainDepartmentService {
 
   private readonly url: string;
-  public errorMessage: string;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -50,7 +49,6 @@ export class MainDepartmentService {
 
   private handleError<T> (operation = 'operation') {
     return (error: any): Observable<T> => {
-      this.errorMessage = error;
       console.error(operation + ': ' + error);
       return  throwError(error);
     }

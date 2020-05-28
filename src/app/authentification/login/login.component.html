@@ -1,50 +1,58 @@
 <div>
   <form [formGroup]="loginForm" novalidate (ngSubmit)="authorize()">
     <div class="login">
-      <div class="logUsernameLabel">
-        <label for="username"><b>Имя</b></label>
-      </div>
-      <div [ngClass]="{'logUsernameDefault': loginForm.controls['username'].untouched,
-                         'logUsernameInvalid': loginForm.controls['username'].invalid
-                                            && (loginForm.controls['username'].dirty
-                                            || loginForm.controls['username'].touched),
-                         'logUsernameValid': loginForm.controls['username'].touched
-                                            && loginForm.controls['username'].valid }" >
-        <input id="username" type="text" placeholder="username" formControlName="username" >
-        <div class="logUsernameErrorMassage">
-          <div *ngIf="loginForm.controls['username'].invalid
-                && (loginForm.controls['username'].dirty
-                || loginForm.controls['username'].touched)" >
-            <div *ngIf="loginForm.controls['username'].errors.required">
-              <p>Поле не должно быть пустым!</p>
+      <div class="loginErrorMassage" >
+        <div [ngClass]="{'loginHideErrors': !errorMessage || !submitted,
+                         'loginShowErrors':  errorMessage && submitted}">
+          <div *ngIf="errorMessage && submitted">
+            <div *ngIf="errorMessage">
+              <p>{{errorMessage}}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="logPasswordLabel">
-        <label for="password" ><b>Пароль</b></label>
-      </div>
-      <div [ngClass]="{'logPasswordDefault': loginForm.controls['password'].untouched,
-                       'logPasswordInvalid': loginForm.controls['password'].invalid
-                                           && (loginForm.controls['password'].dirty
-                                           || loginForm.controls['password'].touched),
-                          'logPasswordValid': loginForm.controls['password'].touched
-                                            && loginForm.controls['password'].valid }" >
-        <input id="password" type="password" placeholder="password" formControlName="password" >
-        <div class="logPasswordErrorMassage">
-          <div *ngIf="loginForm.controls['password'].invalid
-                && (loginForm.controls['password'].dirty
-                || loginForm.controls['password'].touched)" >
-            <div *ngIf="loginForm.controls['password'].errors.required">
-              <p>Поле не должно быть пустым!</p>
+      <div class="loginUsername"
+           [ngClass]="{'loginValidationDefault': !submitted,
+                       'loginValidationInvalid': loginForm.get('username').invalid && submitted,
+                       'loginValidationValid': loginForm.get('username').valid,
+                       'loginValidationValidAndFocused': loginForm.get('username').valid
+                        &&  loginForm.get('username') === loginForm.get(inputName) }" >
+        <label for="username"><b>Логин</b></label>
+        <input id="username" type="text" placeholder="Введите имя" formControlName="username" >
+        <div class="loginUsernameErrorMassage" >
+          <div [ngClass]="{'loginHideErrors': loginForm.get('username').valid || !submitted,
+                           'loginShowErrors': loginForm.get('username').invalid && submitted}">
+            <div *ngIf="loginForm.get('username').invalid && submitted">
+              <div *ngIf="loginForm.get('username').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="login_button">
-        <button type="submit">Login</button>
+
+      <div class="loginPassword"
+           [ngClass]="{'loginValidationDefault': !submitted,
+                       'loginValidationInvalid': loginForm.get('password').invalid && submitted,
+                       'loginValidationValid': loginForm.get('password').valid,
+                       'loginValidationValidAndFocused': loginForm.get('password').valid
+                              &&  loginForm.get('password') === loginForm.get(inputName) }">
+        <label for="password"><b>Пароль</b></label>
+        <input type="text" id="password" placeholder="Введите пароль"
+               formControlName="password" >
+        <div class="loginPasswordErrorMassage">
+          <div [ngClass]="{'loginHideErrors': loginForm.get('password').valid || !submitted,
+                           'loginShowErrors': loginForm.get('password').invalid && submitted}">
+            <div *ngIf="loginForm.get('password').invalid" >
+              <div *ngIf="loginForm.get('password').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <button type="submit">Войти</button>
     </div>
   </form>
 </div>

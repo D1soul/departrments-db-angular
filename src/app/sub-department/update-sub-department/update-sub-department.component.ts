@@ -18,6 +18,7 @@ export class UpdateSubDepartmentComponent implements OnInit {
   mainDepartments: MainDepartment[];
   sDeptUpdForm: FormGroup;
   inputName: string = '';
+  errorMessage: string;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private subDepartmentService: SubDepartmentService,
@@ -39,15 +40,15 @@ export class UpdateSubDepartmentComponent implements OnInit {
     this.subDepartmentService.getSubDepartmentDetail(this.name)
       .subscribe(subDepartment => {this.subDepartment = subDepartment;
         this.initSubDeptForm(subDepartment);
-    });
+    },
+      error => this.errorMessage = error);
   }
 
   createSubDeptForm(){
     this.sDeptUpdForm = this.formBuilder.group({
       name: [null, [Validators.required,
-                    Validators.pattern("^(([А-яЁё]+\\s?)+|([A-z]+\\s?)+)$"),
-                    Validators.minLength(5),
-                    Validators.maxLength(100)]],
+                    Validators.pattern("^(([А-яЁё]\\s?)+|([A-z]\\s?)+)$"),
+                    Validators.minLength(5)]],
       mainDepartment: [null,[Validators.required]]
     });
   }

@@ -15,15 +15,16 @@ import { InitDateFunction } from '../../service/init-date.function';
 export class UpdateSubDeptEmployeeComponent implements OnInit {
 
   lastNameRoute: string;
-  firstNameRote: string;
-  middleNameRote: string;
-  subDeptEmployee: SubDeptEmployee;
-  subDepartments: SubDepartment[];
-  sEmpUpdForm: FormGroup;
+  firstNameRoute: string;
+  middleNameRoute: string;
   days = [];
   months = [];
   years = [];
+  subDeptEmployee: SubDeptEmployee;
+  subDepartments: SubDepartment[];
+  sEmpUpdForm: FormGroup;
   inputName: string = '';
+  errorMessage: string;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private subDeptEmployeeService: SubDeptEmployeeService,
@@ -33,25 +34,27 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
 
   ngOnInit() {
     InitDateFunction(this.days, this.months, this.years);
-    this.createSubDeptEmpForm();
     this.getSubDeptEmployeeDetail();
-    this.getSubDeptEmplFormValue();
-    this.getCrSDEFocusedElementName();
+    this.createSubDeptEmpForm();
+    this.getSubDeptEmpFormValue();
+    this.getUpdSDEFocusedElementName();
   }
 
   getSubDeptEmployeeDetail() {
     this.lastNameRoute = this.route.snapshot.params['lastName'];
-    this.firstNameRote = this.route.snapshot.params['firstName'];
-    this.middleNameRote = this.route.snapshot.params['middleName'];
-    this.subDeptEmployeeService.getSubDeptEmployeeDetail(
-      this.lastNameRoute, this.firstNameRote, this.middleNameRote)
-      .subscribe(subDeptEmployee => {
-        this.subDeptEmployee = subDeptEmployee;
-        this.initSubDeptEmplForm(subDeptEmployee);
-    });
+    this.firstNameRoute = this.route.snapshot.params['firstName'];
+    this.middleNameRoute = this.route.snapshot.params['middleName'];
     this.subDepartmentService.getAllSubDepartments()
       .subscribe(subDepartments =>
-        this.subDepartments = subDepartments);
+        this.subDepartments = subDepartments
+      );
+    this.subDeptEmployeeService.getSubDeptEmployeeDetail(
+      this.lastNameRoute, this.firstNameRoute, this.middleNameRoute)
+      .subscribe(subDeptEmployee => {
+          this.subDeptEmployee = subDeptEmployee;
+          this.initSubDeptEmpForm(subDeptEmployee);
+        },
+        error => this.errorMessage = error);
   }
 
   createSubDeptEmpForm(){
@@ -66,16 +69,19 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
       month: [null, [Validators.required]],
       year: [null, [Validators.required]],
       seriesF:[null, [Validators.required,
-                      Validators.pattern("\\d{2}")]],
+                      Validators.pattern("\\d+"),
+                      Validators.minLength(2)]],
       seriesS:[null, [Validators.required,
-                      Validators.pattern("\\d{2}")]],
+                      Validators.pattern("\\d+"),
+                      Validators.minLength(2)]],
       number:[null, [Validators.required,
-                     Validators.pattern("\\d{6}")]],
+                     Validators.pattern("\\d+"),
+                     Validators.minLength(6)]],
       subDepartment: [null, [Validators.required]]
     });
   }
 
-  initSubDeptEmplForm(subDeptEmployee: SubDeptEmployee){
+  initSubDeptEmpForm(subDeptEmployee: SubDeptEmployee){
     let birthDateValue = subDeptEmployee.birthDate.split('/');
     let passportValue = subDeptEmployee.passport.split(' ');
     this.sEmpUpdForm.setValue({
@@ -92,8 +98,8 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
     });
   }
 
-  getSubDeptEmplFormValue(){
-    this.sEmpUpdForm.valueChanges.subscribe((formData) => {
+  getSubDeptEmpFormValue(){
+    this.sEmpUpdForm.valueChanges.subscribe(formData =>{
       let data = new Date(formData.year, this.months.indexOf(formData.month)+1, 0);
       if(formData.day > data.getDate() ) {
         this.sEmpUpdForm.get('day').setValue(data.getDate());
@@ -105,17 +111,17 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
         subDeptEmpl.firstName = formData.firstName;
         subDeptEmpl.middleName = formData.middleName;
         subDeptEmpl.birthDate = formData.day + '/'
-                              + formData.month + '/'
-                              + formData.year;
+          + formData.month + '/'
+          + formData.year;
         subDeptEmpl.passport = 'Серия: ' + formData.seriesF
-                              + ' ' + formData.seriesS
-                              + ' Номер: ' + formData.number;
+          + ' ' + formData.seriesS
+          + ' Номер: ' + formData.number;
         subDeptEmpl.subDepartment = formData.subDepartment;
       });
     });
   }
 
-  getCrSDEFocusedElementName(){
+  getUpdSDEFocusedElementName() {
     setTimeout(()=>{
       let elements = [].slice.call((this.elementRef.nativeElement)
         .querySelectorAll('[formControlName]'));
@@ -130,10 +136,11 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
     }, 50);
   }
 
+
   updateSubDeptEmployee(){
     if (this.sEmpUpdForm.valid) {
       this.subDeptEmployeeService.updateSubDeptEmployee(
-        this.lastNameRoute, this.firstNameRote, this.middleNameRote, this.subDeptEmployee)
+        this.lastNameRoute, this.firstNameRoute, this.middleNameRoute, this.subDeptEmployee)
         .subscribe(() => this.goToAllSubDeptEmployees());
     }
   }
@@ -142,3 +149,4 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
     this.router.navigate(['/sub-dept_employees']);
   }
 }
+

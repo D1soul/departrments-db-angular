@@ -13,17 +13,43 @@
         <input type="text" id="username" placeholder="Введите логин"
                formControlName="username" >
         <div class="regUserUsernameErrorMassage">
-          <div *ngIf="this.regForm.get('username').invalid
-                && (this.regForm.get('username').dirty
-                || this.regForm.get('username').touched)" >
-            <div *ngIf="this.regForm.get('username').errors.required">
-              <p>Поле не должно быть пустым!</p>
+          <div [ngClass]="{'regUserHideErrors': regForm.get('username').valid || !submitted,
+                           'regUserShowErrors': regForm.get('username').invalid && submitted}">
+            <div *ngIf="regForm.get('username').invalid && submitted">
+              <div *ngIf="regForm.get('username').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="regForm.get('username').hasError('pattern')">
+                <p>Логин должен содержать только кириллические, или латинские буквы, либо цифры!</p>
+              </div>
+              <div *ngIf="regForm.get('username').hasError('thisUsernameIsTaken')">
+                {{errorMessage}}
+              </div>
             </div>
-            <div *ngIf="this.regForm.get('username').errors.pattern">
-              <p>Логин должен содержать только кириллические, или латинские буквы, либо цифры!</p>
-            </div>
-            <div *ngIf="this.regForm.get('username').errors.thisUsernameIsTaken">
-              <p>{{errorMessage}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="regUserEmail"
+           [ngClass]="{'regUserValidationDefault': !submitted,
+                       'regUserValidationInvalid': regForm.get('email').invalid
+                                               && submitted,
+                       'regUserValidationValid': regForm.get('email').valid,
+                       'regUserValidationValidAndFocused': regForm.get('email').valid
+                        &&  regForm.get('email') === regForm.get(inputName) }">
+        <label for="email"><b>Е-мейл</b></label>
+        <input type="email" id="email" placeholder="Введите е-мейл"
+               formControlName="email" >
+        <div class="regUserEmailErrorMassage">
+          <div [ngClass]="{'regUserHideErrors': regForm.get('email').valid || !submitted,
+                           'regUserShowErrors': regForm.get('email').invalid && submitted}">
+            <div *ngIf="regForm.get('email').invalid && submitted">
+              <div *ngIf="regForm.get('email').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="regForm.get('email').hasError('email')">
+                <p>Емейл адрес невалидный!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -40,14 +66,15 @@
         <input type="text" id="password" placeholder="Введите пароль"
                 formControlName="password" >
         <div class="regUserPasswordErrorMassage">
-          <div *ngIf="regForm.get('password').invalid
-              && (regForm.get('password').dirty
-              || regForm.get('password').touched)" >
-            <div *ngIf="regForm.get('password').errors.required">
-              <p>Поле не должно быть пустым!</p>
-            </div>
-            <div *ngIf="regForm.get('password').errors.minlength">
-              <p>Пароль должен содержать минимум 6 символов!</p>
+          <div [ngClass]="{'regUserHideErrors': regForm.get('password').valid || !submitted,
+                           'regUserShowErrors': regForm.get('password').invalid && submitted}">
+            <div *ngIf="regForm.get('password').invalid && submitted" >
+              <div *ngIf="regForm.get('password').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="regForm.get('password').hasError('minlength')">
+                <p>Пароль должен содержать минимум 6 символов!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -64,12 +91,15 @@
         <input type="text" id="confirmPassword" placeholder="Повторите пароль"
                formControlName="confirmPassword" >
         <div class="regUserConfirmPasswordErrorMassage">
-          <div *ngIf="regForm.get('confirmPassword').invalid && submitted" >
-            <div *ngIf="regForm.get('confirmPassword').errors.required">
-              <p>Поле не должно быть пустым!</p>
-            </div>
-            <div *ngIf="regForm.get('confirmPassword').errors.notEqual">
-              <p>Пароли не совпадают!</p>
+          <div [ngClass]="{'regUserHideErrors': regForm.get('confirmPassword').valid || !submitted,
+                           'regUserShowErrors': regForm.get('confirmPassword').invalid && submitted}">
+            <div *ngIf="regForm.get('confirmPassword').invalid && submitted" >
+              <div *ngIf="regForm.get('confirmPassword').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="regForm.get('confirmPassword').hasError('notEqual')">
+                <p>Пароли не совпадают!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -110,15 +140,23 @@
           </option>
         </select>
         <div class="regUserBirthDateErrorMassage">
-          <div *ngIf="(regForm.get('day').invalid
-                 || regForm.get('month').invalid
-                 || regForm.get('year').invalid
-                 )
-                 && submitted">
-            <div *ngIf="regForm.get('day').errors.required
-                   || regForm.get('month').errors.required
-                   || regForm.get('year').errors.required">
-              <p>Дата не указана!</p>
+          <div [ngClass]="{'regUserHideErrors': (regForm.get('day').valid
+                                              && regForm.get('month').valid
+                                              && regForm.get('year').valid)
+                                              || !submitted,
+                           'regUserShowErrors':  (regForm.get('day').invalid
+                                              || regForm.get('month').invalid
+                                              || regForm.get('year').invalid)
+                                              && submitted}">
+            <div *ngIf="(regForm.get('day').invalid
+                   || regForm.get('month').invalid
+                   || regForm.get('year').invalid)
+                   && submitted">
+              <div *ngIf="regForm.get('day').hasError('required')
+                     || regForm.get('month').hasError('required')
+                     || regForm.get('year').hasError('required')">
+                <p>Дата не указана!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -137,9 +175,12 @@
         <input type="radio" id="female" value="female" formControlName="gender" >
         <label  for="female">Женский</label>
         <div class="regUserGenderErrorMassage">
-          <div *ngIf="((regForm.get('gender').invalid && submitted))" >
-            <div *ngIf="regForm.get('gender').errors.required">
-              <p>Укажите пол!</p>
+          <div [ngClass]="{'regUserHideErrors': regForm.get('gender').valid || !submitted,
+                           'regUserShowErrors': regForm.get('gender').invalid && submitted}">
+            <div *ngIf="((regForm.get('gender').invalid && submitted))" >
+              <div *ngIf="regForm.get('gender').hasError('required')">
+                <p>Укажите пол!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -147,15 +188,5 @@
       <button type="submit">Обновить</button>
     </div>
   </form>
-</div>
-<div>
-  {{regForm.get('gender').value}}
-</div>
-<div>
-  {{regForm.get('gender').value}}
-</div>
-<div >
-  {{user| json}}
-
 </div>
 

@@ -12,6 +12,7 @@ export class SubDepartmentDetailComponent implements OnInit {
 
   name: string;
   subDepartment: SubDepartment;
+  errorMessage: string;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private subDepartmentService: SubDepartmentService) {}
@@ -23,11 +24,12 @@ export class SubDepartmentDetailComponent implements OnInit {
   getSubDepartmentDetail() {
     this.name = this.route.snapshot.params['name'];
     this.subDepartmentService.getSubDepartmentDetail(this.name)
-      .subscribe(subDepartment => this.subDepartment = subDepartment);
+      .subscribe(subDepartment => this.subDepartment = subDepartment,
+        error => { this.errorMessage = error;
+        });
   }
 
   goToUpdateSubDepartment (name: string) {
     this.router.navigate(['/update-sub-department', name])
   }
-
 }

@@ -11,15 +11,22 @@
         <label for="name"><b>Название</b></label>
         <input type="text" id="name" placeholder="Введите название" formControlName="name" >
         <div class="crSDNameErrorMassage">
-          <div *ngIf="sDeptCrForm.get('name').invalid && submitted" >
-            <div *ngIf="sDeptCrForm.get('name').errors.required">
-              <p>Поле обязательно для заполнения!</p>
-            </div>
-            <div *ngIf="sDeptCrForm.get('name').errors.minlength">
-              <p>Название слишком короткое!</p>
-            </div>
-            <div *ngIf="sDeptCrForm.get('name').errors.pattern">
-              <p>Название должно содержать только кириллические, или латинские буквы и пробелы!</p>
+          <div [ngClass]="{'crSDHideErrors': sDeptCrForm.get('name').valid || !submitted,
+                           'crSDShowErrors': sDeptCrForm.get('name').invalid && submitted}">
+            <div *ngIf="sDeptCrForm.get('name').invalid && submitted">
+              <div *ngIf="sDeptCrForm.get('name').hasError('required')">
+                <p>Поле необходимо заполнить!</p>
+              </div>
+              <div *ngIf="sDeptCrForm.get('name').hasError('minlength')
+                          && !sDeptCrForm.get('name').hasError('pattern')">
+                <p>Название слишком короткое!</p>
+              </div>
+              <div *ngIf="sDeptCrForm.get('name').hasError('pattern')">
+                <p>Название должно содержать только кириллические, или латинские буквы и пробелы!</p>
+              </div>
+              <div *ngIf="sDeptCrForm.get('name').hasError('subDepartmentAlreadyExist')">
+                {{errorMessage}}
+              </div>
             </div>
           </div>
         </div>
@@ -40,12 +47,12 @@
           </option>
         </select>
         <div class="crSDMainDeptErrorMassage">
-          <div *ngIf="(sDeptCrForm.get('mainDepartment').invalid
-                    && (sDeptCrForm.get('mainDepartment').touched
-                    || sDeptCrForm.get('mainDepartment').untouched)
-                    && submitted)" >
-            <div *ngIf="sDeptCrForm.get('mainDepartment').errors.required">
-              <p>Департамент не выбран!</p>
+          <div [ngClass]="{'crSDHideErrors': sDeptCrForm.get('mainDepartment').valid || !submitted,
+                          'crSDShowErrors': sDeptCrForm.get('mainDepartment').invalid && submitted}">
+            <div *ngIf="sDeptCrForm.get('mainDepartment').invalid && submitted">
+              <div *ngIf="sDeptCrForm.get('mainDepartment').hasError('required') ">
+                <p>Департамент не выбран!</p>
+              </div>
             </div>
           </div>
         </div>

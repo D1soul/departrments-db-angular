@@ -12,6 +12,7 @@ export class MainDepartmentDetailComponent implements OnInit {
 
   name: string;
   mainDepartment: MainDepartment;
+  errorMessage: string;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private mainDepartmentService: MainDepartmentService) {}
@@ -23,7 +24,9 @@ export class MainDepartmentDetailComponent implements OnInit {
   getMainDepartmentDetail() {
     this.name = this.route.snapshot.params['name'];
     this.mainDepartmentService.getMainDepartmentDetail(this.name)
-      .subscribe(mainDepartment => this.mainDepartment = mainDepartment);
+      .subscribe(mainDepartment => this.mainDepartment = mainDepartment,
+        error => { this.errorMessage = error;
+      });
   }
 
   goToUpdateMainDepartment (name: string) {

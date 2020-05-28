@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../service/authentication.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {User} from '../../entities/user';
 
 
 @Component({
@@ -15,40 +13,53 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   loginForm: FormGroup;
+  submitted: boolean = false;
+  errorMessage: string;
+  inputName: string = '';
 
   constructor(private router: Router, private formBuilder: FormBuilder,
-              private authenticationService: AuthenticationService) {
-
-
-   // if (this.authenticationService.currentUserValue) {
-  //    this.router.navigate(['/']);
-  //  }
-
+              private authenticationService: AuthenticationService,
+              private elementRef: ElementRef) {
   }
 
   ngOnInit() {
     this.initLoginForm();
+    this.getLoginFocusedElementName();
   }
 
   initLoginForm(){
     this.loginForm = this.formBuilder.group({
-      'username' : [null, Validators.required],
-      'password' : [null, Validators.required]
+      username : [null, Validators.required],
+      password : [null, Validators.required]
     });
   }
 
-
+  getLoginFocusedElementName(){
+    setTimeout(()=>{
+      let elements = [].slice.call((this.elementRef.nativeElement)
+        .querySelectorAll('[formControlName]'));
+      elements.forEach( element =>{
+        element.addEventListener('focus', () => {
+          this.inputName = element.id;
+        });
+        element.addEventListener('blur', () => {
+          this.inputName = '';
+        })
+      });
+    }, 50);
+  }
 
   authorize(){
     this.username = this.loginForm.get('username').value;
     this.password = this.loginForm.get('password').value;
+    this.submitted = true;
     if (this.loginForm.valid) {
-      this.authenticationService.login(this.username, this.password).subscribe(user => {
+      this.authenticationService.login(this.username, this.password).subscribe(() => {
 
           this.goToAllSubDepartments();
 
-      }, (err) => {
-          console.log(err);
+      }, error => {
+          this.errorMessage = error;
         });
     }
   }
