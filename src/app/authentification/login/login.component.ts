@@ -1,8 +1,7 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {AuthenticationService} from '../../service/authentication.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../service/authentication.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -23,11 +22,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.initLoginForm();
+    this.createLoginForm();
     this.getLoginFocusedElementName();
   }
 
-  initLoginForm(){
+  createLoginForm(){
     this.loginForm = this.formBuilder.group({
       username : [null, Validators.required],
       password : [null, Validators.required]

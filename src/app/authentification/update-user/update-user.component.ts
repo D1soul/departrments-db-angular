@@ -1,11 +1,11 @@
 import { Component, ElementRef, OnInit} from '@angular/core';
-import {User} from '../../entities/user';
-import {Role} from '../../entities/role';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthenticationService} from '../../service/authentication.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {PasswordMatchValidator} from '../../service/password-match.validator';
-import {InitDateFunction} from '../../service/init-date.function';
+import { User } from '../../entities/user';
+import { Role } from '../../entities/role';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from '../../service/authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PasswordMatchValidator } from '../../service/password-match.validator';
+import { InitDateFunction } from '../../service/init-date.function';
 
 @Component({
   selector: 'app-update-user',
@@ -27,7 +27,6 @@ export class UpdateUserComponent implements OnInit {
   errorMessage: string;
   inputName: string = '';
   submitted: boolean = false;
-
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router, private formBuilder: FormBuilder,

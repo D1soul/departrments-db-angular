@@ -15,6 +15,8 @@ export class AuthenticationService {
   private readonly userUrl: string;
   private readonly changePasUrl: string;
   private readonly registrationUrl: string;
+  private readonly forgotPasswordUrl: string;
+  private readonly resetPasswordUrl: string;
   private  behaviorSubject: BehaviorSubject<LoggingUser>;
   private redirectUrl: string = '/';
   public currentUser: string = 'currentUser';
@@ -29,6 +31,9 @@ export class AuthenticationService {
     this.userUrl = 'http://localhost:8080/auth/users';
     this.changePasUrl = 'http://localhost:8080/auth/changing-password';
     this.registrationUrl = 'http://localhost:8080/auth/registration';
+    this.forgotPasswordUrl = 'http://localhost:8080/auth/forgot-password';
+    this.resetPasswordUrl = 'http://localhost:8080/auth/reset-password';
+
     this.behaviorSubject = new BehaviorSubject<LoggingUser>(JSON.parse(localStorage.getItem(this.currentUser)));
   }
 
@@ -55,6 +60,16 @@ export class AuthenticationService {
     return this.http.put<any>(this.changePasUrl,{username, password, newPassword, newConfirmPassword
     }, this.httpOptions).pipe(
         catchError(this.handleError<string>(`change old password: `)));
+  }
+
+
+  getUsersEmail(email: string) {
+    return this.http.post<any>(this.forgotPasswordUrl + `?email=${email}`, this.httpOptions)
+     .pipe(map(result => {
+        console.log(result.successMessage);
+       return result.successMessage;
+      }),  catchError(this.handleError<string>(`Forgot password: `)
+     ));
   }
 
   logout() {

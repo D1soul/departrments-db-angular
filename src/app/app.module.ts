@@ -29,6 +29,8 @@ import { RegistrationComponent } from './authentification/registration/registrat
 import { ErrorInterceptor } from './error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtTokenInterceptor } from './jwt.token.interceptor';
+import { ForgotPasswordComponent } from './authentification/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './authentification/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { JwtTokenInterceptor } from './jwt.token.interceptor';
     UserDetailComponent,
     UpdateUserComponent,
     UserListComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
 
   ],
     imports: [

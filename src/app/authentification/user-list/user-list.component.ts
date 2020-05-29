@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication.service';
 import { User } from '../../entities/user';
-import {Role} from '../../entities/role';
+import { Role } from '../../entities/role';
 
 @Component({
   selector: 'app-user-list',
