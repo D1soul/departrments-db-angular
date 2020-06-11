@@ -1,4 +1,4 @@
-import { Component, DoCheck } from '@angular/core';
+import {Component, DoCheck } from '@angular/core';
 import { AuthenticationService } from './service/authentication.service';
 import { Router } from '@angular/router';
 

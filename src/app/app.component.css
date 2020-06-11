@@ -4,15 +4,20 @@
   height: max-content;
   position: relative;
   z-index: 10;
+  -webkit-box-shadow: 5px 0 5px 5px white;
+  -moz-box-shadow: 5px 0 5px 5px white;
+  -o-box-shadow: 5px 0 5px 5px white;
   box-shadow: 5px 0 5px 5px white;
 }
 
 .topPanel{
   min-width: 1280px;
   max-width: max-content;
-  margin: 0 0 0 30% ;
+  margin: 0 -640px 0 -640px;
   height: 150px;
   overflow: hidden;
+  position: relative;
+  left: 60%;
 }
 
 .showBackground{

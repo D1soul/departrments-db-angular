@@ -1,5 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../service/authentication.service';
 import { User } from '../../entities/user';
 import { Role } from '../../entities/role';
@@ -12,12 +11,12 @@ import { fadeInAndOutLeftAnimation } from '../../animation/fade-in-and-out-left-
   animations: [fadeInAndOutLeftAnimation],
   host: { '[@fadeInAndOutLeftAnimation]': '' }
 })
-export class UserListComponent implements OnInit, OnDestroy {
+export class UserListComponent implements OnInit {
 
   users: User[];
   role: Role;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private authenticationService: AuthenticationService) {
     this.role = new Role();
   }
 
@@ -44,7 +43,4 @@ export class UserListComponent implements OnInit, OnDestroy {
     return;
   }
 
-  ngOnDestroy(): void {
-
-  }
 }

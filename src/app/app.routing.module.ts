@@ -32,12 +32,12 @@ const routes: Routes = [
 
   {path: '', redirectTo: '/login', pathMatch: 'full'},
 
-  {path: 'login', component: LoginComponent, canActivate: [NonAuthGuard] },
+  {path: 'login', component: LoginComponent, canActivate: [NonAuthGuard]},
   {path: 'registration', component: RegistrationComponent, canActivate: [NonAuthGuard] },
   {path: 'users', component: UserListComponent,
           canActivate: [AuthGuard], data:{ roles: [roles.admin] }},
   {path: 'user_detail/:username', component: UserDetailComponent,
-          canActivate: [AuthGuard], data:{ roles: [roles.user, roles.admin] }},
+          canActivate: [AuthGuard], data:{ roles: [roles.user, roles.admin] }, },
   {path: 'update_user/:username', component: UpdateUserComponent,
           canActivate: [AuthGuard], data:{ roles: [roles.user, roles.admin] }},
   {path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [NonAuthGuard] },
