@@ -2,7 +2,7 @@ import { trigger, state, animate, transition, style, keyframes } from '@angular/
 
 export const fadeInAndOutRightAnimation = trigger('fadeInAndOutRightAnimation', [
     state('*', style({
-      position: 'relative',
+      position: 'absolute',
       left: '47.5%',
       top: '15.5%',
       float: 'left',

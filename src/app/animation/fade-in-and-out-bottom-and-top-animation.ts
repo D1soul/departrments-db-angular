@@ -3,7 +3,7 @@ import { trigger, animate, transition, style, state, keyframes } from '@angular/
 export const fadeInAndOutBottomAndTopAnimation =
   trigger('fadeInAndOutBottomAndTopAnimation', [
     state('*', style({
-      position: 'relative',
+      position: 'absolute',
       left: '47.5%',
       top: '15.5%',
       float: 'left',
