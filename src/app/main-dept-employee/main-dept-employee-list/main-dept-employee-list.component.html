@@ -1,33 +1,32 @@
 <div class="mainDeptEmls">
- <h2>Сотрудники Главных Департаментов</h2>
- <div class="mainDeptEmplList">
-   <div class="mdEHead"
-        [ngClass]="{'mainDeptEmplHeadForAdmin': isAdmin,
-                    'mainDeptEmplHeadForUser': !isAdmin}" >
-     <span><b>ID</b></span>
-     <span><b>Фамилия</b></span>
-     <span><b>Имя</b></span>
-     <span><b>Отчество</b></span>
-   </div>
-   <div *ngFor="let employee of mainDeptEmployees" class="mdEList">
-     <a routerLink="/main_dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
-       <div class="mainDeptEmplNav"
-            [ngClass]="{'mainDeptEmplNavForAdmin': isAdmin,
-                        'mainDeptEmplNavForUser': !isAdmin}" >
-         <span>{{employee.id}}</span>
-         <span>{{employee.lastName}}</span>
-         <span>{{employee.firstName}}</span>
-         <span>{{employee.middleName}}</span>
-       </div>
-     </a>
-     <button class="deleteMDE" *ngIf="isAdmin"
-            (click)="deleteMainDeptEmployee(
+  <h2>Сотрудники главных департаментов</h2>
+  <div class="mainDeptEmplList">
+    <div class="mdEHead"
+         [ngClass]="{'mainDeptEmplHeadForAdmin': isAdmin,
+                     'mainDeptEmplHeadForUser': !isAdmin}" >
+      <span><b>ID</b></span>
+      <span><b>Фамилия</b></span>
+      <span><b>Имя</b></span>
+      <span><b>Отчество</b></span>
+    </div>
+    <div *ngFor="let employee of mainDeptEmployees" class="mdEList">
+      <a routerLink="/main_dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
+        <div class="mainDeptEmplNav"
+             [ngClass]="{'mainDeptEmplNavForAdmin': isAdmin,
+                         'mainDeptEmplNavForUser': !isAdmin}" >
+          <span>{{employee.id}}</span>
+          <span>{{employee.lastName}}</span>
+          <span>{{employee.firstName}}</span>
+          <span>{{employee.middleName}}</span>
+        </div>
+      </a>
+      <button class="deleteMDE" *ngIf="isAdmin"
+              (click)="deleteMainDeptEmployee(
             employee.lastName,
             employee.firstName,
             employee.middleName)">x</button>
-   </div>
- </div>
+    </div>
+  </div>
   <button class="addMDE" *ngIf="isAdmin"
           (click)="goToAddMainDeptEmployee()">Добавить Сотрудника</button>
 </div>
-
