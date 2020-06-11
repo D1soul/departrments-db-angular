@@ -21,14 +21,13 @@ import { UpdateMainDeptEmployeeComponent } from './main-dept-employee/update-mai
 import { UpdateSubDepartmentComponent } from './sub-department/update-sub-department/update-sub-department.component';
 import { UpdateMainDepartmentComponent } from './main-department/update-main-department/update-main-department.component';
 import { LoginComponent } from './authentification/login/login.component';
-import { AdminComponent } from './authentification/admin/admin.component';
 import { UserDetailComponent } from './authentification/user-detail/user-detail.component';
 import { UpdateUserComponent } from './authentification/update-user/update-user.component';
 import { UserListComponent } from './authentification/user-list/user-list.component';
 import { RegistrationComponent } from './authentification/registration/registration.component';
-import { ErrorInterceptor } from './error.interceptor';
+import { ErrorInterceptor } from './interceptor/error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { JwtTokenInterceptor } from './jwt.token.interceptor';
+import { JwtTokenInterceptor } from './interceptor/jwt.token.interceptor';
 import { ForgotPasswordComponent } from './authentification/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './authentification/reset-password/reset-password.component';
 
@@ -52,7 +51,6 @@ import { ResetPasswordComponent } from './authentification/reset-password/reset-
     UpdateSubDepartmentComponent,
     UpdateMainDepartmentComponent,
     LoginComponent,
-    AdminComponent,
     UserDetailComponent,
     UpdateUserComponent,
     UserListComponent,
@@ -67,7 +65,7 @@ import { ResetPasswordComponent } from './authentification/reset-password/reset-
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
     ],
     providers: [
       { provide: HTTP_INTERCEPTORS, useClass: JwtTokenInterceptor, multi: true },

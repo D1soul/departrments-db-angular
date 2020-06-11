@@ -7,4 +7,5 @@ export class User {
   birthDate: string;
   gender: string;
   roles: string[];
+  isBanned: boolean;
 }

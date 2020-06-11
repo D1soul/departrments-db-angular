@@ -3,11 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { fadeInAndOutTopAnimation } from '../../animation/fade-in-and-out-top-animation';
 
 @Component({
   selector: 'app-update-main-department',
   templateUrl: './update-main-department.component.html',
-  styleUrls: ['./update-main-department.component.css']
+  styleUrls: ['./update-main-department.component.css'],
+  animations: [fadeInAndOutTopAnimation],
+  host: { '[@fadeInAndOutTopAnimation]': '' }
 })
 
 export class UpdateMainDepartmentComponent implements OnInit {
@@ -45,7 +48,9 @@ export class UpdateMainDepartmentComponent implements OnInit {
       .subscribe(mainDepartment => {
         this.mainDepartment = mainDepartment;
         this.initMainDeptForm(mainDepartment);
-    }, error => this.errorMessage = error);
+    }, error => {
+        this.errorMessage = error;
+      });
   }
 
   initMainDeptForm(mainDepartment){
@@ -56,6 +61,7 @@ export class UpdateMainDepartmentComponent implements OnInit {
 
   mainDeptFormValue(){
     this.mDeptUpdForm.valueChanges.subscribe(formData => {
+    this.errorMessage = null;
     setTimeout(() => {
         let mainDept = this.mainDepartment;
         mainDept.name = formData.name;
@@ -81,11 +87,14 @@ export class UpdateMainDepartmentComponent implements OnInit {
   updateMainDepartment(){
     if (this.mDeptUpdForm.valid) {
       this.mainDepartmentService.updateMainDepartment(this.nameRoute, this.mainDepartment)
-        .subscribe(() => this.goToAllMainDepartments());
+        .subscribe(() => this.goToAllMainDepartments(), error => {
+          this.errorMessage = error;
+          this.mDeptUpdForm.setErrors({'error': true});
+        });
     }
   }
 
   goToAllMainDepartments(){
-    this.router.navigate(['/main_departments']).then(r =>r );
+    this.router.navigate(['/main_departments']).then();
   }
 }

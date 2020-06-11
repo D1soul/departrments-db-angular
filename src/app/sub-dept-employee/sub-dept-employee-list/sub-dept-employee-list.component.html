@@ -1,7 +1,9 @@
 <div class="subDeptEmls">
   <h2>Сотрудники Подотделов</h2>
   <div class="subDeptEmplList">
-    <div class="sdEHead">
+    <div class="sdEHead"
+         [ngClass]="{'subDeptEmplHeadForAdmin': isAdmin,
+                     'subDeptEmplHeadForUser': !isAdmin}" >
       <span><b>ID</b></span>
       <span><b>Фамилия</b></span>
       <span><b>Имя</b></span>
@@ -9,19 +11,22 @@
     </div>
     <div *ngFor="let employee of subDeptEmployees" class="sdEList">
       <a routerLink="/sub-dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
-        <div class="subDeptEmplNav">
+        <div class="subDeptEmplNav"
+             [ngClass]="{'subDeptEmplNavForAdmin': isAdmin,
+                         'subDeptEmplNavForUser': !isAdmin}" >
           <span>{{employee.id}}</span>
           <span>{{employee.lastName}}</span>
           <span>{{employee.firstName}}</span>
           <span>{{employee.middleName}}</span>
         </div>
       </a>
-      <button class="deleteSDE"
+      <button class="deleteSDE" *ngIf="isAdmin"
               (click)="deleteSubDeptEmployee(
             employee.lastName,
             employee.firstName,
             employee.middleName)">x</button>
     </div>
   </div>
-  <button class="addSDE" (click)="goToAddSubDeptEmployee()">Добавить Сотрудника</button>
+  <button class="addSDE" *ngIf="isAdmin"
+          (click)="goToAddSubDeptEmployee()">Добавить Сотрудника</button>
 </div>

@@ -1,20 +1,30 @@
 h2{
-  margin: 20px 0 20px 0;
+  text-align: center;
+  color: #373737;
+  text-shadow: 0 0 1px 3px #000000;
+}
+
+form {
+  width: max-content;
+  margin: 0 auto;
 }
 
 .registration{
   margin: 0;
-  height: 270px;
+  height: 292px;
   width:582px;
   border: solid 1px rgb(180, 180, 180);
-  box-shadow: inset 3px 0 5px rgb(180, 180, 180);
+  -webkit-box-shadow: inset 0 0 5px 2px rgb(180, 180, 180);
+  -moz-box-shadow: inset 0 0 5px 2px rgb(180, 180, 180);
+  -o-box-shadow: inset 0 0 5px 2px rgb(180, 180, 180);
+  box-shadow: inset 0 0 5px 2px rgb(180, 180, 180);
   background-color: rgb(255, 255, 255);
 }
 
 .registration b{
   position: relative;
   top: 6px;
-  left: 10px;
+  right: 10px;
   font-family: "Times New Roman", serif;
   font-size: 12pt;
 }
@@ -30,6 +40,9 @@ h2{
   border-right: solid 1px rgb(180, 180, 180);
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: 0;
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 
@@ -38,7 +51,13 @@ h2{
   border-right: solid 1px rgb(240, 150, 150);
   border-bottom: solid 1px rgb(240, 150, 150);
   border-left: 0;
+  -webkit-box-shadow: 3px 0 5px rgb(240, 150, 150);
+  -moz-box-shadow: 3px 0 5px rgb(240, 150, 150);
+  -o-box-shadow: 3px 0 5px rgb(240, 150, 150);
   box-shadow: 3px 0 5px rgb(240, 150, 150);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
@@ -47,7 +66,13 @@ h2{
   border-right: solid 1px rgb(180, 180, 180);
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: 0;
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
@@ -56,7 +81,13 @@ h2{
   border-right: solid 1px rgb(190, 240, 190);
   border-bottom: solid 1px rgb(190, 240, 190);
   border-left: 0;
+  -webkit-box-shadow: 3px 0 5px rgb(190, 240, 190);
+  -moz-box-shadow: 3px 0 5px rgb(190, 240, 190);
+  -o-box-shadow: 3px 0 5px rgb(190, 240, 190);
   box-shadow: 3px 0 5px rgb(190, 240, 190);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
@@ -65,7 +96,13 @@ h2{
   border-right: solid 1px rgb(180, 180, 180);
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: solid 1px rgb(255, 255, 255);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
@@ -74,7 +111,13 @@ h2{
   border-right: solid 1px rgb(240, 150, 150);
   border-bottom: solid 1px rgb(240, 150, 150);
   border-left: solid 1px rgb(255, 255, 255);
+  -webkit-box-shadow: 3px 0 5px rgb(240, 150, 150);
+  -moz-box-shadow: 3px 0 5px rgb(240, 150, 150);
+  -o-box-shadow: 3px 0 5px rgb(240, 150, 150);
   box-shadow: 3px 0 5px rgb(240, 150, 150);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
@@ -83,7 +126,13 @@ h2{
   border-right: solid 1px rgb(180, 180, 180);
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: solid 1px rgb(255, 255, 255);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
@@ -92,25 +141,44 @@ h2{
   border-right: solid 1px rgb(190, 240, 190);
   border-bottom: solid 1px rgb(190, 240, 190);
   border-left: solid 1px rgb(255, 255, 255);
+  -webkit-box-shadow: 3px 0 5px rgb(190, 240, 190);
+  -moz-box-shadow: 3px 0 5px rgb(190, 240, 190);
+  -o-box-shadow: 3px 0 5px rgb(190, 240, 190);
   box-shadow: 3px 0 5px rgb(190, 240, 190);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .regUserHideErrors {
   top: -15px;
   position: relative;
+  -moz-opacity: 0;
   opacity: 0;
   height: 0;
   overflow: hidden;
 }
 
 .regUserShowErrors {
+  -webkit-transition: top 0.5s ease-in-out, opacity 0.2s ease-in 0.3s;
+  -moz-transition: top 0.5s ease-in-out, opacity 0.2s ease-in 0.3s;
+  -o-transition: top 0.5s ease-in-out, opacity 0.2s ease-in 0.3s;
   transition: top 0.5s ease-in-out, opacity 0.2s ease-in 0.3s;
   top: 0;
   position: relative;
+  -moz-opacity: 1;
   opacity: 1;
   height: 19px;
   overflow: hidden;
+}
+
+.regUserErrorMassage{
+  margin: 0 auto;
+  padding: 5px 0 0 0;
+  height: 17px;
+  min-width: 50px;
+  max-width: max-content;
 }
 
 .regUserUsername{
@@ -122,9 +190,13 @@ h2{
 }
 
 .regUserUsername label{
+  text-align: right;
   position: relative;
   float: left;
   border: solid 1px rgb(180, 180, 180);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   background-color: rgb(245, 245, 245);
   width: 94px;
@@ -161,9 +233,13 @@ h2{
 }
 
 .regUserEmail label{
+  text-align: right;
   position: relative;
   float: left;
   border: solid 1px rgb(180, 180, 180);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   background-color: rgb(245, 245, 245);
   width: 94px;
@@ -199,10 +275,14 @@ h2{
   width: 576px;
 }
 
-.regUserPassword label{
+.regUserPassword label:nth-child(1){
+  text-align: right;
   position: relative;
   float: left;
   border: solid 1px rgb(180, 180, 180);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   background-color: rgb(245, 245, 245);
   width: 94px;
@@ -211,15 +291,53 @@ h2{
   z-index: 2;
 }
 
-.regUserPassword input{
+.regUserPassword input[type=text],
+.regUserPassword input[type=password]{
   float: left;
   font-family: "Times New Roman", serif;
   font-size: 13pt;
   padding: 0 0 0 10px;
   outline: none;
+  position: relative;
   height: 30px;
   width: 469px;
   background-color: rgb(255, 255, 255);
+}
+
+.regUserPassword input[type=checkbox]{
+  display: none;
+}
+
+.regUserPassword label:nth-child(3) {
+  float: left;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  z-index: 10;
+}
+
+.regUserPassword label:nth-child(3) .hidePassword{
+  opacity: 0.8;
+  position: absolute;
+  float: left;
+  top: 8px;
+  right: 30px;
+  width: 15px;
+  height: 15px;
+  background: url(src/images/HidePasswod.png) 0 0 no-repeat;
+  background-size: cover;
+}
+
+.regUserPassword label:nth-child(3) .showPassword{
+  opacity: 0.8;
+  position: absolute;
+  float: left;
+  top: 8px;
+  right: 30px;
+  width: 15px;
+  height: 15px;
+  background: url(src/images/ShowPassword.png) 0 0 no-repeat;
+  background-size: cover;
 }
 
 .regUserPasswordErrorMassage{
@@ -238,10 +356,14 @@ h2{
   width: 576px;
 }
 
-.regUserConfirmPassword label{
+.regUserConfirmPassword label:first-child{
+  text-align: right;
   position: relative;
   float: left;
   border: solid 1px rgb(180, 180, 180);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   background-color: rgb(245, 245, 245);
   width: 189px;
@@ -250,21 +372,59 @@ h2{
   z-index: 2;
 }
 
-.regUserConfirmPassword input{
+.regUserConfirmPassword input[type=text],
+.regUserConfirmPassword input[type=password]{
   float: left;
   font-family: "Times New Roman", serif;
   font-size: 13pt;
   padding: 0 0 0 10px;
   outline: none;
+  position: relative;
   height: 30px;
   width: 374px;
   background-color: rgb(255, 255, 255);
 }
 
+.regUserConfirmPassword input[type=checkbox]{
+  display: none;
+}
+
+.regUserConfirmPassword label:nth-child(3) {
+  float: left;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  z-index: 10;
+}
+
+.regUserConfirmPassword label:nth-child(3) .hideConfirmPassword{
+  opacity: 0.8;
+  position: absolute;
+  float: left;
+  top: 8px;
+  right: 30px;
+  width: 15px;
+  height: 15px;
+  background: url(src/images/HidePasswod.png) 0 0 no-repeat;
+  background-size: cover;
+}
+
+.regUserConfirmPassword label:nth-child(3) .showConfirmPassword{
+  opacity: 0.8;
+  position: absolute;
+  float: left;
+  top: 8px;
+  right: 30px;
+  width: 15px;
+  height: 15px;
+  background: url(src/images/ShowPassword.png) 0 0 no-repeat;
+  background-size: cover;
+}
+
 .regUserConfirmPasswordErrorMassage{
   padding: 0;
   height: 20px;
-  width: 450px;
+  width: 250px;
   float: left;
   margin: 0 0 0 200px;
 }
@@ -278,11 +438,15 @@ h2{
 }
 
 .regUserBirthDate label{
+  text-align: right;
   float: left;
   border: solid 1px rgb(180, 180, 180);
   width: 130px;
   height: 30px;
   background-color: rgb(245, 245, 245);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   z-index: 4;
   position: relative;
@@ -329,11 +493,15 @@ h2{
 }
 
 .regUserGender span{
+  text-align: right;
   float: left;
   border: solid 1px rgb(180, 180, 180);
   width: 50px;
   height: 30px;
   background-color: rgb(245, 245, 245);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   z-index: 4;
   position: relative;
@@ -341,6 +509,7 @@ h2{
 
 .regUserGender input{
   position: absolute;
+  -moz-opacity: 0;
   opacity: 0;
 }
 
@@ -359,8 +528,14 @@ h2{
   border-right: solid 1px rgb(180, 180, 180);
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: 0;
+  -webkit-box-shadow: inset 0 0 10px rgb(225, 225, 225),
+                      3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: inset 0 0 10px rgb(225, 225, 225),
+                   3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: inset 0 0 10px rgb(225, 225, 225),
+                 3px 0 5px rgb(180, 180, 180);
   box-shadow: inset 0 0 10px rgb(225, 225, 225),
-  3px 0 5px rgb(180, 180, 180);
+              3px 0 5px rgb(180, 180, 180);
 }
 
 .regUserValidationInvalid.regUserGender label {
@@ -368,8 +543,17 @@ h2{
   border-right: solid 1px rgb(240, 150, 150);
   border-bottom: solid 1px rgb(240, 150, 150);
   border-left: 0;
+  -webkit-box-shadow: inset 0 0 10px rgb(225, 225, 225),
+                      3px 0 5px rgb(240, 150, 150);
+  -moz-box-shadow: inset 0 0 10px rgb(225, 225, 225),
+                   3px 0 5px rgb(240, 150, 150);
+  -o-box-shadow: inset 0 0 10px rgb(225, 225, 225),
+                 3px 0 5px rgb(240, 150, 150);
   box-shadow: inset 0 0 10px rgb(225, 225, 225),
-  3px 0 5px rgb(240, 150, 150);
+                 3px 0 5px rgb(240, 150, 150);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
@@ -378,8 +562,17 @@ h2{
   border-right: solid 1px rgb(180, 180, 180);
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: 0;
+  -webkit-box-shadow: inset 0 0 10px rgb(225, 225, 225),
+                      3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: inset 0 0 10px rgb(225, 225, 225),
+                   3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: inset 0 0 10px rgb(225, 225, 225),
+                 3px 0 5px rgb(180, 180, 180);
   box-shadow: inset 0 0 10px rgb(225, 225, 225),
-  3px 0 5px rgb(180, 180, 180);
+              3px 0 5px rgb(180, 180, 180);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
@@ -389,6 +582,12 @@ h2{
   text-shadow: 0 0 3px rgb(95, 95, 95);
   position: relative;
   z-index: 3;
+  -webkit-transition: background-color 0.2s ease-in, color 0.1s ease-in,
+                      text-shadow 0.1s ease-in-out, z-index  0.2s ease-in;
+  -moz-transition: background-color 0.2s ease-in, color 0.1s ease-in,
+                   text-shadow 0.1s ease-in-out, z-index  0.2s ease-in;
+  -o-transition: background-color 0.2s ease-in, color 0.1s ease-in,
+                 text-shadow 0.1s ease-in-out, z-index  0.2s ease-in;
   transition: background-color 0.2s ease-in, color 0.1s ease-in,
               text-shadow 0.1s ease-in-out, z-index  0.2s ease-in;
 }
@@ -396,6 +595,12 @@ h2{
   background-color: rgb(240, 240, 240);
   color: rgb(0, 0, 0);
   text-shadow: 0 0 1px rgb(155, 155, 155);
+  -webkit-transition: background-color 0.2s ease-in, color 0.1s ease-in,
+                      text-shadow 0.1s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in, color 0.1s ease-in,
+                   text-shadow 0.1s ease-in-out;
+  -o-transition: background-color 0.2s ease-in, color 0.1s ease-in,
+                 text-shadow 0.1s ease-in-out;
   transition: background-color 0.2s ease-in, color 0.1s ease-in,
               text-shadow 0.1s ease-in-out;
 }
@@ -403,6 +608,12 @@ h2{
 .regUserGender input:checked + label:hover{
   background-color: rgb(216, 216, 216);
   text-shadow: 0 0 1px rgb(100, 100, 100);
+  -webkit-transition: background-color 0.2s ease-in, color 0.1s ease-in,
+                      text-shadow 0.1s ease-in-out, z-index  0.2s ease-in;
+  -moz-transition: background-color 0.2s ease-in, color 0.1s ease-in,
+                   text-shadow 0.1s ease-in-out, z-index  0.2s ease-in;
+  -o-transition: background-color 0.2s ease-in, color 0.1s ease-in,
+                 text-shadow 0.1s ease-in-out, z-index  0.2s ease-in;
   transition: background-color 0.2s ease-in, color 0.1s ease-in,
               text-shadow 0.1s ease-in-out, z-index  0.2s ease-in;
 }
@@ -412,8 +623,17 @@ h2{
   border-right: solid 1px rgb(190, 240, 190);
   border-bottom: solid 1px rgb(190, 240, 190);
   border-left: 0;
+  -webkit-box-shadow: inset 0 0 10px rgb(225, 225, 225),
+                      3px 0 5px rgb(190, 240, 190);
+  -moz-box-shadow: inset 0 0 10px rgb(225, 225, 225),
+                      3px 0 5px rgb(190, 240, 190);
+  -o-box-shadow: inset 0 0 10px rgb(225, 225, 225),
+                      3px 0 5px rgb(190, 240, 190);
   box-shadow: inset 0 0 10px rgb(225, 225, 225),
-  3px 0 5px rgb(190, 240, 190);
+                      3px 0 5px rgb(190, 240, 190);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 .regUserGenderErrorMassage{
@@ -424,26 +644,38 @@ h2{
 }
 
 .registration button{
-  margin: 5px 0 0 433px;
+  margin: 4px 0 0 433px;
   height: 50px;
   width: 150px;
   cursor: pointer;
   border-radius: 0 0 15px 0;
   border: 1px solid  rgb(180, 180, 180);
   background-color:  rgb(204, 204, 204);
-  box-shadow: inset 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  -webkit-box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  -moz-box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  -o-box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
   background-image: linear-gradient(to bottom, rgb(239, 239, 239), rgb(119, 119, 119));
   font-family: "Times New Roman", serif;
   font-size: 13pt;
   color: rgb(80, 80, 80);
   outline: none;
+  -webkit-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -o-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
   transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
 }
 
 .registration button:hover{
   background-image: linear-gradient(to bottom, rgb(205, 205, 205), rgb(85, 85, 85));
+  -webkit-box-shadow: inset 0 0 10px rgb(230, 230, 230);
+  -moz-box-shadow: inset 0 0 10px rgb(230, 230, 230);
+  -o-box-shadow: inset 0 0 10px rgb(230, 230, 230);
   box-shadow: inset 0 0 10px rgb(230, 230, 230);
   text-shadow: rgb(255, 255, 255);
   color: rgb(50, 50, 50);
+  -webkit-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -o-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
   transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
 }

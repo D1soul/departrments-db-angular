@@ -1,7 +1,9 @@
 <div class="mainDeptEmls">
  <h2>Сотрудники Главных Департаментов</h2>
  <div class="mainDeptEmplList">
-   <div class="mdEHead">
+   <div class="mdEHead"
+        [ngClass]="{'mainDeptEmplHeadForAdmin': isAdmin,
+                    'mainDeptEmplHeadForUser': !isAdmin}" >
      <span><b>ID</b></span>
      <span><b>Фамилия</b></span>
      <span><b>Имя</b></span>
@@ -9,20 +11,23 @@
    </div>
    <div *ngFor="let employee of mainDeptEmployees" class="mdEList">
      <a routerLink="/main_dept_employee-detail/{{employee.lastName}}/{{employee.firstName}}/{{employee.middleName}}">
-       <div class="mainDeptEmplNav">
+       <div class="mainDeptEmplNav"
+            [ngClass]="{'mainDeptEmplNavForAdmin': isAdmin,
+                        'mainDeptEmplNavForUser': !isAdmin}" >
          <span>{{employee.id}}</span>
          <span>{{employee.lastName}}</span>
          <span>{{employee.firstName}}</span>
          <span>{{employee.middleName}}</span>
        </div>
      </a>
-     <button class="deleteMDE"
+     <button class="deleteMDE" *ngIf="isAdmin"
             (click)="deleteMainDeptEmployee(
             employee.lastName,
             employee.firstName,
             employee.middleName)">x</button>
    </div>
  </div>
-  <button class="addMDE" (click)="goToAddMainDeptEmployee()">Добавить Сотрудника</button>
+  <button class="addMDE" *ngIf="isAdmin"
+          (click)="goToAddMainDeptEmployee()">Добавить Сотрудника</button>
 </div>
 

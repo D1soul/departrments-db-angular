@@ -2,6 +2,16 @@
   <form [formGroup]="sDeptCrForm" novalidate (ngSubmit)="addSubDepartment()" >
     <h2>Добавление подотдела</h2>
     <div class="crSubDept">
+
+      <div class="crSDErrorMassage" >
+        <div [ngClass]="{'crSDHideErrors': !errorMessage || !submitted,
+                         'crSDShowErrors':  errorMessage && submitted}">
+          <div *ngIf="errorMessage && submitted">
+            <p>{{errorMessage}}</p>
+          </div>
+        </div>
+      </div>
+
       <div class="crSDName"
            [ngClass]="{'crSDValidationDefault': !submitted,
                        'crSDValidationInvalid': sDeptCrForm.get('name').invalid && submitted,

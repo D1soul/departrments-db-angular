@@ -1,35 +1,27 @@
-<div *ngIf="user">
+<div *ngIf="user" class="userDetail">
   <h2>{{user.username}}</h2>
-  <div>
-    <tr>
-      <td class="user_id">
-        <label ><b>ID</b></label>
-        <span>{{user.id}}</span>
-      </td>
-      <td>
-        <button class="edit_button" (click)="goToUpdateUser(user.username)">Редактировать</button>
-      </td>
-    </tr>
-  </div>
-  <tr>
-    <td class="username" ><label><b>Логин</b></label>
+  <div class="userContent">
+    <div class="userDUsername">
+      <span><b>Логин</b></span>
       <span>{{user.username}}</span>
-    </td>
-  </tr>
-  <tr>
-    <td class="birth_date" ><label><b>Дата рождения</b></label>
+    </div>
+    <div class="userDEmail">
+      <span><b>Е-мейл</b></span>
+      <span>{{user.email}}</span>
+    </div>
+    <div class="userDBirthDate">
+      <span><b>Дата рождения</b></span>
       <span>{{user.birthDate}}</span>
-    </td>
-  </tr>
-  <tr>
-    <td class="gender" ><label><b>пол</b></label>
-      <span>{{user.gender}}</span>
-    </td>
-  </tr>
-
-  <tr>
-    <td class="roles" ><label><b>роль</b></label>
-      <span>{{user.roles| json}}</span>
-    </td>
-  </tr>
+    </div>
+    <div class="userDGender">
+      <span><b>Пол</b></span>
+      <span *ngIf="user.gender === 'male'">Мужской</span>
+      <span *ngIf="user.gender === 'female'">Женский</span>
+    </div>
+  </div>
+  <button *ngIf="isCurrentUser()"
+            (click)="goToUpdateUser(user.username)">Редактировать</button>
+  </div>
+<div *ngIf="!user" class="userDetailError">
+  <h2>{{errorMessage}}</h2>
 </div>

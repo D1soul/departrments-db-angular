@@ -1,3 +1,8 @@
 body{
-  background: linear-gradient(to right, #8ac8ff, rgb(180, 180, 180));
+  background: linear-gradient(to top, #8ac8ff, rgb(180, 180, 180));
+  margin: 0;
+  min-height: 1024px;
+  max-height: 100%;
+  min-width: 100%;
+  max-width: max-content;
 }

@@ -1,20 +1,29 @@
 h2{
-  margin: 20px 0 20px 0;
+  text-align: center;
+  color: #373737;
+  text-shadow: 0 0 1px 3px #000000;
+}
+
+form {
+  width: max-content;
+  margin: 0 auto;
 }
 
 .crSubDeptEmpl{
-  margin: 0;
-  height: 264px;
+  height: 289px;
   width:781px;
   border: solid 1px rgb(180, 180, 180);
-  box-shadow: inset 3px 0 5px rgb(180, 180, 180);
+  -webkit-box-shadow: inset 0 0 5px 2px rgb(180, 180, 180);
+  -moz-box-shadow: inset 0 0 5px 2px rgb(180, 180, 180);
+  -o-box-shadow: inset 0 0 5px 2px rgb(180, 180, 180);
+  box-shadow: inset 0 0 5px 2px rgb(180, 180, 180);
   background-color: rgb(255, 255, 255);
 }
 
 .crSubDeptEmpl b{
   position: relative;
   top: 6px;
-  left: 10px;
+  right: 10px;
   font-family: "Times New Roman", serif;
   font-size: 12pt;
 }
@@ -30,6 +39,9 @@ h2{
   border-right: solid 1px rgb(180, 180, 180);
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: 0;
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 
@@ -38,7 +50,13 @@ h2{
   border-right: solid 1px rgb(240, 150, 150);
   border-bottom: solid 1px rgb(240, 150, 150);
   border-left: 0;
+  -webkit-box-shadow: 3px 0 5px rgb(240, 150, 150);
+  -moz-box-shadow: 3px 0 5px rgb(240, 150, 150);
+  -o-box-shadow: 3px 0 5px rgb(240, 150, 150);
   box-shadow: 3px 0 5px rgb(240, 150, 150);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
@@ -47,7 +65,13 @@ h2{
   border-right: solid 1px rgb(180, 180, 180);
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: 0;
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
@@ -56,7 +80,13 @@ h2{
   border-right: solid 1px rgb(190, 240, 190);
   border-bottom: solid 1px rgb(190, 240, 190);
   border-left: 0;
+  -webkit-box-shadow: 3px 0 5px rgb(190, 240, 190);
+  -moz-box-shadow: 3px 0 5px rgb(190, 240, 190);
+  -o-box-shadow: 3px 0 5px rgb(190, 240, 190);
   box-shadow: 3px 0 5px rgb(190, 240, 190);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
@@ -65,6 +95,9 @@ h2{
   border-right: solid 1px rgb(180, 180, 180);
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: solid 1px rgb(255, 255, 255);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 
@@ -73,7 +106,13 @@ h2{
   border-right: solid 1px rgb(240, 150, 150);
   border-bottom: solid 1px rgb(240, 150, 150);
   border-left: solid 1px rgb(255, 255, 255);
+  -webkit-box-shadow: 3px 0 5px rgb(240, 150, 150);
+  -moz-box-shadow: 3px 0 5px rgb(240, 150, 150);
+  -o-box-shadow: 3px 0 5px rgb(240, 150, 150);
   box-shadow: 3px 0 5px rgb(240, 150, 150);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
@@ -82,7 +121,13 @@ h2{
   border-right: solid 1px rgb(180, 180, 180);
   border-bottom: solid 1px rgb(180, 180, 180);
   border-left: solid 1px rgb(255, 255, 255);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
@@ -91,25 +136,44 @@ h2{
   border-right: solid 1px rgb(190, 240, 190);
   border-bottom: solid 1px rgb(190, 240, 190);
   border-left: solid 1px rgb(255, 255, 255);
+  -webkit-box-shadow: 3px 0 5px rgb(190, 240, 190);
+  -moz-box-shadow: 3px 0 5px rgb(190, 240, 190);
+  -o-box-shadow: 3px 0 5px rgb(190, 240, 190);
   box-shadow: 3px 0 5px rgb(190, 240, 190);
+  -webkit-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -moz-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
+  -o-transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
   transition: border 0.3s ease-in, box-shadow 0.4s ease-in;
 }
 
 .crSDEHideErrors {
   top: -15px;
   position: relative;
+  -moz-opacity: 0;
   opacity: 0;
   height: 0;
   overflow: hidden;
 }
 
 .crSDEShowErrors {
+  -webkit-transition: top 0.5s ease-in-out, opacity 0.2s ease-in 0.3s;
+  -moz-transition: top 0.5s ease-in-out, opacity 0.2s ease-in 0.3s;
+  -o-transition: top 0.5s ease-in-out, opacity 0.2s ease-in 0.3s;
   transition: top 0.5s ease-in-out, opacity 0.2s ease-in 0.3s;
   top: 0;
   position: relative;
+  -moz-opacity: 1;
   opacity: 1;
   height: 19px;
   overflow: hidden;
+}
+
+.crSDEErrorMassage{
+  margin: 0 auto;
+  padding: 5px 0 0 0;
+  height: 17px;
+  min-width: 50px;
+  max-width: max-content;
 }
 
 .crSDELastName{
@@ -121,9 +185,13 @@ h2{
 }
 
 .crSDELastName label{
+  text-align: right;
   position: relative;
   float: left;
   border: solid 1px rgb(180, 180, 180);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   background-color: rgb(245, 245, 245);
   width: 94px;
@@ -160,12 +228,16 @@ h2{
 }
 
 .crSDEFirstName label{
+  text-align: right;
   float: left;
   position: relative;
   border: solid 1px rgb(180, 180, 180);
   width: 94px;
   height: 30px;
   background-color: rgb(245, 245, 245);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   z-index: 2;
 }
@@ -197,12 +269,16 @@ h2{
 }
 
 .crSDEMiddleName label{
+  text-align: right;
   position: relative;
   float: left;
   border: solid 1px rgb(180, 180, 180);
   width: 94px;
   height: 30px;
   background-color: rgb(245, 245, 245);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   z-index: 2;
 }
@@ -233,19 +309,23 @@ h2{
 }
 
 .crSDESubDept label{
+  text-align: right;
   position: relative;
   float: left;
   border: solid 1px rgb(180, 180, 180);
-  width: 94px;
+  width: 114px;
   height: 30px;
   background-color: rgb(245, 245, 245);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   z-index: 2;
 }
 
 .crSDESubDept select {
   padding: 0 0 0 7px;
-  width: 679px;
+  width: 659px;
   height: 32px;
   outline: none;
   cursor: pointer;
@@ -257,7 +337,7 @@ h2{
 .crSDESubDeptErrorMassage{
   width: 530px;
   height: 20px;
-  margin: 0 0 0  108px;
+  margin: 0 0 0  128px;
 }
 
 .crSDEBirthDate {
@@ -269,11 +349,15 @@ h2{
 }
 
 .crSDEBirthDate label{
+  text-align: right;
   float: left;
   border: solid 1px rgb(180, 180, 180);
   width: 130px;
   height: 30px;
   background-color: rgb(245, 245, 245);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   z-index: 4;
   position: relative;
@@ -320,12 +404,16 @@ h2{
 }
 
 .crSDEPassport label{
+  text-align: right;
   float: left;
   position: relative;
   border: solid 1px rgb(180, 180, 180);
   width: 168px;
   height: 30px;
   background-color: rgb(245, 245, 245);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   z-index: 2;
 }
@@ -340,6 +428,9 @@ h2{
   border-bottom: solid 1px rgb(180, 180, 180);
   border-top: solid 1px rgb(180, 180, 180);
   border-right: solid 1px rgb(180, 180, 180);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
   background-color: rgb(245, 245, 245);
 }
@@ -374,26 +465,39 @@ h2{
 }
 
 .crSubDeptEmpl button{
-  margin: 2px 0 0 632px;
+  margin: 5px 0 0 0;
+  float: right;
   height: 50px;
   width: 150px;
+  cursor: pointer;
   border-radius: 0 0 15px 0;
   border: 1px solid  rgb(180, 180, 180);
   background-color:  rgb(204, 204, 204);
-  box-shadow: inset 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  -webkit-box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  -moz-box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  -o-box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
   background-image: linear-gradient(to bottom, rgb(239, 239, 239), rgb(119, 119, 119));
   font-family: "Times New Roman", serif;
-  cursor: pointer;
   font-size: 13pt;
   color: rgb(80, 80, 80);
   outline: none;
+  -webkit-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -o-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
   transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
 }
 
 .crSubDeptEmpl button:hover{
   background-image: linear-gradient(to bottom, rgb(205, 205, 205), rgb(85, 85, 85));
+  -webkit-box-shadow: inset 0 0 10px rgb(230, 230, 230);
+  -moz-box-shadow: inset 0 0 10px rgb(230, 230, 230);
+  -o-box-shadow: inset 0 0 10px rgb(230, 230, 230);
   box-shadow: inset 0 0 10px rgb(230, 230, 230);
   text-shadow: rgb(255, 255, 255);
   color: rgb(50, 50, 50);
+  -webkit-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -o-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
   transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
 }

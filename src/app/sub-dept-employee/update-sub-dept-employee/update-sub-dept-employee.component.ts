@@ -6,11 +6,14 @@ import { SubDepartment } from '../../entities/sub-department';
 import { SubDepartmentService } from '../../service/sub-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InitDateFunction } from '../../service/init-date.function';
+import { fadeInAndOutTopAnimation } from '../../animation/fade-in-and-out-top-animation';
 
 @Component({
   selector: 'app-update-sub-dept-employee',
   templateUrl: './update-sub-dept-employee.component.html',
-  styleUrls: ['./update-sub-dept-employee.component.css']
+  styleUrls: ['./update-sub-dept-employee.component.css'],
+  animations: [fadeInAndOutTopAnimation],
+  host: { '[@fadeInAndOutTopAnimation]': '' }
 })
 export class UpdateSubDeptEmployeeComponent implements OnInit {
 
@@ -100,6 +103,7 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
 
   getSubDeptEmpFormValue(){
     this.sEmpUpdForm.valueChanges.subscribe(formData =>{
+      this.errorMessage = null;
       let data = new Date(formData.year, this.months.indexOf(formData.month)+1, 0);
       if(formData.day > data.getDate() ) {
         this.sEmpUpdForm.get('day').setValue(data.getDate());
@@ -141,12 +145,15 @@ export class UpdateSubDeptEmployeeComponent implements OnInit {
     if (this.sEmpUpdForm.valid) {
       this.subDeptEmployeeService.updateSubDeptEmployee(
         this.lastNameRoute, this.firstNameRoute, this.middleNameRoute, this.subDeptEmployee)
-        .subscribe(() => this.goToAllSubDeptEmployees());
+        .subscribe(() => this.goToAllSubDeptEmployees(), error => {
+          this.errorMessage = error;
+          this.sEmpUpdForm.setErrors({'error': true});
+        });
     }
   }
 
   goToAllSubDeptEmployees(){
-    this.router.navigate(['/sub-dept_employees']);
+    this.router.navigate(['/sub-dept_employees']).then();
   }
 }
 

@@ -2,11 +2,15 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Role } from '../../entities/role';
+import { fadeInAndOutBottomAndTopAnimation } from '../../animation/fade-in-and-out-bottom-and-top-animation';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [fadeInAndOutBottomAndTopAnimation],
+  host: { '[@fadeInAndOutBottomAndTopAnimation]': '' }
 })
 export class LoginComponent implements OnInit {
   username: string;
@@ -15,15 +19,19 @@ export class LoginComponent implements OnInit {
   submitted: boolean = false;
   errorMessage: string;
   inputName: string = '';
+  changePasswordType: boolean = false;
+  role: Role;
 
   constructor(private router: Router, private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
               private elementRef: ElementRef) {
+    this.role = new Role();
   }
 
   ngOnInit() {
     this.createLoginForm();
     this.getLoginFocusedElementName();
+    this.getLoginFormValue();
   }
 
   createLoginForm(){
@@ -48,22 +56,35 @@ export class LoginComponent implements OnInit {
     }, 50);
   }
 
+  getLoginFormValue(){
+    this.loginForm.valueChanges.subscribe(() => {
+      this.errorMessage = null;
+    });
+  }
+
   authorize(){
     this.username = this.loginForm.get('username').value;
     this.password = this.loginForm.get('password').value;
     this.submitted = true;
     if (this.loginForm.valid) {
-      this.authenticationService.login(this.username, this.password).subscribe(() => {
-
-          this.goToAllSubDepartments();
-
+      this.authenticationService.login(this.username, this.password).subscribe( user => {
+          if (user && user.roles.includes(this.role.admin)){
+            this.goToUsers()
+          }
+          else {
+            this.goToDepartments();
+          }
       }, error => {
           this.errorMessage = error;
         });
     }
   }
 
-  goToAllSubDepartments(){
-    this.router.navigate(['main_departments']);
+  goToUsers(){
+    this.router.navigate(['users']).then();
+  }
+
+  goToDepartments(){
+    this.router.navigate(['main_departments']).then();
   }
 }

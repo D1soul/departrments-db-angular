@@ -2,6 +2,16 @@
   <form [formGroup]="regForm" novalidate (ngSubmit)="register()" >
     <h2>Регистрация</h2>
     <div class="registration" >
+
+      <div class="regUserErrorMassage" >
+        <div [ngClass]="{'regUserHideErrors': !errorMessage || !submitted,
+                         'regUserShowErrors':  errorMessage && submitted}">
+        <div *ngIf="errorMessage && submitted">
+            <p>{{errorMessage}}</p>
+          </div>
+        </div>
+      </div>
+
       <div class="regUserUsername"
            [ngClass]="{'regUserValidationDefault': !submitted,
                        'regUserValidationInvalid': regForm.get('username').invalid
@@ -20,10 +30,10 @@
                 <p>Поле необходимо заполнить!</p>
               </div>
               <div *ngIf="regForm.get('username').hasError('pattern')">
-                <p>Логин должен содержать только кириллические, или латинские буквы, либо цифры!</p>
+                <p>Логин должен содержать только буквы, либо цифры!</p>
               </div>
-              <div *ngIf="regForm.get('username').hasError('thisUsernameIsTaken')">
-                {{errorMessage}}
+              <div *ngIf="regForm.get('username').hasError('maxlength')">
+                <p>Количество символов должно быть не более 20!</p>
               </div>
             </div>
           </div>
@@ -63,8 +73,15 @@
                        'regUserValidationValidAndFocused': regForm.get('password').valid
                         &&  regForm.get('password') === regForm.get(inputName) }">
         <label for="password"><b>Пароль</b></label>
-        <input type="text" id="password" placeholder="Введите пароль"
+        <input id="password" placeholder="Введите пароль"
+               [type]="changePasswordType ? 'text' : 'password'"
                 formControlName="password" >
+        <label for="changePasswordType">
+          <span class="hidePassword" *ngIf="!changePasswordType"></span>
+          <span class="showPassword" *ngIf="changePasswordType"></span>
+        </label>
+        <input type="checkbox" id="changePasswordType"
+               (click)="changePasswordType = !changePasswordType">
         <div class="regUserPasswordErrorMassage">
           <div [ngClass]="{'regUserHideErrors': regForm.get('password').valid || !submitted,
                            'regUserShowErrors': regForm.get('password').invalid && submitted}">
@@ -88,8 +105,15 @@
                        'regUserValidationValidAndFocused': regForm.get('confirmPassword').valid
                         &&  regForm.get('confirmPassword') === regForm.get(inputName) }">
         <label for="confirmPassword"><b>Подтверждение пароля</b></label>
-        <input type="text" id="confirmPassword" placeholder="Повторите пароль"
+        <input id="confirmPassword" placeholder="Повторите пароль"
+               [type]="changeConfirmPasswordType ? 'text' : 'password'"
                formControlName="confirmPassword" >
+        <label for="changeConfirmPasswordType">
+          <span class="hideConfirmPassword" *ngIf="!changeConfirmPasswordType"></span>
+          <span class="showConfirmPassword" *ngIf="changeConfirmPasswordType"></span>
+        </label>
+        <input type="checkbox" id="changeConfirmPasswordType"
+               (click)="changeConfirmPasswordType = !changeConfirmPasswordType">
         <div class="regUserConfirmPasswordErrorMassage">
           <div [ngClass]="{'regUserHideErrors': regForm.get('confirmPassword').valid || !submitted,
                            'regUserShowErrors': regForm.get('confirmPassword').invalid && submitted}">
@@ -185,8 +209,7 @@
           </div>
         </div>
       </div>
-      <button type="submit">Обновить</button>
+      <button type="submit">Сохранить</button>
     </div>
   </form>
 </div>
-

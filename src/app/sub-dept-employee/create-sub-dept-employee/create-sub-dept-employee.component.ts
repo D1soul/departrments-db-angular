@@ -6,14 +6,14 @@ import { SubDepartment } from '../../entities/sub-department';
 import { SubDepartmentService } from '../../service/sub-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InitDateFunction } from '../../service/init-date.function';
-import { trigger } from '@angular/animations';
+import { fadeInAndOutTopAnimation } from '../../animation/fade-in-and-out-top-animation';
+
 @Component({
   selector: 'app-create-sub-dept-employee',
   templateUrl: './create-sub-dept-employee.component.html',
   styleUrls: ['./create-sub-dept-employee.component.css'],
-  animations: [
-    trigger('validationStatus', [])
-  ]
+  animations: [fadeInAndOutTopAnimation],
+  host: { '[@fadeInAndOutTopAnimation]': '' }
 })
 export class CreateSubDeptEmployeeComponent implements OnInit {
 
@@ -73,6 +73,7 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
 
   getSubDeptEmplFormValue(form: FormGroup){
     form.valueChanges.subscribe((formData) => {
+      this.errorMessage = null;
       let data = new Date(formData.year, this.months.indexOf(formData.month)+1, 0);
       if(formData.day > data.getDate() ) {
         this.sEmpCrForm.get('day').setValue(data.getDate());
@@ -113,15 +114,14 @@ export class CreateSubDeptEmployeeComponent implements OnInit {
     this.submitted = true;
     if(this.sEmpCrForm.valid) {
       this.subDeptEmployeeService.addSubDeptEmployee(this.subDeptEmployee)
-        .subscribe(() => this.goToAllSubEmployees(),
-          error => {
-            this.errorMessage = error;
-            this.sEmpCrForm.get('lastName').setErrors( {'subDeptEmplAlreadyExist': true});
+        .subscribe(() => this.goToAllSubEmployees(), error => {
+          this.errorMessage = error;
+          this.sEmpCrForm.setErrors({'error': true});
         });
     }
   }
 
   goToAllSubEmployees(){
-    this.router.navigate(['/sub-dept_employees']);
+    this.router.navigate(['/sub-dept_employees']).then();
   }
 }

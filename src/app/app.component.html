@@ -1,24 +1,41 @@
-<div class="navigation">
-  <h1>Департаменты</h1>
-    <nav>
-      <div class="navigationLinks">
-        <a routerLink="/main_departments" routerLinkActive="active">
-          <span>Департаменты</span>
-        </a>
-        <a routerLink="/sub-departments" routerLinkActive="active">
-          <span>Подотделы</span>
-        </a>
-        <a routerLink="/main_dept_employees" routerLinkActive="active">
-          <span>Сотрудники департаментов</span>
-        </a>
-        <a routerLink="/sub-dept_employees" routerLinkActive="active">
-
-          <span>Сотрудники подотделов</span>
-        </a>
-      </div>
-    </nav>
-  <div>
-    <button type="submit" (click)="logout()" >logout</button>
+<div class="background"
+     [ngClass]="{'hideBackground': !isUserLogIn,
+                 'showBackground': isUserLogIn}"   >
+  <div class="topPanel" >
+    <div class="navigation"
+         [ngClass]="{'hidePanel': !isUserLogIn,
+                     'showPanel': isUserLogIn}"   >
+      <h1>Департаменты</h1>
+        <nav>
+            <a *ngIf="isAdmin"
+              routerLink="/users" routerLinkActive="active">
+              <span>Пользователи</span>
+            </a>
+            <a routerLink="/main_departments" routerLinkActive="active">
+              <span>Департаменты</span>
+            </a>
+            <a routerLink="/sub-departments" routerLinkActive="active">
+              <span>Подотделы</span>
+            </a>
+            <a routerLink="/main_dept_employees" routerLinkActive="active">
+              <span>Сотрудники департаментов</span>
+            </a>
+            <a routerLink="/sub-dept_employees" routerLinkActive="active">
+              <span>Сотрудники подотделов</span>
+            </a>
+        </nav>
+    </div>
+    <div class="user"
+         [ngClass]="{'hidePanel': !isUserLogIn,
+                     'showPanel': isUserLogIn}"   >
+      <span class="hello">Здравствуйте, {{username}}!</span>
+      <br/>
+      <a routerLink="user_detail/{{username}}">
+        <span class="personArea">Войти в личный кабинет</span>
+      </a>
+      <br/>
+      <button type="submit" (click)="logout()" >Выйти</button>
+    </div>
   </div>
 </div>
 <router-outlet></router-outlet>

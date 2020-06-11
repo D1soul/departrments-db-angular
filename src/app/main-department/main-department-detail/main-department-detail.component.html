@@ -1,13 +1,14 @@
-<div *ngIf="mainDepartment" >
+<div *ngIf="mainDepartment" class="mainDeptDetail" >
   <h2>{{mainDepartment.name}}</h2>
-  <div class="mainDeptDetail">
+  <div class="mainDeptContent">
     <div class="mdDIdHead">
       <div class="mdDId">
         <span><b>ID</b></span>
         <span>{{mainDepartment.id}}</span>
       </div>
-      <div class="mdDUpd">
-        <button (click)="goToUpdateMainDepartment(mainDepartment.name)">Редактировать</button>
+      <div class="mdDUpd" >
+        <button  *ngIf="isAdmin"
+              (click)="goToUpdateMainDepartment(mainDepartment.name)">Редактировать</button>
       </div>
     </div>
     <div class="mdDName">

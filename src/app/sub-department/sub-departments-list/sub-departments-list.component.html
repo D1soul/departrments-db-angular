@@ -7,14 +7,17 @@
     </div>
     <div *ngFor="let subDepartment of subDepartments" class="sdList">
         <a routerLink="/sub-department-detail/{{subDepartment.name}}">
-          <div class="subDeptNav">
+          <div class="subDeptNav"
+               [ngClass]="{'subDeptForAdmin': isAdmin,
+                           'subDeptForUser': !isAdmin}" >
             <span>{{subDepartment.id}}</span>
             <span>{{subDepartment.name}}</span>
           </div>
         </a>
-      <button class="deleteSD"
+      <button class="deleteSD" *ngIf="isAdmin"
               (click)="deleteSubDepartment(subDepartment.name)">x</button>
     </div>
   </div>
-  <button class="addSD" (click)="goToAddSubDepartment()">Добавить подотдел</button>
+  <button class="addSD"  *ngIf="isAdmin"
+          (click)="goToAddSubDepartment()">Добавить подотдел</button>
 </div>

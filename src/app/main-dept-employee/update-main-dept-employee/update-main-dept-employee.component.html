@@ -2,6 +2,16 @@
   <form [formGroup]="mEmpUpdForm" novalidate (ngSubmit)="updateMainDeptEmployee()" >
     <h2>Редактирование данных сотрудника</h2>
     <div class="updMainDeptEmpl">
+
+      <div class="updMDEErrorMassage" >
+        <div [ngClass]="{'updMDEHideErrors': !errorMessage,
+                         'updMDEShowErrors':  errorMessage}">
+          <div *ngIf="errorMessage">
+            <p>{{errorMessage}}</p>
+          </div>
+        </div>
+      </div>
+
       <div  class="updMDELastName"
             [ngClass]="{'updMDEValidationInvalid': mEmpUpdForm.get('lastName').invalid,
                         'updMDEValidationValid': mEmpUpdForm.get('lastName').valid,

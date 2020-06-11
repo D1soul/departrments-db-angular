@@ -2,6 +2,16 @@
   <form [formGroup]="sEmpCrForm" novalidate (ngSubmit)="addSubDeptEmployee()">
     <h2>Добавление сотрудника подотдела</h2>
     <div class="crSubDeptEmpl">
+
+      <div class="crSDEErrorMassage" >
+        <div [ngClass]="{'crSDEHideErrors': !errorMessage || !submitted,
+                         'crSDEShowErrors':  errorMessage && submitted}">
+          <div *ngIf="errorMessage && submitted">
+            <p>{{errorMessage}}</p>
+          </div>
+        </div>
+      </div>
+
       <div class="crSDELastName"
            [ngClass]="{'crSDEValidationDefault': !submitted,
                        'crSDEValidationInvalid': sEmpCrForm.get('lastName').invalid

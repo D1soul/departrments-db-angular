@@ -1,4 +1,4 @@
-<div>
+<div class="loginWindow">
   <form [formGroup]="loginForm" novalidate (ngSubmit)="authorize()">
     <div class="login">
       <div class="loginErrorMassage" >
@@ -19,7 +19,7 @@
                        'loginValidationValidAndFocused': loginForm.get('username').valid
                         &&  loginForm.get('username') === loginForm.get(inputName) }" >
         <label for="username"><b>Логин</b></label>
-        <input id="username" type="text" placeholder="Введите имя" formControlName="username" >
+        <input id="username"  placeholder="Введите логин" formControlName="username" >
         <div class="loginUsernameErrorMassage" >
           <div [ngClass]="{'loginHideErrors': loginForm.get('username').valid || !submitted,
                            'loginShowErrors': loginForm.get('username').invalid && submitted}">
@@ -39,8 +39,15 @@
                        'loginValidationValidAndFocused': loginForm.get('password').valid
                               &&  loginForm.get('password') === loginForm.get(inputName) }">
         <label for="password"><b>Пароль</b></label>
-        <input type="text" id="password" placeholder="Введите пароль"
+        <input id="password" placeholder="Введите пароль"
+               [type]="changePasswordType ? 'text' : 'password'"
                formControlName="password" >
+        <label for="changePasswordType">
+          <span class="hidePassword" *ngIf="!changePasswordType"></span>
+          <span class="showPassword" *ngIf="changePasswordType"></span>
+        </label>
+        <input type="checkbox" id="changePasswordType"
+               (click)="changePasswordType = !changePasswordType">
         <div class="loginPasswordErrorMassage">
           <div [ngClass]="{'loginHideErrors': loginForm.get('password').valid || !submitted,
                            'loginShowErrors': loginForm.get('password').invalid && submitted}">
@@ -50,6 +57,14 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="loginNav">
+          <a routerLink="/forgot-password">
+            <span>Забыли пароль?</span>
+          </a>
+          <a routerLink="/registration">
+            <span>Зарегистрироваться</span>
+          </a>
         </div>
       </div>
       <button type="submit">Войти</button>

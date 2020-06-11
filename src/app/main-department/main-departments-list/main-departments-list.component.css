@@ -1,6 +1,12 @@
 .mainDepts{
-  display: inline-block;
   width: 777px;
+  margin: 0 auto;
+}
+
+h2{
+  text-align: center;
+  color: #373737;
+  text-shadow: 0 0 1px 3px #000000;
 }
 
 .mainDeptList{
@@ -9,9 +15,11 @@
   background-color: rgb(255, 255, 255);
   width: 777px;
   margin: 0;
+  -webkit-box-shadow: inset 0 0 5px rgb(80, 80, 80);
+  -moz-box-shadow: inset 0 0 5px rgb(80, 80, 80);
+  -o-box-shadow: inset 0 0 5px rgb(80, 80, 80);
   box-shadow: inset 0 0 5px rgb(80, 80, 80);
   float: left;
-  padding: 0 0 3px 0;
 }
 
 .mdHead{
@@ -33,6 +41,9 @@
   float: left;
   height: 25px;
   width: 40px;
+  -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -o-box-shadow: 0 3px 5px rgb(180, 180, 180);
   box-shadow: 0 3px 5px rgb(180, 180, 180);
   border-right: solid 1px rgb(130, 130, 130);
   border-bottom: solid 1px rgb(130, 130, 130);
@@ -46,6 +57,9 @@
   float: left;
   background-color: rgba(217, 217, 217, 0.25);
   z-index: 3;
+  -webkit-box-shadow: 0 3px 5px rgba(0,0,0,0.22);
+  -moz-box-shadow: 0 3px 5px rgba(0,0,0,0.22);
+  -o-box-shadow: 0 3px 5px rgba(0,0,0,0.22);
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
   height: 25px;
   width: 729px;
@@ -69,7 +83,7 @@
 .mdList a{
   text-decoration: none;
   height: 30px;
-  width: 540px;
+  width: 720px;
   color: #5b5b5b;
   text-shadow: 0 1px 1px rgba(126, 126, 126, 0);
 }
@@ -83,15 +97,32 @@
   height: 30px;
   width: 720px;
   float: left;
-  transition:  background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.mainDeptForAdmin{
+  width: 720px;
+}
+
+.mainDeptForUser{
+  width: 770px;
 }
 
 .mainDeptNav:hover{
   background-color: rgba(130, 140, 155, 0.16);
+  -webkit-box-shadow: 0 3px 5px rgba(0,0,0,0.22);
+  -moz-box-shadow: 0 3px 5px rgba(0,0,0,0.22);
+  -o-box-shadow: 0 3px 5px rgba(0,0,0,0.22);
   box-shadow: 0 3px 5px rgba(0,0,0,0.22);
   z-index: 2;
   position: relative;
-  transition:  background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .mainDeptNav span:nth-child(1){
@@ -128,38 +159,60 @@
   border: solid 1px rgba(0, 0, 0, 0.4);
   outline: none;
   cursor: pointer;
+  -webkit-transition: box-shadow 0.3s ease-in-out;
+  -moz-transition: box-shadow 0.3s ease-in-out;
+  -o-transition: box-shadow 0.3s ease-in-out;
   transition: box-shadow 0.3s ease-in-out;
 }
 
 .deleteMD:hover{
+  -webkit-box-shadow: inset 0 0 10px red;
+  -moz-box-shadow: inset 0 0 10px red;
+  -o-box-shadow: inset 0 0 10px red;
   box-shadow: inset 0 0 10px red;
+  -webkit-transition: box-shadow 0.3s ease-in-out;
+  -moz-transition: box-shadow 0.3s ease-in-out;
+  -o-transition: box-shadow 0.3s ease-in-out;
   transition: box-shadow 0.3s ease-in-out;
 }
 
 .addMD{
   height: 50px;
   width: 150px;
-  margin: 0 0 0 628px;
+  float: right;
   display: inline-block;
   border-radius: 0 0 15px 0;
   border: 1px solid  rgb(180, 180, 180);
   background-color:  rgb(204, 204, 204);
-  box-shadow: inset 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  -webkit-box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  -moz-box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  -o-box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
   background-image: linear-gradient(to bottom, rgb(239, 239, 239), rgb(119, 119, 119));
   background-clip: padding-box;
   cursor: pointer;
   outline: none;
-  float: initial;
   font-family: "Times New Roman", serif;
   font-size: 13pt;
   color: rgb(80, 80, 80);
+  -webkit-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -o-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
   transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
 }
 
 .addMD:hover{
   background-image: linear-gradient(to bottom, rgb(205, 205, 205), rgb(85, 85, 85));
+  -webkit-box-shadow: inset 0 0 10px rgb(230, 230, 230);
+  -moz-box-shadow: inset 0 0 10px rgb(230, 230, 230);
+  -o-box-shadow: inset 0 0 10px rgb(230, 230, 230);
   box-shadow: inset 0 0 10px rgb(230, 230, 230);
   text-shadow: rgb(255, 255, 255);
   color: rgb(50, 50, 50);
+  -webkit-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -o-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
   transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
 }
+
+

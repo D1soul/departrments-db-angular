@@ -6,11 +6,14 @@ import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InitDateFunction } from '../../service/init-date.function';
+import { fadeInAndOutTopAnimation } from '../../animation/fade-in-and-out-top-animation';
 
 @Component({
   selector: 'app-create-main-dept-employee',
   templateUrl: './create-main-dept-employee.component.html',
-  styleUrls: ['./create-main-dept-employee.component.css']
+  styleUrls: ['./create-main-dept-employee.component.css'],
+  animations: [fadeInAndOutTopAnimation],
+  host: { '[@fadeInAndOutTopAnimation]': '' }
 })
 export class CreateMainDeptEmployeeComponent implements OnInit{
 
@@ -70,6 +73,7 @@ export class CreateMainDeptEmployeeComponent implements OnInit{
 
   getMainDeptEmplFormValue(mainDeptEmpl: MainDeptEmployee){
     this.mEmpCrForm.valueChanges.subscribe(formData =>{
+      this.errorMessage = null;
       let data = new Date(formData.year, this.months.indexOf(formData.month)+1, 0);
       if(formData.day > data.getDate() ) {
         this.mEmpCrForm.get('day').setValue(data.getDate());
@@ -109,15 +113,14 @@ export class CreateMainDeptEmployeeComponent implements OnInit{
     this.submitted = true;
     if (this.mEmpCrForm.valid) {
       this.mainDeptEmployeeService.addMainDeptEmployee(this.mainDeptEmployee)
-        .subscribe(() => this.goToAllMainEmployees(),
-          error => {
-            this.errorMessage = error;
-            this.mEmpCrForm.get('lastName').setErrors( {'mainDeptEmplAlreadyExist': true});
+        .subscribe(() => this.goToAllMainEmployees(), error => {
+          this.errorMessage = error;
+          this.mEmpCrForm.setErrors({'error': true});
         });
     }
   }
 
   goToAllMainEmployees(){
-    this.router.navigate(['/main_dept_employees']);
+    this.router.navigate(['/main_dept_employees']).then();
   }
 }

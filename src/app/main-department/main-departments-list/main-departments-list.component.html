@@ -7,14 +7,17 @@
    </div>
      <div *ngFor="let mainDepartment of mainDepartments" class="mdList">
        <a routerLink="/main_department-detail/{{mainDepartment.name}}">
-         <div class="mainDeptNav">
+         <div class="mainDeptNav"
+              [ngClass]="{'mainDeptForAdmin': isAdmin,
+                          'mainDeptForUser': !isAdmin}" >
            <span>{{mainDepartment.id}}</span>
            <span>{{mainDepartment.name}}</span>
          </div>
        </a>
-       <button class="deleteMD"
+       <button class="deleteMD" *ngIf="isAdmin"
                (click)="deleteMainDepartment(mainDepartment.name)">x</button>
     </div>
   </div>
-  <button class="addMD" (click)="goToAddMainDepartment()">Добавить департамент</button>
+  <button class="addMD" *ngIf="isAdmin"
+          (click)="goToAddMainDepartment()">Добавить департамент</button>
 </div>

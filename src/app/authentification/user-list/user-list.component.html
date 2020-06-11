@@ -1,1 +1,28 @@
-<p>user-list works!</p>
+<div class="users">
+  <h2>Список пользователей</h2>
+  <div class="usersList">
+    <div class="usersHead">
+      <span><b>ID</b></span>
+      <span><b>Логин</b></span>
+    </div>
+    <div *ngFor="let user of users" class="userList"
+         [ngClass]="{'isAdmin': user.roles.includes(role.admin),
+                     'isUser': !user.roles.includes(role.admin),
+                     'isBanned': user.isBanned}">
+      <a routerLink="/user_detail/{{user.username}}">
+        <div class="userNav">
+          <span>{{user.id}}</span>
+          <span>{{user.username}}</span>
+        </div>
+      </a>
+      <span class="admin" *ngIf="user.roles.includes(role.admin)">Администратор</span>
+      <button type="button" *ngIf="!user.roles.includes(role.admin)"
+              (click)="banAccount(user.username, user)">
+        <span *ngIf="!user.isBanned && !user.roles.includes(role.admin)">Забанить аккаунт</span>
+        <span *ngIf="user.isBanned && !user.roles.includes(role.admin)">Разбанить аккаунт</span>
+      </button>
+      <button  *ngIf="!user.roles.includes(role.admin) && !user.isBanned"
+              (click)="makeUserAdmin(user.username, user)">Сделать администратором</button>
+    </div>
+  </div>
+</div>

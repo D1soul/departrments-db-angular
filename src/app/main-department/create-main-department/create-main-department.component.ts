@@ -1,13 +1,16 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
 import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { fadeInAndOutTopAnimation } from '../../animation/fade-in-and-out-top-animation';
 
 @Component({
   selector: 'app-create-main-department',
   templateUrl: './create-main-department.component.html',
-  styleUrls: ['./create-main-department.component.css']
+  styleUrls: ['./create-main-department.component.css'],
+  animations: [fadeInAndOutTopAnimation],
+  host: { '[@fadeInAndOutTopAnimation]': '' }
 })
 export class CreateMainDepartmentComponent implements OnInit{
 
@@ -39,6 +42,7 @@ export class CreateMainDepartmentComponent implements OnInit{
 
   getMainDeptFormValue(){
     this.mDeptCrForm.valueChanges.subscribe(formData => {
+      this.errorMessage = null;
       setTimeout(() => {
         this.mainDepartment.name = formData.name;
       });
@@ -64,15 +68,14 @@ export class CreateMainDepartmentComponent implements OnInit{
     this.submitted = true;
     if (this.mDeptCrForm.valid) {
       this.mainDepartmentService.addMainDepartment(this.mainDepartment)
-        .subscribe(() => this.goToAllMainDepartments(),
-       error => {
-           this.errorMessage = error;
-           this.mDeptCrForm.get('name').setErrors( {'mainDepartmentAlreadyExist': true});
-      });
+        .subscribe(() => this.goToAllMainDepartments(), error => {
+          this.errorMessage = error;
+          this.mDeptCrForm.setErrors({'error': true});
+        });
     }
   }
 
   goToAllMainDepartments(){
-    this.router.navigate(['/main_departments']);
+    this.router.navigate(['/main_departments']).then();
   }
 }

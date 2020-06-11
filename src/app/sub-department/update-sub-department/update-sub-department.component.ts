@@ -5,12 +5,16 @@ import { SubDepartmentService } from '../../service/sub-department.service';
 import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { fadeInAndOutTopAnimation } from '../../animation/fade-in-and-out-top-animation';
 
 @Component({
   selector: 'app-update-sub-department',
   templateUrl: './update-sub-department.component.html',
-  styleUrls: ['./update-sub-department.component.css']
+  styleUrls: ['./update-sub-department.component.css'],
+  animations: [fadeInAndOutTopAnimation],
+  host: { '[@fadeInAndOutTopAnimation]': '' }
 })
+
 export class UpdateSubDepartmentComponent implements OnInit {
 
   name: string;
@@ -62,6 +66,7 @@ export class UpdateSubDepartmentComponent implements OnInit {
 
   getSubDeptFormValue(){
     this.sDeptUpdForm.valueChanges.subscribe(formData =>{
+      this.errorMessage = null;
       setTimeout(() => {
         let subDept = this.subDepartment;
         subDept.name = formData.name;
@@ -88,11 +93,14 @@ export class UpdateSubDepartmentComponent implements OnInit {
   updateSubDepartment(){
     if (this.sDeptUpdForm.valid){
     this.subDepartmentService.updateSubDepartment(this.name, this.subDepartment)
-      .subscribe(() =>  this.goToAllSubDepartments());
+      .subscribe(() =>  this.goToAllSubDepartments(), error => {
+        this.errorMessage = error;
+        this.sDeptUpdForm.setErrors({'error': true});
+      });
     }
   }
 
   goToAllSubDepartments(){
-    this.router.navigate(['/sub-departments']);
+    this.router.navigate(['/sub-departments']).then();
   }
 }

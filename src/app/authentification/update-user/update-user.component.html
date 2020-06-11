@@ -1,9 +1,19 @@
-<div *ngIf="user && user.username === currentUser">
+<div *ngIf="user && isOwner">
   <form [formGroup]="updUserForm" novalidate (ngSubmit)="updateUser()" >
     <h2>Редактирование данных пользователя</h2>
     <div class="updUser"
          [ngClass]="{'updUserSmall': !changePassword,
                      'updUserLarge': changePassword }">
+
+      <div class="updUserErrorMassage" >
+        <div [ngClass]="{'updUserHideErrors': !errorMessage,
+                       'updUserShowErrors':  errorMessage}">
+          <div *ngIf="errorMessage">
+            <p>{{errorMessage}}</p>
+          </div>
+        </div>
+      </div>
+
       <div class="updUserUsername"
            [ngClass]="{'updUserValidationInvalid': updUserForm.get('username').invalid,
                        'updUserValidationValid': updUserForm.get('username').valid,
@@ -20,16 +30,15 @@
                 <p>Поле необходимо заполнить!</p>
               </div>
               <div *ngIf="updUserForm.get('username').hasError('pattern')">
-                <p>Логин должен содержать только кириллические, или латинские буквы, либо цифры!</p>
+                <p>Логин должен содержать только буквы, либо цифры!</p>
               </div>
-              <div *ngIf="updUserForm.get('username').hasError('thisUsernameIsTaken')">
-                {{errorMessage}}
+              <div *ngIf="updUserForm.get('username').hasError('maxlength')">
+                <p>Количество символов должно быть не более 20!</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-
 
       <div class="updUserEmail"
            [ngClass]="{'updUserValidationInvalid': updUserForm.get('email').invalid,
@@ -56,7 +65,7 @@
 
 
       <div  class="changePasswordMenu">
-          <button type="button"  (click)="changePassword = changePassword === false; changingPassword()">
+          <button type="button" (click)="changePassword = changePassword === false; changingPassword()">
             <span *ngIf="!changePassword">Изменить пароль</span>
             <span *ngIf="changePassword">Отмена</span>
           </button>
@@ -70,19 +79,22 @@
                               'updUserValidationValid': updUserForm.get('oldPassword').valid,
                               'updUserValidationValidAndFocused': updUserForm.get('oldPassword').valid
                                &&  updUserForm.get('oldPassword') === updUserForm.get(inputName) }">
-              <label for="password"><b>Старый пароль</b></label>
-              <input type="text" id="password" placeholder="Введите старый пароль" formControlName="oldPassword" >
+              <label for="oldPassword"><b>Старый пароль</b></label>
+              <input id="oldPassword" placeholder="Введите старый пароль"
+                     [type]="changeOldPasswordType ? 'text' : 'password'"
+                     formControlName="oldPassword" >
+              <label for="changeOldPasswordType">
+                <span class="hideOldPassword" *ngIf="!changeOldPasswordType"></span>
+                <span class="showOldPassword" *ngIf="changeOldPasswordType"></span>
+              </label>
+              <input type="checkbox" id="changeOldPasswordType"
+                     (click)="changeOldPasswordType = !changeOldPasswordType">
               <div class="updUserPasswordErrorMassage">
                 <div [ngClass]="{'updUserHideErrors': updUserForm.get('oldPassword').valid || !submitted,
                                  'updUserShowErrors': updUserForm.get('oldPassword').invalid && submitted}">
-                  <div *ngIf="updUserForm.get('oldPassword').invalid
-                      && (updUserForm.get('oldPassword').dirty
-                      || updUserForm.get('oldPassword').touched)" >
+                  <div *ngIf="updUserForm.get('oldPassword').invalid" >
                     <div *ngIf="updUserForm.get('oldPassword').hasError('required')">
                       <p>Поле необходимо заполнить!</p>
-                    </div>
-                    <div *ngIf="updUserForm.get('oldPassword').hasError('notFound')">
-                      <p>{{errorMessage}}</p>
                     </div>
                   </div>
                 </div>
@@ -96,8 +108,15 @@
                              'updUserValidationValidAndFocused': updUserForm.get('newPassword').valid
                               &&  updUserForm.get('newPassword') === updUserForm.get(inputName) }">
               <label for="newPassword"><b>Новый пароль</b></label>
-              <input type="text" id="newPassword" placeholder="Введите новый пароль"
+              <input  id="newPassword" placeholder="Введите новый пароль"
+                      [type]="changeNewPasswordType ? 'text' : 'password'"
                       formControlName="newPassword" >
+              <label for="changeNewPasswordType">
+                <span class="hideNewPassword" *ngIf="!changeNewPasswordType"></span>
+                <span class="showNewPassword" *ngIf="changeNewPasswordType"></span>
+              </label>
+              <input type="checkbox" id="changeNewPasswordType"
+                     (click)="changeNewPasswordType = !changeNewPasswordType">
               <div class="updUserNewPasswordErrorMassage">
                 <div [ngClass]="{'updUserHideErrors': updUserForm.get('newPassword').valid || !submitted,
                                  'updUserShowErrors': updUserForm.get('newPassword').invalid && submitted}">
@@ -120,8 +139,15 @@
                              'updUserValidationValidAndFocused': updUserForm.get('confirmPassword').valid
                               &&  updUserForm.get('confirmPassword') === updUserForm.get(inputName) }">
               <label for="confirmPassword"><b>Подтверждение пароля</b></label>
-              <input type="text" id="confirmPassword" placeholder="Повторите новый пароль"
-                                                        formControlName="confirmPassword" >
+              <input id="confirmPassword" placeholder="Повторите новый пароль"
+                     [type]="changeConfirmPasswordType ? 'text' : 'password'"
+                     formControlName="confirmPassword" >
+              <label for="changeConfirmPasswordType">
+                <span class="hideConfirmPassword" *ngIf="!changeConfirmPasswordType"></span>
+                <span class="showConfirmPassword" *ngIf="changeConfirmPasswordType"></span>
+              </label>
+              <input type="checkbox" id="changeConfirmPasswordType"
+                     (click)="changeConfirmPasswordType = !changeConfirmPasswordType">
               <div class="updUserNewConfirmPasswordErrorMassage">
                 <div [ngClass]="{'updUserHideErrors': updUserForm.get('confirmPassword').valid || !submitted,
                                  'updUserShowErrors': updUserForm.get('confirmPassword').invalid && submitted}">
@@ -179,13 +205,26 @@
         <input type="radio" id="female" value="female" formControlName="gender" >
         <label  for="female">Женский</label>
       </div>
+      <button type="button" (click)="confirmDeleting()">Удалить аккаунт</button>
       <button type="submit">Обновить</button>
     </div>
   </form>
+  <div class="confirmDeletingUserWindow"
+       [ngClass]=" {'confirmDeletingUserWindowShow': valueOfConfirmDeleting,
+                    'confirmDeletingUserWindowHide': !valueOfConfirmDeleting }"   >
+    <div class="confirmDeletingUser"
+         [ngClass]=" {'confirmDeletingUserShow': valueOfConfirmDeleting,
+                     'confirmDeletingUserHide': !valueOfConfirmDeleting }"   >
+      <h2>Вы уверены в том, что хотите удалить аккаунт?</h2>
+      <h3>После удаления восстановить аккаунт будет невозможно.</h3>
+      <button type="button" (click)="deleteUser(currentUser)">Удалить аккаунт</button>
+      <button type="button" (click)="valueOfConfirmDeleting = false">Отмена</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="user && !isOwner" class="updUserError">
+  <h2>Данная страница доступна только для владельца аккаунта!</h2>
 </div>
 <div *ngIf="!user" class="updUserError">
   <h2>{{errorMessage}}</h2>
-</div>
-<div *ngIf="user && user.username !== currentUser" class="updUserError">
-  <h2>Данная страница доступна только для владельца!</h2>
 </div>

@@ -2,6 +2,16 @@
   <form [formGroup]="mEmpCrForm" novalidate (ngSubmit)="addMainDeptEmployee()" >
     <h2>Добавление сотрудника департамента</h2>
     <div class="crMainDeptEmpl">
+
+      <div class="crMDEErrorMassage" >
+        <div [ngClass]="{'crMDEHideErrors': !errorMessage || !submitted,
+                         'crMDEShowErrors':  errorMessage && submitted}">
+          <div *ngIf="errorMessage && submitted">
+            <p>{{errorMessage}}</p>
+          </div>
+        </div>
+      </div>
+
       <div  class="crMDELastName"
             [ngClass]="{'crMDEValidationDefault': !submitted,
                         'crMDEValidationInvalid': mEmpCrForm.get('lastName').invalid

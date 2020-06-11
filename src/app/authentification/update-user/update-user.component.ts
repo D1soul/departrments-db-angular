@@ -6,11 +6,14 @@ import { AuthenticationService } from '../../service/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PasswordMatchValidator } from '../../service/password-match.validator';
 import { InitDateFunction } from '../../service/init-date.function';
+import { fadeInAndOutTopAnimation } from '../../animation/fade-in-and-out-top-animation';
 
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
-  styleUrls: ['./update-user.component.css']
+  styleUrls: ['./update-user.component.css'],
+  animations: [fadeInAndOutTopAnimation],
+  host: { '[@fadeInAndOutTopAnimation]': '' }
 })
 export class UpdateUserComponent implements OnInit {
 
@@ -27,6 +30,11 @@ export class UpdateUserComponent implements OnInit {
   errorMessage: string;
   inputName: string = '';
   submitted: boolean = false;
+  valueOfConfirmDeleting: boolean = false;
+  isOwner: boolean = false;
+  changeOldPasswordType: boolean = false;
+  changeNewPasswordType: boolean = false;
+  changeConfirmPasswordType: boolean = false;
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router, private formBuilder: FormBuilder,
@@ -44,11 +52,12 @@ export class UpdateUserComponent implements OnInit {
 
   public getUserDetail(){
     this.username = this.route.snapshot.params['username'];
+    this.currentUser = this.authenticationService.currentUserValue.username;
     this.authenticationService.getUserDetails(this.username)
       .subscribe(user => {
         this.user = user;
         this.initUpdUserForms(user);
-        this.currentUser = this.authenticationService.currentUserValue.username;
+        this.isOwner = user.username == this.currentUser;
       },
         error => this.errorMessage = error
       );
@@ -57,8 +66,7 @@ export class UpdateUserComponent implements OnInit {
   createUpdUserForms(){
     this.updUserForm = this.formBuilder.group({
         username: [null, [Validators.required,
-                          Validators.pattern("^(([А-я]+\\d*)+|([A-z]+\\d*)+)$"),
-                          Validators.minLength(1),
+                          Validators.pattern("^((\\d*[А-я]+\\d*)+|(\\d*[A-z]+\\d*)+)$"),
                           Validators.maxLength(20)]],
         email: [null, [Validators.email,
                        Validators.required]],
@@ -71,8 +79,7 @@ export class UpdateUserComponent implements OnInit {
         day: [null],
         month: [null],
         year: [null],
-        gender: [null, [Validators.required]],
-        roles: [null, [Validators.required]]
+        gender: [null, [Validators.required]]
       },
       {
         validators: PasswordMatchValidator('newPassword', 'confirmPassword')
@@ -90,8 +97,7 @@ export class UpdateUserComponent implements OnInit {
       day: birthDateValue[0],
       month: birthDateValue[1],
       year: birthDateValue[2],
-      gender: user.gender,
-      roles: user.roles
+      gender: user.gender
     });
   }
 
@@ -111,6 +117,7 @@ export class UpdateUserComponent implements OnInit {
 
   getUpdUserFormValue(){
     this.updUserForm.valueChanges.subscribe((formData) => {
+      this.errorMessage = null;
       let data = new Date(formData.year, this.months.indexOf(formData.month) + 1, 0);
       if(formData.day > data.getDate() ) {
         this.updUserForm.get('day').setValue(data.getDate());
@@ -124,7 +131,6 @@ export class UpdateUserComponent implements OnInit {
                           + formData.month + '/'
                           + formData.year;
         updUser.gender = formData.gender;
-        updUser.roles = [this.role.user];
       });
     });
   }
@@ -150,25 +156,42 @@ export class UpdateUserComponent implements OnInit {
     let newPs: string =  this.updUserForm.get('newPassword').value;
     let newConfirmPs: string = this.updUserForm.get('confirmPassword').value;
     this.submitted = true;
-    this.authenticationService.changeOldPassword(
-      currentUsersName, oldPs, newPs, newConfirmPs).subscribe(()=> {
-        this.changePassword = false;
-    },error  => {
-        this.errorMessage = error;
-        this.updUserForm.get('oldPassword').setErrors({'notFound': true});
-    });
-  }
-
-  updateUser(){
-    this.user.roles = [this.role.admin];
     if (this.updUserForm.valid) {
-      this.authenticationService.updateUser(this.username, this.user).subscribe(()=>
-      this.goToAllUsers());
+      this.authenticationService.changeOldPassword(
+        currentUsersName, oldPs, newPs, newConfirmPs).subscribe(() => {
+        this.changePassword = false;
+      }, error => {
+        this.errorMessage = error;
+        this.updUserForm.setErrors({'error': true});
+      });
     }
   }
 
+  updateUser(){
+    if (this.updUserForm.valid) {
+      this.authenticationService.updateUser(this.username, this.user).subscribe(()=>
+      this.goToUserDetail(), error => {
+        this.errorMessage = error;
+        this.updUserForm.setErrors({'error': true});
+      });
+    }
+  }
 
-  goToAllUsers(){
-    this.router.navigate(['/sub-departments']);
+  goToUserDetail(){
+    this.router.navigate(['/user_detail/', this.user.username]).then();
+  }
+
+  confirmDeleting(){
+    this.valueOfConfirmDeleting = !this.valueOfConfirmDeleting;
+  }
+
+  deleteUser(username: string){
+    this.authenticationService.deleteUser(username)
+      .subscribe(() => {
+        this.authenticationService.logout();
+      },
+        error => {
+        this.errorMessage = error;
+      });
   }
 }

@@ -2,6 +2,16 @@
   <form [formGroup]="sDeptUpdForm" novalidate (ngSubmit)="updateSubDepartment()" >
     <h2>Редактирование данных подотдела</h2>
     <div class="updSubDept">
+
+      <div class="updSDErrorMassage" >
+        <div [ngClass]="{'updSDHideErrors': !errorMessage,
+                         'updSDShowErrors':  errorMessage}">
+          <div *ngIf="errorMessage">
+            <p>{{errorMessage}}</p>
+          </div>
+        </div>
+      </div>
+
       <div class="updSDName"
            [ngClass]="{'updSDValidationInvalid': sDeptUpdForm.get('name').invalid,
                        'updSDValidationValid': sDeptUpdForm.get('name').valid,

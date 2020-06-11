@@ -5,11 +5,14 @@ import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
 import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { fadeInAndOutTopAnimation } from '../../animation/fade-in-and-out-top-animation';
 
 @Component({
   selector: 'app-create-sub-department',
   templateUrl: './create-sub-department.component.html',
-  styleUrls: ['./create-sub-department.component.css']
+  styleUrls: ['./create-sub-department.component.css'],
+  animations: [fadeInAndOutTopAnimation],
+  host: { '[@fadeInAndOutTopAnimation]': '' }
 })
 
 export class CreateSubDepartmentComponent implements OnInit{
@@ -51,6 +54,7 @@ export class CreateSubDepartmentComponent implements OnInit{
 
   getSubDeptFormValue(){
     this.sDeptCrForm.valueChanges.subscribe(formData =>{
+      this.errorMessage = null;
       setTimeout(() => {
         let subDept = this.subDepartment;
         subDept.name = formData.name;
@@ -78,15 +82,14 @@ export class CreateSubDepartmentComponent implements OnInit{
     this.submitted = true;
     if (this.sDeptCrForm.valid) {
       this.subDepartmentService.addSubDepartment(this.subDepartment)
-        .subscribe(() => this.goToAllSubDepartments(),
-        error => {
-            this.errorMessage = error;
-            this.sDeptCrForm.get('lastName').setErrors( {'subDepartmentAlreadyExist': true});
+        .subscribe(() => this.goToAllSubDepartments(), error => {
+          this.errorMessage = error;
+          this.sDeptCrForm.setErrors({'error': true});
         });
     }
   }
 
   goToAllSubDepartments(){
-    this.router.navigate(['/sub-departments']);
+    this.router.navigate(['/sub-departments']).then();
   }
 }

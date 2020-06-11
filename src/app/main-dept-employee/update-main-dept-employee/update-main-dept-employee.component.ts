@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { MainDeptEmployee } from '../../entities/main-dept-employee';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MainDeptEmployeeService } from '../../service/main-dept-employee.service';
@@ -6,11 +6,14 @@ import { MainDepartment } from '../../entities/main-department';
 import { MainDepartmentService } from '../../service/main-department.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InitDateFunction } from '../../service/init-date.function';
+import { fadeInAndOutTopAnimation } from '../../animation/fade-in-and-out-top-animation';
 
 @Component({
   selector: 'app-update-main-dept-employee',
   templateUrl: './update-main-dept-employee.component.html',
-  styleUrls: ['./update-main-dept-employee.component.css']
+  styleUrls: ['./update-main-dept-employee.component.css'],
+  animations: [fadeInAndOutTopAnimation],
+  host: { '[@fadeInAndOutTopAnimation]': '' }
 })
 export class UpdateMainDeptEmployeeComponent implements OnInit {
 
@@ -100,6 +103,7 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
 
   getMainDeptEmpFormValue(){
     this.mEmpUpdForm.valueChanges.subscribe(formData =>{
+      this.errorMessage = null;
       let data = new Date(formData.year, this.months.indexOf(formData.month)+1, 0);
       if(formData.day > data.getDate() ) {
         this.mEmpUpdForm.get('day').setValue(data.getDate());
@@ -141,11 +145,14 @@ export class UpdateMainDeptEmployeeComponent implements OnInit {
     if (this.mEmpUpdForm.valid) {
       this.mainDeptEmployeeService.updateMainDeptEmployee(
         this.lastNameRoute, this.firstNameRoute, this.middleNameRoute, this.mainDeptEmployee)
-        .subscribe(() => this.goToAllMainDeptEmployees());
+        .subscribe(() => this.goToAllMainDeptEmployees(), error => {
+          this.errorMessage = error;
+          this.mEmpUpdForm.setErrors({'error': true});
+        });
     }
   }
 
   goToAllMainDeptEmployees(){
-    this.router.navigate(['/main_dept_employees']);
+    this.router.navigate(['/main_dept_employees']).then();
   }
 }

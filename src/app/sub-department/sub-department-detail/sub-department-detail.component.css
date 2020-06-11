@@ -1,6 +1,18 @@
 .subDeptDetail{
+  height: max-content;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.subDeptContent{
   display: inline-block;
   width: 703px;
+}
+
+h2{
+  text-align: center;
+  color: #373737;
+  text-shadow: 0 0 1px 3px #000000;
 }
 
 .sdDIdHead{
@@ -12,8 +24,10 @@
 
 .sdDId{
   height: 30px;
-  width: 587px;
-  border: solid 1px rgb(180, 180, 180);
+  width: 585px;
+  border-left: solid 1px rgb(180, 180, 180);
+  border-top: solid 1px rgb(180, 180, 180);
+  border-bottom: solid 1px rgb(180, 180, 180);
   float: left;
   background-color: rgb(255, 255, 255);
 }
@@ -21,56 +35,75 @@
 .sdDId b{
   position: relative;
   top: 6px;
-  left: 9px;
+  right: 13px;
 }
 
 .sdDId span:nth-child(1){
+  float: left;
+  text-align: right;
   width: 94px;
   height: 30px;
   display: inline-block;
   border-right: solid 1px rgb(180, 180, 180);
   background-color: rgb(240, 240, 240);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 
 .sdDId span:nth-child(2){
+  float: left;
   position: relative;
   top: 6px;
   left: 10px;
 }
 
 .sdDUpd{
-  height: 31px;
-  width: 110px;;
+  height: 30px;
+  width: 111px;
+  border-top: 1px solid rgb(180, 180, 180);
   border-bottom: 1px solid rgb(180, 180, 180);
+  border-right: 1px solid rgb(180, 180, 180);
   float: left;
+  border-radius: 0 15px 0 0;
+  background-color: rgb(255, 255, 255);
 }
 
 .sdDUpd button{
-  height: 31px;
-  width: 109px;
-  border-left: 0;
-  border-right: 1px solid  rgb(180, 180, 180);
-  border-top: 1px solid  rgb(180, 180, 180);
-  border-bottom: 0;
+  padding: 6px;
+  display: block;
+  border: none;
+  border-left: 1px solid  rgb(180, 180, 180);
   border-radius: 0 15px 0 0;
-  background-clip: padding-box;
   cursor: pointer;
   outline: none;
   background-color:  rgb(204, 204, 204);
-  box-shadow: inset 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  -webkit-box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  -moz-box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  -o-box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
+  box-shadow: inset 0 0 1px rgb(250, 250, 250), 0 1px 1px rgb(205, 205, 205);
   background-image: linear-gradient(to bottom, rgb(239, 239, 239), rgb(119, 119, 119));
   font-family: "Times New Roman", serif;
   font-size: 12pt;
   color: rgb(80, 80, 80);
-  transition: background-color 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -webkit-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -o-transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  transition: background 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
 }
 
 .sdDUpd button:hover{
   background-image: linear-gradient(to bottom, rgb(205, 205, 205), rgb(85, 85, 85));
+  -webkit-box-shadow: inset 0 0 10px rgb(230, 230, 230);
+  -moz-box-shadow: inset 0 0 10px rgb(230, 230, 230);
+  -o-box-shadow: inset 0 0 10px rgb(230, 230, 230);
   box-shadow: inset 0 0 10px rgb(230, 230, 230);
   text-shadow: rgb(255, 255, 255);
   color: rgb(50, 50, 50);
+  -webkit-transition: background-color 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -moz-transition: background-color 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
+  -o-transition: background-color 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
   transition: background-color 0.3s ease-in-out, box-shadow 0.5s ease-in-out, color 0.6s ease-in-out;
 }
 
@@ -87,17 +120,23 @@
 .sdDName b{
   position: relative;
   top: 6px;
-  left: 9px;
+  right: 13px;
 }
 .sdDName span:nth-child(1){
+  float: left;
+  text-align: right;
   height: 30px;
   width: 94px;
   display: inline-block;
   border-right: solid 1px rgb(180, 180, 180);
   background-color: rgb(240, 240, 240);
+  -webkit-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -moz-box-shadow: 3px 0 5px rgb(180, 180, 180);
+  -o-box-shadow: 3px 0 5px rgb(180, 180, 180);
   box-shadow: 3px 0 5px rgb(180, 180, 180);
 }
 .sdDName span:nth-child(2){
+  float: left;
   position: relative;
   top: 6px;
   left: 10px;
@@ -112,6 +151,9 @@
   width: 599px;
   height: 30px;
   background-color: rgb(245, 245, 245);
+  -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -o-box-shadow: 0 3px 5px rgb(180, 180, 180);
   box-shadow: 0 3px 5px rgb(180, 180, 180);
   float: left;
 }
@@ -125,6 +167,9 @@
   float: left;
   margin: 0 0 0 97px;
   z-index: 3;
+  -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -o-box-shadow: 0 3px 5px rgb(180, 180, 180);
   box-shadow: 0 3px 5px rgb(180, 180, 180);
   height: 30px;
   width: 599px;
@@ -151,7 +196,10 @@
   width: 599px;
   margin: 0 0 0 97px;
   display: inline-block;
-  transition:  background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -webkit-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -moz-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -o-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
 }
 
 .sdDMainDept a{
@@ -173,10 +221,16 @@
 
 .sdDMainDept:hover{
   background-color: rgb(240, 240, 240);
+  -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -o-box-shadow: 0 3px 5px rgb(180, 180, 180);
   box-shadow: 0 3px 5px rgb(180, 180, 180);
   z-index: 2;
   position: relative;
-  transition:  background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -webkit-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -moz-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -o-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
 }
 
 .sdDMainDept a:hover{
@@ -193,6 +247,9 @@
   padding: 0 0 0 97px;
   width: 599px;
   background-color: rgb(240, 240, 240);
+  -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -o-box-shadow: 0 3px 5px rgb(180, 180, 180);
   box-shadow: 0 3px 5px rgb(180, 180, 180);
 }
 
@@ -217,6 +274,9 @@
   float: left;
   background-color: rgb(240, 240, 240);
   z-index: 3;
+  -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -o-box-shadow: 0 3px 5px rgb(180, 180, 180);
   box-shadow: 0 3px 5px rgb(180, 180, 180);
   height: 30px;
   width: 200px;
@@ -231,6 +291,9 @@
   float: left;
   background-color: rgb(240, 240, 240);
   z-index: 3;
+  -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -o-box-shadow: 0 3px 5px rgb(180, 180, 180);
   box-shadow: 0 3px 5px rgb(180, 180, 180);
   height: 30px;
   width: 200px;
@@ -244,6 +307,9 @@
   float: left;
   background-color: rgb(240, 240, 240);
   z-index: 3;
+  -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -o-box-shadow: 0 3px 5px rgb(180, 180, 180);
   box-shadow: 0 3px 5px rgb(180, 180, 180);
   height: 30px;
   width: 199px;
@@ -263,15 +329,24 @@
   width: 599px;
   margin: 0 0 0 97px;
   background-color: rgb(255, 255, 255);
-  transition:  background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -webkit-transition:background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -moz-transition:background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -o-transition:background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
 }
 
 .sdDEmplsList:hover{
   background-color: rgb(240, 240, 240);
+  -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -o-box-shadow: 0 3px 5px rgb(180, 180, 180);
   box-shadow: 0 3px 5px rgb(180, 180, 180);
   z-index: 2;
   position: relative;
-  transition:  background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -webkit-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -moz-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -o-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
 }
 
 .sdDEmplsList a{
@@ -298,9 +373,13 @@
 }
 
 .subDeptDetailError{
+  margin: 10px auto;
   height: 50px;
   width: max-content;
   border: solid 1px rgb(240, 150, 150);
+  -webkit-box-shadow: 0 0 5px rgb(240, 150, 150);
+  -moz-box-shadow: 0 0 5px rgb(240, 150, 150);
+  -o-box-shadow: 0 0 5px rgb(240, 150, 150);
   box-shadow: 0 0 5px rgb(240, 150, 150);
   background-color: rgb(255, 255, 255);
   text-align: center;
