@@ -144,29 +144,9 @@ h2{
   padding-left: 10px;
 }
 
-.mdDEmpls{
-  float: left;
-  padding: 0 0 0 97px;
-  text-align: center;
-  border-bottom: solid 1px rgb(180, 180, 180);
-  border-right: solid 1px rgb(180, 180, 180);
-  border-left: solid 1px rgb(180, 180, 180);
-  width: 599px;
-  height: 30px;
-  background-color: rgb(245, 245, 245);
-  -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
-  -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
-  -o-box-shadow: 0 3px 5px rgb(180, 180, 180);
-  box-shadow: 0 3px 5px rgb(180, 180, 180);
-}
-.mdDEmpls b{
-  position: relative;
-  top: 6px;
-}
-
 .mdDEmplsHead{
   float: left;
-  margin-left: 97px;
+  margin: 0 0 0 97px;
   height: 31px;
   width: 601px;
   background-color: rgb(255, 255, 255);
@@ -179,7 +159,7 @@ h2{
 
 .mdDEmplsHead span:nth-child(1){
   float: left;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(240, 240, 240);
   z-index: 3;
   -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
   -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
@@ -196,7 +176,7 @@ h2{
 
 .mdDEmplsHead span:nth-child(2){
   float: left;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(240, 240, 240);
   z-index: 3;
   -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
   -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
@@ -212,14 +192,14 @@ h2{
 
 .mdDEmplsHead span:nth-child(3){
   float: left;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(240, 240, 240);
   z-index: 3;
   -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
   -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
   -o-box-shadow: 0 3px 5px rgb(180, 180, 180);
   box-shadow: 0 3px 5px rgb(180, 180, 180);
   height: 30px;
-  width: 197px;
+  width: 199px;
   text-align: center;
   border-bottom: solid 1px rgb(180, 180, 180);
   border-right: solid 1px rgb(180, 180, 180);
@@ -228,28 +208,28 @@ h2{
 }
 
 .mdDEmplsList {
-  border-bottom: solid 1px rgb(180, 180, 180);
-  border-left: solid 1px rgb(180, 180, 180);
-  background-color: rgb(255, 255, 255);
+  float: left;
+  border-bottom: ridge 1px rgb(180, 180, 180);
+  border-left: ridge 1px rgb(180, 180, 180);
   list-style-type: none;
   height: 30px;
   width: 599px;
   margin: 0 0 0 97px;
-  float: left;
-  -webkit-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
-  -moz-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
-  -o-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  background-color: rgb(255, 255, 255);
+  -webkit-transition:background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -moz-transition:background-color 0.2s ease-in, box-shadow 0.3s ease-in;
+  -o-transition:background-color 0.2s ease-in, box-shadow 0.3s ease-in;
   transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
 }
 
 .mdDEmplsList:hover{
-  position: relative;
   background-color: rgb(240, 240, 240);
   -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
   -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
   -o-box-shadow: 0 3px 5px rgb(180, 180, 180);
   box-shadow: 0 3px 5px rgb(180, 180, 180);
   z-index: 2;
+  position: relative;
   -webkit-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
   -moz-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
   -o-transition: background-color 0.2s ease-in, box-shadow 0.3s ease-in;
@@ -260,11 +240,10 @@ h2{
   z-index: 1;
   text-decoration: none;
   display: block;
-  height: 30px;
+  height: 25px;
   width: 600px;
   color: #5b5b5b;
   text-shadow: 0 0 1px rgb(226, 226, 226);
-  border: none;
 }
 
 .mdDEmplsList a:hover{
@@ -275,11 +254,10 @@ h2{
 .mdDEmplsList span{
   height: 24px;
   width: 189px;
-  border-right: solid 1px rgb(180, 180, 180);
+  border-right: ridge 1px rgb(180, 180, 180);
   padding: 6px 0 0 10px;
   display: inline-block;
 }
-
 .mdDSubDepts{
   float: left;
   padding: 0 0 0 97px;
