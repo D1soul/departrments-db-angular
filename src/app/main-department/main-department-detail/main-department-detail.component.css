@@ -144,6 +144,26 @@ h2{
   padding-left: 10px;
 }
 
+.mdDEmpls{
+  float: left;
+  height: 30px;
+  margin-top: -1px;
+  text-align: center;
+  border: solid 1px rgb(180, 180, 180);
+  padding: 0 0 0 97px;
+  width: 599px;
+  background-color: rgb(240, 240, 240);
+  -webkit-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -moz-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  -o-box-shadow: 0 3px 5px rgb(180, 180, 180);
+  box-shadow: 0 3px 5px rgb(180, 180, 180);
+}
+
+.mdDEmpls b{
+  position: relative;
+  top: 6px;
+}
+
 .mdDEmplsHead{
   float: left;
   margin: 0 0 0 97px;
