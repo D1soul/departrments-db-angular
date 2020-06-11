@@ -130,8 +130,12 @@ h2{
   width: 40px;
 }
 
-.mainDeptEmplNavForAdmin span:nth-child(1n+2){
+.mainDeptEmplNavForAdmin span:nth-child(2){
   width: 162px;
+}
+
+.mainDeptEmplNavForAdmin span:nth-child(2){
+  width: 161px;
 }
 
 .mainDeptEmplNavForUser{
@@ -142,8 +146,12 @@ h2{
   width: 40px;
 }
 
-.mainDeptEmplNavForUser span:nth-child(1n+2){
+.mainDeptEmplNavForUser span:nth-child(2){
   width: 178px;
+}
+
+.mainDeptEmplNavForUser span:nth-child(2){
+  width: 177px;
 }
 
 .mainDeptEmplNav span:nth-child(1){
