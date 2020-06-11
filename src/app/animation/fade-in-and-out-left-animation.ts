@@ -3,19 +3,19 @@ import { trigger, state, animate, transition, style, keyframes } from '@angular/
 export const fadeInAndOutLeftAnimation = trigger('fadeInAndOutLeftAnimation', [
     state('*', style({
       position: 'absolute',
-      left: '47.5%',
+      left: '50%',
       top: '15.5%',
       float: 'left',
       opacity: 1,
-      minWidth: '1200px',
+      minWidth: '1260px',
       maxWidth: 'max-content',
-      margin: '0 -600px 0 -600px'
+      margin: '0 -630px 0 -630px'
     })),
     transition(':enter', [
 
       style({
         top: '15.5%',
-        left: '38.5%',
+        left: '41%',
         opacity: 0,
         position: 'absolute',
       }),
@@ -26,69 +26,69 @@ export const fadeInAndOutLeftAnimation = trigger('fadeInAndOutLeftAnimation', [
         style({
           top: '15.5%',
           opacity: 0,
-          left: '38.5%',
+          left: '41%',
           position: 'absolute',
           offset: 0.1
         }),
         style({
           top: '15.5%',
           opacity: 0,
-          left: '39.5%',
+          left: '42%',
           position: 'absolute',
           offset: 0.2
         }),
         style({
           top: '15.5%',
           opacity: 0,
-          left: '40.5%',
+          left: '43%',
           position: 'absolute',
           offset: 0.3
         }),
         style({
           top: '15.5%',
           opacity: 0 ,
-          left: '41.5%',
+          left: '44%',
           position: 'absolute',
           offset: 0.4
         }),
         style({
           top: '15.5%',
           opacity: 0,
-          left: '42.5%',
+          left: '45%',
           position: 'absolute',
           offset: 0.5
         }),
         style({
           top: '15.5%',
-          left: '43.5%',
+          left: '46%',
           opacity: 0.1,
           position: 'absolute',
           offset: 0.6
         }),
         style({
           top: '15.5%',
-          left: '44.5%',
+          left: '47%',
           opacity: 0.3,
           position: 'absolute',
           offset: 0.7
         }),
         style({
           top: '15.5%',
-          left: '45.5%',
+          left: '48%',
           opacity: 0.5,
           position: 'absolute',
           offset: 0.8
         }),
         style({
           top: '15.5%',
-          left: '46.5%',
+          left: '49%',
           opacity: 0.7,
           position: 'absolute',
           offset: 0.9
         }),
         style({
           top: '15.5%',
-          left: '47.5%',
+          left: '50%',
           opacity: 1,
           position: 'absolute',
           offset: 1.0
@@ -100,7 +100,7 @@ export const fadeInAndOutLeftAnimation = trigger('fadeInAndOutLeftAnimation', [
 
       style({
         top: '15.5%',
-        left: '47.5%',
+        left: '50%',
         opacity: 1,
         position: 'absolute',
       }),
@@ -109,28 +109,28 @@ export const fadeInAndOutLeftAnimation = trigger('fadeInAndOutLeftAnimation', [
         keyframes([
           style({
             top: '15.5%',
-            left: '47.5%',
+            left: '50%',
             opacity: 1,
             position: 'absolute',
             offset: 0.1,
           }),
           style({
             top: '15.5%',
-            left: '46.5%',
+            left: '49%',
             opacity: 0.7,
             position: 'absolute',
             offset: 0.2,
           }),
           style({
             top: '15.5%',
-            left: '45.5%',
+            left: '48%',
             opacity: 0.3,
             position: 'absolute',
             offset: 0.3
           }),
           style({
             top: '15.5%',
-            left: '44.5%',
+            left: '47%',
             opacity: 0.1,
             position: 'absolute',
             offset: 0.4
@@ -138,35 +138,35 @@ export const fadeInAndOutLeftAnimation = trigger('fadeInAndOutLeftAnimation', [
           style({
             top: '15.5%',
             opacity: 0 ,
-            left: '43.5%',
+            left: '46%',
             position: 'absolute',
             offset: 0.5
           }),
           style({
             top: '15.5%',
             opacity: 0 ,
-            left: '42.5%',
+            left: '45%',
             position: 'absolute',
             offset: 0.6
           }),
           style({
             top: '15.5%',
             opacity: 0,
-            left: '41.5%',
+            left: '44%',
             position: 'absolute',
             offset: 0.7
           }),
           style({
-            top: '15.5%',
+            top: '13%',
             opacity: 0,
-            left: '40.5%',
+            left: '43%',
             position: 'absolute',
             offset: 0.8
           }),
           style({
             top: '15.5%',
             opacity: 0,
-            left: '38.5%',
+            left: '41%',
             position: 'absolute',
             offset: 1.0
           })
