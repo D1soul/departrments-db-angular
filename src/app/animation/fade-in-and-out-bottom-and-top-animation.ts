@@ -10,7 +10,7 @@ export const fadeInAndOutBottomAndTopAnimation =
       opacity: 1,
       minWidth: '1260px',
       maxWidth: 'max-content',
-      margin: '0 -630px 0 -630px'
+      margin: '3% -630px 0 -630px'
     })),
     transition(':enter', [
 
