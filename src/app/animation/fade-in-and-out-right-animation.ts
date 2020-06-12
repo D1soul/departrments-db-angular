@@ -9,7 +9,7 @@ export const fadeInAndOutRightAnimation = trigger('fadeInAndOutRightAnimation', 
       opacity: 1,
       minWidth: '1280px',
       maxWidth: 'max-content',
-      margin: '80px -640px 0 -640px'
+      margin: '70px -640px 0 -640px'
     })),
     transition(':enter', [
 
