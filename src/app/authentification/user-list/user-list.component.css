@@ -1,7 +1,9 @@
 .users{
   min-width: 777px;
   max-width: max-content;
-  margin: 0;
+  margin: 0 -383px 0 -384px;
+  position: relative;
+  left: 395px;
 }
 
 h2{

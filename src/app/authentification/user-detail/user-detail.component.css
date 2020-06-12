@@ -1,7 +1,9 @@
 .userDetail{
   height: max-content;
   width: min-content;
-  margin: 0;
+  margin: 0 -251px 0 -251px;
+  position: relative;
+  left: 395px;
   overflow: hidden;
 }
 

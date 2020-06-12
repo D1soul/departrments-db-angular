@@ -1,7 +1,9 @@
 .subDeptDetail{
   height: max-content;
   width: max-content;
-  margin: 0;
+  margin: 0 -352px 0 -353px;
+  position: relative;
+  left: 395px;
 }
 
 .subDeptContent{

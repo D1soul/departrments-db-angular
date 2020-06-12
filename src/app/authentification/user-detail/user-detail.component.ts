@@ -20,11 +20,11 @@ export class UserDetailComponent implements OnInit {
               private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
-    this.user = null;
-    this.username = null;
-    this.username = this.route.snapshot.params['username'];
-    this.getUserDetail();
-    this.isCurrentUser();
+    this.route.params.subscribe(() => {
+      this.username = this.route.snapshot.params['username'];
+      this.getUserDetail();
+      this.isCurrentUser();
+    });
   }
 
   isCurrentUser(): boolean{

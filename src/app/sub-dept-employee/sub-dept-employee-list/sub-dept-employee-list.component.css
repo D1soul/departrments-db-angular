@@ -1,6 +1,8 @@
 .subDeptEmls{
   width: 605px;
-  margin: 0;
+  margin: 0 -303px 0 -304px;
+  position: relative;
+  left: 395px;
 }
 
 h2{

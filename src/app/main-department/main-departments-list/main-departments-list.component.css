@@ -1,6 +1,8 @@
 .mainDepts{
   width: 777px;
-  margin: 0;
+  margin: 0 -383px 0 -384px;
+  position: relative;
+  left: 395px;
 }
 
 h2{
